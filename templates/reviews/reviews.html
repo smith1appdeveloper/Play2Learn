@@ -1,0 +1,69 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Reviews{% endblock %}
+{% block main %}
+<html lang="en">
+<style>
+  body, html {
+    background-image: none;
+    background-color: white;
+    overflow: auto!important;
+    max-height: 100% !important;
+    width: 100%;
+    height: 100%;
+    }
+    #contactButton {
+    width: 90px;
+    height: 40px;
+    background-color: black;
+    border-style: none solid solid none;
+    color: white;
+    display: block;
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 1px 6px;
+    text-decoration: none;
+    clear: right;
+    text-indent: 0rem;
+    text-shadow: none;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    position: absolute;
+    }
+    #contactButton:hover {background-color: gray}
+    #contactButton:active {
+      background-color: #0754c7;
+      box-shadow: 0 5px #667;
+      transform: translateY(4px);
+    }
+  .card{
+    background: rgba(232, 232, 232, 0.65);
+    background-position: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    bottom: 0;
+    box-sizing: border-box;
+    }
+    .mt-5 {
+      height: 80%;
+    }
+  #id_name{width: 100%;}
+  #id_email{width: 100%;}
+  #id_message{width: 100%;}
+  </style>
+<div class="mt-5">
+    <div class="card border-primary m-auto mb-3 mt-5" style="max-width: 30rem">
+        <h2 class="card-header text-center">Reviews</h2>
+        <div class="card-body">
+        <form method="post" >
+            {% csrf_token %}
+            <label for="reviews">Please leave your review:</label>
+            <textarea rows="10" cols="57" name="reviews" id="reviews"></textarea>
+            <button id="contactButton"class="form-control btn btn-primary mt-3">SEND</button>
+        </form>
+</html>
+{% endblock %}

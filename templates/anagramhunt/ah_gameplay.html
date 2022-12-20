@@ -1,0 +1,705 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Anagram Hunt{% endblock %}
+{% block javascript %}
+<script>
+   //5**************************************************************************************/
+const a50 = new Array ();
+a50[0] = "abets", a50[1] = "baste", a50[2] = "betas", a50[3] = "beast", a50[4] = "beats"
+const a51 = new Array ();
+a51[0] = "acres", a51[1] = "cares", a51[2] ="races", a51[3] = "scare"
+const a52 = new Array ();
+a52[0] = "alert", a52[1] = "alter", a52[2] = "later"
+const a53 = new Array ();
+a53[0] = "angel", a53[1] = "angle", a53[2] = "glean"
+const a54 = new Array ();
+a54[0] = "baker", a54[1] = "brake", a54[2] = "break"
+const a55 = new Array ();
+a55[0] = "bared", a55[1] = "beard", a55[2] = "bread", a55[3] = "debar"
+const a56 = new Array ();
+a56[0] = "dater", a56[1] = "rated", a56[2] = "trade", a56[3] = "tread"
+const a57 = new Array ();
+a57[0] = "below", a57[1] = "bowel", a57[2] = "elbow"
+const a58 = new Array ();
+a58[0] = "caret", a58[1] = "cater", a58[2] = "crate", a58[3] = "trace", a58[4] = "react"
+//6
+const a60 = new Array ();
+a60[0] = "arrest", a60[1] = "rarest", a60[2] = "raster", a60[3] = "raters", a60[4] = "starer"
+const a61 = new Array ();
+a61[0] = "carets", a61[1] = "caters", a61[2] = "caster", a61[3] = "crates", a61[4] = "reacts",
+a61[5] = "recast", a61[6] = "traces"
+const a62 = new Array ();
+a62[0] = "canter", a62[1] = "nectar", a62[2] = "recant", a62[3] = "trance"
+const a63 = new Array ();
+a63[0] = "danger", a63[1] = "gander", a63[2] = "garden", a63[3] = "ranged"
+const a64 = new Array ();
+a64[0] = "daters", a64[1] = "trades", a64[2] = "treads", a64[3] = "stared"
+//7
+const a70 = new Array ();
+a70[0] = "allergy", a70[1] = "gallery", a70[2] = "largely", a70[3] = "regally"
+const a71 = new Array ();
+a71[0] = "aspired", a71[1] = "despair", a71[2] = "diapers", a71[3] = "praised"
+const a72 = new Array ();
+a72[0] = "claimed", a72[1] = "decimal", a72[2] = "declaim", a72[3] = "medical"
+const a73 = new Array ();
+a73[0] = "dearths", a73[1] = "hardest", a73[2] = "hatreds", a73[3] = "threads",
+a73[4] = "trashed"
+const a74 = new Array ();
+a74[0] = "detains", a74[1] = "instead", a74[2] = "sainted", a74[3] = "stained"
+//8
+const a80 = new Array ();
+a80[0] = "parroted", a80[1] = "predator", a80[2] = "prorated", a80[3] = "teardrop"
+const a81 = new Array ();
+a81[0] = "repaints", a81[1] = "painters", a81[2] = "pantries", a81[3] = "pertains"
+const a82 = new Array ();
+a82[0] = "restrain", a82[1] = "retrains", a82[2] = "strainer", a82[3] = "terrains",
+a82[4] = "trainers"
+const a83 = new Array ();
+a83[0] = "construe", a83[1] = "counters", a83[2] = "recounts", a83[3] = "trounces"
+//**************************************************************************************/
+let userAnswer = "";    // user input.
+let guessedWord = [];   // words guessed already in game play.
+let currentArray = [];  // current array being negotiated.
+let wordStart = '';     // starting word from the current array.
+let anagramStart = 'Y';       // which array from family to start the game with.
+let counter = 0;        // keeps number for correctly guessed words.
+let counter2 = 0;        // keeps number for correctly guessed words.
+let newItem = '';       // creates space for correctly guessed words on display.
+let answersList = '';   // holds DOM data for correctly guessed words to be displayed.
+let firstPass = 'Y';     // switch keeps record of users first pass through gamePlay().
+let playedArrays = [];  // array stored arrays already solved from array word length family.
+let PlayButton = '';
+let AnagramsLeft = '';
+let KeepTimer = '';
+let scoreKeeper = 0;
+let gameLength = 60;
+let timeLeft = 60;
+let selected =  '';
+let elementsLeft = 0;
+let anagram = [];
+let addScore = {};
+let addScoreM = {};
+let arrayFam = {};
+
+
+function playGame() {
+  score = document.getElementById('score');
+  score2 = document.getElementById('score2');
+  score.innerHTML = scoreKeeper;
+  score2.innerHTML = scoreKeeper;
+  arrayFam = sessionStorage.getItem("arrayFam");
+  console.log("arrayFam", arrayFam)
+  let elemNum = '';                      // number of elements in array.
+  if (arrayFam == 5) {
+   console.log("firstPass", firstPass)
+     if (firstPass == 'Y') {
+        anagramStart = randInt(1,9);     // choose randomly an array to start with.
+        //anagramStart = 2
+        firstPass = 'N';
+     }
+     if (anagramStart == '1') {
+        currentArray.push(...a50)        // add selected array elements to current array.
+        elemNum = a50.length - 1         // find number of elements in selected array.
+        wordStart = randInt(0,elemNum);  // choose randomly a word from the selected array to start with.
+        anagram = a50[wordStart];   // send word to display.
+        elementsLeft = elemNum;       // send anagrams left to display.
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '2') {
+        currentArray.push(...a51)
+        elemNum = a51.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a51[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '3') {
+        currentArray.push(...a52)
+        elemNum = a52.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a52[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '4') {
+        currentArray.push(...a53)
+        elemNum = a53.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a53[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '5') {
+        currentArray.push(...a54)
+        elemNum = a54.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a54[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '6') {
+        currentArray.push(...a55)
+        elemNum = a55.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a55[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '7') {
+        currentArray.push(...a56)
+        elemNum = a56.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a56[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '8') {
+        currentArray.push(...a57)
+        elemNum = a57.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a57[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '9') {
+        currentArray.push(...a58)
+        elemNum = a58.length - 1
+        wordStart = randInt(0,elemNum);
+        anagram = a58[wordStart];
+        elementsLeft = elemNum;
+        display = document.getElementById('display');
+        display2 = document.getElementById('display2');
+        display.innerHTML = anagram;
+        display2.innerHTML = anagram;
+        anagramsLeft = document.getElementById('anagramsLeft');
+        anagramsLeft2 = document.getElementById('anagramsLeft2');
+        anagramsLeft.innerHTML = elementsLeft;
+        anagramsLeft2.innerHTML = elementsLeft;
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+}
+}
+if (arrayFam == '6') {
+ if (firstPass == 'Y') {
+ anagramStart = randInt(1,5);
+ firstPass = 'N'
+ }
+ if (anagramStart == '1') {
+    currentArray.push(...a60)
+    elemNum = a60.length - 1
+    wordStart = randInt(0,elemNum);
+    anagram = a60[wordStart];
+    elementsLeft = elemNum;
+    display = document.getElementById('display');
+    display2 = document.getElementById('display2');
+    display.innerHTML = anagram;
+    display2.innerHTML = anagram;
+    anagramsLeft = document.getElementById('anagramsLeft');
+    anagramsLeft2 = document.getElementById('anagramsLeft2');
+    anagramsLeft.innerHTML = elementsLeft;
+    anagramsLeft2.innerHTML = elementsLeft;
+ } else {
+ if (anagramStart == '2') {
+    currentArray.push(...a61)
+    elemNum = a61.length - 1
+    wordStart = randInt(0,elemNum);
+    anagram = a61[wordStart];
+    elementsLeft = elemNum;
+    display = document.getElementById('display');
+    display2 = document.getElementById('display2');
+    display.innerHTML = anagram;
+    display2.innerHTML = anagram;
+    anagramsLeft = document.getElementById('anagramsLeft');
+    anagramsLeft2 = document.getElementById('anagramsLeft2');
+    anagramsLeft.innerHTML = elementsLeft;
+    anagramsLeft2.innerHTML = elementsLeft;
+ } else {
+ if (anagramStart == '3') {
+     currentArray.push(...a62)
+     elemNum = a62.length - 1
+     wordStart = randInt(0,elemNum);
+     anagram = a62[wordStart];
+     elementsLeft = elemNum;
+     display = document.getElementById('display');
+    display2 = document.getElementById('display2');
+    display.innerHTML = anagram;
+    display2.innerHTML = anagram;
+    anagramsLeft = document.getElementById('anagramsLeft');
+    anagramsLeft2 = document.getElementById('anagramsLeft2');
+    anagramsLeft.innerHTML = elementsLeft;
+    anagramsLeft2.innerHTML = elementsLeft;
+ } else {
+ if (anagramStart == '4') {
+    currentArray.push(...a63)
+    elemNum = a63.length - 1
+    wordStart = randInt(0,elemNum);
+    anagram = a63[wordStart];
+    elementsLeft = elemNum;
+    display = document.getElementById('display');
+    display2 = document.getElementById('display2');
+    display.innerHTML = anagram;
+    display2.innerHTML = anagram;
+    anagramsLeft = document.getElementById('anagramsLeft');
+    anagramsLeft2 = document.getElementById('anagramsLeft2');
+    anagramsLeft.innerHTML = elementsLeft;
+    anagramsLeft2.innerHTML = elementsLeft;
+ } else {
+ if (anagramStart == '5') {
+    currentArray.push(...a64)
+    elemNum = a64.length - 1
+    wordStart = randInt(0,elemNum);
+    anagram = a64[wordStart];
+    elementsLeft = elemNum;
+    display = document.getElementById('display');
+    display2 = document.getElementById('display2');
+    display.innerHTML = anagram;
+    display2.innerHTML = anagram;
+    anagramsLeft = document.getElementById('anagramsLeft');
+    anagramsLeft2 = document.getElementById('anagramsLeft2');
+    anagramsLeft.innerHTML = elementsLeft;
+    anagramsLeft2.innerHTML = elementsLeft;
+   }
+  }
+ }
+}
+}
+}
+if (arrayFam == '7') {
+ if (firstPass == 'Y') {
+ anagramStart = randInt(1,5);
+ firstPass = 'N'
+ }
+ if (anagramStart == '1') {
+    currentArray.push(...a70)
+    elemNum = a70.length - 1
+    wordStart = randInt(0,elemNum);
+    anagram = a70[wordStart];
+    elementsLeft = elemNum;
+    display = document.getElementById('display');
+    display2 = document.getElementById('display2');
+    display.innerHTML = anagram;
+    display2.innerHTML = anagram;
+    anagramsLeft = document.getElementById('anagramsLeft');
+    anagramsLeft2 = document.getElementById('anagramsLeft2');
+    anagramsLeft.innerHTML = elementsLeft;
+    anagramsLeft2.innerHTML = elementsLeft;
+    } else {
+    if (anagramStart == '2') {
+      currentArray.push(...a71)
+      elemNum = a71.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a71[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '3') {
+      currentArray.push(...a72)
+      elemNum = a72.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a72[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '4') {
+      currentArray.push(...a73)
+      elemNum = a73.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a73[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '5') {
+      currentArray.push(...a74)
+      elemNum = a74.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a74[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+       }
+      }
+     }
+    }
+   }
+  }
+if (arrayFam == '8') {
+   if (firstPass == 'Y') {
+      anagramStart = randInt(1,4);
+      firstPass = 'N'
+   }
+     if (anagramStart == '1') {
+      currentArray.push(...a80)
+      elemNum = a80.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a80[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '2') {
+      currentArray.push(...a81)
+      elemNum = a81.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a81[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '3') {
+      currentArray.push(...a82)
+      elemNum = a82.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a82[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     } else {
+     if (anagramStart == '4') {
+      currentArray.push(...a83)
+      elemNum = a83.length - 1
+      wordStart = randInt(0,elemNum);
+      anagram = a83[wordStart];
+      elementsLeft = elemNum;
+      display = document.getElementById('display');
+      display2 = document.getElementById('display2');
+      display.innerHTML = anagram;
+      display2.innerHTML = anagram;
+      anagramsLeft = document.getElementById('anagramsLeft');
+      anagramsLeft2 = document.getElementById('anagramsLeft2');
+      anagramsLeft.innerHTML = elementsLeft;
+      anagramsLeft2.innerHTML = elementsLeft;
+     }
+    }
+   }
+  }
+ }
+}
+function getNextAnagram() {
+//are we done?
+answersList = document.getElementById('answersList');
+answersList.innerHTML = '';
+answersList2 = document.getElementById('answersList2');
+answersList2.innerHTML = '';
+startTimer();
+anagramStart++;
+playedArrays.push(anagramStart);
+console.log("anagramStart",anagramStart);
+if (arrayFam == '5') {
+   if (playedArrays.length == '9') {
+         stopGame();
+      }
+   if (anagramStart > '9') {
+         anagramStart = '1';
+      }
+   }
+if (arrayFam == '6') {
+   if (playedArrays.length == '5') {
+          stopGame();
+        }
+   if (anagramStart > '5') {
+          anagramStart = '1';
+        }
+   }
+if (arrayFam == '7') {
+   if (playedArrays.length == '5') {
+         stopGame();
+        }
+   if (anagramStart > '5') {
+         anagramStart = '1';
+        }
+   }
+if (arrayFam == '8') {
+   if (playedArrays.length == '4') {
+           stopGame();
+        }
+   if (anagramStart > '4') {
+           anagramStart = '1';
+        }
+     }
+    //reset board
+    if (timeLeft > '0') {
+      counter = 0;
+      counter2 = 0;
+      clearInterval(timer);
+      window.removeEventListener('keyup', handleKeyUp);
+      timeLeft = 60;
+      guessedWord = [];
+      //next anagram
+      playGame();
+      document.getElementById('answersList').innerHTML = " ";
+      document.getElementById('answersList2').innerHTML = " ";
+      }else{
+         stopGame();
+      }
+   }
+function handleKeyUp(e) {
+  e.preventDefault(); // prevent the normal behavior of the key
+  if (e.keyCode === 32 || e.keyCode === 13) { // space/Enter
+     checkAnswer();
+  }
+}
+function randInt(low, high) {
+   const rndDec = Math.random();
+   const rndInt = Math.floor(rndDec * (high - low + 1) + low);
+   return rndInt;
+}
+function startTimer() {
+  window.addEventListener('keyup', handleKeyUp);
+  timeLeft = gameLength;
+  if (timeLeft > 0) {
+     timer = setInterval(() => {
+        timeLeft--;
+        time = document.getElementById('time');
+        time2 = document.getElementById('time2');
+        time.innerHTML = timeLeft;
+        time2.innerHTML = timeLeft;
+        checkAnswer();
+        if (timeLeft === 0) {
+           clearInterval(timer);
+           window.removeEventListener('keyup', handleKeyUp);
+           stopGame();
+        }
+     }, 1000)
+  }else{
+   clearInterval(timer);
+   window.removeEventListener('keyup', handleKeyUp);
+   stopGame();
+  }
+}
+function stopGame() {
+   sessionStorage.setItem("addScore", addScore);
+   sessionStorage.setItem("addScoreM", addScoreM);
+   console.log("scoreKeeper", scoreKeeper);
+   location.assign("{% url 'anagramhunt:ah_final' %}");
+}
+function checkAnswer() {
+   userAnswer = document.getElementById("entry").value.toLowerCase().trim();
+   userAnswer2 = document.getElementById("entry2").value.toLowerCase().trim();
+   guessedWord.push(anagram);
+     if (!guessedWord.includes(userAnswer)) {
+        if (currentArray.includes(userAnswer)) {
+           guessedWord.push(userAnswer);
+           scoreKeeper++;
+           addScore = scoreKeeper;
+           score = document.getElementById('score');
+           score.innerHTML = scoreKeeper;
+           elementsLeft--;
+           anagramsLeft = document.getElementById('anagramsLeft');
+           anagramsLeft.innerHTML = elementsLeft;
+           counter = ++counter;
+           answersList = document.getElementById('answersList');
+           newItem = document.createElement('p');
+           answersList.appendChild(newItem);
+           newItem.innerHTML = counter + '. ' + userAnswer;
+           entry.value = '';
+           if (elementsLeft == '0') {
+              getNextAnagram();
+           }
+         }
+       }
+       if (!guessedWord.includes(userAnswer2)) {
+         if (currentArray.includes(userAnswer2)) {
+            guessedWord.push(userAnswer2);
+            answersList2 = document.getElementById('answersList2');
+            scoreKeeper++;
+            addScoreM = scoreKeeper;
+            score2 = document.getElementById('score2');
+            score2.innerHTML = scoreKeeper;
+            elementsLeft--;
+            anagramsLeft2 = document.getElementById('anagramsLeft2');
+            anagramsLeft2.innerHTML = elementsLeft;
+            counter2 = ++counter2;
+            answersList2 = document.getElementById('answersList2');
+            newItem = document.createElement('p');
+            answersList2.appendChild(newItem);
+            newItem.innerHTML = counter2 + '. ' + userAnswer2;
+            entry2.value = '';
+            if (elementsLeft == '0') {
+               getNextAnagram();
+            }
+          }
+        }
+
+     }
+window.addEventListener('load', function() {
+   const answer = document.getElementById('entry').focus();
+   const answer2 = document.getElementById('entry2').focus();
+   const time = document.getElementById('time');
+   const time2 = document.getElementById('time2');
+   const score = document.getElementById('score');
+   const score2 = document.getElementById('score2');
+   const display = document.getElementById('display');
+   const display2 = document.getElementById('display2');
+   const answersList = document.getElementById('answersList');
+   const answersList2 = document.getElementById('answersList2');
+   const arrayFam2 = sessionStorage.getItem("arrayFam2");
+   document.addEventListener("keypress", function(e) {
+   if (e.keyCode === 13) {
+     event.preventDefault();
+     checkAnswer();
+   }
+ });
+ playGame();
+ startTimer();
+});
+</script>
+{% endblock %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/ah_gameplay.css' %}">
+<body class=".backgroundimg" style="background-image: url('{% static 'Images/blocks.webp' %}');">
+ <div id="scoreboard" class="container justify-content-center d-none d-lg-block">
+   <h1 class="mt-3 mb-3 text-center">Anagram Hunt</h1>
+   <div class="row justify-content-center mt-2 mt-5 mb-5">
+      <div>
+         <div class="row justify-content-center">
+            <div id="scoreLabel" class="row ml-2"><label for="score">Score: </label>
+            <p id="score" class="ml-1 mr-5"></p></div>
+            <div id="timeLabel" class="row"><label for="time">Time Left: </label>
+            <p id="time" class="ml-1 mr-5"></p></div>
+         </div>
+         <hr>
+         <div class="row justify-content-center">
+            <p class="mr-5 font-weight-bold" id="display"></p>
+            <p class="mr-1" id="anagramsLeft"></p>
+            <div id="anagramsleftLabel"><label for="entry">left</label></div>
+         </div>
+            <input class="text-center mt-3" id="entry" placeholder="answer">
+            <p class="text-center mt-4 mb-3" id="answersList" class="ml-5 mr-5"></p>
+
+      </div>
+   </div>
+ </div>
+<!--Mobile-->
+<div class="container justify-content-center d-lg-none d-md-block">
+ <div id="scoreboard2"class="mt-3">
+   <h1 class="mt-3 mb-3 text-center">Anagram Hunt</h1>
+   <div class="row justify-content-center mt-2 mt-5 mb-5">
+      <div>
+         <div class="row justify-content-center">
+            <div id="scoreLabel2" class="row ml-2"><label for="score2">Score: </label>
+            <p id="score2" class="ml-1 mr-5"></p></div>
+            <div id="timeLabel2" class="row"><label for="time2">Time Left: </label>
+            <p id="time2" class="ml-1 mr-5"></p></div>
+         </div>
+         <hr>
+         <div class="row justify-content-center">
+            <p class="mr-5 font-weight-bold" id="display2"></p>
+            <p class="mr-1" id="anagramsLeft2"></p>
+            <div id="anagramleftLabel2"><label for="entry2">left</label></div>
+         </div>
+         <input class="text-center mt-3" id="entry2" placeholder="answer">
+         <p class="text-center mt-4 mb-3" id="answersList2" class="ml-5 mr-5"></p>
+      </div>
+   </div>
+ </div>
+</div>
+</body>
+</html>
+{% endblock %}

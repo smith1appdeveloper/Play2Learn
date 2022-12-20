@@ -1,0 +1,39 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block main %}
+
+<body class="webucator">
+<main>
+  <div id="backgroundContact"  class="container-fluid text-center d-none d-md-block">
+  <form id="formContact">
+    <div id="contact" class="form-group col-md-12"><h2>Contact Us</h2></div>
+        <div class="row">
+           <div class="form-group col-md-12">
+              <label  for="email" id="emailLabel">Email: </label>
+              <input type="email" id="email"  class="form-control" required>
+           </div>
+     </div>
+     <div class="row">
+        <div class="form-group col-md-12">
+           <label for="subject" id="subjectL" >Subject:</label>
+           <input type="text"  id="subject"
+           minlength="1" maxlength="50" class="form-control" required>
+        </div>
+    </div>
+   <div class="row">
+      <div class="form-group col-md-12">
+         <label id="messageL" for="message">Message:</label>
+         <input type="text"  id="message"
+         minlength="10" maxlength="200" class="form-control">
+      </div>
+      {% csrf_token %}
+      {{ form|crispy }}
+  </div>
+      <div class="form-group"><button id=contactButton>Send</button></div>
+  </form>
+ </div>
+
+{% endblock %}

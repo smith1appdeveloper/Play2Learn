@@ -1,0 +1,100 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Anagram Hunt{% endblock %}
+{% block main %}
+{% block javascript %}
+<script>
+function startGame() {
+   const select = document.getElementById('mathOp');
+   const arrayFam = select.options[select.selectedIndex].value;
+   if (arrayFam > '4') {
+      sessionStorage.setItem("arrayFam", arrayFam);
+      location.assign("{% url 'anagramhunt:ah_gameplay' %}");
+   }
+}
+function startGame2() {
+   const select2 = document.getElementById('mathOp2');
+   const arrayFam2 = select2.options[select2.selectedIndex].value;
+   if (arrayFam2 > '4') {
+      sessionStorage.setItem("arrayFam", arrayFam2);
+      location.assign("{% url 'anagramhunt:ah_gameplay' %}");
+   }
+}
+window.addEventListener('load', function() {
+   const form = document.getElementById('formMath');
+   form.addEventListener('submit', function() {
+      event.preventDefault();
+      startGame();
+   });
+});
+window.addEventListener('load', function() {
+   const form2 = document.getElementById('formMath2');
+   form2.addEventListener('submit', function() {
+      event.preventDefault();
+      startGame2();
+   });
+});
+</script>
+{% endblock %}
+<link rel="stylesheet" href="{% static 'css/anagramhunt.css' %}">
+<body class=".backgroundimg" style="background-image: url('{% static 'Images/blocks.webp' %}');">
+   <div class="mx-auto">
+      <main class="d-none d-lg-block">
+         <form id="formMath" class="mx-auto" novalidate>
+           <div id="head" class="text-center"><h2 id=register>Anagram Hunt</h2></div>
+              <div class="row">
+                 <div  id="operation" class="col-md-12">
+                    <label  for="mathOp" class="mr-1">Word Length </label>
+                    <select name="mathOp" id="mathOp">
+                     <option value="0" selected="selected">--Please Choose--</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                     <option value="8">8</option>
+                    </select>
+                 </div>
+              </div>
+               <div><button id=mathButton >Play</button></div>
+                  <div class="row ml-1" id=formMath3>
+                     1. Choose word length.<br>
+                     2. Press Play!<br>
+                     3. How many anagrams can you find in a minute? <br>
+                  </div>
+               <div class="font-weight-normal font-italic" id="example">
+                     Ex.<br>
+                     loop - pool - polo<br>
+               </div>
+         </form>
+      </main>
+      </div>
+      <!--Mobile size viewport-->
+      <div id="formMath4" class="container-fluid d-lg-none d-md-block">
+        <form id="formMath2" class="mt-3 mb-3">
+         <div  class="container-fluid d-lg-none d-md-block">
+          <div id="head2" class="text-center"><h2 id=register2>Anagram Hunt</h2></div>
+             <div class="row">
+                <div class="text-left col-md-12">
+                   <label  for="mathOp2">Word Length </label>
+                   <select name="mathOp2" id="mathOp2" >
+                     <option value="0" selected="selected">--Please Choose--</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                     <option value="8">8</option>
+                   </select>
+                </div>
+             </div>
+            <div class="row mt-3 ml-3"><button id=mathButton2>Play</button></div>
+               <div class="row ml-1 text-left font-weight-bold mt-5" >
+                  1. Choose word length.<br>
+                  2. Press Play!<br>
+                  3. How many anagrams can you find in a minute? <br>
+               </div>
+               <div class="mt-5 font-weight-normal font-italic float-left">Ex. loop - pool - polo<br></div>
+         </div>
+        </form>
+        </div>
+      </div>
+      </body>
+      </html>
+      {% endblock %}

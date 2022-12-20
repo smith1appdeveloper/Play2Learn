@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/b02c9a6dba.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'Images/children_playing.jpg' %}">
+{% block javascript %}{% endblock %}
+<title>{% block title %}{% endblock %} | Play2Learn Games</title>
+<link rel="icon" type="image/x-icon" href="{% static 'Images/logo.webp' %}">
+<link rel="mask-icon" href="{% static 'Images/logo.webp' %}">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+         <h3><a href="{% url 'pages:homepage' %}">Play2Learn Games&trade;</a></h3>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-expanded="false"
+                aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                   <li class="nav-item active"><a class="nav-link" href="{% url 'pages:homepage' %}">Home<span class="sr-only">(current)</span></a></li>
+                   <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Games
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <a class="dropdown-item" href="{% url 'anagramhunt:anagramhunt' %}">Anagram Hunt</a>
+                       <div class="dropdown-divider"></div>
+                       <a class="dropdown-item" href="{% url 'mathfacts:mathfacts' %}">Math Facts Practice</a>
+                     </div>
+                   </li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'pages:about_us' %}">About</a></li>
+                 </ul>
+           </div>
+       </nav>
+   </header>
+{% block main %}
+<main class=".backgroundimg d-none d-md-block .mt-n1" style="background-image: url('{% static 'Images/children_playing.jpg' %}');" id="image">
+   <hr>
+   <div id="quote" >
+      <p id="quotesection">Quote Section</p>
+   </div>
+   <div id="background" class="container-fluid">
+      <div id="container1" class="row">
+         <div  class=" container-fluid col-md-6 border-right border-dark d-none d-lg-block">
+             <h3>Anagram Hunt</h3>
+                <p class="container-fluid d-none d-lg-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                 nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                 officia deserunt mollit anim id est laborum.</p>
+                 <a class="button-link" href="{% url 'anagramhunt:anagramhunt' %}">Play</a>
+         </div>
+         <div id="smallScreen1" class="container-fluid d-md-block d-lg-none">
+            <h3>Anagram Hunt</h3>
+              <div class="row">
+                <p>Lorem ipsum dolor sit amet.</p>
+                   <a class="button-link2" href="{% url 'anagramhunt:anagramhunt' %}">Play</a>
+              </div>
+          </div>
+         <div id="container2" class="container-fluid col-md-6 border-start d-none d-lg-block">
+             <h3>Math Facts Practice</h3>
+                 <p class="container-fluid d-none d-lg-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                  nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                  officia deserunt mollit anim id est laborum.</p>
+                  <a class="button-link" href="{% url 'mathfacts:mathfacts' %}">Play</a>
+          </div>
+          <div  id="smallScreen2" class="container-fluid d-md-block d-lg-none">
+            <h3>Math Facts Practice</h3>
+               <div class="row">
+                  <p>Lorem ipsum dolor sit amet.</p>
+                  <a class="button-link2" href="{% url 'mathfacts:mathfacts' %}">Play</a>
+               </div>
+          </div>
+       </div>
+    </div>
+</main>
+<!--Mobile-->
+<div id="quoteSmall" class="container d-sm-block d-md-none mt-3">
+   <p id="quotesectionSmall" class="quotesectionSmall mt-3">Quote Section</p>
+</div>
+<img src="{% static 'Images/children_playing.jpg' %}" class="img-thumbnail d-sm-block d-md-none">
+ <div id="backgroundM" class="container-fluid d-md-none">
+    <div id="container1" class="row d-sm-block d-md-none">
+      <div id="smallScreen1" class="container-fluid d-md-block d-lg-none">
+        <h3>Anagram Hunt</h3>
+          <div class="row">
+            <p>Lorem ipsum dolor sit amet.</p>
+                <a class="button-link2" href="{% url 'anagramhunt:anagramhunt' %}">Play</a>
+          </div>
+      </div>
+        <div  id="smallScreen2" class="container-fluid ">
+          <h3>Math Facts Practice</h3>
+            <div class="row">
+              <p>Lorem ipsum dolor sit amet.</p>
+               <a class="button-link2" href="{% url 'mathfacts:mathfacts' %}">Play</a>
+            </div>
+       </div>
+    </div>
+  </div>
+{% endblock %}
+<footer class="fixed-bottom mt-2 ">
+   <div class="row">
+      <b class="ml-4">&copy;<script>document.write(/\d{4}/.exec(Date())[0])</script>&nbsp;&nbsp;Robby Smith</b>
+      <a class="ml-auto" href="{% url 'pages:contact-us' %}" target="_blank" rel="noopener noreferrer">
+      <i  class="fas fa-envelope"></i></a>
+      <a class="mr-1 ml-1" href="https://www.facebook.com/universityofga/about" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-facebook-square"></i></a>
+      <a class="mr-1" href="https://www.uga.edu/" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-instagram"></i></a>
+      <a class="mr-4" href="https://twitter.com/universityofga" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-twitter-square"></i></a>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+</body>
+</html>

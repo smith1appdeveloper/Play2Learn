@@ -1,0 +1,42 @@
+body, html {
+  height: 100%;
+  background-image: none;
+  background-color: white;
+  overflow-x: hidden;
+
+    }
+    #shape {
+    margin-bottom: 7rem;
+    }
+    #contactButton {
+    width: 90px;
+    height: 40px;
+    margin: 1rem 0rem 0rem 1rem;
+    background-color: black;
+    border-style: none solid solid none;
+    color: white;
+    display: block;
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 1px 6px;
+    text-decoration: none;
+    clear: right;
+    text-indent: 0rem;
+    text-shadow: none;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    position: absolute;
+    }
+    #contactButton:hover {background-color: gray}
+    #contactButton:active {
+      background-color: #0754c7;
+      box-shadow: 0 5px #667;
+      transform: translateY(4px);
+    }
+    #contactButtonM:hover {background-color: gray}
+    #contactButtonM:active {
+      background-color: #0754c7;
+      box-shadow: 0 5px #667;
+      transform: translateY(4px);
+    }

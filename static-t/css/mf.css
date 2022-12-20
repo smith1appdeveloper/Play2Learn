@@ -1,0 +1,89 @@
+body, html {
+  margin: 0%;
+  padding: 0%;
+  overflow: auto!important;
+  max-height: 100% !important;
+}
+.backgroundmg {
+  background-image: url(../Images/blackboard.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+}
+#mathButton {
+  position: absolute;
+  box-sizing: border-box;
+  background-color: black;
+  border-style: none solid solid none;
+  color: white;
+  font-family: Verdana, Geneva, sans-serif;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin-left: 5rem;
+}
+#mathButton2 {
+  position: relative;
+  box-sizing: border-box;
+  background-color: black;
+  border-style: none solid solid none;
+  color: white;
+  font-family: Verdana, Geneva, sans-serif;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+#mathButton:hover {background-color: gray}
+#mathButton:active {
+  background-color: #0754c7;
+  box-shadow: 0 5px #667;
+  transform: translateY(4px);
+}
+#formMath {
+  background: rgba(232, 232, 232, .80);
+  background-position: center;
+  width: 40%;
+  height: 60%;
+  box-sizing: border-box;
+  margin-top: 8rem;
+  padding: 1rem;
+  border-style: solid;
+}
+#formMath2 {
+  background: rgba(232, 232, 232, .80);
+  background-position: center;
+  width: 80%;
+  height: 400px;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  margin: auto;
+  border-style: solid;
+  text-align: center;
+}
+#math {
+  float: none;
+  color: black;
+  text-align: center;
+  font-size: xx-large;
+}
+label {
+  font-weight: bold;
+}
+#formMath3 {
+  margin-top: 5rem;
+  font-weight: bold;
+  float: left;
+  clear: left;
+}
+#formMath4 {
+  height: 500px;
+}
+#head {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+#operation {
+  margin-left: 5rem;
+}

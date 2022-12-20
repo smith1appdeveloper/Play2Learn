@@ -1,0 +1,97 @@
+body, html {
+  margin: 0%;
+  padding: 0%;
+  overflow: auto;
+}
+ #final {
+ background: rgba(232, 232, 232, .80);
+ background-position: center;
+ width: 50%;
+ height: 80%;
+ position: absolute;
+ box-sizing: border-box;
+ margin-top: 4rem;
+ padding: 1rem;
+ border-style: solid;
+ text-align: center;
+ }
+ #finalM {
+ background: rgba(232, 232, 232, .80);
+ background-position: center;
+ width: 80%;
+ height: 85%;
+ position: relative;
+ border-style: solid;
+ text-align: center;
+ box-sizing: border-box;
+ margin: auto;
+ margin-top: 2rem;
+ }
+ #stage {
+ height: 40%;
+ }
+ #stageM {
+ height: 40%;
+ }
+ #display {
+ color: red;
+ font-weight: bold;
+ text-align: center;
+ font-size: 1.5rem;
+ }
+ #display2 {
+ float: none;
+ color: black;
+ text-align: center;
+ font-size: 2rem;
+ margin: 0%;
+ }
+ #score {
+ min-height: 20%;
+ width: 100%;
+ box-sizing: border-box;
+ position: relative;
+ font-size: 6rem;
+ margin: auto;
+ font-weight: bold;
+ }
+ #scoreM {
+ min-height: 20%;
+ width: 100%;
+ box-sizing: border-box;
+ position: relative;
+ font-size: 6rem;
+ margin: auto;
+ font-weight: bold;
+ }
+ #button {
+  border-style: none solid solid none;
+  background-color: gray;
+  color: white;
+  display: block;
+  font-family: Verdana, Geneva, sans-serif;
+  padding: 1px 6px;
+  text-decoration: none;
+  text-indent: 0rem;
+  text-shadow: none;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 80%;
+  margin: auto;
+  }
+  #button:hover {
+    background-color: black;
+    color: white;
+  }
+  #button:active {
+    background-color: blue;
+    box-shadow: 0 5px #667;
+    transform: translateY(4px);
+  }
+ #shape {
+ height: 585px;
+ width: 100%;
+ margin: auto;
+ }

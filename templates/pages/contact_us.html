@@ -1,0 +1,95 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+{% block main %}
+<script>
+    function checkField(field) {
+        if (!field.checkValidity()) {
+            field.style.backgroundColor = 'lightcyan';
+        } else {
+           field.style.backgroundColor = '';
+        }
+     }
+    window.addEventListener('load', function(e) {
+         const form = document.getElementById('form');
+         const name = document.getElementById('form_name');
+         const lastname = document.getElementById('form_lastname');
+         const email = document.getElementById('form_email');
+         const need = document.getElementById('form_need');
+         const message = document.getElementById('form_message');
+         form.addEventListener('submit', function(e) {
+
+            if (form.checkValidity() === false) {
+               event.preventDefault();
+               alert('Please fix form errors.');
+            }
+            if (form.checkValidity() === true) {
+              window.location.assign("{% url 'pages:homepage' %}");
+              alert("Thanks for contacting us. We\'ll get back to you as soon as possible.");
+            }
+       });
+
+     });
+    </script>
+<link rel="stylesheet" href="{% static 'css/contact_us.css' %}">
+<form id="form" method="GET">
+<div class="messages"></div>
+   <div class="controls">
+      <div id="contact" class="text-center mt-3 mb-3"><h2>Contact Us</h2></div>
+      <div class="row">
+         <div class="col-md-6">
+             <div class="form-group ml-3 mr-3">
+                 <label for="formname">Firstname *</label>
+                 <input id="test" type="text" name="name"  class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                 <div class="help-block with-errors"></div>
+             </div>
+         </div>
+         <div class="col-md-6">
+             <div class="form-group ml-3 mr-3">
+                 <label for="form_lastname">Lastname *</label>
+                 <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                 <div class="help-block with-errors"></div>
+             </div>
+         </div>
+     </div>
+       <div class="row">
+           <div class="col-md-6">
+               <div class="form-group ml-3 mr-3">
+                   <label for="form_email">Email *</label>
+                   <input id="email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                   <div class="help-block with-errors"></div>
+               </div>
+           </div>
+           <div class="col-md-6">
+               <div class="form-group ml-3 mr-3">
+                   <label for="form_need">Please specify your need *</label>
+                   <select id="subject" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                       <option value=""></option>
+                       <option value="Request compliment">Compliment</option>
+                       <option value="Request complaint">Complaint</option>
+                       <option value="Request suggestion">Suggestion</option>
+                       <option value="Other">Other</option>
+                   </select>
+                   <div class="help-block with-errors"></div>
+               </div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-12">
+               <div class="form-group ml-3 mr-3">
+                   <label for="form_message">Message *</label>
+                   <textarea id="message" name="message" class="form-control" placeholder="Please, leave us a message. *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                   <div class="help-block with-errors"></div>
+               </div>
+           </div>
+           <div id="shape" class="col-md-12">
+               <button type="submit" id="contactButton" class="btn btn-send"  value="Send">Send</button>
+           </div>
+       </div>
+   </div>
+</form>
+</main>
+</body>
+
+{% endblock %}
