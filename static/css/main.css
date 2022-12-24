@@ -88,6 +88,7 @@ body, html{
    padding: 3rem;
    font-size: large;
    border-style: solid;
+   border-width: thin;
    margin: 1rem 1rem 1rem 1rem;
  }
  #quoteSmall {
