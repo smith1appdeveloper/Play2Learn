@@ -7,14 +7,16 @@ body, html{
   margin-top: -1rem !important;
 }
  #backgroundImage {
-   height: 702px;
+   /*height: 702px;*/
+   height: auto;
  }
  .backgroundimg {
    background-image: url("{% static 'images/children_playing.jpg' %}");
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   max-width: 100%;
+   /*max-width: 100%;*/
+   width: auto;
    height: auto;
    line-height: 0%;
    vertical-align: bottom;
