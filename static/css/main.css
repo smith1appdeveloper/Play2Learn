@@ -24,7 +24,8 @@ body, html{
  }
  main {
   box-sizing:border-box;
-  height: 818px;
+  /*height: 818px;*/
+  height: auto;
   position: relative;
 }
  #container {
