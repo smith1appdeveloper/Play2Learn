@@ -25,12 +25,12 @@ body, html{
    line-height: 0%;
    vertical-align: bottom;
  }
- main {
+ /*main {
   box-sizing:border-box;
-  /*height: 818px;*/
+  /*height: 818px;
   height: auto;
   position: relative;
-}
+}*/
  #container {
    height: auto;
  }
