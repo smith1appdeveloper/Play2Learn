@@ -5,6 +5,14 @@ body, html{
  }
  #image {
   margin-top: -1rem !important;
+  background-size: auto;
+   background-position: center;
+   background-repeat: no-repeat;
+   /*max-width: 100%;*/
+   width: auto;
+   height: auto;
+   line-height: 0%;
+   vertical-align: bottom;
 }
  #backgroundImage {
    /*height: 702px;*/
