@@ -85,7 +85,7 @@ body, html{
    background: rgba(232, 232, 232, 0.65);
    background-position: center;
    text-align: center;
-   width: 97.5%;
+   width: auto;
    height: 20%;
    position: relative;
    box-sizing: border-box;
@@ -134,25 +134,21 @@ body, html{
    clear: both;
  }
  #background {
-  height: 60rem;
+  height: 45%;
   bottom: 0;
   background: rgba(232, 232, 232, 0.65);
   background-position: center;
   text-align: center;
-  width: 109rem;
+  width: 97.5%;
   position: relative;
   box-sizing: border-box;
   padding-top: 2rem;
   padding-bottom: 1rem;
   font-size: large;
   border-style: solid;
-  margin: 1rem 1rem 1rem 1rem;
+  margin: 12rem 1rem 1rem 1rem;
 }
-#container1 {
-  margin-top: 40rem;
-  background: rgba(232, 232, 232, 0.65);
-  background-position: center;
-}
+
  #backgroundM {
    height: 45%;
    bottom: 0;
