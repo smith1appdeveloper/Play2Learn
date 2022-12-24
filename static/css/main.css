@@ -12,7 +12,8 @@ body, html{
  }
  .backgroundimg {
    background-image: url("{% static 'images/children_playing.jpg' %}");
-   background-size: cover;
+   /*background-size: cover;*/
+   background-size: auto;
    background-position: center;
    background-repeat: no-repeat;
    /*max-width: 100%;*/
