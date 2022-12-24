@@ -43,12 +43,13 @@
        </nav>
    </header>
 {% block main %}
-<main class=".backgroundimg d-none d-md-block .mt-n1" style="background-image: url('{% static 'Images/children_playing.jpg' %}');" id="image">
+
+<main>
    <hr>
    <div id="quote" >
       <p id="quotesection">Quote Section</p>
    </div>
-   <!--<img class=".backgroundimg d-none d-md-block .mt-n1" style="background-image: url('{% static 'Images/children_playing.jpg' %}');"><!--change-->
+   <img src="{% static 'Images/children_playing.jpg' %}" class="img-thumbnail d-sm-none d-md-block"><!--change-->
    <div id="background" class="container-fluid">
       <div id="container1" class="row">
          <div  class=" container-fluid col-md-6 border-right border-dark d-none d-lg-block">
