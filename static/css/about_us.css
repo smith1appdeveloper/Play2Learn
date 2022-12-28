@@ -4,10 +4,13 @@ body, html {
   overflow:auto;
 }
 #quote{
-  padding: 1rem 1rem 1rem 1rem;
+  text-align: center;
+  width: auto;
+  height: 20%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 1rem;
   font-size: small;
-  margin: 0%;
-  width: 100%;
 }
 #containerUs {
   width: 100%;
@@ -35,7 +38,7 @@ body, html {
   width: 100%;
   display: block;
   box-sizing: border-box;
-  padding-top: 1rem;
-
+  padding-top: 0rem;
+  margin-bottom: 1rem;
 }
 
