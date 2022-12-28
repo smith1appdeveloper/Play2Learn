@@ -23,7 +23,7 @@ body, html {
   height: 8%;
   position: center;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: .5rem;
   font-size: small;
  }
 #containerUs {
