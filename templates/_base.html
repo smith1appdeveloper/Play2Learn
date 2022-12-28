@@ -18,7 +18,6 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light">
-         <h3><a href="{% url 'pages:homepage' %}">Play2Learn Games&trade;</a></h3>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-expanded="false"
                 aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
@@ -41,14 +40,16 @@
                  </ul>
            </div>
        </nav>
+       <div>
+        <h3><a href="{% url 'pages:homepage' %}" id="brand">Play2Learn Games&trade;</a></h3>
+        </div>
    </header>
 {% block main %}
 <main class="d-none d-md-block">
-   <hr>
    <div id="quote" >
       <p id="quotesection">Quote Section</p>
    </div>
-   <img src="{% static 'Images/children_playing.jpg' %}" class="img-thumbnail d-sm-none d-md-block center" id="image"><!--change-->
+   <div id="imagespace"><img src="{% static 'Images/children_playing.jpg' %}" class=" d-sm-none d-md-block center" id="image"></div>
    <div id="background" class="container-fluid">
       <div id="container1" class="row">
          <div  class=" container-fluid col-md-6 border-right border-dark d-none d-lg-block">
@@ -110,10 +111,10 @@
     </div>
   </div>
 {% endblock %}
-<footer class="fixed-bottom mt-2 ">
+<footer class="fixed-bottom mt-2">
    <div class="row">
       <b class="ml-4">&copy;<script>document.write(/\d{4}/.exec(Date())[0])</script>&nbsp;&nbsp;Robby Smith</b>
-      <a class="ml-auto" href="{% url 'pages:contact-us' %}" target="_blank" rel="noopener noreferrer ">
+      <a class="ml-auto" href="{% url 'pages:contact-us' %}">
       <i  class="fas fa-envelope"></i></a>
       <a class="mr-1 ml-1" href="https://www.facebook.com/universityofga/about" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-facebook-square"></i></a>

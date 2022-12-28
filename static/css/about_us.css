@@ -3,11 +3,7 @@ body, html {
   background-color: white;
   overflow:auto;
 }
-main {
-  height: 600px;
-}
 #quote{
-  background: rgba(232, 232, 232, 0.863);
   padding: 1rem 1rem 1rem 1rem;
   font-size: small;
   margin: 0%;
@@ -16,8 +12,8 @@ main {
 #containerUs {
   width: 100%;
   display: block;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 8rem;
+  padding-right: 8rem;
   padding-top: 2rem;
   padding-bottom: 1rem;
   box-sizing: border-box;
@@ -31,8 +27,7 @@ main {
   height: 37%;
   position: relative;
   box-sizing: border-box;
-  border-style: solid;
-  margin-top: 15%;
+  margin-top: 1rem;
   margin-left: 0;
   margin-right: 0;
 }
