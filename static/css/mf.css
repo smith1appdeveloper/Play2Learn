@@ -4,18 +4,6 @@ body, html {
   overflow: auto!important;
   max-height: 100% !important;
 }
-#brand {
-  color:rgb(255, 255, 255);
-   display: block;
-   padding: .1rem;
-   text-decoration: none;
-   font-weight: 500;
- }
- #brand:hover {
-  color: #0754c7;
-  text-decoration: none;
-}
-
 #mathButton {
   position: absolute;
   box-sizing: border-box;
