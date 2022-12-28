@@ -101,7 +101,7 @@ width: 100%;
  #quoteSmall {
   text-align: center;
   width: auto;
-  height: 20%;
+  height: 10%;
   position: relative;
   box-sizing: border-box;
   padding: 1rem;
@@ -137,12 +137,12 @@ width: 100%;
   text-align: center;
   width: auto;
   max-width: 100%;
-  /*height: 30%;*/
   position: relative;
   box-sizing: border-box;
   padding-top: 2rem;
   padding-bottom: 3rem;
   font-size: large;
+  margin-bottom: 4rem;
 }
 
  #backgroundM {
