@@ -95,7 +95,7 @@ margin-bottom: 1rem;
   position: relative;
   box-sizing: border-box;
   padding: 1rem;
-  font-size: large;
+  font-size: small;
  }
  #smallScreen1 {
    background: rgba(232, 232, 232, 0.65);
