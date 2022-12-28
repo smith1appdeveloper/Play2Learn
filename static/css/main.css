@@ -1,7 +1,10 @@
 body, html{
-   margin: 0%;
-   padding: 0%;
-   overflow: auto;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+
  }
  .navbar-toggler {
   outline: none;
@@ -11,7 +14,6 @@ body, html{
  #image {
   padding: 0;
   margin: 0;
-  max-width: 90%;
   width: 60rem;
   max-height: 30rem;
   display: block;
@@ -20,6 +22,7 @@ body, html{
 #imagespace {
 background: rgb(191, 191, 191);
 margin-bottom: 1rem;
+width: 100%;
 }
  #container {
    height: auto;
@@ -128,16 +131,17 @@ margin-bottom: 1rem;
    clear: both;
  }
  #background {
-  height: 18rem;
   bottom: 0;
   background: rgba(232, 232, 232, 0.65);
   background-position: center;
   text-align: center;
   width: auto;
+  max-width: 100%;
+  /*height: 30%;*/
   position: relative;
   box-sizing: border-box;
   padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 3rem;
   font-size: large;
 }
 
@@ -152,7 +156,6 @@ margin-bottom: 1rem;
    padding-top: .5rem;
    padding-bottom: .5rem;
    font-size: large;
-
    margin-bottom: 0;
  }
  .button-link {
@@ -170,6 +173,7 @@ margin-bottom: 1rem;
    border-radius: 0.5rem;
    cursor: pointer;
    position: absolute;
+   margin-left: 1rem;
  }
  .button-link2 {
    background-color: black;
