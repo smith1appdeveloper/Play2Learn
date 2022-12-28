@@ -28,7 +28,32 @@
         section.innerText = quotes[0];
         }
     }
+    function runQuotes2() {
+        if (m === 1) {
+        let sectionM = document.querySelector(".quotesectionSmall");
+        sectionM.innerText = quotes[1];
+        m = m + 1;
+         }
+        else if (m === 2) {
+        let sectionM = document.querySelector(".quotesectionSmall");
+        sectionM.innerText = quotes[2];
+        m = m + 1;
+         }
+         else if (m === 3) {
+        let sectionM = document.querySelector(".quotesectionSmall");
+        sectionM.innerText = quotes[3];
+        m = m + 1;
+         }
+         else if (m > 3) {
+        m = 1;
+        let sectionM = document.querySelector(".quotesectionSmall");
+        sectionM.innerText = quotes[0];
+         }
+    }
     window.onload = function runQuotesau() {
+        let sectionM = document.querySelector(".quotesectionSmall");
+        sectionM.innerText = quotes[0];
+        setInterval(runQuotes2, 10000);
         let section = document.querySelector("p");
         section.innerText = quotes[0];
         setInterval(runQuotes3, 10000);
