@@ -26,7 +26,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                   <li class="nav-item active"><a class="nav-link" href="{% url 'pages:homepage' %}">Home<span class="sr-only">(current)</span></a></li>
+                   <!--<li class="nav-item active"><a class="nav-link" href="{% url 'pages:homepage' %}">Home<span class="sr-only">(current)</span></a></li>-->
+                   <form action="/" method="GET" class="form mr-3 mt-2">
+                    <input type="search" placeholder="Type to search..." name="q"  onmouseout="this.value = ''; this.blur();" class="search-field" />
+                    <button type="submit" class="search-button">
+                      <img src="/static/Images/search.webp">
+                    </button>
+                  </form>
                    <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        Games
@@ -37,11 +43,10 @@
                        <a class="dropdown-item" href="{% url 'mathfacts:mathfacts' %}">Math Facts Practice</a>
                      </div>
                    </li>
-                      <li class="nav-item"><a class="nav-link" href="{% url 'pages:about_us' %}">About</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'pages:about_us' %}">About Us</a></li>
                  </ul>
            </div>
        </nav>
-
    </header>
 {% block main %}
 <main class="d-none d-md-block">
