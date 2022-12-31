@@ -9,7 +9,7 @@ body, html{
  .form {
   display: flex;
   flex-direction: row;
-  width: 12rem;
+  width: 12rem ;
 }
 .search-field {
   width: 100%;
