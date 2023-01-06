@@ -1,14 +1,17 @@
 body, html {
-    margin: 0%;
-    padding: 0%;
-    overflow: auto!important;
-    min-height: 100%;
+  margin: 0%;
+  padding: 0%;
+  overflow: auto!important;
+  max-height: 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
   }
 #scoreboard {
   background: rgba(232, 232, 232, .80);
   background-position: center;
   width: 30rem;
-  height: 90%;
+  height: 30rem;
   box-sizing: border-box;
   margin-top: 8rem;
   padding: 1rem;

@@ -2,7 +2,10 @@ body, html {
   margin: 0%;
   padding: 0%;
   overflow: auto!important;
-  height: 100% !important;
+  max-height: 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
  #final {
  background: rgba(232, 232, 232, .80);

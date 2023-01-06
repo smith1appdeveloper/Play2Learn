@@ -1,8 +1,13 @@
 body, html {
     margin: 0%;
     padding: 0%;
+    overflow: auto!important;
+    max-height: 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     overflow: auto;
-    height: auto;
+
   }
   .backgroundmg {
     background-image: url(../Images/blackboard.jpg);
