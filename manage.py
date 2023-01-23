@@ -16,7 +16,7 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     try:
-          execute_from_command_line(sys.argv) # just put this in try block
+          execute_from_command_line(sys.argv) # just put this in try block.
     except:
           pass
 
