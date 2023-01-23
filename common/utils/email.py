@@ -13,3 +13,4 @@ def send_email(to, subject, content, sender='smith010123@gmail.com'):
         html_content=content
     )
     return sg.send(mail)
+#
