@@ -11,7 +11,7 @@ from .models import AddScore
 
 
 class AnagramHuntView(TemplateView):
-    template_name = 'anagramhunt/anagramhunt.html'
+    template_name =  'anagramhunt/anagramhunt.html'
 
 class AHGameplayView(TemplateView):
     template_name = 'anagramhunt/ah_gameplay.html'

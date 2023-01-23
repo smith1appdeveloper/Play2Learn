@@ -15,7 +15,7 @@ from json import dumps
 
 
 class HomePageView(TemplateView):
-    template_name = 'pages/home.html'
+    template_name =  'pages/home.html'
 
 
 class AboutUsView(TemplateView):

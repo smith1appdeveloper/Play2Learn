@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import AddReview
 
 def ReviewsView(request):
-    if request.method == 'POST':
+    if request.method ==  'POST':
         if request.user.is_authenticated:
             user = request.user
             reviews = request.POST['reviews']

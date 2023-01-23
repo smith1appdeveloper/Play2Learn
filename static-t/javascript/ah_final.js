@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
          score.innerText = addScore;
 
    }
-   if (isNaN(addScoreM)) {
+   if (isNaN(addScoreM)){
       scoreM.innerText = 0;
 
    } else {

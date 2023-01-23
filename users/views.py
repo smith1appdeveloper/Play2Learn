@@ -10,7 +10,7 @@ class CustomPasswordChangeView(PasswordChangeView):
 class MyAccountPageView(UpdateView):
     model = get_user_model()
     form_class = CustomUserChangeForm
-    template_name = 'account/my-account.html'
+    template_name =  'account/my-account.html'
 
     def get_object(self):
         return self.request.user

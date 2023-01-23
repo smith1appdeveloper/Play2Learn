@@ -12,7 +12,7 @@ from .models import AddScoreM
 from json import dumps
 
 class MathFactsView(TemplateView):
-    template_name = 'mathfacts/mathfacts.html'
+    template_name =  'mathfacts/mathfacts.html'
 
 class MFAView(TemplateView):
     template_name = 'mathfacts/mfa.html'

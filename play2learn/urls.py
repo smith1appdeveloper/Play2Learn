@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # User Management
-    path('', include('users.urls')), #connects url from new app to main views.
+    path('', include('users.urls')), #connects url from new app to main views
     path('account/', include('allauth.urls')),
 
     # Local Apps

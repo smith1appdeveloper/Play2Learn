@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-class AddScore(models.Model):
+class AddScore (models.Model):
     username = models.CharField(max_length=20, blank=False)
     score = models.PositiveSmallIntegerField(default='', blank=True)
     scoreM = models.PositiveSmallIntegerField(default='', blank=True)

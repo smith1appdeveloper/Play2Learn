@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import AnagramHuntView, AHGameplayView, AHView, GametrackView, LeaderboardView
+from .views import AnagramHuntView, AHGameplayView, AHView, GametrackView,  LeaderboardView
 
 app_name = 'anagramhunt'
 urlpatterns = [

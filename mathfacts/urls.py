@@ -3,7 +3,7 @@ from django.urls import path
 from users.views import MyAccountPageView
 from .views import MathFactsView, MFAView, MFDView, MFMView, MFSView, FinalView, GametrackView, LeaderboardView
 
-app_name = 'mathfacts'
+app_name =  'mathfacts'
 urlpatterns = [
     path('mathfacts/', MathFactsView.as_view(), name='mathfacts'),
     path('mfa/', MFAView.as_view(), name='mfa'),
