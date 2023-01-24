@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import environ
 import mimetypes
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+#from sendgrid import SendGridAPIClient
+#from sendgrid.helpers.mail import Mail
 from pathlib import Path
 import dj_database_url
 
@@ -113,13 +113,13 @@ DATABASES = { 'default' : dj_database_url.config()}
 #}
 
 # EMAIL
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-DEFAULT_FROM_EMAIL = 'smith010123@gmail.com'
+#SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+#EMAIL_HOST = 'smtp.sendgrid.net'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = 'apikey'
+#EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+#DEFAULT_FROM_EMAIL = 'smith010123@gmail.com'
 
 env = environ.Env()
 environ.Env.read_env()
