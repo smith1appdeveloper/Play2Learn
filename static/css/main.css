@@ -18,9 +18,18 @@ body, html{
   background-position-y: top;
  }
  #imagespace {
-  margin-bottom: 1rem;
   width: 100%;
+  position: center;
+  padding-bottom: 1rem;
   }
+  /* #image {
+  padding: 0;
+  margin: 0;
+  width: 60rem;
+  max-height: 30rem;
+  display: block;
+  margin: auto;
+}*/
  .form {
   display: flex;
   flex-direction: row;
@@ -51,14 +60,6 @@ body, html{
   border: none;
   box-shadow: none;
  }
- #image {
-  padding: 0;
-  margin: 0;
-  width: 60rem;
-  max-height: 30rem;
-  display: block;
-  margin: auto;
-}
  #container {
    height: auto;
  }
