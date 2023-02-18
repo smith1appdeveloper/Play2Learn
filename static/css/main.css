@@ -22,14 +22,6 @@ body, html{
   position: center;
   padding-bottom: 1rem;
   }
-  /* #image {
-  padding: 0;
-  margin: 0;
-  width: 60rem;
-  max-height: 30rem;
-  display: block;
-  margin: auto;
-}*/
  .form {
   display: flex;
   flex-direction: row;
