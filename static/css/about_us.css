@@ -4,12 +4,11 @@ body, html {
   overflow:auto;
 }
 img {
+  display: block;
   width: auto;
-  min-width: 60rem;
-  height: 30rem;
+  height: auto;
   padding: 0px;
   margin: auto;
-  display: block;
   }
 #imagespace2 {
   width: 100%;
