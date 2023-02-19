@@ -54,11 +54,11 @@
         <p id="quotesection">Quote Section</p>
       </div>
       <!--<div id="imagespace"><div id="backgroundimage" style="background-image: url('{% static 'Images/children_playing.jpg' %}');">-->
-      <div id="background" class="container-fluid col-md-6 border-right border-dark d-none d-md-block d-lg-none">
+      <div id="background" class="container-fluid col-md-6 border-right border-dark d-none d-md-block d-xl-none">
         <div id="container1" class="row">
           <div class="container-fluid col-md-6 border-right border-dark d-none d-lg-block d-xl-none">
             <h3>Anagram Hunt</h3>
-            <p class="container-fluid d-none d-lg-block">
+            <p class="container-fluid d-none d-lg-block d-xl-none">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -75,9 +75,9 @@
               <a class="button-link2" href="{% url 'anagramhunt:anagramhunt' %}">Play</a>
             </div>
           </div>
-          <div id="container2" class="container-fluid col-md-6 border-start d-none d-lg-block">
+          <div id="container2" class="container-fluid col-md-6 border-start d-none d-lg-block d-xl-none">
             <h3>Math Facts Practice</h3>
-            <p id="mf" class="container-fluid d-none d-lg-block">
+            <p id="mf" class="container-fluid d-none d-lg-block d-xl-none">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div id="background2" class="container-fluid col-md-6 border-right border-dark d-none d-md-none d-lg-block">
+      <div id="background2" class="container-fluid col-md-6 border-right border-dark d-none d-xl-block">
         <div id="container1" class="row">
           <div class="container-fluid col-md-6 border-right border-dark d-none d-lg-none d-xl-block">
             <h3>Anagram Hunt</h3>
@@ -110,14 +110,7 @@
             </p>
             <a class="button-link" href="{% url 'anagramhunt:anagramhunt' %}">Play</a>
           </div>
-          <div id="smallScreen1" class="container-fluid d-md-block d-lg-none">
-            <h3>Anagram Hunt</h3>
-            <div class="row">
-              <p>Lorem ipsum dolor sit amet.</p>
-              <a class="button-link2" href="{% url 'anagramhunt:anagramhunt' %}">Play</a>
-            </div>
-          </div>
-          <div id="container2" class="container-fluid col-md-6 border-start d-none d-lg-block">
+          <div id="container2" class="container-fluid col-md-6 border-start d-none d-xl-block">
             <h3>Math Facts Practice</h3>
             <p id="mf" class="container-fluid d-none d-lg-block">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -128,13 +121,6 @@
               anim id est laborum.
             </p>
             <a class="button-link" href="{% url 'mathfacts:mathfacts' %}">Play</a>
-          </div>
-          <div id="smallScreen2" class="container-fluid d-md-block d-lg-none">
-            <h3>Math Facts Practice</h3>
-            <div class="row">
-              <p>Lorem ipsum dolor sit amet.</p>
-              <a class="button-link2" href="{% url 'mathfacts:mathfacts' %}">Play</a>
-            </div>
           </div>
         </div>
       </div>
