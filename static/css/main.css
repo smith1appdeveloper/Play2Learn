@@ -165,18 +165,17 @@ body, html{
  #background {
   background: rgba(232, 232, 232, 0.65);
   text-align: center;
-  min-width: 100%;
+  width: auto;
   padding-top: 2rem;
   padding-bottom: 3rem;
   font-size: large;
   overflow-x: hidden !important;
   position: relative;
-  top: 800px;
+  top: 400px;
 }
 #backgroundXL {
   background: rgba(232, 232, 232, 0.65);
   text-align: center;
-  /*min-width: 100%;*/
   width: auto;
   padding-top: 2rem;
   padding-bottom: 3rem;
