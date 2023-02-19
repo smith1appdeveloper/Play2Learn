@@ -3,12 +3,13 @@ body, html {
   background-color: white;
   overflow:auto;
 }
-#image {
+img {
   width: auto;
   min-width: 60rem;
   height: 30rem;
   padding: 0px;
   margin: auto;
+  display: block;
   }
 #imagespace2 {
   width: 100%;
