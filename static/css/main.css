@@ -3,16 +3,18 @@ body, html{
   height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow-x: hidden;
+  /*overflow-x: hidden !important;*/
+  overflow-y: hidden !important;
  }
  #backgroundimage {
-  width: 100%;
-  height: 35rem;
+  height: 45rem;
   margin: 0px;
   padding: 0px;
   overflow: auto!important;
   max-height: 100% !important;
   min-height: 100% !important;
+  max-width: 100%;
+  min-width: 100%;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position-y: top;
@@ -131,7 +133,7 @@ body, html{
   width: auto;
   height: 10%;
   box-sizing: border-box;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   font-size: small;
@@ -167,14 +169,14 @@ body, html{
   background: rgba(232, 232, 232, 0.65);
   background-position: center;
   text-align: center;
-  width: auto;
-  max-width: 100%;
+  min-width: 100%;
   position: relative;
   box-sizing: border-box;
   padding-top: 2rem;
   padding-bottom: 3rem;
   font-size: large;
-  margin-bottom: 4rem;
+  margin-top: 27rem;
+  overflow-x: hidden !important;
 }
 
  #backgroundM {
