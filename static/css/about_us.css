@@ -4,23 +4,15 @@ body, html {
   overflow:auto;
 }
 #backgroundimage {
-  /*width: 100%;*/
   width: auto;
   min-width: 60rem;
   height: 30rem;
-  /*margin: 0px;*/
   padding: 0px;
-  position: center;
-  /*overflow: auto!important;
-  max-height: 100% !important;
-  min-height: 100% !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  background-position-y: top;*/
+  margin: auto;
   }
 #imagespace2 {
   width: 100%;
-  position: center;
+  margin: auto;
   padding-bottom: 1rem;
   }
 #quote{
@@ -37,7 +29,7 @@ body, html {
   text-align: center;
   width: 100%;
   height: 6%;
-  position: center;
+  margin: auto;
   box-sizing: border-box;
   padding: .5rem;
   font-size: small;
