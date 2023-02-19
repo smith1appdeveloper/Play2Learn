@@ -165,7 +165,6 @@ body, html{
    clear: both;
  }
  #background {
-  /*bottom: 0;*/
   background: rgba(232, 232, 232, 0.65);
   background-position: center;
   text-align: center;
@@ -175,7 +174,7 @@ body, html{
   padding-top: 2rem;
   padding-bottom: 3rem;
   font-size: large;
-  margin-top: 48rem;
+  margin-top: 40rem;
   overflow-x: hidden !important;
 }
  #backgroundM {
