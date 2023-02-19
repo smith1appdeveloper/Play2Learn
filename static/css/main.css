@@ -3,7 +3,7 @@ body, html{
   height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow-y: hidden !important;
+  /*overflow-y: hidden !important;*/
  }
  #backgroundimage {
   margin: 0px;
@@ -28,7 +28,7 @@ body, html{
   min-height: 100% !important;
   background-repeat: no-repeat !important;
   background-size: auto !important;
-  background-position: right 65% bottom 100%;
+  background-position: right 85% bottom 100%;
   }
  .form {
   display: flex;
@@ -206,7 +206,7 @@ body, html{
    padding-top: .5rem;
    padding-bottom: .5rem;
    font-size: large;
-   margin-top: 20rem;
+   margin-top: 18rem;
  }
  .button-link {
    background-color: black;
