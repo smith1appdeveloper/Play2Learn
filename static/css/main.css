@@ -175,7 +175,7 @@ body, html{
   padding-top: 2rem;
   padding-bottom: 3rem;
   font-size: large;
-  margin-top: 50rem;
+  margin-top: 48rem;
   overflow-x: hidden !important;
 }
  #backgroundM {
@@ -234,13 +234,16 @@ body, html{
    box-shadow: 0 5px #667;
    transform: translateY(4px);
  }
- footer {
+ #footer {
    background: rgba(232, 232, 232, 0.8);
-   box-sizing:border-box;
+   /*box-sizing:border-box;*/
    display: block;
-   position: relative;
+   position: fixed;
    bottom: 0%;
+   left:0;
+   right:0;
    height: auto;
+   overflow-x: hidden !important;
  }
  footer i {
    font-size: 2rem;
