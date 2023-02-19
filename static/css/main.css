@@ -3,11 +3,10 @@ body, html{
   height: 100%;
   margin: 0px;
   padding: 0px;
-  /*overflow-x: hidden !important;*/
   overflow-y: hidden !important;
  }
  #backgroundimage {
-  height: 45rem;
+  height: 50rem;
   margin: 0px;
   padding: 0px;
   overflow: auto!important;
@@ -175,10 +174,9 @@ body, html{
   padding-top: 2rem;
   padding-bottom: 3rem;
   font-size: large;
-  margin-top: 27rem;
+  margin-top: 28rem;
   overflow-x: hidden !important;
 }
-
  #backgroundM {
    height: 45%;
    bottom: 0;
