@@ -28,6 +28,7 @@ body, html {
   box-sizing: border-box;
   padding: 1rem;
   font-size: small;
+  z-index: 10;
 }
 #quoteSmall {
   text-align: center;

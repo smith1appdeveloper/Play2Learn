@@ -49,12 +49,11 @@
       </nav>
     </header>
     {% block main %}
-    <main class="d-none d-md-block">
-
+    <main class="d-none d-md-block" id="backgroundimage" style="background-image: url('{% static 'Images/children_playing.jpg' %}');">
       <div id="quote">
         <p id="quotesection">Quote Section</p>
       </div>
-      <div id="imagespace"><div id="backgroundimage" style="background-image: url('{% static 'Images/children_playing.jpg' %}');">
+      <!--<div id="imagespace"><div id="backgroundimage" style="background-image: url('{% static 'Images/children_playing.jpg' %}');">-->
       <div id="background" class="fixed-bottom">
         <div id="container1" class="row">
           <div class="container-fluid col-md-6 border-right border-dark d-none d-lg-block">
