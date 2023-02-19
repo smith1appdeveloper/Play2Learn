@@ -28,7 +28,7 @@ body, html{
   min-height: 100% !important;
   background-repeat: no-repeat !important;
   background-size: auto !important;
-  background-position: right 85% bottom 100%;
+  background-position: right 80% bottom 100%;
   }
  .form {
   display: flex;
