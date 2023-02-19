@@ -170,7 +170,6 @@ body, html{
   padding-bottom: 3rem;
   font-size: large;
   overflow-x: hidden !important;
-  position: relative;
   top: 400px;
 }
 #backgroundXL {
