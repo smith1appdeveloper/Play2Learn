@@ -147,7 +147,6 @@ img {
   font-size: small;
   margin: auto;
   z-index: 10;
-  display: flex;
   position: relative;
  }
  #quotesectionSmall {
@@ -156,8 +155,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*height: 100px;
-  width: 100%;*/
+  vertical-align: middle;
+
  }
  #smallScreen1 {
    background: rgba(232, 232, 232, 0.65);
