@@ -147,6 +147,7 @@ img {
   font-size: small;
   margin: auto;
   z-index: 10;
+  display: flex;
   position: relative;
  }
  #quotesectionSmall {
