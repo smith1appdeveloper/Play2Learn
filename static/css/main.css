@@ -160,6 +160,7 @@ img {
   position: absolute;
   top: 50%;
   display: inline-block;
+  transform: translate(-50%, -50%);
  }
  #smallScreen1 {
    background: rgba(232, 232, 232, 0.65);
