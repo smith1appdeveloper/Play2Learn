@@ -19,7 +19,7 @@ body, html{
   position: center;
   padding-bottom: 1rem;
   }
-  #mobileImage {
+  /*#mobileImage {
   margin: 0px;
   padding: 0px;
   overflow: auto!important;
@@ -28,7 +28,19 @@ body, html{
   background-repeat: no-repeat !important;
   background-size: auto !important;
   background-position: right 80% bottom 100%;
-  }
+  }*/
+  img {
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 0px;
+    margin: auto;
+    }
+  #mobileImage {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 1rem;
+    }
  .form {
   display: flex;
   flex-direction: row;
