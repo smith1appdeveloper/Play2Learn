@@ -24,6 +24,14 @@ img {
   padding: .5rem;
   font-size: small;
  }
+ #quotesectionSmall {
+  width: 90%;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+ transform: translate(-50%, -50%);
+ }
 #containerUs {
   width: 100%;
   display: block;
