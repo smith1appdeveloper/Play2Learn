@@ -145,10 +145,11 @@ img {
   font-size: small;
   margin: auto;
   z-index: 10;
+  position: relative;
  }
  #quotesectionSmall {
   margin: 0;
-  /*position: absolute;*/
+  position: absolute;
   top: 50%;
   left: 50%;
  transform: translate(-50%, -50%);
