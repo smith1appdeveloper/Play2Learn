@@ -146,7 +146,7 @@ img {
   margin: auto;
   z-index: 10;
  }
- #quotesectionSmall p {
+ #quotesectionSmall {
   margin: 0;
   position: absolute;
   top: 50%;
