@@ -133,7 +133,7 @@ body, html{
    box-sizing: border-box;
    padding: 1rem;
    font-size: large;
-   margin-top: 1rem;
+   /*margin-top: 1rem;*/
    z-index: 10;
    margin: auto;
  }
