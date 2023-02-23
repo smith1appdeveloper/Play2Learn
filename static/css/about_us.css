@@ -20,11 +20,11 @@ body, html {
 #quoteSmall {
   background: white;
   width: 100%;
-  padding: .5rem;
+  padding: 0;
   font-size: small;
  }
  #quotesectionSmall {
-  width: 85%;
+  width: 95%;
   margin: 0;
   position: relative;
   top: 50%;
@@ -53,9 +53,8 @@ body, html {
   width: 100%;
   display: block;
   box-sizing: border-box;
-  margin-top: .5rem;
   margin-bottom: 4rem;
-  position: center;
+  text-align: center;
 }
 
 
