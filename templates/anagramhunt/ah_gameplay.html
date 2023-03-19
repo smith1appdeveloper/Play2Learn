@@ -80,6 +80,8 @@ let anagram = [];
 let addScore = {};
 let addScoreM = {};
 let arrayFam = {};
+let lastAnagram = '';
+let array = [];
 
 
 function playGame() {
@@ -576,58 +578,84 @@ function startTimer() {
 function stopGame() {
    sessionStorage.setItem("addScore", addScore);
    sessionStorage.setItem("addScoreM", addScoreM);
-   console.log("scoreKeeper", scoreKeeper);
+   let x = 0;
+   console.log(elementsLeft);
+   if (elementsLeft == '1') {
+      while (x < currentArray.length) {
+         if (!currentArray[x].includes(guessedWord[x])) {
+            array = currentArray[x];
+            console.log(array);
+            lastAnagram = array.toString();
+            x++;
+         }
+      break
+      }
+   }
+   if (elementsLeft == '1') {
+      sessionStorage.setItem("lastAnagram", lastAnagram);
+      location.assign("{% url 'anagramhunt:ah_final2' %}");
+   } else {
    location.assign("{% url 'anagramhunt:ah_final' %}");
+   }
 }
 function checkAnswer() {
    userAnswer = document.getElementById("entry").value.toLowerCase().trim();
    userAnswer2 = document.getElementById("entry2").value.toLowerCase().trim();
    guessedWord.push(anagram);
-     if (!guessedWord.includes(userAnswer)) {
-        if (currentArray.includes(userAnswer)) {
-           guessedWord.push(userAnswer);
-           scoreKeeper++;
-           addScore = scoreKeeper;
-           score = document.getElementById('score');
-           score.innerHTML = scoreKeeper;
-           elementsLeft--;
-           anagramsLeft = document.getElementById('anagramsLeft');
-           anagramsLeft.innerHTML = elementsLeft;
-           counter = ++counter;
-           answersList = document.getElementById('answersList');
-           newItem = document.createElement('p');
-           answersList.appendChild(newItem);
-           newItem.innerHTML = counter + '. ' + userAnswer;
-           entry.value = '';
-           if (elementsLeft == '0') {
-              getNextAnagram();
-           }
+      if (userAnswer.length = arrayFam) {
+         if (!guessedWord.includes(userAnswer)) {
+            if (currentArray.includes(userAnswer)) {
+               guessedWord.push(userAnswer);
+               scoreKeeper++;
+               addScore = scoreKeeper;
+               score = document.getElementById('score');
+               score.innerHTML = scoreKeeper;
+               elementsLeft--;
+               anagramsLeft = document.getElementById('anagramsLeft');
+               anagramsLeft.innerHTML = elementsLeft;
+               counter = ++counter;
+               answersList = document.getElementById('answersList');
+               newItem = document.createElement('p');
+               answersList.appendChild(newItem);
+               correct = document.getElementById('yesStage'); correct.innerHTML = "Yes!"
+               setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = ""}, 500);
+               newItem.innerHTML = counter + '. ' + userAnswer;
+               entry.value = '';
+               if (elementsLeft == '0') {
+                  getNextAnagram();
+               }
+            }  else if (userAnswer.length >= arrayFam) {wrong = document.getElementById('noStage'); wrong.innerHTML = "No";
+                        setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 500); entry.value = ''; }
          }
+      }
+      if (userAnswer2.length = arrayFam) {
+         if (!guessedWord.includes(userAnswer2)) {
+            if (currentArray.includes(userAnswer2)) {
+               guessedWord.push(userAnswer2);
+               answersList2 = document.getElementById('answersList2');
+               scoreKeeper++;
+               addScoreM = scoreKeeper;
+               score2 = document.getElementById('score2');
+               score2.innerHTML = scoreKeeper;
+               elementsLeft--;
+               anagramsLeft2 = document.getElementById('anagramsLeft2');
+               anagramsLeft2.innerHTML = elementsLeft;
+               counter2 = ++counter2;
+               answersList2 = document.getElementById('answersList2');
+               newItem = document.createElement('p');
+               answersList2.appendChild(newItem);
+               correct = document.getElementById('yesStage2'); correct.innerHTML = "Yes!"
+               setTimeout(function() {correct = document.getElementById('yesStage2'); correct.innerHTML = ""}, 500);
+               newItem.innerHTML = counter2 + '. ' + userAnswer2;
+               entry2.value = '';
+               if (elementsLeft == '0') {
+                  getNextAnagram();
+               }
+            } else if (userAnswer.length >= arrayFam) {wrong = document.getElementById('noStage2'); wrong.innerHTML = "No";
+                    setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = ''; }
        }
-       if (!guessedWord.includes(userAnswer2)) {
-         if (currentArray.includes(userAnswer2)) {
-            guessedWord.push(userAnswer2);
-            answersList2 = document.getElementById('answersList2');
-            scoreKeeper++;
-            addScoreM = scoreKeeper;
-            score2 = document.getElementById('score2');
-            score2.innerHTML = scoreKeeper;
-            elementsLeft--;
-            anagramsLeft2 = document.getElementById('anagramsLeft2');
-            anagramsLeft2.innerHTML = elementsLeft;
-            counter2 = ++counter2;
-            answersList2 = document.getElementById('answersList2');
-            newItem = document.createElement('p');
-            answersList2.appendChild(newItem);
-            newItem.innerHTML = counter2 + '. ' + userAnswer2;
-            entry2.value = '';
-            if (elementsLeft == '0') {
-               getNextAnagram();
-            }
-          }
-        }
-
-     }
+   }
+}
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
@@ -639,6 +667,7 @@ window.addEventListener('load', function() {
    const display2 = document.getElementById('display2');
    const answersList = document.getElementById('answersList');
    const answersList2 = document.getElementById('answersList2');
+   const audio = document.getElementById('audio');
    const arrayFam2 = sessionStorage.getItem("arrayFam2");
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
@@ -648,6 +677,7 @@ window.addEventListener('load', function() {
  });
  playGame();
  startTimer();
+ audio.play();
 });
 </script>
 {% endblock %}
@@ -659,20 +689,19 @@ window.addEventListener('load', function() {
    <div class="row justify-content-center mt-2 mt-5 mb-5">
       <div>
          <div class="row justify-content-center">
-            <div id="scoreLabel" class="row ml-2"><label for="score">Score: </label>
-            <p id="score" class="ml-1 mr-5"></p></div>
+            <div id="scoreLabel" class="row justify-content-center mr-5"><label for="score">Score: </label>
+            <p id="score" class="ml-2"></p></div>
             <div id="timeLabel" class="row"><label for="time">Time Left: </label>
-            <p id="time" class="ml-1 mr-5"></p></div>
+            <p id="time" class="ml-2"></p></div>
          </div>
          <hr>
          <div class="row justify-content-center">
-            <p class="mr-5 font-weight-bold" id="display"></p>
-            <p class="mr-1" id="anagramsLeft"></p>
-            <div id="anagramsleftLabel"><label for="entry">left</label></div>
+            <div><p class="mr-5 font-weight-bold" id="display"></p></div>
+            <div id="anagramsleftLabel" class="row"><p class="mr-2" id="anagramsLeft"></p><label for="entry">left</label></div>
          </div>
+         <div class="text-center"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p></div>
             <input class="text-center mt-3" id="entry" placeholder="answer">
             <p class="text-center mt-4 mb-3" id="answersList" class="ml-5 mr-5"></p>
-
       </div>
    </div>
  </div>
@@ -694,12 +723,14 @@ window.addEventListener('load', function() {
             <p class="mr-1" id="anagramsLeft2"></p>
             <div id="anagramleftLabel2"><label for="entry2">left</label></div>
          </div>
+         <div class="text-center"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p></div>
          <input class="text-center mt-3" id="entry2" placeholder="answer">
          <p class="text-center mt-4 mb-3" id="answersList2" class="ml-5 mr-5"></p>
       </div>
    </div>
  </div>
 </div>
+<figure><div class="row justify-content-center mt-3" ><audio id="audio" controls src='/static/audio/7.mp3'><a href='/static/audio/7.mp3'>Download audio</a></audio></div></figure>
 </body>
 </html>
 {% endblock %}

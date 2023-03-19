@@ -43,6 +43,34 @@ def AHView(request):
         return render(request, 'anagramhunt/ah_final.html', {})
         print('anonymous user, database update not performed.')
 
+def AHView2(request):
+    username = str(request.user)
+    if username != "AnonymousUser" :
+        def post(self, request, *args, **kwargs):
+            self.object = self.get_object()
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
+        try:
+            data = json.loads(request.body)
+            score = data['addScore']
+            scoreM = data['addScoreM']
+            lastAnagram = data['lastAnagram']
+            new_score = AddScore(username=username,score=score,scoreM=scoreM)
+            new_score.save()
+            return render(request, 'anagramhunt/ah_final2.html', {})
+        except:
+            score = request.POST.get('addScore',False)
+            print(score)
+            scoreM = request.POST.get('addScoreM',False)
+            new_score = AddScore(username=username,score=score,scoreM=scoreM)
+            new_score.save()
+            print("had an issue with Anagram Hunt's game data transfer. Used second option, transfer complete.")
+            return render(request, 'anagramhunt/ah_final2.html', {})
+
+    else:
+        return render(request, 'anagramhunt/ah_final2.html', {})
+        print('anonymous user, database update not performed.')
+
 def GametrackView(request):
     try:
         data = AddScore.objects.all().filter(username=request.user).order_by('-score').values()[:5]

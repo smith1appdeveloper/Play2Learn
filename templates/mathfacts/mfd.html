@@ -124,6 +124,7 @@ window.addEventListener('load', function() {
 });
   timer();
   timeKeep();
+  audio.play()
   });
  </script>
  {% endblock %}
@@ -144,7 +145,6 @@ window.addEventListener('load', function() {
                 <p id="display" class="mt-3"> Equation</p><br>
              </div>
              <div class="row justify-content-center mt-5">
-               <!--<input id="entry" placeholder="answer" type="tel" maxlength="2"/>-->
                <input id="entry" placeholder="answer" type="number" pattern="[0-9]*" inputmode="numeric">
              </div>
           </div>
@@ -167,12 +167,12 @@ window.addEventListener('load', function() {
               <p id="display2" class="mt-3"> Equation</p><br>
            </div>
            <div class="row justify-content-center mt-5">
-             <!--<input id="entry2" placeholder="answer" type="tel" maxlength="2"/>-->
              <input id="entry2" placeholder="answer" type="number" pattern="[0-9]*" inputmode="numeric">
            </div>
         </div>
     </div>
  </div>
 </div>
+<figure><div class="row justify-content-center" ><audio id="audio" controls src='/static/audio/Eggy_Toast.mp3'><a href='/static/audio/Eggy_Toast.mp3'>Download audio</a></audio></div></figure>
 </body>
 {% endblock %}
