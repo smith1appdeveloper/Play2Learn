@@ -85,6 +85,7 @@ let array = [];
 
 
 function playGame() {
+  audio.play();
   score = document.getElementById('score');
   score2 = document.getElementById('score2');
   score.innerHTML = scoreKeeper;
@@ -96,7 +97,6 @@ function playGame() {
    console.log("firstPass", firstPass)
      if (firstPass == 'Y') {
         anagramStart = randInt(1,9);     // choose randomly an array to start with.
-        //anagramStart = 2
         firstPass = 'N';
      }
      if (anagramStart == '1') {
