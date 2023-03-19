@@ -124,11 +124,11 @@
        event.preventDefault();
        checkEntry();
      }
+    });
+    audio.play();
+    timer();
+    timeKeep();
    });
-     timer();
-     timeKeep();
-     audio.play();
-     });
     </script>
 {% endblock %}
 <link rel="stylesheet" href="{% static 'css/mfa.css' %}">
