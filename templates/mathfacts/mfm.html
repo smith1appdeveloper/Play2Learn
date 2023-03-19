@@ -115,6 +115,7 @@ window.addEventListener('load', function() {
   const display2 = document.getElementById('display2');
   const stage = document.getElementById('stage');
   const stage2 = document.getElementById('stage2');
+  const audio = document.getElementById('audio');
   document.addEventListener("keypress", function(e) {
   if (e.keyCode === 13) {
     event.preventDefault();
@@ -129,7 +130,7 @@ window.addEventListener('load', function() {
 {% endblock %}
 <link rel="stylesheet" href="{% static 'css/mfm.css' %}">
 <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/blackboard2.jpg' %}');">
-  <main class="d-none d-lg-block">
+  <main class="d-none d-lg-block mb-3">
     <div id=containMath class="mt-5">
        <div id="formMath" class="container-fluid justify-content-center">
           <h1 id="math" class="mt-5">Math Facts Practice</h1>
