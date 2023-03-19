@@ -2,7 +2,7 @@ window.addEventListener('load', function() {
    addScore = sessionStorage.getItem("addScore");
    addScoreM = sessionStorage.getItem("addScoreM");
    lastAnagram = sessionStorage.getItem("lastAnagram");
-   console.log(lastAnagram);
+
    let anagramPlace = document.getElementById('anagramPlace');
    anagramPlace.innerText = lastAnagram;
    let anagramPlace2 = document.getElementById('anagramPlace2');

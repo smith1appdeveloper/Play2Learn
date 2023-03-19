@@ -574,24 +574,26 @@ function startTimer() {
    stopGame();
   }
 }
+function getMissing() {
+   let missings = [];
+   let matches = false;
+
+   for ( var i = 0; i < currentArray.length; i++ ) {
+      matches = false;
+      for ( var e = 0; e < guessedWord.length; e++ ) {
+          if ( currentArray[i] === guessedWord[e] ) matches = true;
+      }
+      if(!matches) missings.push( currentArray[i] );
+  }
+  return missings;
+}
 function stopGame() {
+   lastAnagram = getMissing().toString();
    sessionStorage.setItem("addScore", addScore);
    sessionStorage.setItem("addScoreM", addScoreM);
-   let x = 0;
-   console.log(elementsLeft);
+   sessionStorage.setItem("lastAnagram", lastAnagram);
    if (elementsLeft == '1') {
-      while (x < currentArray.length) {
-         if (!currentArray[x].includes(guessedWord[x])) {
-            array = currentArray[x];
-            console.log(array);
-            lastAnagram = array.toString();
-            x++;
-         }
-      break
-      }
-   }
-   if (elementsLeft == '1') {
-      sessionStorage.setItem("lastAnagram", lastAnagram);
+
       location.assign("{% url 'anagramhunt:ah_final2' %}");
    } else {
    location.assign("{% url 'anagramhunt:ah_final' %}");
@@ -650,7 +652,7 @@ function checkAnswer() {
                if (elementsLeft == '0') {
                   getNextAnagram();
                }
-            } else if (userAnswer.length >= arrayFam) {wrong = document.getElementById('noStage2'); wrong.innerHTML = "No";
+            } else if (userAnswer2.length >= arrayFam) {wrong = document.getElementById('noStage2'); wrong.innerHTML = "No";
                     setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = ''; }
        }
    }
