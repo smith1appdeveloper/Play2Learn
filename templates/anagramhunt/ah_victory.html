@@ -1,0 +1,57 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Congratulations{% endblock %}
+{% block javascript %}
+<script>
+   const ajaxURL = "{% url 'anagramhunt:ah_victory' %}"; //make app available at this page which accepts application/json
+   const isAuthenticated = {{ user.is_authenticated|lower }};
+ </script>
+ <script src="{% static 'javascript/ah_victory.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/ah_final.css' %}">
+<body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/hug.jpg' %}');/
+background-repeat: no-repeat;background-size: cover;">
+<main class="container justify-content-center">
+   <div class="text-center">
+      <div id="final" class="container-fluid d-none d-md-block offset-md-3">
+         <div><h1>Anagram Hunt</h1></div>
+            <div id="stage">
+               <h3 id="display" class="text-success font-weight-bold">YOU BEAT THE GAME!</h3><br>
+               <h4>You genius you. Congratulations!</h4><br>
+               <h3 id="display2">Your final score is:</h3><br>
+               <p id="score">0</p><br>
+            </div>
+            <div  class="row justify-content-center">
+               <a id="button" class="btn btn-default mb-2" href="{% url 'anagramhunt:ah_gameplay' %}">Play Again</a>
+               <a id="button" class="btn btn-default mb-2" href="{% url 'anagramhunt:anagramhunt' %}">Back to Start Screen</a>
+               <a id="button" class="btn btn-default mb-2" href="{% url 'pages:homepage' %}">Home</a>
+            </div>
+           </div>
+         </div>
+      </div>
+   </div>
+<!--Mobile size viewport>-->
+   <div id="finalM" class="d-xs-block d-md-none justify-content-center mt-2">
+      <div id="shapeM" class="container-fluid d-xs-block d-md-none mt-3 text-center">
+               <div><h1>Anagram Hunt</h1></div>
+                  <div id="stageM">
+                     <h3 id="display2" class="text-success font-weight-bold">YOU BEAT THE GAME!</h3><br>
+                     <h4>You genius you. Congratulations!</h4><br>
+                     <h3 id="display2M">Your final score is:</h3><br>
+                     <p id="scoreM">0</p><br>
+                  </div>
+                  <div  class="row justify-content-center">
+                     <a id="button" class="btn btn-default mb-2" href="{% url 'anagramhunt:ah_gameplay' %}">Play Again</a>
+                     <a id="button" class="btn btn-default mb-2" href="{% url 'anagramhunt:anagramhunt' %}">Back to Start Screen</a>
+                     <a id="button" class="btn btn-default mb-2" href="{% url 'pages:homepage' %}">Home</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+  </div>
+</body>
+</main>
+</html>
+{% endblock %}

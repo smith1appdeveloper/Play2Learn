@@ -594,7 +594,9 @@ function stopGame() {
    sessionStorage.setItem("addScore", addScore);
    sessionStorage.setItem("addScoreM", addScoreM);
    sessionStorage.setItem("lastAnagram", lastAnagram);
-   if (elementsLeft == '1') {
+   if (scoreKeeper > '24') {
+      location.assign("{% url 'anagramhunt:ah_victory' %}");
+   } else if (elementsLeft == '1') {
       location.assign("{% url 'anagramhunt:ah_final2' %}");
    } else {
       location.assign("{% url 'anagramhunt:ah_final' %}");
