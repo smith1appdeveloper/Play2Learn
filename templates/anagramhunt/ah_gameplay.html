@@ -82,6 +82,11 @@ let addScoreM = {};
 let arrayFam = {};
 let lastAnagram = '';
 let array = [];
+let encouragement = '';
+let guessed = [];
+let current = [];
+let missings = [];
+let matches = false;
 
 
 function playGame() {
@@ -531,7 +536,7 @@ if (arrayFam == '8') {
       clearInterval(timer);
       window.removeEventListener('keyup', handleKeyUp);
       timeLeft = 60;
-      guessedWord = [];
+      //guessedWord = [];  //
       //next anagram
       playGame();
       document.getElementById('answersList').innerHTML = " ";
@@ -575,9 +580,6 @@ function startTimer() {
   }
 }
 function getMissing() {
-   let missings = [];
-   let matches = false;
-
    for ( var i = 0; i < currentArray.length; i++ ) {
       matches = false;
       for ( var e = 0; e < guessedWord.length; e++ ) {
@@ -593,11 +595,16 @@ function stopGame() {
    sessionStorage.setItem("addScoreM", addScoreM);
    sessionStorage.setItem("lastAnagram", lastAnagram);
    if (elementsLeft == '1') {
-
       location.assign("{% url 'anagramhunt:ah_final2' %}");
    } else {
-   location.assign("{% url 'anagramhunt:ah_final' %}");
+      location.assign("{% url 'anagramhunt:ah_final' %}");
    }
+}
+function yes() {
+   let encouragementArray = ["Yes!","Awesome!","Outstanding!","Keep Going!","Bravo!","Impressive!","Great!","Nice!","Excellent!","Fantastic!","Perfect!","Terrific!","Tremendous!","Wonderful!","Correct!"];
+   getInt = randInt(0,14);
+   encouragement = encouragementArray[getInt];
+   return encouragement
 }
 function checkAnswer() {
    userAnswer = document.getElementById("entry").value.toLowerCase().trim();
@@ -618,14 +625,15 @@ function checkAnswer() {
                answersList = document.getElementById('answersList');
                newItem = document.createElement('p');
                answersList.appendChild(newItem);
-               correct = document.getElementById('yesStage'); correct.innerHTML = "Yes!"
+               encouragement = yes();
+               correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
                setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = ""}, 500);
                newItem.innerHTML = counter + '. ' + userAnswer;
                entry.value = '';
                if (elementsLeft == '0') {
                   getNextAnagram();
                }
-            }  else if (userAnswer.length >= arrayFam) {wrong = document.getElementById('noStage'); wrong.innerHTML = "No";
+            }  else if (userAnswer.length >= arrayFam) {wrong = document.getElementById('noStage'); wrong.innerHTML = "Incorrect";
                         setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 500); entry.value = ''; }
          }
       }
@@ -645,14 +653,15 @@ function checkAnswer() {
                answersList2 = document.getElementById('answersList2');
                newItem = document.createElement('p');
                answersList2.appendChild(newItem);
-               correct = document.getElementById('yesStage2'); correct.innerHTML = "Yes!"
+               encouragement = yes();
+               correct = document.getElementById('yesStage2'); correct.innerHTML = encouragement;
                setTimeout(function() {correct = document.getElementById('yesStage2'); correct.innerHTML = ""}, 500);
                newItem.innerHTML = counter2 + '. ' + userAnswer2;
                entry2.value = '';
                if (elementsLeft == '0') {
                   getNextAnagram();
                }
-            } else if (userAnswer2.length >= arrayFam) {wrong = document.getElementById('noStage2'); wrong.innerHTML = "No";
+            } else if (userAnswer2.length >= arrayFam) {wrong = document.getElementById('noStage2'); wrong.innerHTML = "Incorrect";
                     setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = ''; }
        }
    }
