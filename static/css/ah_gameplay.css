@@ -16,6 +16,7 @@ body, html {
   box-sizing: border-box;
   margin: auto;
   border-style: solid;
+  border-width: thin;
   text-align: center;
   }
   #scoreboard2 {
@@ -27,6 +28,7 @@ body, html {
     box-sizing: border-box;
     margin: auto;
     border-style: solid;
+    border-width: thin;
     text-align: center;
   }
   audio controls {

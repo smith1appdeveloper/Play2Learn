@@ -46,6 +46,7 @@ body, html {
   margin-top: 8rem;
   padding: 1rem;
   border-style: solid;
+  border-width: thin;
 }
 #formMath2 {
   background: rgba(232, 232, 232, .80);
@@ -56,6 +57,7 @@ body, html {
   margin-top: 1rem;
   margin: auto;
   border-style: solid;
+  border-width: thin;
   text-align: center;
 }
 #math {

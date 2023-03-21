@@ -16,6 +16,7 @@ box-sizing: border-box;
 margin-top: 8rem;
 padding: 1rem;
 border-style: solid;
+border-width: thin;
 }
 #finalM {
   background: rgba(232, 232, 232, .80);
@@ -27,6 +28,7 @@ border-style: solid;
   margin-top: 4rem;
   margin: auto;
   border-style: solid;
+  border-width: thin;
   text-align: center;
 }
 

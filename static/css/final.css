@@ -16,6 +16,7 @@ body, html {
  margin-top: 4rem;
  padding: 1rem;
  border-style: solid;
+ border-width: thin;
  text-align: center;
  }
  #finalM {
@@ -25,6 +26,7 @@ body, html {
  height: 75%;
  position: relative;
  border-style: solid;
+ border-width: thin;
  text-align: center;
  box-sizing: border-box;
  margin: auto;

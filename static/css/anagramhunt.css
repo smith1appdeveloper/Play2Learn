@@ -46,6 +46,7 @@
     margin: auto;
     padding: 1rem;
     border-style: solid;
+    border-width: thin;
   }
   #formMath2 {
     background: rgba(232, 232, 232, .80);
@@ -55,6 +56,7 @@
     box-sizing: border-box;
     margin: auto;
     border-style: solid;
+    border-width: thin;
     text-align: center;
   }
   #math {

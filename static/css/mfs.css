@@ -27,6 +27,7 @@ body, html {
     margin-top: 8rem;
     margin: auto;
     border-style: solid;
+    border-width: thin;
     text-align: center;
     padding: 1rem;
   }
@@ -40,6 +41,7 @@ body, html {
     margin-top: 1rem;
     margin: auto;
     border-style: solid;
+    border-width: thin;
     text-align: center;
   }
   #formMath4 {
