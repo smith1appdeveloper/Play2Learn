@@ -70,11 +70,8 @@ let firstPass = 'Y';     // switch keeps record of users first pass through game
 let playedArrays = [];  // array stored arrays already solved from array word length family.
 let PlayButton = '';
 let AnagramsLeft = '';
-let KeepTimer = '';
 let scoreKeeper = 0;
-let gameLength = 60;
 let timeLeft = 60;
-let selected =  '';
 let elementsLeft = 0;
 let anagram = [];
 let addScore = {};
@@ -83,8 +80,6 @@ let arrayFam = {};
 let lastAnagram = '';
 let array = [];
 let encouragement = '';
-let guessed = [];
-let current = [];
 let missings = [];
 let matches = false;
 
@@ -558,7 +553,6 @@ function randInt(low, high) {
 }
 function startTimer() {
   window.addEventListener('keyup', handleKeyUp);
-  timeLeft = gameLength;
   if (timeLeft > 0) {
      timer = setInterval(() => {
         timeLeft--;
@@ -671,25 +665,16 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   const time = document.getElementById('time');
-   const time2 = document.getElementById('time2');
-   const score = document.getElementById('score');
-   const score2 = document.getElementById('score2');
-   const display = document.getElementById('display');
-   const display2 = document.getElementById('display2');
-   const answersList = document.getElementById('answersList');
-   const answersList2 = document.getElementById('answersList2');
    const audio = document.getElementById('audio');
-   const arrayFam2 = sessionStorage.getItem("arrayFam2");
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
      checkAnswer();
    }
    });
-   playGame();
-   startTimer();
    audio.play();
+   startTimer();
+   playGame();
 });
 </script>
 {% endblock %}
@@ -701,9 +686,9 @@ window.addEventListener('load', function() {
    <div class="row justify-content-center mt-2 mt-5 mb-5">
       <div>
          <div class="row justify-content-center">
-            <div id="scoreLabel" class="row justify-content-center mr-5"><label for="score">Score: </label>
+            <div id="scoreLabel" class="row justify-content-center mr-5"><label for="score">Score:</label>
             <p id="score" class="ml-2"></p></div>
-            <div id="timeLabel" class="row justify-content-center"><label for="time">Time Left: </label>
+            <div id="timeLabel" class="row justify-content-center"><label for="time">Time Left:</label>
             <p id="time" class="ml-2"></p></div>
          </div>
          <hr>
@@ -724,9 +709,9 @@ window.addEventListener('load', function() {
    <div class="row justify-content-center mt-2 mt-5 mb-5">
       <div>
          <div class="row justify-content-center">
-            <div id="scoreLabel2" class="row justify-content-center"><label for="score2">Score: </label>
+            <div id="scoreLabel2" class="row justify-content-center"><label for="score2">Score:</label>
             <p id="score2" class="ml-1 mr-5"></p></div>
-            <div id="timeLabel2" class="row justify-content-center"><label for="time2">Time Left: </label>
+            <div id="timeLabel2" class="row justify-content-center"><label for="time2">Time Left:</label>
             <p id="time2" class="ml-1"></p></div>
          </div>
          <hr>
