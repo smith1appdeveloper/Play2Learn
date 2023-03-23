@@ -532,7 +532,6 @@ if (arrayFam == '8') {
       clearInterval(timer);
       window.removeEventListener('keyup', handleKeyUp);
       timeLeft = 60;
-      //guessedWord = [];  //
       //next anagram
       playGame();
       document.getElementById('answersList').innerHTML = " ";
@@ -589,7 +588,7 @@ function stopGame() {
    sessionStorage.setItem("addScore", addScore);
    sessionStorage.setItem("addScoreM", addScoreM);
    sessionStorage.setItem("lastAnagram", lastAnagram);
-   if (scoreKeeper > '24') {
+   if (scoreKeeper > '25') {
       location.assign("{% url 'anagramhunt:ah_victory' %}");
    } else if (elementsLeft == '1') {
       location.assign("{% url 'anagramhunt:ah_final2' %}");
