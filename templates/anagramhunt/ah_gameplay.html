@@ -83,6 +83,7 @@ let encouragement = '';
 let no = '';
 let missings = [];
 let matches = false;
+let attempts = 0; ////////////////////////////////////////////
 
 
 function playGame() {
@@ -581,14 +582,14 @@ function getMissing() {
       }
       if(!matches) missings.push( currentArray[i] );
   }
-  return missings;
+  return missings.slice(-1);
 }
 function stopGame() {
    lastAnagram = getMissing().toString();
    sessionStorage.setItem("addScore", addScore);
    sessionStorage.setItem("addScoreM", addScoreM);
    sessionStorage.setItem("lastAnagram", lastAnagram);
-   if (scoreKeeper > '25') {
+   if (scoreKeeper > '15') {
       location.assign("{% url 'anagramhunt:ah_victory' %}");
    } else if (elementsLeft == '1') {
       location.assign("{% url 'anagramhunt:ah_final2' %}");
@@ -637,8 +638,16 @@ function checkAnswer() {
                }
             }  else if (userAnswer.length >= arrayFam) {
                no = incorrect();
+               attempts++;
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
-                        setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 500); entry.value = ''; }
+               setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 500); entry.value = '';
+               if (attempts > 3) {
+                  attempts = 0;
+                  wrong = document.getElementById('noStage'); wrong.innerHTML = "Lets try a new Anagram";
+                  setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 3000); entry.value = '';
+                  getNextAnagram();
+               }
+            }
          }
       }
       if (userAnswer2.length = arrayFam) {
@@ -667,10 +676,19 @@ function checkAnswer() {
                }
             } else if (userAnswer2.length >= arrayFam) {
                no = incorrect();
+               attempts++;
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
-                    setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = ''; }
-       }
-   }
+               setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = '';
+               if (attempts > 3) {
+                  attempts = 0;
+                  wrong = document.getElementById('noStage2'); wrong.innerHTML = "Lets try a new Anagram";
+                  setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 3000); entry2.value = '';
+                  getNextAnagram();
+
+               }
+            }
+         }
+      }
 }
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
