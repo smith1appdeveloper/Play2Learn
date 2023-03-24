@@ -634,6 +634,7 @@ function checkAnswer() {
                newItem.innerHTML = counter + '. ' + userAnswer;
                entry.value = '';
                if (elementsLeft == '0') {
+                  attempts = 0;
                   getNextAnagram();
                }
             }  else if (userAnswer.length >= arrayFam) {
@@ -672,6 +673,7 @@ function checkAnswer() {
                newItem.innerHTML = counter2 + '. ' + userAnswer2;
                entry2.value = '';
                if (elementsLeft == '0') {
+                  attempts = 0;
                   getNextAnagram();
                }
             } else if (userAnswer2.length >= arrayFam) {
