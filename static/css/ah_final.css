@@ -36,7 +36,6 @@ color: #212529;
   border-width: thin;
   text-align: center;
 }
-
 #score {
   float: none;
   color: black;
@@ -49,17 +48,19 @@ color: #212529;
   margin: auto;
   font-weight: bold;
   }
-
   #scoreM {
     float: none;
     color: black;
     text-align: center;
-    font-size: 6rem;
+    font-size: 4rem;
     width: 100%;
     box-sizing: border-box;
     position: relative;
     margin: auto;
     font-weight: bold;
+    }
+    #displayM, #display2M {
+      margin: 0%;
     }
     #button {
       border-style: none solid solid none;

@@ -585,6 +585,7 @@ function getMissing() {
   return missings.slice(-1);
 }
 function stopGame() {
+   scoreKeeper = 16; ///////////////////////////
    lastAnagram = getMissing().toString();
    sessionStorage.setItem("addScore", addScore);
    sessionStorage.setItem("addScoreM", addScoreM);
