@@ -83,7 +83,7 @@ let encouragement = '';
 let no = '';
 let missings = [];
 let matches = false;
-let attempts = 0; ////////////////////////////////////////////
+let attempts = 0;
 
 
 function playGame() {
@@ -641,11 +641,14 @@ function checkAnswer() {
                no = incorrect();
                attempts++;
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
+               attempt = document.getElementById('attemptStage'); attempt.innerHTML = " attempt " + attempts;
                setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 500); entry.value = '';
-               if (attempts > 3) {
+               setTimeout(function() {attempt = document.getElementById('attemptStage'); attempt.innerHTML = ""}, 500); entry.value = '';
+               if (attempts > 2) {
                   attempts = 0;
-                  wrong = document.getElementById('noStage'); wrong.innerHTML = "Lets try a new Anagram";
-                  setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 1000); entry.value = '';
+                  wrong = document.getElementById('noStage'); wrong.innerHTML = "New Anagram";
+                  attempt = document.getElementById('attemptStage'); attempt.innerHTML = " ";
+                  entry.value = '';
                   getNextAnagram();
                }
             }
@@ -680,11 +683,13 @@ function checkAnswer() {
                no = incorrect();
                attempts++;
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
+               attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " attempt " + attempts;
                setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = '';
-               if (attempts > 3) {
+               setTimeout(function() {attempt = document.getElementById('attemptStage2'); attempt.innerHTML = ""}, 500); entry.value = '';
+               if (attempts > 2) {
                   attempts = 0;
-                  wrong = document.getElementById('noStage2'); wrong.innerHTML = "Lets try a new Anagram";
-                  setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 1000); entry2.value = '';
+                  wrong = document.getElementById('noStage2'); wrong.innerHTML = "New Anagram";
+                  attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " ";
                   getNextAnagram();
 
                }
@@ -726,7 +731,7 @@ window.addEventListener('load', function() {
             <div><p class="mr-5 font-weight-bold" id="display"></p></div>
             <div id="anagramsleftLabel" class="row"><p class="mr-2" id="anagramsLeft"></p><label for="entry">left</label></div>
          </div>
-         <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p></div>
+         <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p><p class="ml-3 mr-1" id="attemptStage"></p></div>
             <input class="text-center mt-3" id="entry" placeholder="answer">
             <p class="text-center mt-4 mb-3" id="answersList" class="ml-5 mr-5"></p>
       </div>
@@ -750,7 +755,7 @@ window.addEventListener('load', function() {
             <p class="mr-1" id="anagramsLeft2"></p>
             <div id="anagramleftLabel2"><label for="entry2">left</label></div>
          </div>
-         <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p></div>
+         <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"><p class="ml-3 mr-1" id="attemptStage2"></p></p></div>
          <input class="text-center mt-3" id="entry2" placeholder="answer">
          <p class="text-center mt-4 mb-3" id="answersList2"></p>
       </div>
