@@ -647,7 +647,7 @@ function checkAnswer() {
                if (attempts > 2) {
                   attempts = 0;
                   wrong = document.getElementById('noStage'); wrong.innerHTML = "New Anagram";
-                  attempt = document.getElementById('attemptStage'); attempt.innerHTML = " ";
+                  attempt = document.getElementById('attemptStage').style.display = "none";
                   entry.value = '';
                   getNextAnagram();
                }
@@ -689,7 +689,7 @@ function checkAnswer() {
                if (attempts > 2) {
                   attempts = 0;
                   wrong = document.getElementById('noStage2'); wrong.innerHTML = "New Anagram";
-                  attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " ";
+                  attempt = document.getElementById('attemptStage2').style.display = "none";
                   getNextAnagram();
 
                }
