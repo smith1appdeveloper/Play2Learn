@@ -641,6 +641,7 @@ function checkAnswer() {
                no = incorrect();
                attempts++;
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
+               attempt = document.getElementById('attemptStage').style.display = "initial";
                attempt = document.getElementById('attemptStage'); attempt.innerHTML = " attempt " + attempts;
                setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = ""}, 500); entry.value = '';
                setTimeout(function() {attempt = document.getElementById('attemptStage'); attempt.innerHTML = ""}, 500); entry.value = '';
@@ -683,6 +684,7 @@ function checkAnswer() {
                no = incorrect();
                attempts++;
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
+               attempt = document.getElementById('attemptStage2').style.display = "initial";
                attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " attempt " + attempts;
                setTimeout(function() {wrong = document.getElementById('noStage2'); wrong.innerHTML = ""}, 500); entry2.value = '';
                setTimeout(function() {attempt = document.getElementById('attemptStage2'); attempt.innerHTML = ""}, 500); entry.value = '';
