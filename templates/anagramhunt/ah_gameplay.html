@@ -703,13 +703,13 @@ window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
    const audio = document.getElementById('audio');
+   audio.loop = true;
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
      checkAnswer();
    }
    });
-   audio.pause();
    startTimer();
    playGame();
 });
