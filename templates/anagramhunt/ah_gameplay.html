@@ -84,6 +84,7 @@ let no = '';
 let missings = [];
 let matches = false;
 let attempts = 0;
+let anagramsDone = 'n';
 
 
 function playGame() {
@@ -496,6 +497,7 @@ playedArrays.push(anagramStart);
 console.log("anagramStart",anagramStart);
 if (arrayFam == '5') {
    if (playedArrays.length == '9') {
+         anagramsDone = 'y';
          stopGame();
       }
    if (anagramStart > '9') {
@@ -504,6 +506,7 @@ if (arrayFam == '5') {
    }
 if (arrayFam == '6') {
    if (playedArrays.length == '5') {
+          anagramsDone = 'y';
           stopGame();
         }
    if (anagramStart > '5') {
@@ -512,6 +515,7 @@ if (arrayFam == '6') {
    }
 if (arrayFam == '7') {
    if (playedArrays.length == '5') {
+         anagramsDone = 'y';
          stopGame();
         }
    if (anagramStart > '5') {
@@ -520,6 +524,7 @@ if (arrayFam == '7') {
    }
 if (arrayFam == '8') {
    if (playedArrays.length == '4') {
+           anagramsDone = 'y';
            stopGame();
         }
    if (anagramStart > '4') {
@@ -591,6 +596,8 @@ function stopGame() {
    sessionStorage.setItem("lastAnagram", lastAnagram);
    if (scoreKeeper > '15') {
       location.assign("{% url 'anagramhunt:ah_victory' %}");
+   } else if (anagramsDone == 'y') {
+      location.assign("{% url 'anagramhunt:ah_final3' %}");
    } else if (elementsLeft == '1') {
       location.assign("{% url 'anagramhunt:ah_final2' %}");
    } else {
