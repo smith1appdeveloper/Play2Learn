@@ -53,8 +53,8 @@
     window.onload = function runQuotesau() {
         let sectionM = document.querySelector(".quotesectionSmall");
         sectionM.innerText = quotes[0];
-        setInterval(runQuotes2, 10000);
+        setInterval(runQuotes2, 5000);
         let section = document.querySelector("p");
         section.innerText = quotes[0];
-        setInterval(runQuotes3, 10000);
+        setInterval(runQuotes3, 5000);
     }
