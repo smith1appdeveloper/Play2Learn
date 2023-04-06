@@ -596,6 +596,8 @@ function stopGame() {
    sessionStorage.setItem("lastAnagram", lastAnagram);
    if (scoreKeeper > '15') {
       location.assign("{% url 'anagramhunt:ah_victory' %}");
+   } else if (scoreKeeper < '1') {
+      location.assign("{% url 'anagramhunt:ah_final4' %}");
    } else if (anagramsDone == 'y') {
       location.assign("{% url 'anagramhunt:ah_final3' %}");
    } else if (elementsLeft == '1') {
