@@ -66,12 +66,12 @@ window.onload = function runQuotesau() {
 }
 </script>
 <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
-<main>
+<main class="d-none d-md-block" id="imageTest" style="background-image: url('{% static 'Images/developer_team.jpg' %}');">
   <div id="quote" class="mt-1 d-none d-md-block center">
     <h5>How do our customers feel about us?</h5>
     <p id="quotesection">Quote Section</p>
   </div>
-  <div  class="d-none d-md-block center"><img id="image" src="{% static 'Images/developer-team.jpg' %}"></div>
+  <div>
   <div id="backgroundUs">
     <div id="containerUs" class="d-none d-md-block">
      <div id="about-us" class="d-none d-md-block">
@@ -86,13 +86,14 @@ window.onload = function runQuotesau() {
         </p>
       </div>
     </div>
+</main>
 <!--Mobile-->
 <div id="quoteSmall" class="d-sm-block d-md-none mt-3">
   <h5>How do our customers feel about us?</h5>
   <p id="quotesectionSmall" class="quotesectionSmall mt-5">Quote Section</p>
 </div>
     <div id="cUsM" class="d-sm-block d-md-none">
-      <div  class="d-sm-block d-md-none center"><img id="imagespace2" src="{% static 'Images/developer-team.jpg' %}" class="img-thumbnail d-sm-block d-md-none"></div>
+      <div  class="d-sm-block d-md-none center"><img id="imagespace2" src="{% static 'Images/developer_team.jpg' %}" class="img-thumbnail d-sm-block d-md-none"></div>
       <div id="about-usM" class="container d-sm-block d-md-none">
         <p class="container-fluid d-sm-block d-md-none mt-3">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -103,7 +104,7 @@ window.onload = function runQuotesau() {
     </div>
   </div>
   </div>
-</main>
+<!--</main>-->
 </body>
 
 {% endblock %}
