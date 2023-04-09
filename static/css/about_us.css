@@ -15,6 +15,11 @@ body, html {
   background-size: cover !important;
 }
 #imagespace2 {
+  width: auto;
+  height: 250px;
+  padding: 0px;
+  margin: auto;
+  margin: auto;
   margin: auto;
   width: 100%;
   }
