@@ -66,6 +66,7 @@ body, html {
   width: 100%;
   display: block;
   box-sizing: border-box;
+  margin-top: 3.5rem;
   margin-bottom: 4rem;
   text-align: center;
 }
