@@ -41,26 +41,16 @@ body, html {
  transform: translate(-50%, -50%);
  z-index: 10;
  }
-#containerUs {
-  width: 100%;
-  padding-left: 8rem;
-  padding-right: 8rem;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  box-sizing: border-box;
-}
 #backgroundUs {
   background: rgba(232, 232, 232, 0.80);
   text-align: center;
   width: auto;
-  max-width: 80rem;
-  height: 20%;
-  box-sizing: border-box;
-  padding: 1rem;
+  max-width: 60rem;
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
   font-size: large;
-  z-index: 10;
-  margin: auto;
-  margin-top: 45rem;
+  overflow-x: hidden !important;
+  margin-top: 150px;
 }
 #cUsM {
   width: 100%;
