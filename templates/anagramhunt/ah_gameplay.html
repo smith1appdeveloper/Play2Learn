@@ -727,7 +727,7 @@ window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
    document.body.addEventListener('touchstart', function() {
-      for(let audio of audiosWeWantToUnlock) {
+      for(let correct of audiosWeWantToUnlock) {
        correct.play()
        //correct.pause()
        //correct.currentTime = 0
