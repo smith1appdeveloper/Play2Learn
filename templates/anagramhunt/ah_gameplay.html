@@ -85,6 +85,9 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
+var audiosWeWantToUnlock = []
+audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
+   //audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
 
 
 function playGame() {
@@ -723,14 +726,11 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   var audiosWeWantToUnlock = []
-   audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
-   //audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
    document.body.addEventListener('touchstart', function() {
       for(let audio of audiosWeWantToUnlock) {
        correct.play()
-       correct.pause()
-       correct.currentTime = 0
+       //correct.pause()
+       //correct.currentTime = 0
        }
    })
    document.addEventListener("keypress", function(e) {
