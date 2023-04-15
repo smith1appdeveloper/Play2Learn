@@ -723,16 +723,6 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   let audio1 = new Audio('/static/audio/correct.wav');
-   let audio2 = new Audio('/static/audio/incorrect.wav');
-   audio.addEventListener("canplaythrough", () => {
-      audio.play().catch(e => {
-         window.addEventListener('click', () => {
-            audio1.play()
-            audio2.play()
-         }, { once: true })
-      })
-   });
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
@@ -793,7 +783,7 @@ window.addEventListener('load', function() {
    </div>
  </div>
 </div>
-<figure><div class="row justify-content-center mt-3"><audio loop controls><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
+<figure><div class="row justify-content-center mt-3"><audio loop controls><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /><script>correctAnswer()wrongAnswer()</script></audio></div></figure>
 <audio preload="auto"><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
 <audio preload="auto"><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>
 </body>
