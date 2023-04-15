@@ -85,9 +85,7 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-var audiosWeWantToUnlock = []
-audiosWeWantToUnlock.push(new Audio('mySoundEffect.wav'))
-audiosWeWantToUnlock.push(new Audio('myOtherSoundEffect.wav'))
+let audiosWeWantToUnlock = []
 
 
 function playGame() {
@@ -726,28 +724,24 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+   audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
+   //audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
 
    document.body.addEventListener('touchstart', function() {
-      if(audiosWeWantToUnlock) {
-       for(let audio of audiosWeWantToUnlock) {
-        //new Audio('/static/audio/correct.wav').play()
-        new Audio('/static/audio/correct.wav').pause()
-        console.log("here")
-       }
-       audiosWeWantToUnlock = null
-     }
-     }, false)
+      let audio = new Audio('/static/audio/correct.wav');
+      audio.play()
+      audio.pause()
+      audio.currentTime = 0
+      console.log("here")
+     })
 
      document.body.addEventListener('mousemove', function() {
-      if(audiosWeWantToUnlock) {
-       for(let audio of audiosWeWantToUnlock) {
-         //new Audio('/static/audio/correct.wav').play()
-         new Audio('/static/audio/correct.wav').pause()
+      let audio = new Audio('/static/audio/correct.wav');
+         audio.play()
+         audio.pause()
+         audio.currentTime = 0
          console.log("here2")
-       }
-       audiosWeWantToUnlock = null
-     }
-     }, false)
+     })
 
      document.body.addEventListener('keydown', function() {
       if(audiosWeWantToUnlock) {
