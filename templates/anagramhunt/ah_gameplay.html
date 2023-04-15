@@ -720,24 +720,19 @@ function checkAnswer() {
          }
       }
 }
+document.body.addEventListener('touchstart', function() {
+   for(let audio of audiosWeWantToUnlock) {
+    audio.play()
+    audio.pause()
+    audio.currentTime = 0
+    }
+})
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
    var audiosWeWantToUnlock = []
    audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
    audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
-
-   document.body.addEventListener('touchstart', function() {
-      if(audiosWeWantToUnlock) {
-       for(let audio of audiosWeWantToUnlock) {
-        audio.play()
-        audio.pause()
-        audio.currentTime = 0
-       }
-       audiosWeWantToUnlock = null
-     }
-     }, false)
-
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
