@@ -86,8 +86,8 @@ let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
 var audiosWeWantToUnlock = []
-audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
-   //audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
+audiosWeWantToUnlock.push(new Audio('mySoundEffect.wav'))
+audiosWeWantToUnlock.push(new Audio('myOtherSoundEffect.wav'))
 
 
 function playGame() {
@@ -726,13 +726,40 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+
    document.body.addEventListener('touchstart', function() {
-      for(let correct of audiosWeWantToUnlock) {
-       correct.play()
-       //correct.pause()
-       //correct.currentTime = 0
+      if(audiosWeWantToUnlock) {
+       for(let audio of audiosWeWantToUnlock) {
+        //new Audio('/static/audio/correct.wav').play()
+        new Audio('/static/audio/correct.wav').pause()
+        console.log("here")
        }
-   })
+       audiosWeWantToUnlock = null
+     }
+     }, false)
+
+     document.body.addEventListener('mousemove', function() {
+      if(audiosWeWantToUnlock) {
+       for(let audio of audiosWeWantToUnlock) {
+         //new Audio('/static/audio/correct.wav').play()
+         new Audio('/static/audio/correct.wav').pause()
+         console.log("here2")
+       }
+       audiosWeWantToUnlock = null
+     }
+     }, false)
+
+     document.body.addEventListener('keydown', function() {
+      if(audiosWeWantToUnlock) {
+       for(let audio of audiosWeWantToUnlock) {
+        audio.play()
+        audio.pause()
+        audio.currentTime = 0
+       }
+       audiosWeWantToUnlock = null
+     }
+     }, false)
+
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
@@ -741,6 +768,8 @@ window.addEventListener('load', function() {
    });
    startTimer();
    playGame();
+   //correctAnswer();
+   //wrongAnswer();
 });
 </script>
 {% endblock %}
