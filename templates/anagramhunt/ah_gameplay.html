@@ -85,8 +85,11 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-let audiosWeWantToUnlock = []
-
+let correct = new Audio('/static/audio/correct.wav');
+let wrong = new Audio('/static/audio/incorrect.wav');
+let allAudio = []
+allAudio.push(correct);
+allAudio.push(wrong);
 
 function playGame() {
   score = document.getElementById('score');
@@ -622,6 +625,7 @@ function incorrect() {
 function correctAnswer() {
    let correct = new Audio('/static/audio/correct.wav');
    correct.play();
+
 }
 function wrongAnswer() {
    let wrong = new Audio('/static/audio/incorrect.wav');
@@ -724,34 +728,41 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
-   //audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
 
    document.body.addEventListener('touchstart', function() {
-      let audio = new Audio('/static/audio/correct.wav');
-      audio.play()
-      //audio.pause()
-      //audio.currentTime = 0
-     })
-
-     document.body.addEventListener('mousemove', function() {
-      let audio = new Audio('/static/audio/correct.wav');
+      if(allAudio) {
+         for(let audio of allAudio) {
          audio.play()
          audio.pause()
          audio.currentTime = 0
+         }
+         allAudio = null
+         }
+     })
+
+     document.body.addEventListener('mousemove', function() {
+      if(allAudio) {
+         for(let audio of allAudio) {
+         audio.play()
+         audio.pause()
+         audio.currentTime = 0
+         }
+         allAudio = null
+         }
          console.log("here2")
      })
 
      document.body.addEventListener('keydown', function() {
-      if(audiosWeWantToUnlock) {
-       for(let audio of audiosWeWantToUnlock) {
-        audio.play()
-        audio.pause()
-        audio.currentTime = 0
-       }
-       audiosWeWantToUnlock = null
-     }
-     }, false)
+      if(allAudio) {
+         for(let audio of allAudio) {
+         audio.play()
+         audio.pause()
+         audio.currentTime = 0
+         }
+         allAudio = null
+         }
+         console.log("here3")
+     })
 
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
