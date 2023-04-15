@@ -55,12 +55,16 @@
             endGame()
          }
      }
-
+   function correctAnswer() {
+      let correct = new Audio('/static/audio/correct.wav');
+      correct.play();
+   }
    function checkEntry() {
    val1 = document.getElementById("entry").value;
    val2 = document.getElementById("entry2").value;
       if(val2 == solution || formVal == solution){
          entry2.value = val2;
+         correctAnswer();
          keepScore = keepScore + 1;
          addScore = keepScore;
          addScoreM = keepScore;
@@ -72,6 +76,7 @@
       }
       if(val1 == solution || formVal == solution) {
          entry.value = val1;
+         correctAnswer();
          keepScore = keepScore + 1;
          addScore = keepScore;
          addScoreM = keepScore;

@@ -618,6 +618,14 @@ function incorrect() {
    no = encouragementArray[getInt];
    return no;
 }
+function correctAnswer() {
+   let correct = new Audio('/static/audio/correct.wav');
+   correct.play();
+}
+function wrongAnswer() {
+   let wrong = new Audio('/static/audio/incorrect.wav');
+   wrong.play();
+}
 function checkAnswer() {
    userAnswer = document.getElementById("entry").value.toLowerCase().trim();
    userAnswer2 = document.getElementById("entry2").value.toLowerCase().trim();
@@ -626,6 +634,7 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer)) {
             if (currentArray.includes(userAnswer)) {
                guessedWord.push(userAnswer);
+               correctAnswer();
                scoreKeeper++;
                addScore = scoreKeeper;
                score = document.getElementById('score');
@@ -649,6 +658,7 @@ function checkAnswer() {
             }  else if (userAnswer.length >= arrayFam) {
                no = incorrect();
                attempts++;
+               wrongAnswer();
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage').style.display = "initial";
                attempt = document.getElementById('attemptStage'); attempt.innerHTML = " attempt " + attempts;
@@ -668,6 +678,7 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer2)) {
             if (currentArray.includes(userAnswer2)) {
                guessedWord.push(userAnswer2);
+               correctAnswer();
                answersList2 = document.getElementById('answersList2');
                scoreKeeper++;
                addScoreM = scoreKeeper;
@@ -692,6 +703,7 @@ function checkAnswer() {
             } else if (userAnswer2.length >= arrayFam) {
                no = incorrect();
                attempts++;
+               wrongAnswer();
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage2').style.display = "initial";
                attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " attempt " + attempts;

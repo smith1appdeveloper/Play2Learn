@@ -54,10 +54,15 @@ function timeKeep() {
       endGame()
     }
 }
+function correctAnswer() {
+  let correct = new Audio('/static/audio/correct.wav');
+  correct.play();
+}
 function checkEntry(){
   val1 = document.getElementById("entry").value;
   val2 = document.getElementById("entry2").value;
   if(val2 == solution){
+    correctAnswer();
     keepScore = keepScore + 1;
     addScore = keepScore;
     addScoreM = keepScore;
@@ -68,6 +73,7 @@ function checkEntry(){
     gamePlay();
   }
   if(val1 == solution || formVal == solution){
+    correctAnswer();
     entry.value = val1;
     entry2.value = val1;
     keepScore = keepScore + 1;
