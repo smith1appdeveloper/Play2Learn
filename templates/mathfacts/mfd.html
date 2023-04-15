@@ -114,14 +114,12 @@ function endGame() {
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry').focus();
   const answer2 = document.getElementById('entry2').focus();
-  const audio = document.getElementById('audio');
   document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
     event.preventDefault();
     checkEntry();
    }
    });
- audio.pause();
  timer();
  timeKeep();
 });
@@ -172,6 +170,8 @@ window.addEventListener('load', function() {
     </div>
  </div>
 </div>
-<figure><div class="row justify-content-center" ><audio id="audio" controls src='/static/audio/Eggy_Toast.mp3'><a href='/static/audio/Eggy_Toast.mp3'>Download audio</a></audio></div></figure>
+<figure><div class="row justify-content-center"><audio loop controls><source id="audio"  src='/static/audio/Eggy_Toast.mp3' type="audio/mp3" /></audio></div></figure>
+ <audio preload="auto"><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
+ <audio preload="auto"><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>
 </body>
 {% endblock %}
