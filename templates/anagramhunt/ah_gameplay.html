@@ -723,8 +723,8 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   let audio = new Audio('/static/audio/correct.wav');
-   let audio = new Audio('/static/audio/incorrect.wav');
+   let audio1 = new Audio('/static/audio/correct.wav');
+   let audio2 = new Audio('/static/audio/incorrect.wav');
    audio.addEventListener("canplaythrough", () => {
       audio.play().catch(e => {
          window.addEventListener('click', () => {
