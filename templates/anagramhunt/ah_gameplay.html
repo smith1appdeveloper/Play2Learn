@@ -725,12 +725,12 @@ window.addEventListener('load', function() {
    const answer2 = document.getElementById('entry2').focus();
    var audiosWeWantToUnlock = []
    audiosWeWantToUnlock.push(new Audio('/static/audio/correct.wav'))
-   audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
+   //audiosWeWantToUnlock.push(new Audio('/static/audio/incorrect.wav'))
    document.body.addEventListener('touchstart', function() {
       for(let audio of audiosWeWantToUnlock) {
-       audio.play()
-       audio.pause()
-       audio.currentTime = 0
+       correct.play()
+       correct.pause()
+       correct.currentTime = 0
        }
    })
    document.addEventListener("keypress", function(e) {
