@@ -725,6 +725,17 @@ function checkAnswer() {
          }
       }
 }
+function unlockAudio() {
+   if(allAudio) {
+      for(let audio of allAudio) {
+       audio.play()
+       audio.pause()
+       audio.currentTime = 0
+       console.log("here")
+      }
+      allAudio = null
+    } false
+}
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
@@ -788,9 +799,9 @@ window.addEventListener('load', function() {
    </div>
  </div>
 </div>
-<figure><div class="row justify-content-center mt-3"><audio loop controls><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
-<audio controls muted hidden><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
-<audio controls muted hidden><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>
+<figure><div class="row justify-content-center mt-3"><audio loop controls onplay="unlockAudio()"><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
+<!--<audio controls muted hidden><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
+<audio controls muted hidden><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>-->
 </body>
 </html>
 {% endblock %}
