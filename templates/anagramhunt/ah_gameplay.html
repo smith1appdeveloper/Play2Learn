@@ -85,8 +85,8 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-//let correct = new Audio('/static/audio/correct.wav');
-//let wrong = new Audio('/static/audio/incorrect.wav');
+const correct1 = new Audio(); correct1.autoplay = true;
+const wrong1 = new Audio(); wrong1.autoplay = true;
 //let allAudio = []
 //allAudio.push(correct);
 //allAudio.push(wrong);
@@ -639,7 +639,8 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer)) {
             if (currentArray.includes(userAnswer)) {
                guessedWord.push(userAnswer);
-               correctAnswer();
+               correct1.src = '/static/audio/correct.wav';
+               //correctAnswer();
                scoreKeeper++;
                addScore = scoreKeeper;
                score = document.getElementById('score');
@@ -663,7 +664,8 @@ function checkAnswer() {
             }  else if (userAnswer.length >= arrayFam) {
                no = incorrect();
                attempts++;
-               wrongAnswer();
+               wrong1.src = '/static/audio/incorrect.wav';
+               //wrongAnswer();
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage').style.display = "initial";
                attempt = document.getElementById('attemptStage'); attempt.innerHTML = " attempt " + attempts;
@@ -683,7 +685,8 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer2)) {
             if (currentArray.includes(userAnswer2)) {
                guessedWord.push(userAnswer2);
-               correctAnswer();
+               correct1.src = '/static/audio/correct.wav';
+               //correctAnswer();
                answersList2 = document.getElementById('answersList2');
                scoreKeeper++;
                addScoreM = scoreKeeper;
@@ -708,7 +711,8 @@ function checkAnswer() {
             } else if (userAnswer2.length >= arrayFam) {
                no = incorrect();
                attempts++;
-               wrongAnswer();
+               wrong1.src = '/static/audio/incorrect.wav';
+               //wrongAnswer();
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage2').style.display = "initial";
                attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " attempt " + attempts;
@@ -726,20 +730,22 @@ function checkAnswer() {
       }
 }
 function unlockAudio() {
-let correct = new Audio('/static/audio/correct.wav');
-let wrong = new Audio('/static/audio/incorrect.wav');
-let allAudio = []
-allAudio.push(correct);
-allAudio.push(wrong);
-   if(allAudio) {
-      for(let audio of allAudio) {
-       audio.play()
-       audio.pause()
-       audio.currentTime = 0
-       console.log("here")
-      }
-      allAudio = null
-    } false
+ correct1.src = '/static/audio/correct.wav';
+ wrong1.src = '/static/audio/incorrect.wav';
+//let correct = new Audio('/static/audio/correct.wav');
+//let wrong = new Audio('/static/audio/incorrect.wav');
+//let allAudio = []
+//allAudio.push(correct);
+//allAudio.push(wrong);
+//   if(allAudio) {
+//      for(let audio of allAudio) {
+//       audio.play()
+ //      audio.pause()
+//       audio.currentTime = 0
+//       console.log("here")
+ //     }
+ //     allAudio = null
+ //   } false
 }
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
