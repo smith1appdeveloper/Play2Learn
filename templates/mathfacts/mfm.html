@@ -114,6 +114,8 @@ window.location.assign("{% url 'mathfacts:final' %}");
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry').focus();
   const answer2 = document.getElementById('entry2').focus();
+  const audioVolume = document.getElementById("audio");
+  audioVolume.volume = 0.5;
   //unlockAudio()
   document.body.addEventListener('click', function() {
     unlockAudio();
