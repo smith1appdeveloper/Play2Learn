@@ -117,12 +117,12 @@
      const answer = document.getElementById('entry').focus();
      const answer2 = document.getElementById('entry2').focus();
      const audioVolume = document.getElementById("audio").volume = 0.5;
-   //  document.body.addEventListener('click', function() {
-    //  unlockAudio();
-   //  });
-   // document.body.addEventListener('touchmove', function() {
-   //   unlockAudio();
-    //});
+     document.body.addEventListener('click', function() {
+      unlockAudio();
+     });
+    document.body.addEventListener('touchmove', function() {
+      unlockAudio();
+    });
     document.body.addEventListener("DOMContentLoaded", function() {
       unlockAudio();
     });

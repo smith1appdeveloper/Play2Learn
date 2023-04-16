@@ -13,7 +13,6 @@ window.addEventListener('load', function() {
    op = sessionStorage.getItem("op");
 
    if (isNaN(addScore)) {
-      gameOver.src = '/static/audio/silence.wav';
       gameOver.src = '/static/audio/gameover.wav';
       let score = 0;
       score.innerText = addScore;
@@ -21,7 +20,6 @@ window.addEventListener('load', function() {
       let opFin = document.getElementById('op');
       opFin.innerText = op;
    } else {
-         gameOver.src = '/static/audio/silence.wav';
          gameOver.src = '/static/audio/gameover.wav';
          let score = document.getElementById('score');
          score.innerText = addScore;
@@ -31,7 +29,6 @@ window.addEventListener('load', function() {
       }
 
    if (isNaN(addScoreM)) {
-      gameOver.src = '/static/audio/silence.wav';
       gameOver.src = '/static/audio/gameover.wav';
       let scoreM = 0;
       scoreM.innerText = addScoreM;
@@ -39,7 +36,6 @@ window.addEventListener('load', function() {
       let opFinM = document.getElementById('opM');
       opFinM.innerText = op;
    } else {
-         gameOver.src = '/static/audio/silence.wav';
          gameOver.src = '/static/audio/gameover.wav';
          let scoreM = document.getElementById('scoreM');
          scoreM.innerText = addScoreM;
