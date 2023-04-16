@@ -85,11 +85,11 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-let correct = new Audio('/static/audio/correct.wav');
-let wrong = new Audio('/static/audio/incorrect.wav');
-let allAudio = []
-allAudio.push(correct);
-allAudio.push(wrong);
+//let correct = new Audio('/static/audio/correct.wav');
+//let wrong = new Audio('/static/audio/incorrect.wav');
+//let allAudio = []
+//allAudio.push(correct);
+//allAudio.push(wrong);
 
 function playGame() {
   score = document.getElementById('score');
@@ -726,6 +726,11 @@ function checkAnswer() {
       }
 }
 function unlockAudio() {
+let correct = new Audio('/static/audio/correct.wav');
+let wrong = new Audio('/static/audio/incorrect.wav');
+let allAudio = []
+allAudio.push(correct);
+allAudio.push(wrong);
    if(allAudio) {
       for(let audio of allAudio) {
        audio.play()
