@@ -7,6 +7,7 @@ window.addEventListener('load', function() {
    document.body.addEventListener("DOMContentLoaded", function() {
       unlockAudio();
     });
+   gameOver.src = '/static/audio/silence.wav';
    addScore = sessionStorage.getItem("addScore");
    addScoreM = sessionStorage.getItem("addScoreM");
    op = sessionStorage.getItem("op");
