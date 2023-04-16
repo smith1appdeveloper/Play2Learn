@@ -721,7 +721,7 @@ function unlockAudio() {
  correctAnswer.src = '/static/audio/silence.wav';
  wrongAnswer.src = '/static/audio/silence.wav';
  nextAng.src = '/static/audio/silence.wav';
- const audioVolume = document.getElementById("audio").volume = 0.5;
+ const audioVolume = document.getElementById("audio").volume = 0;
 }
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
@@ -730,9 +730,9 @@ window.addEventListener('load', function() {
    //document.body.addEventListener('click', function() {
    //   unlockAudio();
    //});
-   document.body.addEventListener('touchmove', function() {
-      unlockAudio();
-   });
+   //document.body.addEventListener('touchmove', function() {
+   //   unlockAudio();
+   //});
    //document.body.addEventListener("DOMContentLoaded", function() {
    //   unlockAudio();
    //});
