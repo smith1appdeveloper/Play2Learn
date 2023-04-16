@@ -85,8 +85,8 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-const correct1 = new Audio(); correct1.autoplay = true;
-const wrong1 = new Audio(); wrong1.autoplay = true;
+const correctAnswer = new Audio(); correct1.autoplay = true;
+const wrongAnswer = new Audio(); wrong1.autoplay = true;
 //let allAudio = []
 //allAudio.push(correct);
 //allAudio.push(wrong);
@@ -639,7 +639,7 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer)) {
             if (currentArray.includes(userAnswer)) {
                guessedWord.push(userAnswer);
-               correct1.src = '/static/audio/correct.wav';
+               correctAnswer.src = '/static/audio/correct.wav';
                //correctAnswer();
                scoreKeeper++;
                addScore = scoreKeeper;
@@ -664,7 +664,7 @@ function checkAnswer() {
             }  else if (userAnswer.length >= arrayFam) {
                no = incorrect();
                attempts++;
-               wrong1.src = '/static/audio/incorrect.wav';
+               wrongAnswer.src = '/static/audio/incorrect.wav';
                //wrongAnswer();
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage').style.display = "initial";
@@ -685,7 +685,7 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer2)) {
             if (currentArray.includes(userAnswer2)) {
                guessedWord.push(userAnswer2);
-               correct1.src = '/static/audio/correct.wav';
+               correctAnswer.src = '/static/audio/correct.wav';
                //correctAnswer();
                answersList2 = document.getElementById('answersList2');
                scoreKeeper++;
@@ -711,7 +711,7 @@ function checkAnswer() {
             } else if (userAnswer2.length >= arrayFam) {
                no = incorrect();
                attempts++;
-               wrong1.src = '/static/audio/incorrect.wav';
+               wrongAnswer.src = '/static/audio/incorrect.wav';
                //wrongAnswer();
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage2').style.display = "initial";
@@ -732,8 +732,8 @@ function checkAnswer() {
 function unlockAudio() {
    //correctAnswer();
    //wrongAnswer();
- correct1.src = '/static/audio/correct.wav';
- wrong1.src = '/static/audio/incorrect.wav';
+ correctAnswer.src = '/static/audio/silence.wav';
+ wrongAnswer.src = '/static/audio/silence.wav';
 //let correct = new Audio('/static/audio/correct.wav');
 //let wrong = new Audio('/static/audio/incorrect.wav');
 //let allAudio = []
@@ -812,9 +812,8 @@ window.addEventListener('load', function() {
    </div>
  </div>
 </div>
-<figure><div class="row justify-content-center mt-3"><audio autoplay loop controls onclick="unlockAudio()"><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
-<!--<button onclick="unlockAudio()" type="button">Play</button>
-<audio controls><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
+<figure><div class="row justify-content-center mt-3"><audio loop controls onclick="unlockAudio()"><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
+<!--<audio controls><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
 <audio controls muted hidden><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>-->
 </body>
 </html>
