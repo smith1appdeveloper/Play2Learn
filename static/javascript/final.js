@@ -4,7 +4,9 @@ function unlockAudio() {
    gameOver.src = '/static/audio/silence.wav';
 }
 window.addEventListener('load', function() {
-   unlockAudio();
+   document.body.addEventListener("DOMContentLoaded", function() {
+      unlockAudio();
+    });
    addScore = sessionStorage.getItem("addScore");
    addScoreM = sessionStorage.getItem("addScoreM");
    op = sessionStorage.getItem("op");

@@ -116,14 +116,17 @@ window.addEventListener('load', function() {
   const answer2 = document.getElementById('entry2').focus();
   const audioVolume = document.getElementById("audio");
   audioVolume.volume = 0.5;
-  //unlockAudio()
   document.body.addEventListener('click', function() {
    unlockAudio();
   });
  document.body.addEventListener('touchmove', function() {
    unlockAudio();
  });
+ document.body.addEventListener("DOMContentLoaded", function() {
+   unlockAudio();
+ });
   document.addEventListener("keypress", function(e) {
+   unlockAudio();
   if (e.keyCode === 13) {
     event.preventDefault();
     checkEntry();
