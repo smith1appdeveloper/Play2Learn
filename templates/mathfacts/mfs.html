@@ -19,6 +19,8 @@ let val1 = '';
 let val01 = '';
 let formVal = '';
 let i = '';
+const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+
 function randInt(low, high) {
    const rndDec = Math.random();
    const rndInt = Math.floor(rndDec * (high - low + 1) + low);
@@ -54,15 +56,14 @@ function timeKeep() {
        endGame()
     }
   }
-  function correctAnswer() {
-   let correct = new Audio('/static/audio/correct.wav');
-   correct.play();
- }
+function unlockAudio() {
+   correctAnswer.src = '/static/audio/silence.wav';
+  }
 function checkEntry(){
    val1 = document.getElementById("entry").value;
    val2 = document.getElementById("entry2").value;
    if(val2 == solution){
-      correctAnswer();
+      correctAnswer.src = '/static/audio/correct.wav';
       keepScore = keepScore + 1;
       addScore = keepScore;
       addScoreM = keepScore;
@@ -73,7 +74,7 @@ function checkEntry(){
       gamePlay();
     }
     if(val1 == solution || formVal == solution){
-      correctAnswer();
+      correctAnswer.src = '/static/audio/correct.wav';
        entry.value = val1;
        entry2.value = val1;
        keepScore = keepScore + 1;
@@ -169,8 +170,6 @@ window.addEventListener('load', function() {
     </div>
  </div>
 </div>
-<figure><div class="row justify-content-center"><audio loop controls><source id="audio"  src='/static/audio/Eggy_Toast.mp3' type="audio/mp3" /></audio></div></figure>
-<audio controls muted hidden><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
-<audio controls muted hidden><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>
+<figure><div class="row justify-content-center"><audio autoplay loop controls onclick="unlockAudio()"><source id="audio"  src='/static/audio/game-music.wav' type="audio/mp3" /></audio></div></figure>
 </body>
 {% endblock %}

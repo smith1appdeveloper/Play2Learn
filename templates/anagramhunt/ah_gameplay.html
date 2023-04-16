@@ -87,9 +87,8 @@ let attempts = 0;
 let anagramsDone = 'n';
 const correctAnswer = new Audio(); correctAnswer.autoplay = true;
 const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
-//let allAudio = []
-//allAudio.push(correct);
-//allAudio.push(wrong);
+const nextAng = new Audio(); nextAng.autoplay = true;
+
 
 function playGame() {
   score = document.getElementById('score');
@@ -622,15 +621,6 @@ function incorrect() {
    no = encouragementArray[getInt];
    return no;
 }
-//function correctAnswer() {
- //  let correct = new Audio('/static/audio/correct.wav');
-//   correct.play();
-
-//}
-//function wrongAnswer() {
-//   let wrong = new Audio('/static/audio/incorrect.wav');
-//   wrong.play();
-//}
 function checkAnswer() {
    userAnswer = document.getElementById("entry").value.toLowerCase().trim();
    userAnswer2 = document.getElementById("entry2").value.toLowerCase().trim();
@@ -640,7 +630,6 @@ function checkAnswer() {
             if (currentArray.includes(userAnswer)) {
                guessedWord.push(userAnswer);
                correctAnswer.src = '/static/audio/correct.wav';
-               //correctAnswer();
                scoreKeeper++;
                addScore = scoreKeeper;
                score = document.getElementById('score');
@@ -658,6 +647,7 @@ function checkAnswer() {
                newItem.innerHTML = counter + '. ' + userAnswer;
                entry.value = '';
                if (elementsLeft == '0') {
+                  nextAng.src = '/static/audio/next-anagram.wav';
                   attempts = 0;
                   getNextAnagram();
                }
@@ -665,7 +655,6 @@ function checkAnswer() {
                no = incorrect();
                attempts++;
                wrongAnswer.src = '/static/audio/incorrect.wav';
-               //wrongAnswer();
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage').style.display = "initial";
                attempt = document.getElementById('attemptStage'); attempt.innerHTML = " attempt " + attempts;
@@ -686,7 +675,6 @@ function checkAnswer() {
             if (currentArray.includes(userAnswer2)) {
                guessedWord.push(userAnswer2);
                correctAnswer.src = '/static/audio/correct.wav';
-               //correctAnswer();
                answersList2 = document.getElementById('answersList2');
                scoreKeeper++;
                addScoreM = scoreKeeper;
@@ -705,6 +693,7 @@ function checkAnswer() {
                newItem.innerHTML = counter2 + '. ' + userAnswer2;
                entry2.value = '';
                if (elementsLeft == '0') {
+                  nextAng.src = '/static/audio/next-anagram.wav';
                   attempts = 0;
                   getNextAnagram();
                }
@@ -712,7 +701,6 @@ function checkAnswer() {
                no = incorrect();
                attempts++;
                wrongAnswer.src = '/static/audio/incorrect.wav';
-               //wrongAnswer();
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage2').style.display = "initial";
                attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " attempt " + attempts;
@@ -730,28 +718,16 @@ function checkAnswer() {
       }
 }
 function unlockAudio() {
-   //correctAnswer();
-   //wrongAnswer();
  correctAnswer.src = '/static/audio/silence.wav';
  wrongAnswer.src = '/static/audio/silence.wav';
-//let correct = new Audio('/static/audio/correct.wav');
-//let wrong = new Audio('/static/audio/incorrect.wav');
-//let allAudio = []
-//allAudio.push(correct);
-//allAudio.push(wrong);
-//   if(allAudio) {
-//      for(let audio of allAudio) {
-//       audio.play()
- //      audio.pause()
-//       audio.currentTime = 0
-//       console.log("here")
- //     }
- //     allAudio = null
- //   } false
+ nextAng.src = '/static/audio/silence.wav';
 }
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+   document.body.addEventListener('touchstart', function() {
+      unlockAudio();
+   });
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
@@ -812,9 +788,7 @@ window.addEventListener('load', function() {
    </div>
  </div>
 </div>
-<figure><div class="row justify-content-center mt-3"><audio loop controls onclick="unlockAudio()"><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
-<!--<audio controls><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
-<audio controls muted hidden><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>-->
+<figure><div class="row justify-content-center mt-3"><audio autoplay loop controls onclick="unlockAudio()"><source id="audio"  src='/static/audio/jumping-around.mp3' type="audio/mp3" /></audio></div></figure>
 </body>
 </html>
 {% endblock %}
