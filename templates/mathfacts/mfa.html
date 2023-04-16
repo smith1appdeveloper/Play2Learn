@@ -116,19 +116,18 @@
    window.addEventListener('load', function() {
      const answer = document.getElementById('entry').focus();
      const answer2 = document.getElementById('entry2').focus();
-     const audioVolume = document.getElementById("audio");
-     audioVolume.volume = 0.5;
-     document.body.addEventListener('click', function() {
-      unlockAudio();
-     });
-    document.body.addEventListener('touchmove', function() {
-      unlockAudio();
-    });
+     const audioVolume = document.getElementById("audio").volume = 0.5;
+   //  document.body.addEventListener('click', function() {
+    //  unlockAudio();
+   //  });
+   // document.body.addEventListener('touchmove', function() {
+   //   unlockAudio();
+    //});
     document.body.addEventListener("DOMContentLoaded", function() {
       unlockAudio();
     });
      document.addEventListener("keypress", function(e) {
-     unlockAudio();
+    // unlockAudio();
      if (e.keyCode === 13) {
        event.preventDefault();
        checkEntry();
@@ -184,6 +183,6 @@
       </div>
    </div>
  </div>
- <figure><div class="row justify-content-center"><audio loop controls onclick="unlockAudio()">><source id="audio"  src='/static/audio/game-music.wav' type="audio/mp3" /></audio></div></figure>
+ <figure><div class="row justify-content-center"><audio loop controls onclick="unlockAudio()" id="audio">><source src='/static/audio/game-music.wav' type="audio/mp3" /></audio></div></figure>
 </body>
 {% endblock %}
