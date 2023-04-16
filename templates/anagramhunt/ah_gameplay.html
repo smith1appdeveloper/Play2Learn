@@ -85,9 +85,9 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-const correctAnswer = new Audio(); correctAnswer.autoplay = true;
-const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
-const nextAng = new Audio(); nextAng.autoplay = true;
+//const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+//const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
+//const nextAng = new Audio(); nextAng.autoplay = true;
 
 
 function playGame() {
@@ -725,6 +725,9 @@ function unlockAudio() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+   const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+   const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
+   const nextAng = new Audio(); nextAng.autoplay = true;
    document.addEventListener("keypress", function() {
       unlockAudio();
       if (e.keyCode === 13) {
@@ -788,6 +791,6 @@ window.addEventListener('load', function() {
 </div>
 <figure><div class="row justify-content-center mt-3"><audio loop controls id="audio"><source src='/static/audio/jumping-around.mp3' type="audio/mp3" /></audio></div></figure>
 </body>
-<script>const audioVolume = document.getElementById("audio").volume = .5;</script>
+<script>const audioVolume = document.getElementById("audio").volume = .2;</script>
 </html>
 {% endblock %}

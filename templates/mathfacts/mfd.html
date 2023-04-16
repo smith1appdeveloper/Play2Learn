@@ -115,15 +115,7 @@ function endGame() {
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry').focus();
   const answer2 = document.getElementById('entry2').focus();
-  document.body.addEventListener('click', function() {
-   unlockAudio();
-  });
- document.body.addEventListener('touchmove', function() {
-   unlockAudio();
- });
- document.body.addEventListener("DOMContentLoaded", function() {
-   unlockAudio();
- });
+
   document.addEventListener("keypress", function(e) {
    unlockAudio();
    if (e.keyCode === 13) {
