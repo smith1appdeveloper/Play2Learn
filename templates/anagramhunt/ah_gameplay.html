@@ -721,21 +721,10 @@ function unlockAudio() {
  correctAnswer.src = '/static/audio/silence.wav';
  wrongAnswer.src = '/static/audio/silence.wav';
  nextAng.src = '/static/audio/silence.wav';
- const audioVolume = document.getElementById("audio").volume = 0;
 }
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   //const audioVolume = document.getElementById("audio").volume = 0.5;
-   //document.body.addEventListener('click', function() {
-   //   unlockAudio();
-   //});
-   //document.body.addEventListener('touchmove', function() {
-   //   unlockAudio();
-   //});
-   //document.body.addEventListener("DOMContentLoaded", function() {
-   //   unlockAudio();
-   //});
    document.addEventListener("keypress", function() {
       unlockAudio();
       if (e.keyCode === 13) {
@@ -799,5 +788,6 @@ window.addEventListener('load', function() {
 </div>
 <figure><div class="row justify-content-center mt-3"><audio loop controls id="audio"><source src='/static/audio/jumping-around.mp3' type="audio/mp3" /></audio></div></figure>
 </body>
+<script>const audioVolume = document.getElementById("audio").volume = .5;</script>
 </html>
 {% endblock %}

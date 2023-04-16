@@ -114,7 +114,6 @@ window.location.assign("{% url 'mathfacts:final' %}");
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry').focus();
   const answer2 = document.getElementById('entry2').focus();
-  const audioVolume = document.getElementById("audio").volume = 0.5;
   document.body.addEventListener('click', function() {
     unlockAudio();
    });
@@ -183,5 +182,6 @@ window.addEventListener('load', function() {
 </div>
 <figure><div class="row justify-content-center"><audio loop controls onclick="unlockAudio()" id="audio"><source src='/static/audio/game-music.wav' type="audio/mp3" /></audio></div></figure>
 </body>
+<script>const audioVolume = document.getElementById("audio").volume = .5;</script>
 
 {% endblock %}
