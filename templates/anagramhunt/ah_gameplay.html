@@ -85,8 +85,8 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-const correctAnswer = new Audio(); correct1.autoplay = true;
-const wrongAnswer = new Audio(); wrong1.autoplay = true;
+const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
 //let allAudio = []
 //allAudio.push(correct);
 //allAudio.push(wrong);
@@ -622,15 +622,15 @@ function incorrect() {
    no = encouragementArray[getInt];
    return no;
 }
-function correctAnswer() {
-   let correct = new Audio('/static/audio/correct.wav');
-   correct.play();
+//function correctAnswer() {
+ //  let correct = new Audio('/static/audio/correct.wav');
+//   correct.play();
 
-}
-function wrongAnswer() {
-   let wrong = new Audio('/static/audio/incorrect.wav');
-   wrong.play();
-}
+//}
+//function wrongAnswer() {
+//   let wrong = new Audio('/static/audio/incorrect.wav');
+//   wrong.play();
+//}
 function checkAnswer() {
    userAnswer = document.getElementById("entry").value.toLowerCase().trim();
    userAnswer2 = document.getElementById("entry2").value.toLowerCase().trim();
