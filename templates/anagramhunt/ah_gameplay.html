@@ -728,42 +728,6 @@ function checkAnswer() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-
-   document.body.addEventListener('touchstart', function() {
-      if(allAudio) {
-         for(let audio of allAudio) {
-         audio.play()
-         audio.pause()
-         audio.currentTime = 0
-         }
-         allAudio = null
-         }
-     })
-
-     document.body.addEventListener('mousemove', function() {
-      if(allAudio) {
-         for(let audio of allAudio) {
-         audio.play()
-         audio.pause()
-         audio.currentTime = 0
-         }
-         allAudio = null
-         }
-         console.log("here2")
-     })
-
-     document.body.addEventListener('keydown', function() {
-      if(allAudio) {
-         for(let audio of allAudio) {
-         audio.play()
-         audio.pause()
-         audio.currentTime = 0
-         }
-         allAudio = null
-         }
-         console.log("here3")
-     })
-
    document.addEventListener("keypress", function(e) {
    if (e.keyCode === 13) {
      event.preventDefault();
@@ -772,8 +736,6 @@ window.addEventListener('load', function() {
    });
    startTimer();
    playGame();
-   //correctAnswer();
-   //wrongAnswer();
 });
 </script>
 {% endblock %}
@@ -827,8 +789,8 @@ window.addEventListener('load', function() {
  </div>
 </div>
 <figure><div class="row justify-content-center mt-3"><audio loop controls><source id="audio"  src='/static/audio/7.mp3' type="audio/mp3" /></audio></div></figure>
-<audio preload="auto"><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
-<audio preload="auto"><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>
+<audio controls muted hidden><source src="/static/audio/correct.wav" type="audio/wav" /></audio>
+<audio controls muted hidden><source src="/static/audio/incorrect.wav" type="audio/wav" /></audio>
 </body>
 </html>
 {% endblock %}
