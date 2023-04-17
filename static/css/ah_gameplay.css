@@ -37,9 +37,6 @@ body, html {
     border-width: thin;
     text-align: center;
   }
-  #mobileAH {
-    padding-top: 50px;
-  }
   #gameStats {
     height: 1rem;
   }
