@@ -739,9 +739,12 @@ window.addEventListener('load', function() {
          checkAnswer();
       }
    });
+   window.addEventListener("resize", function() {
+      if (window.matchMedia("(min-width: 500px)").matches) {startMusic();}
+    })
    startTimer();
    playGame();
-   startMusic();
+   //startMusic();
 });
 </script>
 {% endblock %}

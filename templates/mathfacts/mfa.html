@@ -129,9 +129,12 @@
        checkEntry();
      }
     });
+    window.addEventListener("resize", function() {
+      if (window.matchMedia("(min-width: 500px)").matches) {startMusic();}
+    })
     timer();
     timeKeep();
-    startMusic();
+    //startMusic();
    });
     </script>
 {% endblock %}
