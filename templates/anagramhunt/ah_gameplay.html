@@ -723,11 +723,15 @@ function unlockAudio() {
  wrongAnswer.src = '/static/audio/silence.wav';
  nextAng.src = '/static/audio/silence.wav';
 }
+function startMusic() {
+   document.getElementById("audio").play();
+}
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+   startMusic();
    document.addEventListener("touchmove", function() {
-      unlockAudio();
+   unlockAudio();
    });
    document.addEventListener("keypress", function() {
       unlockAudio();
@@ -790,8 +794,7 @@ window.addEventListener('load', function() {
    </div>
  </div>
 </div>
-<div class="row justify-content-center mt-3 d-none d-lg-block"><audio controls loop autoplay preload="auto" id="audio"><source src='/static/audio/fun-jazz.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div><br />
-<div class="row justify-content-center mt-3 d-sm-block d-lg-none"><audio controls loop preload="auto" id="audio2"><source src='/static/audio/fun-jazz.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div><br />
+<figure><div class="row justify-content-center mt-3"><audio controls loop preload="auto" id="audio"><source src='/static/audio/fun-jazz.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
 </body>
 </html>
 {% endblock %}
