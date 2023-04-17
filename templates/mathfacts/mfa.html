@@ -57,9 +57,6 @@
             endGame()
          }
      }
-   function unlockAudio() {
-      correctAnswer.src = '/static/audio/silence.wav';
-     }
    function checkEntry() {
    val1 = document.getElementById("entry").value;
    val2 = document.getElementById("entry2").value;
@@ -113,6 +110,9 @@
       sessionStorage.setItem("op", opM);
       window.location.assign("{% url 'mathfacts:final' %}");
    }
+   function unlockAudio() {
+      correctAnswer.src = '/static/audio/silence.wav';
+     }
    window.addEventListener('load', function() {
      const answer = document.getElementById('entry').focus();
      const answer2 = document.getElementById('entry2').focus();
