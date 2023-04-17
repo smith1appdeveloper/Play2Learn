@@ -117,6 +117,8 @@ function startMusic() {
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry').focus();
   const answer2 = document.getElementById('entry2').focus();
+  let width = window.innerWidth;
+  if (width > 1199) {startMusic();}
   document.addEventListener("touchmove", function() {
     unlockAudio();
   });
@@ -129,7 +131,6 @@ window.addEventListener('load', function() {
   });
   timer();
   timeKeep();
-  startMusic();
 });
  </script>
 {% endblock %}
