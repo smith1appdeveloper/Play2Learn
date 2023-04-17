@@ -739,9 +739,7 @@ window.addEventListener('load', function() {
          checkAnswer();
       }
    });
-   window.addEventListener("resize", function() {
-      if (window.matchMedia("(min-width: 450px)").matches) {startMusic();}
-    })
+    if (window.innerWidth > 450px) {startMusic();}
    startTimer();
    playGame();
    //startMusic();
