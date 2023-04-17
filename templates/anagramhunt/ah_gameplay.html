@@ -725,6 +725,9 @@ function unlockAudio() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+   document.addEventListener("touchmove", function() {
+      unlockAudio();
+   });
    document.addEventListener("keypress", function() {
       unlockAudio();
       if (e.keyCode === 13) {
