@@ -729,6 +729,7 @@ function startMusic() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
+   let width = window.innerWidth;
    document.addEventListener("touchmove", function() {
    unlockAudio();
    });
@@ -739,10 +740,10 @@ window.addEventListener('load', function() {
          checkAnswer();
       }
    });
-    if (window.innerWidth > 450px) {startMusic();}
+   if (width > 450) {startMusic();}
+   console.log(width);
    startTimer();
    playGame();
-   //startMusic();
 });
 </script>
 {% endblock %}
