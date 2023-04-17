@@ -111,9 +111,13 @@ window.location.assign("{% url 'mathfacts:final' %}");
 function unlockAudio() {
   correctAnswer.src = '/static/audio/silence.wav';
  }
+function startMusic() {
+  document.getElementById("audio").play();
+}
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry').focus();
   const answer2 = document.getElementById('entry2').focus();
+  startMusic();
   document.addEventListener("touchmove", function() {
     unlockAudio();
   });
@@ -174,7 +178,7 @@ window.addEventListener('load', function() {
   </div>
 </div>
 </div>
-<figure><div class="row justify-content-center"><audio loop controls autoplay preload="auto" id="audio"><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>
+<figure><div class="row justify-content-center"><audio loop controls id="audio"><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>
 </body>
 <script>let audioVolume = document.getElementById("audio").volume = .4;</script>
 
