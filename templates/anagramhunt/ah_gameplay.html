@@ -498,6 +498,7 @@ startTimer();
 anagramStart++;
 playedArrays.push(anagramStart);
 console.log("anagramStart",anagramStart);
+setTimeout(function() {nextAng.src = '/static/audio/next-anagram.wav'}, 500);
 if (arrayFam == '5') {
    if (playedArrays.length == '9') {
          anagramsDone = 'y';
@@ -647,7 +648,7 @@ function checkAnswer() {
                newItem.innerHTML = counter + '. ' + userAnswer;
                entry.value = '';
                if (elementsLeft == '0') {
-                  nextAng.src = '/static/audio/next-anagram.wav';
+                  //nextAng.src = '/static/audio/next-anagram.wav';
                   attempts = 0;
                   getNextAnagram();
                }
@@ -693,7 +694,7 @@ function checkAnswer() {
                newItem.innerHTML = counter2 + '. ' + userAnswer2;
                entry2.value = '';
                if (elementsLeft == '0') {
-                  nextAng.src = '/static/audio/next-anagram.wav';
+                  //nextAng.src = '/static/audio/next-anagram.wav';
                   attempts = 0;
                   getNextAnagram();
                }
