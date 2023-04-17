@@ -37,6 +37,10 @@ body, html {
     border-width: thin;
     text-align: center;
   }
+  #sign {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
   #gameStats {
     height: 1rem;
   }
