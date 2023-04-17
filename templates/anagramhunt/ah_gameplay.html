@@ -85,9 +85,9 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
-//const correctAnswer = new Audio(); correctAnswer.autoplay = true;
-//const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
-//const nextAng = new Audio(); nextAng.autoplay = true;
+const correctAnswer = new Audio();
+const wrongAnswer = new Audio();
+const nextAng = new Audio();
 
 
 function playGame() {
@@ -725,9 +725,9 @@ function unlockAudio() {
 window.addEventListener('load', function() {
    const answer = document.getElementById('entry').focus();
    const answer2 = document.getElementById('entry2').focus();
-   const correctAnswer = new Audio(); correctAnswer.autoplay = true;
-   const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
-   const nextAng = new Audio(); nextAng.autoplay = true;
+   //const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+   //const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
+   //const nextAng = new Audio(); nextAng.autoplay = true;
    document.addEventListener("keypress", function() {
       unlockAudio();
       if (e.keyCode === 13) {
