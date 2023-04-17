@@ -718,9 +718,6 @@ function checkAnswer() {
          }
       }
 }
-function adjustVolume() {
-   audioVolume = document.getElementById("audio").volume = .2;
-}
 function unlockAudio() {
  correctAnswer.src = '/static/audio/silence.wav';
  wrongAnswer.src = '/static/audio/silence.wav';
@@ -794,7 +791,7 @@ window.addEventListener('load', function() {
  </div>
 </div>
 <div class="row justify-content-center mt-3">
-   <audio controls loop preload="auto" id="audio" onplay="adjustVolume()">
+   <audio controls loop preload="auto" id="audio">
       <source src='/static/audio/jumping-around.mp3' type="audio/mpeg">Your browser does not support the audio element.
 </audio></div>
 </body><br />
