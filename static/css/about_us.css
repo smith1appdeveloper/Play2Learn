@@ -24,7 +24,7 @@ body, html {
   width: 100%;
   }
 #quote{
-  background: rgba(232, 232, 232, 0.80);
+  background: rgba(232, 232, 232, 0.65);
   font-size: small;
 }
 #quoteSmall {
@@ -42,15 +42,15 @@ body, html {
  z-index: 10;
  }
 #backgroundUs {
-  background: rgba(232, 232, 232, 0.80);
+  background: rgba(232, 232, 232, 0.65);
   text-align: center;
   width: auto;
-  max-width: 60rem;
+  max-width: 40rem;
   padding-top: 1rem;
   padding-bottom: 2.5rem;
   font-size: large;
   overflow-x: hidden !important;
-  margin-top: 150px;
+  margin-top: 12rem;
 }
 #cUsM {
   width: 100%;
