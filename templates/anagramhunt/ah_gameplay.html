@@ -85,9 +85,11 @@ let missings = [];
 let matches = false;
 let attempts = 0;
 let anagramsDone = 'n';
+// Sound effects
 const correctAnswer = new Audio(); correctAnswer.autoplay = true;
 const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
 const nextAng = new Audio(); nextAng.autoplay = true;
+const youWon = new Audio(); youWon.autoplay = true;
 
 
 function playGame() {
@@ -630,11 +632,11 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer)) {
             if (currentArray.includes(userAnswer)) {
                guessedWord.push(userAnswer);
-               correctAnswer.src = '/static/audio/correct.wav';
                scoreKeeper++;
                addScore = scoreKeeper;
                score = document.getElementById('score');
                score.innerHTML = scoreKeeper;
+               if (scoreKeeper == 16){youWon.src = '/static/audio/youwon.wav'} else {correctAnswer.src = '/static/audio/correct.wav'};
                elementsLeft--;
                anagramsLeft = document.getElementById('anagramsLeft');
                anagramsLeft.innerHTML = elementsLeft;
@@ -648,7 +650,6 @@ function checkAnswer() {
                newItem.innerHTML = counter + '. ' + userAnswer;
                entry.value = '';
                if (elementsLeft == '0') {
-                  //nextAng.src = '/static/audio/next-anagram.wav';
                   attempts = 0;
                   getNextAnagram();
                }
@@ -675,12 +676,12 @@ function checkAnswer() {
          if (!guessedWord.includes(userAnswer2)) {
             if (currentArray.includes(userAnswer2)) {
                guessedWord.push(userAnswer2);
-               correctAnswer.src = '/static/audio/correct.wav';
                answersList2 = document.getElementById('answersList2');
                scoreKeeper++;
                addScoreM = scoreKeeper;
                score2 = document.getElementById('score2');
                score2.innerHTML = scoreKeeper;
+               if (scoreKeeper == 16){youWon.src = '/static/audio/youwon.wav'} else {correctAnswer.src = '/static/audio/correct.wav'};
                elementsLeft--;
                anagramsLeft2 = document.getElementById('anagramsLeft2');
                anagramsLeft2.innerHTML = elementsLeft;
@@ -694,7 +695,6 @@ function checkAnswer() {
                newItem.innerHTML = counter2 + '. ' + userAnswer2;
                entry2.value = '';
                if (elementsLeft == '0') {
-                  //nextAng.src = '/static/audio/next-anagram.wav';
                   attempts = 0;
                   getNextAnagram();
                }
@@ -722,6 +722,7 @@ function unlockAudio() {
  correctAnswer.src = '/static/audio/silence.wav';
  wrongAnswer.src = '/static/audio/silence.wav';
  nextAng.src = '/static/audio/silence.wav';
+ youWon.src = '/static/audio/silence.wav';
 }
 function startMusic() {
    document.getElementById("audio").play();
@@ -736,7 +737,7 @@ window.addEventListener('load', function() {
    document.addEventListener("touchmove", function() {
       unlockAudio();
    });
-   document.addEventListener("keypress", function() {
+   document.addEventListener("keypress", function(e) {
       unlockAudio();
       if (e.keyCode === 13) {
          event.preventDefault();
@@ -797,7 +798,7 @@ window.addEventListener('load', function() {
    </div>
  </div>
 </div>
-<figure><div class="row justify-content-center mt-3"><audio controls loop id="audio"><source src='/static/audio/fun-jazz.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
+<figure><div class="row justify-content-center mt-3"><audio controls loop id="audio"><source src='/static/audio/drums.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
 </body>
 </html>
 {% endblock %}
