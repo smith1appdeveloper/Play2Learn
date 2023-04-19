@@ -633,10 +633,10 @@ function checkAnswer() {
             if (currentArray.includes(userAnswer)) {
                guessedWord.push(userAnswer);
                scoreKeeper++;
+               if (scoreKeeper == 16){youWon.src = '/static/audio/youwon.wav'} else {correctAnswer.src = '/static/audio/correct.wav'};
                addScore = scoreKeeper;
                score = document.getElementById('score');
                score.innerHTML = scoreKeeper;
-               if (scoreKeeper == 16){youWon.src = '/static/audio/youwon.wav'} else {correctAnswer.src = '/static/audio/correct.wav'};
                elementsLeft--;
                anagramsLeft = document.getElementById('anagramsLeft');
                anagramsLeft.innerHTML = elementsLeft;
@@ -654,9 +654,9 @@ function checkAnswer() {
                   getNextAnagram();
                }
             }  else if (userAnswer.length >= arrayFam) {
+               wrongAnswer.src = '/static/audio/incorrect.wav';
                no = incorrect();
                attempts++;
-               wrongAnswer.src = '/static/audio/incorrect.wav';
                wrong = document.getElementById('noStage'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage').style.display = "initial";
                attempt = document.getElementById('attemptStage'); attempt.innerHTML = " attempt " + attempts;
@@ -678,10 +678,10 @@ function checkAnswer() {
                guessedWord.push(userAnswer2);
                answersList2 = document.getElementById('answersList2');
                scoreKeeper++;
+               if (scoreKeeper == 16){youWon.src = '/static/audio/youwon.wav'} else {correctAnswer.src = '/static/audio/correct.wav'};
                addScoreM = scoreKeeper;
                score2 = document.getElementById('score2');
                score2.innerHTML = scoreKeeper;
-               if (scoreKeeper == 16){youWon.src = '/static/audio/youwon.wav'} else {correctAnswer.src = '/static/audio/correct.wav'};
                elementsLeft--;
                anagramsLeft2 = document.getElementById('anagramsLeft2');
                anagramsLeft2.innerHTML = elementsLeft;
@@ -699,9 +699,9 @@ function checkAnswer() {
                   getNextAnagram();
                }
             } else if (userAnswer2.length >= arrayFam) {
+               wrongAnswer.src = '/static/audio/incorrect.wav';
                no = incorrect();
                attempts++;
-               wrongAnswer.src = '/static/audio/incorrect.wav';
                wrong = document.getElementById('noStage2'); wrong.innerHTML = no;
                attempt = document.getElementById('attemptStage2').style.display = "initial";
                attempt = document.getElementById('attemptStage2'); attempt.innerHTML = " attempt " + attempts;
