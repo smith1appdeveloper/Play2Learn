@@ -10,11 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-import environ
+from pathlib import Path
 import mimetypes
+import environ
 #from sendgrid import SendGridAPIClient
 #from sendgrid.helpers.mail import Mail
-from pathlib import Path
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -101,16 +101,6 @@ WSGI_APPLICATION = 'play2learn.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = { 'default' : dj_database_url.config()}
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'play2learn',
-#        'USER': 'postgres',
-#        'PASSWORD': 'Kamleon3',
-#        'HOST': 'localhost',
-#        'PORT': 5432
-#    }
-#}
 
 # EMAIL
 #SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
@@ -119,7 +109,6 @@ DATABASES = { 'default' : dj_database_url.config()}
 #EMAIL_USE_TLS = True
 #EMAIL_HOST_USER = 'apikey'
 #EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-#DEFAULT_FROM_EMAIL = 'smith010123@gmail.com'
 
 env = environ.Env()
 environ.Env.read_env()
