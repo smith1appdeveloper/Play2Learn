@@ -43,3 +43,9 @@ body, html {
       box-shadow: 0 5px #667;
       transform: translateY(4px);
     }
+    #contact {
+      margin-bottom: 4rem;
+    }
+    #input {
+      margin-bottom: 4rem;
+    }
