@@ -49,3 +49,6 @@ body, html {
     #input {
       margin-bottom: 4rem;
     }
+    #mobile {
+      margin-bottom: 0;
+    }
