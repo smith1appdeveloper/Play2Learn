@@ -41,6 +41,8 @@
                   <a class="dropdown-item" href="{% url 'anagramhunt:anagramhunt' %}">Anagram Hunt</a>
                 <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'mathfacts:mathfacts' %}">Fundamental Math</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'uscapitals:uscapitals' %}">US Capitals</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -55,9 +57,9 @@
       <div id="quote">
         <p id="quotesection">Quote Section</p>
       </div>
-      <div id="background" class="container-fluid col-md-6 border-right d-none d-md-block d-xl-none">
+      <div id="background" class="container-fluid d-none d-md-block d-xl-none">
         <div id="container1" class="row">
-          <div class="container-fluid col-md-6 border-right border-dark d-none d-md-block d-xl-none">
+          <div class="container-fluid col-md-4 border-right border-dark d-none d-md-block d-xl-none">
             <h3>Anagram Hunt</h3>
             <p class="container-fluid d-none d-md-block d-xl-none">
               Choose a word length, you will be given a word that matches your chosen length.
@@ -68,7 +70,7 @@
             </p>
             <a class="button-link mt-2" href="{% url 'anagramhunt:anagramhunt' %}">Play Now!</a>
           </div>
-          <div id="container2" class="container-fluid col-md-6 border-start d-none d-md-block d-xl-none">
+          <div id="container2" class="container-fluid col-md-4 border-start d-none d-md-block d-xl-none">
             <h3>Fundamental Math</h3>
             <p id="mf" class="container-fluid d-none d-md-block d-xl-none">
               Choose a mathmatical operation, you will be given a problem that matches your chosen operation.
@@ -78,12 +80,22 @@
             </p>
             <a class="button-link mt-2" href="{% url 'mathfacts:mathfacts' %}">Play Now!</a>
           </div>
+          <div id="container3" class="container-fluid col-md-4 border-start d-none d-md-block d-xl-none">
+            <h3>US Capitals</h3>
+            <p id="mf" class="container-fluid d-none d-md-block d-xl-none">
+              You are given a randomly selected state, you'll have 10 seconds to correclty choose that states
+                capital city from a bank of state capitals. If you select the right capital you will be awarded one point.
+                If you select the wrong capital or do not make a selection before time is called you will be given the answer
+                but no points are awarded. If you score 90 percent or better you are ready to test. Practice your US geographical knowledge, this tool can help!
+            </p>
+            <a class="button-link mt-2" href="{% url 'uscapitals:uscapitals' %}">Play Now!</a>
+          </div>
         </div>
       </div>
       <!--XL-->
-      <div id="backgroundXL" class="container-fluid col-md-6 border-right d-none d-xl-block">
+      <div id="backgroundXL" class="container-fluid col-md-10 d-none d-xl-block">
         <div id="container1" class="row">
-          <div class="container-fluid col-md-6 border-right border-dark d-none d-lg-none d-xl-block">
+          <div class="container-fluid col-md-4 border-right border-dark d-none d-xl-block">
             <h3>Anagram Hunt</h3>
             <p class="container-fluid d-none d-lg-block">
               Choose a word length, you will be given a word that matches your chosen length.
@@ -94,9 +106,9 @@
             </p>
             <a class="button-link mt-2" href="{% url 'anagramhunt:anagramhunt' %}">Play Now!</a>
           </div>
-          <div id="container2" class="container-fluid col-md-6 border-start d-none d-xl-block">
+          <div id="container2" class="col-md-4 border-right border-dark d-none d-xl-block">
             <h3>Fundamental Math</h3>
-            <p id="mf" class="container-fluid d-none d-lg-block">
+            <p id="mf" class="d-none d-lg-block">
               Choose a mathmatical operation, you will be given a problem that matches your chosen operation.
               You'll have 30 seconds to solve as many problems as possible. Once you place your answer inside the portal
               the program will quickly check it. If your answer is correct you will be awarded 1 point and given a new problem.
@@ -104,11 +116,21 @@
             </p>
             <a class="button-link mt-2" href="{% url 'mathfacts:mathfacts' %}">Play Now!</a>
           </div>
+          <div id="container3" class="container-fluid col-md-4 d-none d-xl-block">
+            <h3>US Capitals</h3>
+              <p class=" d-none d-lg-block">
+                You are given a randomly selected state, you'll have 10 seconds to correclty choose that states
+                capital city from a bank of state capitals. If you select the right capital you will be awarded one point.
+                If you select the wrong capital or do not make a selection before time is called you will be given the answer
+                but no points are awarded. If you score 90 percent or better you are ready to test. Practice your US geographical knowledge, this tool can help!
+              </p>
+              <a class="button-link mt-2" href="{% url 'uscapitals:uscapitals' %}">Play Now!</a>
+          </div>
         </div>
       </div>
     </main>
     <!--Mobile-->
-    <div id="quoteSmall" class="d-sm-block d-md-none mt-1 mb-1">
+    <div id="quoteSmall" class="d-sm-block d-md-none mt-1">
       <p id="quotesectionSmall" class="quotesectionSmall">Quote Section</p>
     </div>
     <div id="mobileImage"><img src="{% static 'Images/children_playing.jpg' %}"class="img-thumbnail d-sm-block d-md-none"></div>
@@ -126,6 +148,13 @@
           <div class="row ml-1">
             <p class="font-weight-bold">Play Now!</p>
             <a class="button-link2" href="{% url 'mathfacts:mathfacts' %}">Play</a>
+          </div>
+        </div>
+        <div id="smallScreen3" class="container-fluid">
+          <h3>US Capitals</h3>
+          <div class="row ml-1">
+            <p class="font-weight-bold">Play Now!</p>
+            <a class="button-link2" href="{% url 'uscapitals:uscapitals' %}">Play</a>
           </div>
         </div>
       </div>

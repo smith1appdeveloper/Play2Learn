@@ -1,0 +1,634 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}US Capitals{% endblock %}
+{% block javascript %}
+
+<script>
+   let currentState = null;
+   let timer = null;
+   let state = null;
+   let stateAbbr = null;
+   let stateCapital = null;
+   let stateNickname = null;
+   let selectButton = null;
+   let stateCounter = 1;
+   let timeLeft = 0;
+   let score = 0;
+   let playedStates = [];
+   const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+   const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
+   const youWon = new Audio(); youWon.autoplay = true;
+
+let stateData = [
+   ['Alabama', 'AL', 'Montgomery', 'The Yellow Hammer'],
+   ['Alaska', 'AK', 'Juneau', 'The Last Frontier'],
+   ['Arizona','AZ','Phoenix','The Grand Canyon State'],
+   ['Arkansas','AR','Little Rock','The Natural State'],
+   ['California','CA','Sacramento','The Golden State'],
+   ['Colorado','CO','Denver','The Centennial State'],
+   ['Connecticut','CT','Hartford','The Constitution State'],
+   ['Delaware','DE','Dover','The First State'],
+   ['Florida','FL','Tallahassee','The Sunshine State'],
+   ['Georgia','GA','Atlanta','The Peach State'],
+   ['Hawaii','HI','Honolulu','The Aloha State'],
+   ['Idaho','ID','Boise','The Gem State'],
+   ['Illinois','IL','Springfield','The Prairie State'],
+   ['Indiana','IN','Indianapolis','The Hoosier State'],
+   ['Iowa','IA','Des Moines','The Hawkeye State'],
+   ['Kansas','KS','Topeka','The Sunflower State'],
+   ['Kentucky','KY','Frankfort','The Bluegrass State'],
+   ['Louisiana','LA','Baton Rouge','The Pelican State'],
+   ['Maine','ME','Augusta','The Pine Tree State'],
+   ['Maryland','MD','Annapolis','The Old Line State'],
+   ['Massachusetts','MA','Boston','The Bay State'],
+   ['Michigan','MI','Lansing','The Wolverine State'],
+   ['Minnesota','MN','Saint Paul','The North State'],
+   ['Mississippi','MS','Jackson','The Magnolia State'],
+   ['Missouri','MO','Jefferson','The Show-MeState'],
+   ['Montana','MT','Helena','The Treasure State'],
+   ['Nebraska','NE','Lincoln','The Corn husker State'],
+   ['Nevada','NV','Carson City','The Silver State'],
+   ['New Hampshire','NH','Concord','The Granite State'],
+   ['New Jersey','NJ','Trenton','The Garden State'],
+   ['New Mexico','NM','Santa Fe','The Land of Enchantment'],
+   ['New York','NY','Albany','The Empire State'],
+   ['North Carolina','NC','Raleigh','The Old North State'],
+   ['North Dakota','ND','Bismark','The Peace Garden State'],
+   ['Ohio','OH','Columbus','The Buckeye State'],
+   ['Oklahoma','OK','Oklahoma City','The Sooner State'],
+   ['Oregon','OR','Salem','The Beaver State'],
+   ['Pennsylvania','PA','Harrisburg','The Keystone State'],
+   ['Rhode Island','RI','Providence','The Ocean State'],
+   ['South Carolina','SC','Columbia','The Palmetto State'],
+   ['South Dakota','SD','Pierre','Mount Rushmore State'],
+   ['Tennessee','TN','Nashville','The Volunteer State'],
+   ['Texas','TX','Austin','The Lone State'],
+   ['Utah','UT','Salt Lake City','The Beehive State'],
+   ['Vermont','VT','Montpelier','The Green Mountain State'],
+   ['Virginia','VA','Richmond','Old Dominion'],
+   ['Washington','WA','Olympia','The Evergreen State'],
+   ['West Virginia','WV','Charleston','The Mountain State'],
+   ['Wisconsin','WI','Madison','The Badger State'],
+   ['Wyoming','WY','Cheyenne','The Equality State']
+];
+function endGame() {
+   percentage = score / 50;
+   result = percentage * 100;
+   percentage2 = score / 50;
+   result2 = percentage2 * 100;
+
+   sessionStorage.setItem("result", result);
+   sessionStorage.setItem("percentage", percentage);
+   sessionStorage.setItem("result2", result2);
+   sessionStorage.setItem("percentage2", percentage2);
+
+   if (result > 89 || result2 > 89) {
+      location.assign("{% url 'uscapitals:success' %}");
+   } else  {
+      location.assign("{% url 'uscapitals:keepgoing' %}");
+   }
+}
+function randInt(low, high) {
+   const rndDec = Math.random();
+   const rndInt = Math.floor(rndDec * (high - low + 1) + low);
+   return rndInt;
+}
+function getNextState() {
+   let random1 = 0, random2 = 0, random3 = 0
+
+   stateDataSet = randInt(0,49);
+   if (playedStates.includes(stateDataSet)) {
+      while (playedStates.includes(stateDataSet)) {
+         stateDataSet = randInt(0,49);
+      }
+   }
+   playedStates.push(stateDataSet);
+   state = stateData[stateDataSet][0];
+   stateAbbr = stateData[stateDataSet][1];
+   stateCapital = stateData[stateDataSet][2];
+   stateNickname = stateData[stateDataSet][3];
+
+   presentState = document.getElementById("titlesection");presentState.innerHTML = state;
+   presentAbbr = document.getElementById("abbr");presentAbbr.innerHTML = stateAbbr;
+   presentState2 = document.getElementById("titlesection2");presentState2.innerHTML = state;
+   presentAbbr2 = document.getElementById("abbr2");presentAbbr2.innerHTML = stateAbbr;
+
+   while (random1 == 0 || random1 == stateDataSet) {
+      random1 = randInt(0,49);
+      if (random1 == stateDataSet) {random1 = randInt(0,49);}
+   }
+   while (random2 == 0 || random2 == stateDataSet || random2 == random1) {
+      random2 = randInt(0,49);
+      if (random2 == stateDataSet) {random2 = randInt(0,49);}
+   }
+   while (random3 == 0 || random3 == stateDataSet || random3 == random1 || random3 == random2) {
+      random3 = randInt(0,49);
+      if (random3 == stateDataSet) {random3 = randInt(0,49);}
+   }
+
+   return {'stateDataSet': stateDataSet, 'state': state, 'stateAbbr': stateAbbr, 'stateCapital': stateCapital, 'stateNickname': stateNickname, 'random1': random1, 'random2': random2, 'random3': random3};
+}
+function getNextGameBoard() {
+   attempt = document.getElementById('attemptStage'); attempt.innerHTML = "US Capitals";
+   attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "US Capitals";
+   document.getElementById('button1').disabled = false;
+   document.getElementById('button2').disabled = false;
+   document.getElementById('button3').disabled = false;
+   document.getElementById('button4').disabled = false;
+   document.getElementById('button12').disabled = false;
+   document.getElementById('button22').disabled = false;
+   document.getElementById('button32').disabled = false;
+   document.getElementById('button42').disabled = false;
+
+   if (stateCounter == 50) {endGame()};
+   currentState = getNextState();
+   console.log("State Capital", currentState.stateCapital) ////////////////////////////
+
+   selectButton = randInt(0,3)
+   if (selectButton == 0) {
+      presentAnswer = document.getElementById("button1");presentAnswer.innerHTML = stateCapital;
+      presentAnswer2 = document.getElementById("button12");presentAnswer2.innerHTML = stateCapital;
+      decoy1 = document.getElementById("button2");decoy1.innerHTML = stateData[currentState.random1][2];
+      decoy2 = document.getElementById("button3");decoy2.innerHTML = stateData[currentState.random2][2];
+      decoy3 = document.getElementById("button4");decoy3.innerHTML = stateData[currentState.random3][2];
+      decoy12 = document.getElementById("button22");decoy12.innerHTML = stateData[currentState.random1][2];
+      decoy22 = document.getElementById("button32");decoy22.innerHTML = stateData[currentState.random2][2];
+      decoy32 = document.getElementById("button42");decoy32.innerHTML = stateData[currentState.random3][2];
+   }
+   if (selectButton == 1) {
+      presentAnswer = document.getElementById("button2");presentAnswer.innerHTML = stateCapital;
+      presentAnswer2 = document.getElementById("button22");presentAnswer2.innerHTML = stateCapital;
+      decoy1 = document.getElementById("button1");decoy1.innerHTML = stateData[currentState.random1][2];
+      decoy2 = document.getElementById("button3");decoy2.innerHTML = stateData[currentState.random2][2];
+      decoy3 = document.getElementById("button4");decoy3.innerHTML = stateData[currentState.random3][2];
+      decoy12 = document.getElementById("button12");decoy12.innerHTML = stateData[currentState.random1][2];
+      decoy32 = document.getElementById("button32");decoy32.innerHTML = stateData[currentState.random2][2];
+      decoy42 = document.getElementById("button42");decoy42.innerHTML = stateData[currentState.random3][2];
+   }
+   if (selectButton == 2) {
+      presentAnswer = document.getElementById("button3");presentAnswer.innerHTML = stateCapital;
+      presentAnswer2 = document.getElementById("button32");presentAnswer2.innerHTML = stateCapital;
+      decoy1 = document.getElementById("button1");decoy1.innerHTML = stateData[currentState.random1][2];
+      decoy2 = document.getElementById("button2");decoy2.innerHTML = stateData[currentState.random2][2];
+      decoy3 = document.getElementById("button4");decoy3.innerHTML = stateData[currentState.random3][2];
+      decoy12 = document.getElementById("button12");decoy12.innerHTML = stateData[currentState.random1][2];
+      decoy22 = document.getElementById("button22");decoy22.innerHTML = stateData[currentState.random2][2];
+      decoy42 = document.getElementById("button42");decoy42.innerHTML = stateData[currentState.random3][2];
+   }
+   if (selectButton == 3) {
+      presentAnswer = document.getElementById("button4");presentAnswer.innerHTML = stateCapital;
+      presentAnswer2 = document.getElementById("button42");presentAnswer2.innerHTML = stateCapital;
+      decoy1 = document.getElementById("button1");decoy1.innerHTML = stateData[currentState.random1][2];
+      decoy2 = document.getElementById("button2");decoy2.innerHTML = stateData[currentState.random2][2];
+      decoy3 = document.getElementById("button3");decoy3.innerHTML = stateData[currentState.random3][2];
+      decoy12 = document.getElementById("button12");decoy12.innerHTML = stateData[currentState.random1][2];
+      decoy22 = document.getElementById("button22");decoy22.innerHTML = stateData[currentState.random2][2];
+      decoy32 = document.getElementById("button32");decoy32.innerHTML = stateData[currentState.random3][2];
+   }
+
+}
+function yes() {
+   let encouragementArray = ["Yes!","Awesome!","Outstanding!","Keep Going!","Bravo!","Impressive!","Great!","Nice!","Excellent!","Fantastic!","Perfect!","Terrific!","Tremendous!","Wonderful!","Correct!"];
+   getInt = randInt(0,14);
+   encouragement = encouragementArray[getInt];
+   return encouragement;
+}
+function incorrect() {
+   let encouragementArray = ["Incorrect","Sorry, No","Keep Trying","Try Again","Sorry, Wrong","Off the mark","Erroneous"];
+   getInt = randInt(0,6);
+   no = encouragementArray[getInt];
+   return no;
+}
+function checkEntry1() {
+   clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer';time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+   document.getElementById('button1').disabled = true;
+   document.getElementById('button2').disabled = true;
+   document.getElementById('button3').disabled = true;
+   document.getElementById('button4').disabled = true;
+   document.getElementById('button12').disabled = true;
+   document.getElementById('button22').disabled = true;
+   document.getElementById('button32').disabled = true;
+   document.getElementById('button42').disabled = true;
+   if (document.getElementById("button1").innerHTML == currentState.stateCapital || document.getElementById("button12").innerHTML == currentState.stateCapital) {
+      correctAnswer.src = '/static/audio/correct.wav'
+      ++score
+      document.getElementById('button1').style.background = 'blue';
+      document.getElementById("score").innerHTML = score;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+      document.getElementById('button12').style.background = 'blue';
+      document.getElementById("score2").innerHTML = score;
+      attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+      encouragement = yes();
+      correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+      correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+      setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "", correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+      setTimeout(function() {document.getElementById('button1').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+                             document.getElementById('button12').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
+   }, 1000);
+   } else {
+      wrongAnswer.src = '/static/audio/incorrect.wav';
+      if (selectButton == 1){document.getElementById('button2').style.background = 'blue';document.getElementById('button22').style.background = 'blue';}
+      if (selectButton == 2){document.getElementById('button3').style.background = 'blue';document.getElementById('button32').style.background = 'blue';}
+      if (selectButton == 3){document.getElementById('button4').style.background = 'blue';document.getElementById('button42').style.background = 'blue';}
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+      no = incorrect();
+      wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+      attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital city is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+      setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+                             wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+   }, 3000);
+      setTimeout(function() {
+         document.getElementById('button2').style.background = 'black';
+         document.getElementById('button3').style.background = 'black';
+         document.getElementById('button4').style.background = 'black';
+         document.getElementById('button22').style.background = 'black';
+         document.getElementById('button32').style.background = 'black';
+         document.getElementById('button42').style.background = 'black';
+         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+   }
+}
+function checkEntry2() {
+   clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer'; time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+   document.getElementById('button1').disabled = true;
+   document.getElementById('button2').disabled = true;
+   document.getElementById('button3').disabled = true;
+   document.getElementById('button4').disabled = true;
+   document.getElementById('button12').disabled = true;
+   document.getElementById('button22').disabled = true;
+   document.getElementById('button32').disabled = true;
+   document.getElementById('button42').disabled = true;
+   if (document.getElementById("button2").innerHTML == currentState.stateCapital || document.getElementById("button22").innerHTML == currentState.stateCapital) {
+      correctAnswer.src = '/static/audio/correct.wav'
+      ++score
+      document.getElementById('button2').style.background = 'blue';
+      document.getElementById("score").innerHTML = score;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+      document.getElementById('button22').style.background = 'blue';
+      document.getElementById("score2").innerHTML = score;
+      attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+      encouragement = yes();
+      correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+      correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+      setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+      setTimeout(function() {document.getElementById('button2').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+                             document.getElementById('button22').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
+   }, 1000);
+   } else {
+      wrongAnswer.src = '/static/audio/incorrect.wav';
+      if (selectButton == 0){document.getElementById('button1').style.background = 'blue';document.getElementById('button12').style.background = 'blue';}
+      if (selectButton == 2){document.getElementById('button3').style.background = 'blue';document.getElementById('button32').style.background = 'blue';}
+      if (selectButton == 3){document.getElementById('button4').style.background = 'blue';document.getElementById('button42').style.background = 'blue';}
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+      no = incorrect();
+      wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+      attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital city is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+      setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+                             wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+      }, 3000);
+      setTimeout(function() {
+         document.getElementById('button1').style.background = 'black';
+         document.getElementById('button3').style.background = 'black';
+         document.getElementById('button4').style.background = 'black';
+         document.getElementById('button12').style.background = 'black';
+         document.getElementById('button32').style.background = 'black';
+         document.getElementById('button42').style.background = 'black';
+         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+   }
+}
+function checkEntry3() {
+   clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer'; time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+   document.getElementById('button1').disabled = true;
+   document.getElementById('button2').disabled = true;
+   document.getElementById('button3').disabled = true;
+   document.getElementById('button4').disabled = true;
+   document.getElementById('button12').disabled = true;
+   document.getElementById('button22').disabled = true;
+   document.getElementById('button32').disabled = true;
+   document.getElementById('button42').disabled = true;
+   if (document.getElementById("button3").innerHTML == currentState.stateCapital || document.getElementById("button32").innerHTML == currentState.stateCapital) {
+      correctAnswer.src = '/static/audio/correct.wav'
+      ++score
+      document.getElementById('button3').style.background = 'blue';
+      document.getElementById("score").innerHTML = score;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+      document.getElementById('button32').style.background = 'blue';
+      document.getElementById("score2").innerHTML = score;
+      attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+      encouragement = yes();
+      correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+      correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+      setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+      setTimeout(function() {document.getElementById('button3').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+                           document.getElementById('button32').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
+   }, 1000);
+   } else {
+      wrongAnswer.src = '/static/audio/incorrect.wav';
+      if (selectButton == 0){document.getElementById('button1').style.background = 'blue';document.getElementById('button12').style.background = 'blue';}
+      if (selectButton == 1){document.getElementById('button2').style.background = 'blue';document.getElementById('button22').style.background = 'blue';}
+      if (selectButton == 3){document.getElementById('button4').style.background = 'blue';document.getElementById('button42').style.background = 'blue';}
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+      no = incorrect();
+      wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+      attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital city is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+      setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+                            wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+   }, 3000);
+      setTimeout(function() {
+         document.getElementById('button1').style.background = 'black';
+         document.getElementById('button2').style.background = 'black';
+         document.getElementById('button4').style.background = 'black';
+         document.getElementById('button12').style.background = 'black';
+         document.getElementById('button22').style.background = 'black';
+         document.getElementById('button42').style.background = 'black';
+         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+   }
+}
+function checkEntry4() {
+   clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer'; time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+   document.getElementById('button1').disabled = true;
+   document.getElementById('button2').disabled = true;
+   document.getElementById('button3').disabled = true;
+   document.getElementById('button4').disabled = true;
+   document.getElementById('button12').disabled = true;
+   document.getElementById('button22').disabled = true;
+   document.getElementById('button32').disabled = true;
+   document.getElementById('button42').disabled = true;
+   if (document.getElementById("button4").innerHTML == currentState.stateCapital || document.getElementById("button42").innerHTML == currentState.stateCapital) {
+      correctAnswer.src = '/static/audio/correct.wav'
+      ++score
+      document.getElementById('button4').style.background = 'blue';
+      document.getElementById("score").innerHTML = score;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+      document.getElementById('button42').style.background = 'blue';
+      document.getElementById("score2").innerHTML = score;
+      attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+      encouragement = yes();
+      correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+      correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+      setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+      setTimeout(function() {document.getElementById('button4').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+                            document.getElementById('button42').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
+   }, 1000);
+   } else {
+      wrongAnswer.src = '/static/audio/incorrect.wav';
+      if (selectButton == 0){document.getElementById('button1').style.background = 'blue';document.getElementById('button12').style.background = 'blue';}
+      if (selectButton == 1){document.getElementById('button2').style.background = 'blue';document.getElementById('button22').style.background = 'blue';}
+      if (selectButton == 2){document.getElementById('button3').style.background = 'blue';document.getElementById('button32').style.background = 'blue';}
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+      no = incorrect();
+      wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+      attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+      attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital city is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+      setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = ""
+                             wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+   }, 3000);
+      setTimeout(function() {
+         document.getElementById('button1').style.background = 'black';
+         document.getElementById('button2').style.background = 'black';
+         document.getElementById('button3').style.background = 'black';
+         document.getElementById('button12').style.background = 'black';
+         document.getElementById('button22').style.background = 'black';
+         document.getElementById('button32').style.background = 'black';
+         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+   }
+}
+function handleKeyUp(e) {
+   e.preventDefault(); // prevent the normal behavior of the key
+   if (e.keyCode === 32 || e.keyCode === 13) { // space/Enter
+      checkAnswer();
+   }
+ }
+function startTimer() {
+   window.addEventListener('keyup', handleKeyUp);
+   if (timeLeft > 0) {
+      timer = setInterval(() => {
+         timeLeft--;
+         time = document.getElementById('time');
+         time.innerHTML = timeLeft;
+         time2 = document.getElementById('time2');
+         time2.innerHTML = timeLeft;
+         if(timeLeft === 5) {document.getElementById("time").style.color = 'red'; document.getElementById("time").style.fontWeight = "bold";
+                             document.getElementById("time2").style.color = 'red'; document.getElementById("time2").style.fontWeight = "bold";}
+         if (timeLeft === 0) {
+            clearInterval(timer);
+            window.removeEventListener('keyup', handleKeyUp);
+            wrongAnswer.src = '/static/audio/incorrect.wav';
+            document.getElementById('button1').disabled = true;
+            document.getElementById('button2').disabled = true;
+            document.getElementById('button3').disabled = true;
+            document.getElementById('button4').disabled = true;
+            if (selectButton == 0){document.getElementById('button1').style.background = 'blue';}
+            if (selectButton == 1){document.getElementById('button2').style.background = 'blue';}
+            if (selectButton == 2){document.getElementById('button3').style.background = 'blue';}
+            if (selectButton == 3){document.getElementById('button4').style.background = 'blue';}
+            attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+            wrong = document.getElementById('noStage'); wrong.innerHTML = "Time";
+            attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+            ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter
+            document.getElementById('button12').disabled = true;
+            document.getElementById('button22').disabled = true;
+            document.getElementById('button32').disabled = true;
+            document.getElementById('button42').disabled = true;
+            if (selectButton == 0){document.getElementById('button12').style.background = 'blue';}
+            if (selectButton == 1){document.getElementById('button22').style.background = 'blue';}
+            if (selectButton == 2){document.getElementById('button32').style.background = 'blue';}
+            if (selectButton == 3){document.getElementById('button42').style.background = 'blue';}
+            attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+            wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "Time";
+            attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital city is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+            setTimeout(function() {
+               document.getElementById('button1').style.background = 'black';
+               document.getElementById('button2').style.background = 'black';
+               document.getElementById('button3').style.background = 'black';
+               document.getElementById('button4').style.background = 'black';
+               document.getElementById('button12').style.background = 'black';
+               document.getElementById('button22').style.background = 'black';
+               document.getElementById('button32').style.background = 'black';
+               document.getElementById('button42').style.background = 'black';
+               wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+               wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = "",
+               getNextGameBoard(), document.getElementById("time").style.color = 'black', document.getElementById("time2").style.color = 'black',
+               document.getElementById("time").style.fontWeight = "normal", document.getElementById("time2").style.fontWeight = "normal", /*timeLeft = 11,*/ timeReset();}, 2000);
+         }
+      }, 1000)
+   }else{
+    clearInterval(timer);
+    window.removeEventListener('keyup', handleKeyUp);
+    //stopGame();
+    getNextGameBoard();
+   }
+ }
+ function timeReset() {
+   timeLeft = 11;  //seconds to answer, other spot to set is within startTimer
+   document.getElementById("time").style.color = 'black';
+   document.getElementById("time").style.fontWeight = "normal";
+   document.getElementById("time2").style.color = 'black';
+   document.getElementById("time2").style.fontWeight = "normal";
+   startTimer();
+}
+function playGame() {
+   timeReset();
+   getNextGameBoard();
+}
+function opener() {
+   document.getElementById('titlesection').innerHTML = "US Capitals";
+   document.getElementById('abbr').innerHTML = "Abbr";
+   document.getElementById('attemptStage').style.fontWeight = "bold";
+   document.getElementById('attemptStage').innerHTML = "Get Ready";
+   document.getElementById('titlesection2').innerHTML = "US Capitals";
+   document.getElementById('abbr2').innerHTML = "Abbr";
+   document.getElementById('attemptStage2').style.fontWeight = "bold";
+   document.getElementById('attemptStage2').innerHTML = "Get Ready";
+
+   for (let i=0; i<3; i++) {
+      task(i);
+   }
+   function task(i) {
+      setTimeout(function() {
+         document.getElementById('button1').style.background = 'blue';
+         setTimeout(function() {document.getElementById('button1').style.background = 'black';},50);
+         setTimeout(function() {document.getElementById('button2').style.background = 'blue';}, 100);
+         setTimeout(function() {document.getElementById('button2').style.background = 'black';}, 150);
+         setTimeout(function() {document.getElementById('button4').style.background = 'blue';}, 200);
+         setTimeout(function() {document.getElementById('button4').style.background = 'black';}, 250);
+         setTimeout(function() {document.getElementById('button3').style.background = 'blue';}, 300);
+         setTimeout(function() {document.getElementById('button3').style.background = 'black';}, 350);
+         setTimeout(function() {document.getElementById('button1').style.background = 'blue';}, 400);
+         setTimeout(function() {document.getElementById('button1').style.background = 'black';}, 450);
+         document.getElementById('button12').style.background = 'blue';
+         setTimeout(function() {document.getElementById('button12').style.background = 'black';},50);
+         setTimeout(function() {document.getElementById('button22').style.background = 'blue';}, 100);
+         setTimeout(function() {document.getElementById('button22').style.background = 'black';}, 150);
+         setTimeout(function() {document.getElementById('button42').style.background = 'blue';}, 200);
+         setTimeout(function() {document.getElementById('button42').style.background = 'black';}, 250);
+         setTimeout(function() {document.getElementById('button32').style.background = 'blue';}, 300);
+         setTimeout(function() {document.getElementById('button32').style.background = 'black';}, 350);
+         setTimeout(function() {document.getElementById('button12').style.background = 'blue';}, 400);
+         setTimeout(function() {document.getElementById('button12').style.background = 'black';}, 450);
+     }, 500 * i);
+   }
+   setTimeout(function() {document.getElementById('attemptStage').style.fontWeight = "bolder";document.getElementById('attemptStage').style.fontSize = "xx-large";
+                          document.getElementById('attemptStage2').style.fontWeight = "bolder";document.getElementById('attemptStage2').style.fontSize = "xx-large";
+   document.getElementById('attemptStage').style.color = 'red';document.getElementById('attemptStage').innerHTML = "Go!";document.getElementById('attemptStage2').style.color = 'red';document.getElementById('attemptStage2').innerHTML = "Go!";
+}, 3000)
+   setTimeout(function() {document.getElementById('attemptStage').style.fontWeight = "normal";document.getElementById('attemptStage').style.fontSize = "medium";document.getElementById('attemptStage').style.color = 'black';
+                          document.getElementById('attemptStage2').style.fontWeight = "normal";document.getElementById('attemptStage2').style.fontSize = "medium";document.getElementById('attemptStage2').style.color = 'black';playGame();
+}, 4000);
+}
+function startMusic() {
+   document.getElementById("audio").play();
+}
+function unlockAudio() {
+   correctAnswer.src = '/static/audio/silence.wav';
+   wrongAnswer.src = '/static/audio/silence.wav';
+   youWon.src = '/static/audio/silence.wav';
+  }
+window.addEventListener('load', function() {
+   unlockAudio();
+   opener();
+
+   let width = window.innerWidth;
+   if (width > 1199) {startMusic();}
+   document.addEventListener("touchmove", function() {
+      unlockAudio();
+   });
+
+});
+</script>
+<style>
+   body {background-repeat: no-repeat;background-attachment: fixed; background-position: bottom center;}
+   #shape {background: rgba(232, 232, 232, .80);width: 50rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+   .button-link {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 76px; text-decoration: none; text-indent: 0rem; text-shadow: none;
+   text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 15rem; height: 3.5rem;}
+   #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 0.90);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
+   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 0.90);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
+   #titleSmall {background: rgba(232, 232, 232, 0.90);text-align: center;width: 100%;height: 15%;font-size: small;margin: auto;z-index: 10;position: relative;}
+   #titlesectionSmall {width: 86%;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
+   hr {width: 50%;}
+   #button1 {margin: 0%;}#button2 {margin: 0%;} #button3 {margin: 0%;}#button4 {margin: 0%;}
+   #yesStage {font-size: 2rem;} #noStage {font-size: 2rem;}#gameStats {height: 5rem;}#answerStage {margin-top: 1rem;}
+   #scoreboard {background: rgba(232, 232, 232, 0.90); height: 30rem; width: 40rem;}
+   #scoreboard2 {background: rgba(232, 232, 232, 0.90); height: 30rem; width: 40rem;}
+</style>
+{% endblock %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://kit.fontawesome.com/b02c9a6dba.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <title>US Capitals</title>
+   </head>
+<body class=".backgroundimg" style="background-image: url('{% static 'Images/capital.jpg' %}');">
+   <div id="title" class=" d-none d-lg-block mt-5">
+      <p><h1 id="titlesection" class="justify-content-center font-weight-bold mt-4">US Capitals</h1></p>
+   </div>
+   <div id="scoreboard" class="container justify-content-center d-none d-lg-block mb-5">
+      <div class="row justify-content-center mt-5">
+         <p class="mt-5">What is the capital city of</p><p id="abbr" class="ml-2 font-weight-bold mt-5">State Abbr</p><p class="mt-5">?</p><p class="ml-5 mt-5">State</p>
+         <p id="counter" class="ml-2 mr-1 mt-5 font-weight-bold">1</p><p class="mt-5">of 50</p>
+      </div>
+      <hr>
+      <div class="row justify-content-center mb-2">
+         <div id="scoreLabel" class="row justify-content-center mr-5"><div>Score:</div><p id="score" class="ml-2">0</p></div>
+         <div id="timeLabel" class="row justify-content-center"><div>Time Left:</div><p id="time" class="ml-2">0</p></div>
+      </div>
+      <div class="row justify-content-center">
+         <div><p class="mr-5 font-weight-bold" id="display"></p>
+            <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p>
+               <p class="ml-2 mt-3" id="attemptStage">US Capitals</p><p class="font-weight-bold ml-1 mr-1" id="answerStage"></p>
+            </div>
+         </div>
+      </div>
+      <hr>
+      <div class="row justify-content-center mb-3">
+         <button type="button" class="button-link mr-3" id="button1" onclick="checkEntry1()"><p id="button1" class="row justify-content-center">State 1</p></button>
+         <button type="button" class="button-link" id="button2" onclick="checkEntry2()"><p id="button2" class="row justify-content-center">State 2</p></button>
+      </div>
+      <div class="row justify-content-center">
+         <button type="button" class="button-link mr-3" id="button3" onclick="checkEntry3()"><p id="button3" class="row justify-content-center">State 3 </p></button>
+         <button type="button" class="button-link" id="button4" onclick="checkEntry4()"><p id="button4" class="row justify-content-center">State 4</p></button>
+      </div>
+ </div>
+<!--Mobile-->
+   <div id="title2" class="d-lg-none d-md-block mt-5">
+      <p><h2 id="titlesection2" class="justify-content-center font-weight-bold mt-4">US Capitals</h2></p>
+   </div>
+   <div id="scoreboard2" class="container justify-content-center d-lg-none d-md-block mb-5">
+      <div class="row justify-content-center mt-5">
+         <p class="mt-5">What is the capital city of</p><p id="abbr2" class="ml-2 font-weight-bold mt-5">State Abbr</p><p class="mt-5">?</p><p class="ml-5 mt-5">State</p>
+         <p id="counter2" class="ml-2 mr-1 mt-5 font-weight-bold">1</p><p class="mt-5">of 50</p>
+      </div>
+      <hr>
+      <div class="row justify-content-center mb-2">
+         <div id="scoreLabel2" class="row justify-content-center mr-5"><div>Score:</div><p id="score2" class="ml-2">0</p></div>
+         <div id="timeLabel2" class="row justify-content-center"><div>Time Left:</div><p id="time2" class="ml-2">0</p></div>
+      </div>
+      <div class="row justify-content-center">
+         <div><p class="mr-5 font-weight-bold" id="display2"></p>
+            <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p>
+               <p class="ml-2" id="attemptStage2">US Capitals</p><p class="font-weight-bold ml-1 mr-1" id="answerStage2"></p>
+            </div>
+         </div>
+      </div>
+      <hr>
+      <div class="row justify-content-center mb-3">
+         <button type="button" class="button-link mr-3" id="button12" onclick="checkEntry1()"><p id="button12" class="row justify-content-center">State 1</p></button>
+         <button type="button" class="button-link" id="button22" onclick="checkEntry2()"><p id="button22" class="row justify-content-center">State 2</p></button>
+      </div>
+      <div class="row justify-content-center">
+         <button type="button" class="button-link mr-3" id="button32" onclick="checkEntry3()"><p id="button32" class="row justify-content-center">State 3 </p></button>
+         <button type="button" class="button-link" id="button42" onclick="checkEntry4()"><p id="button42" class="row justify-content-center">State 4</p></button>
+      </div>
+ </div>
+<figure><div class="row justify-content-center mt-3"><audio controls loop id="audio"><source src='/static/audio/echoes.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+</body>
+</html>
+{% endblock %}

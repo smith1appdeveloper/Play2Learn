@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     # Local apps
     'anagramhunt.apps.AnagramhuntConfig',
     'mathfacts.apps.MathfactsConfig',
+    #'uscapitalss.apps.uscapitalsConfig',
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
 

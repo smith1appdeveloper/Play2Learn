@@ -15,4 +15,5 @@ urlpatterns = [
     path('', include('anagramhunt.urls')),
     path('', include('mathfacts.urls')),
     path('', include('pages.urls')),
+    path('', include('uscapitals.urls')),
 ]
