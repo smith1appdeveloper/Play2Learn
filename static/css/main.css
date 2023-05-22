@@ -157,7 +157,7 @@ body, html{
    box-sizing: border-box;
    font-size: small;
    clear: both;
-   margin-bottom: .5rem;
+   margin-bottom: .25rem;
  }
  #smallScreen2 {
    background: rgba(232, 232, 232, 0.65);
@@ -169,7 +169,7 @@ body, html{
    box-sizing: border-box;
    font-size: small;
    clear: both;
-   margin-bottom: .5rem;
+   margin-bottom: .25rem;
  }
  #smallScreen3 {
   background: rgba(232, 232, 232, 0.65);
@@ -215,7 +215,7 @@ body, html{
    width: 100%;
    position: relative;
    box-sizing: border-box;
-   padding-top: .5rem;
+   padding-top: .25rem;
    padding-bottom: .5rem;
    font-size: large;
  }
