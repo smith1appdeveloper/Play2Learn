@@ -38,13 +38,24 @@
    #titlesmall {background: rgba(232, 232, 232, 0.90);text-align: center;width: 100%;height: 10%;font-size: small;margin: auto;z-index: 10;position: relative;}
    hr {width: 50%;}
    #scoreboard {background: rgba(232, 232, 232, 0.90); height: 20rem; width: 40rem;}
-   #scoreboard2 {background: rgba(232, 232, 232, 0.90); height: 20rem; width: 40rem;}
+   #scoreboard2 {/*background: rgba(232, 232, 232, 0.90); height: 20rem; width: 40rem;*/
+      background: rgba(232, 232, 232, .90);
+      background-position: center;
+      width: 80%;
+      height: auto;
+      position: relative;
+      box-sizing: border-box;
+      margin: auto;
+      border-style: solid;
+      border-width: thin;
+      text-align: center;
+   }
    #button1 {margin: 0%;}#button2 {margin: 0%;}#button12 {margin: 0%;}#button22 {margin: 0%;}
    .button-link:hover {background-color: gray;color: white;}
    .button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
    #button[disabled]{background: grey;} h4 {margin: bottom 0;}
    .button-link {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 76px; text-decoration: none; text-indent: 0rem; text-shadow: none;
-    text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative; margin:auto; width: 15rem; height: 2rem;}
+    text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative; margin:auto; width: 15rem; height: 2rem; margin-left:.25rem}
 </style>
 {% endblock %}
 {% block main %}
@@ -59,7 +70,7 @@
    </head>
 <body class=".backgroundimg" style="background-image: url('{% static 'Images/mapBook.jpg' %}');">
    <div id="title" class="mt-5 d-none d-lg-block">
-      <p><h1 id="titlesection" class="justify-content-center font-weight-bold mt-4">US Capitals</h1></p>
+      <p><h1 id="titlesection" class="justify-content-center font-weight-bold mt-5">US Capitals</h1></p>
    </div>
    <div id="scoreboard" class="container justify-content-center d-none d-lg-block mb-5">
       <div class="row justify-content-center mt-5"><h2 class="mt-5 ">Keep Playing!</h2></div>
@@ -76,8 +87,8 @@
 <div id="title2" class="mt-5 d-lg-none d-md-block">
       <p><h2 class="justify-content-center font-weight-bold mt-4 d-lg-none d-md-block">US Capitals</h2></p>
    </div>
-   <div id="scoreboard2" class="container justify-content-center d-lg-none d-md-block mb-5">
-      <div class="row justify-content-center mt-5"><h3 class="mt-5 ">Keep Playing!</h3></div>
+   <div id="scoreboard2" class="container justify-content-center d-lg-none d-md-block mb-5 mt-3">
+      <div class="row justify-content-center mt-3"><h3 class="mt-3 ">Keep Playing!</h3></div>
       <hr>
       <div class="row justify-content-center mb-2 font-weight-bold"><div>You scored</div><p id="percent2" class="ml-1">0</p><p>%</p></div>
       <div class="row justify-content-center"><p class="ml-2">Rome wasn't built in a day.</p><p class="font-weight-bold ml-1 mr-1"></p></div>
@@ -86,7 +97,7 @@
       </div>
       <div class="row justify-content-center mb-3">
          <a type="button" class="button-link mr-3 mt-3" href="{% url 'uscapitals:uscapitals' %}">Play Again</a>
-         <a type="button" class="button-link mr-3 mt-3" href="{% url 'pages:homepage' %}">Home</a>
+         <a type="button" class="button-link mr-3 mt-3 mb-3" href="{% url 'pages:homepage' %}">Home</a>
       </div>
    </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
