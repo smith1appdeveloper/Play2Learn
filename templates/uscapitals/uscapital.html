@@ -194,9 +194,9 @@ function yes() {
    return encouragement;
 }
 function incorrect() {
-   let encouragementArray = ["Incorrect","Sorry, No","Keep Trying","Try Again","Sorry, Wrong","Off the mark","Erroneous"];
+   let noArray = ["Incorrect","Sorry, No","Keep Trying","Try Again","Sorry, Wrong","Off the mark","Erroneous"];
    getInt = randInt(0,6);
-   no = encouragementArray[getInt];
+   no = noArray[getInt];
    return no;
 }
 function checkEntry1() {
@@ -528,8 +528,8 @@ function unlockAudio() {
   }
 window.addEventListener('load', function() {
    unlockAudio();
-   //score = 50
-   //stateCounter = 50
+   score = 5
+   stateCounter = 50
    opener();
 
    let width = window.innerWidth;

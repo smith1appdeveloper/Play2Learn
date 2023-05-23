@@ -5,6 +5,18 @@
 <script>
    const gameOver = new Audio(); gameOver.autoplay = true; gameOver.volume = .2;
 
+   function randInt(low, high) {
+      const rndDec = Math.random();
+      const rndInt = Math.floor(rndDec * (high - low + 1) + low);
+      return rndInt;
+   }
+     function encouragement() {
+      let encouragementArray = ["Rome wasn't built in a day.","Tell me and I forget, teach me and I may remember, involve me and I learn.","The beautiful thing about learning is nobody can take it away from you.",
+      "If knowledge is power, then learning is a superpower.","The greatest teacher, failure is.","The expert in anything was once a beginner.","An investment in knowledge pays the best interest."];
+      getInt = randInt(0,6);
+      encouragement = encouragementArray[getInt];
+      return encouragement;
+   }
    function unlockAudio() {
       gameOver.src = '/static/audio/silence.wav';
    }
@@ -29,6 +41,9 @@
            percent2 = document.getElementById('percent2');
            percent2.innerText = result2;
         }
+        let message = encouragement();
+        msg = document.getElementById('finalMessage'); msg.innerHTML = message;
+        msg2 = document.getElementById('finalMessage2'); msg2.innerHTML = message;
         });
 </script>
 <style>
@@ -65,7 +80,7 @@
       <div class="row justify-content-center mt-5"><h2 class="mt-5 ">Keep Playing!</h2></div>
       <hr>
       <div class="row justify-content-center mb-2 font-weight-bold"><div>You scored</div><p id="percent" class="ml-1">0</p><p>%</p></div>
-      <div class="row justify-content-center"><p class="ml-2">Rome wasn't built in a day.</p><p class="font-weight-bold ml-1 mr-1"></p></div>
+      <div class="row justify-content-center"><p id="finalMessage" class="ml-2">Rome wasn't built in a day.</p><p class="font-weight-bold ml-1 mr-1"></p></div>
       <hr>
       <div class="row justify-content-center">
          <a type="button" class="button-link mr-3 mt-3" href="{% url 'uscapitals:uscapitals' %}">Play Again</a>
@@ -80,7 +95,7 @@
       <div class="row justify-content-center mt-3"><h3 class="mt-3 ">Keep Playing!</h3></div>
       <hr>
       <div class="row justify-content-center mb-2 font-weight-bold"><div>You scored</div><p id="percent2" class="ml-1">0</p><p>%</p></div>
-      <div class="row justify-content-center"><p class="ml-2">Rome wasn't built in a day.</p><p class="font-weight-bold ml-1 mr-1"></p></div>
+      <div class="row justify-content-center"><p id="finalMessage2" class="ml-2">Rome wasn't built in a day.</p><p class="font-weight-bold ml-1 mr-1"></p></div>
       <hr>
       <div class="row justify-content-center mb-3">
       </div>
