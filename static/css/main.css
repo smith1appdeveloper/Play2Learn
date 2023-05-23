@@ -158,6 +158,8 @@ body, html{
    font-size: small;
    clear: both;
    margin-bottom: .25rem;
+   display: flex;
+  justify-content: center;
  }
  #smallScreen2 {
    background: rgba(232, 232, 232, 0.65);
@@ -170,6 +172,8 @@ body, html{
    font-size: small;
    clear: both;
    margin-bottom: .25rem;
+   display: flex;
+  justify-content: center;
  }
  #smallScreen3 {
   background: rgba(232, 232, 232, 0.65);
@@ -181,6 +185,8 @@ body, html{
   box-sizing: border-box;
   font-size: small;
   clear: both;
+  display: flex;
+  justify-content: center;
 }
  #background {
   background: rgba(232, 232, 232, 0.65);
@@ -252,7 +258,8 @@ body, html{
    cursor: pointer;
    clear: both;
    margin-left: auto;
-   margin-right: 1rem;
+   margin-right: .5rem;
+   height: 2rem;
  }
  .button-link:hover {
    background-color: gray;
