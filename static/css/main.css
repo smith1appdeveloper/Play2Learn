@@ -250,8 +250,9 @@ body, html{
    box-sizing: border-box;
    border-radius: 0.5rem;
    cursor: pointer;
-   position: absolute;
-
+   clear: both;
+   margin-left: auto;
+   margin-right: 1rem;
  }
  .button-link:hover {
    background-color: gray;
