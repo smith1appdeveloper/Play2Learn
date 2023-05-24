@@ -140,7 +140,6 @@ function getNextGameBoard() {
    document.getElementById('button32').disabled = false;
    document.getElementById('button42').disabled = false;
 
-   if (stateCounter > 50) {endGame()};
    currentState = getNextState();
    console.log("State Capital", currentState.stateCapital) ////////////////////////////
 
@@ -222,7 +221,8 @@ function checkEntry1() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "", correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button1').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+      setTimeout(function() {document.getElementById('button1').style.background = 'black'; ++stateCounter; if (stateCounter > 50) {endGame()};
+      document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
                              document.getElementById('button12').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
    }, 1000);
    } else {
@@ -271,7 +271,8 @@ function checkEntry2() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button2').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+      setTimeout(function() {document.getElementById('button2').style.background = 'black'; ++stateCounter; if (stateCounter > 50) {endGame()};
+      document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
                              document.getElementById('button22').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
    }, 1000);
    } else {
@@ -320,7 +321,8 @@ function checkEntry3() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button3').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+      setTimeout(function() {document.getElementById('button3').style.background = 'black'; ++stateCounter; if (stateCounter > 50) {endGame()};
+      document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
                            document.getElementById('button32').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
    }, 1000);
    } else {
@@ -369,7 +371,8 @@ function checkEntry4() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button4').style.background = 'black'; ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
+      setTimeout(function() {document.getElementById('button4').style.background = 'black'; ++stateCounter; if (stateCounter > 50) {endGame()};
+      document.getElementById("counter").innerHTML = stateCounter, getNextGameBoard();timeReset(),
                             document.getElementById('button42').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter
    }, 1000);
    } else {
@@ -427,7 +430,8 @@ function startTimer() {
             attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
             wrong = document.getElementById('noStage'); wrong.innerHTML = "Time";
             attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
-            ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter
+            ++stateCounter; if (stateCounter > 50) {endGame()};
+            document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter
             document.getElementById('button12').disabled = true;
             document.getElementById('button22').disabled = true;
             document.getElementById('button32').disabled = true;
@@ -528,8 +532,8 @@ function unlockAudio() {
   }
 window.addEventListener('load', function() {
    unlockAudio();
-   //score = 50
-   //stateCounter = 45
+   //score = 5
+   //stateCounter = 49
    opener();
 
    let width = window.innerWidth;
