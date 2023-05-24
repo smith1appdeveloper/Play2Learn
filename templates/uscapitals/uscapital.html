@@ -140,7 +140,7 @@ function getNextGameBoard() {
    document.getElementById('button32').disabled = false;
    document.getElementById('button42').disabled = false;
 
-   if (stateCounter == 50) {endGame()};
+   if (stateCounter > 50) {endGame()};
    currentState = getNextState();
    console.log("State Capital", currentState.stateCapital) ////////////////////////////
 
@@ -529,7 +529,7 @@ function unlockAudio() {
 window.addEventListener('load', function() {
    unlockAudio();
    //score = 50
-   //stateCounter = 50
+   //stateCounter = 45
    opener();
 
    let width = window.innerWidth;
@@ -548,10 +548,7 @@ window.addEventListener('load', function() {
    .button-link2 {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 6px; text-decoration: none; text-indent: 0rem; text-shadow: none;
       text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 8rem; height: 3rem; margin-left:.25rem}
    #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
-   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
-   #titleSmall {background: rgba(232, 232, 232, .80);text-align: center;width: 100%;height: 15%;font-size: small;margin: auto;z-index: 10;position: relative;}
-   #titlesectionSmall {width: 86%;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
-   hr {width: 50%;}
+   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: 85%;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
    #button1 {margin: 0%;}#button2 {margin: 0%;} #button3 {margin: 0%;}#button4 {margin: 0%;}#button12 {margin: 0%}#button22 {margin: 0%;} #button32 {margin: 0%;}#button42 {margin: 0%;}
    #yesStage {font-size: 2rem;} #noStage {font-size: 2rem;}#gameStats {height: 5rem;}#answerStage {margin-top: 1rem;}#answerStage2 {height: 2rem;}
    #scoreboard {background: rgba(232, 232, 232, .85); height: 30rem; width: 40rem;}
