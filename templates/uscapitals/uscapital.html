@@ -223,9 +223,9 @@ function checkEntry1() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "", correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button1').style.background = 'black'; ++stateCounter;
-      document.getElementById("counter").innerHTML = stateCounter, document.getElementById('button12').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter;
-      getNextGameBoard();timeReset()
+      ++stateCounter;
+      setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,  document.getElementById("counter2").innerHTML = stateCounter}
+      document.getElementById('button1').style.background = 'black';document.getElementById('button12').style.background = 'black';getNextGameBoard();timeReset()
       }, 1000);
    } else {
       wrongAnswer.src = '/static/audio/incorrect.wav';
@@ -247,7 +247,9 @@ function checkEntry1() {
          document.getElementById('button22').style.background = 'black';
          document.getElementById('button32').style.background = 'black';
          document.getElementById('button42').style.background = 'black';
-         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+         ++stateCounter;
+         if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter}
+         getNextGameBoard();timeReset()}, 3000);
    }
 }
 function checkEntry2() {
@@ -273,9 +275,9 @@ function checkEntry2() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button2').style.background = 'black'; ++stateCounter;
-      document.getElementById("counter").innerHTML = stateCounter,document.getElementById('button22').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter;
-      getNextGameBoard();timeReset()
+      ++stateCounter;
+      setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter;document.getElementById("counter2").innerHTML = stateCounter}
+      document.getElementById('button2').style.background = 'black'; document.getElementById('button22').style.background = 'black'; getNextGameBoard();timeReset()
       }, 1000);
    } else {
       wrongAnswer.src = '/static/audio/incorrect.wav';
@@ -297,7 +299,9 @@ function checkEntry2() {
          document.getElementById('button12').style.background = 'black';
          document.getElementById('button32').style.background = 'black';
          document.getElementById('button42').style.background = 'black';
-         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+         ++stateCounter;
+         if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter}
+          getNextGameBoard();timeReset()}, 3000);
    }
 }
 function checkEntry3() {
@@ -323,9 +327,9 @@ function checkEntry3() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button3').style.background = 'black'; ++stateCounter;
-      document.getElementById("counter").innerHTML = stateCounter,document.getElementById('button32').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter;
-      getNextGameBoard();timeReset()
+      ++stateCounter;
+      setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter;document.getElementById("counter2").innerHTML = stateCounter}
+      document.getElementById('button3').style.background = 'black';document.getElementById('button32').style.background = 'black'; getNextGameBoard();timeReset()
       }, 1000);
    } else {
       wrongAnswer.src = '/static/audio/incorrect.wav';
@@ -347,7 +351,9 @@ function checkEntry3() {
          document.getElementById('button12').style.background = 'black';
          document.getElementById('button22').style.background = 'black';
          document.getElementById('button42').style.background = 'black';
-         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+         ++stateCounter;
+         if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter}
+          getNextGameBoard();timeReset()}, 3000);
    }
 }
 function checkEntry4() {
@@ -373,9 +379,9 @@ function checkEntry4() {
       correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
       correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
       setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
-      setTimeout(function() {document.getElementById('button4').style.background = 'black'; ++stateCounter;
-      document.getElementById("counter").innerHTML = stateCounter,document.getElementById('button42').style.background = 'black'; document.getElementById("counter2").innerHTML = stateCounter;
-      getNextGameBoard();timeReset()
+      ++stateCounter;
+      setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter;document.getElementById("counter2").innerHTML = stateCounter;}
+      document.getElementById('button4').style.background = 'black';document.getElementById('button42').style.background = 'black'; getNextGameBoard();timeReset()
       }, 1000);
    } else {
       wrongAnswer.src = '/static/audio/incorrect.wav';
@@ -397,7 +403,9 @@ function checkEntry4() {
          document.getElementById('button12').style.background = 'black';
          document.getElementById('button22').style.background = 'black';
          document.getElementById('button32').style.background = 'black';
-         ++stateCounter, document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter, getNextGameBoard();timeReset()}, 3000);
+         ++stateCounter;
+         if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter}
+          getNextGameBoard();timeReset()}, 3000);
    }
 }
 function handleKeyUp(e) {
@@ -433,7 +441,7 @@ function startTimer() {
             wrong = document.getElementById('noStage'); wrong.innerHTML = "Time";
             attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
             ++stateCounter;
-            document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter
+            if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter};
             document.getElementById('button12').disabled = true;
             document.getElementById('button22').disabled = true;
             document.getElementById('button32').disabled = true;
@@ -463,8 +471,9 @@ function startTimer() {
    }else{
     clearInterval(timer);
     window.removeEventListener('keyup', handleKeyUp);
-    //stopGame();
-    getNextGameBoard();
+    if (stateCounter > 50) {endGame()} else {
+      getNextGameBoard();
+    }
    }
  }
  function timeReset() {
@@ -535,7 +544,7 @@ function unlockAudio() {
 window.addEventListener('load', function() {
    unlockAudio();
    //score = 0
-   //stateCounter = 50
+   //stateCounter = 49
    opener();
 
    let width = window.innerWidth;
