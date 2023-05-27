@@ -536,7 +536,13 @@ function opener() {
 function startMusic() {
    document.getElementById("audio").play();
 }
+function unlockAudio() {
+  correctAnswer.src = '/static/audio/silence.wav';
+  wrongAnswer.src = '/static/audio/silence.wav';
+  youWon.src = '/static/audio/silence.wav';
+ }
 window.addEventListener('load', function() {
+   unlockAudio();
    //score = 0
    //stateCounter = 49
    opener();
@@ -544,7 +550,7 @@ window.addEventListener('load', function() {
    let width = window.innerWidth;
    if (width > 1199) {startMusic();}
    document.addEventListener("touchmove", function() {
-
+      unlockAudio();
    });
 
 });
