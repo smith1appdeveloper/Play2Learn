@@ -550,7 +550,7 @@ window.addEventListener('load', function() {
    let width = window.innerWidth;
    if (width > 1199) {startMusic();}
    document.addEventListener("touchmove", function() {
-      unlockAudio();
+      //unlockAudio();
    });
 
 });
@@ -640,7 +640,7 @@ window.addEventListener('load', function() {
          <button type="button" class="button-link2" id="button42" onclick="checkEntry4()"><p id="button42" class="justify-content-center">State 4</p></button>
       </div>
  </div>
-<figure><div class="row justify-content-center"><audio controls loop id="audio"><source src='/static/audio/echoes.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
+<figure><div class="row justify-content-center"><audio controls loop id="audio"><source src='/static/audio/echoes.mp3' type="audio/mpeg" onplay="unlockAudio()">Your browser does not support the audio element.</audio></div></figure>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
 </body>
