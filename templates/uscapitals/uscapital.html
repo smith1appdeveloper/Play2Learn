@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}US Capitals{% endblock %}
 {% block javascript %}
-
 <script>
    let currentState = null;
    let timer = null;
@@ -562,8 +561,8 @@ window.addEventListener('load', function() {
    text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 15rem; height: 3.5rem;}
    .button-link2 {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 6px; text-decoration: none; text-indent: 0rem; text-shadow: none;
       text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 8rem; height: 3rem; margin-left:.25rem}
-   #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
-   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: 85%;height: 15%%;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
+   #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;z-index: 10;}
+   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .85);text-align: center;width: 85%;height: 9%;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto; position: relative;z-index: 10;}
    #button1 {margin: 0%;}#button2 {margin: 0%;} #button3 {margin: 0%;}#button4 {margin: 0%;}#button12 {margin: 0%}#button22 {margin: 0%;} #button32 {margin: 0%;}#button42 {margin: 0%;}
    #yesStage {font-size: 2rem;} #noStage {font-size: 2rem;}#gameStats {height: 5rem;}#answerStage {margin-top: 1rem;}#answerStage2 {height: 2rem;}
    #scoreboard {background: rgba(232, 232, 232, .85); height: 30rem; width: 40rem;}
@@ -571,15 +570,6 @@ window.addEventListener('load', function() {
 </style>
 {% endblock %}
 {% block main %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://kit.fontawesome.com/b02c9a6dba.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-    <title>US Capitals</title>
-   </head>
 <body class=".backgroundimg" style="background-image: url('{% static 'Images/capital2.jpg' %}');">
    <div id="title" class=" d-none d-lg-block mt-5">
       <p><h1 id="titlesection" class="justify-content-center font-weight-bold mt-4">US Capitals</h1></p>
@@ -612,7 +602,7 @@ window.addEventListener('load', function() {
       </div>
  </div>
 <!--Mobile-->
-   <div id="title2" class="d-lg-none d-md-block mt-1">
+   <div id="title2" class="container d-lg-none d-md-block mt-1">
       <p><h2 id="titlesection2" class="justify-content-center font-weight-bold mt-4">US Capitals</h2></p>
    </div>
    <div id="scoreboard2" class="container justify-content-center d-lg-none d-md-block mb-1 mt-1">
@@ -641,8 +631,6 @@ window.addEventListener('load', function() {
       </div>
  </div>
 <figure><div class="row justify-content-center"><audio controls loop id="audio"><source src='/static/audio/echoes.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
 </body>
 </html>
 {% endblock %}
