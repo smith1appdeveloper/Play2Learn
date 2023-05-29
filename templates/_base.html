@@ -29,7 +29,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <form action="https://www.google.com/search" method="GET" class="form mr-3 mt-2" target="_blank" rel="noopener noreferrer">
+            <form action="https://www.google.com/search" method="GET" class="form mr-3" target="_blank" rel="noopener noreferrer">
               <input type="text" placeholder="Google Search" name="q"class="search-field"/>
               <button type="submit" class="search-button">
                 <img src="/static/Images/search.webp" />
@@ -48,6 +48,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'pages:about_us' %}">About Us</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'pages:login' %}">Log in</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -57,11 +60,11 @@
       <div id="quote">
         <p id="quotesection">Quote Section</p>
       </div>
-      <div id="background" class="container-fluid d-none d-md-block d-xl-none">
+      <div id="background" class="container d-none d-md-block d-xl-none">
         <div id="container1" class="row">
-          <div class="container-fluid col-md-4 border-right border-dark d-none d-md-block d-xl-none">
+          <div class="container col-md-4 border-right border-dark d-none d-md-block d-xl-none">
             <h3>Anagram Hunt</h3>
-            <p class="container-fluid d-none d-md-block d-xl-none">
+            <p class="container d-none d-md-block d-xl-none">
               Choose a word length, you will be given a word that matches your chosen length.
               You'll have 60 seconds to find all the others words that can be formed from the letters of the given word.
               For your word to count, you must use all letters of the given word to form your new words.
@@ -70,9 +73,9 @@
             </p>
             <a class="button-link mt-2" href="{% url 'anagramhunt:anagramhunt' %}">Play Now!</a>
           </div>
-          <div id="container2" class="container-fluid col-md-4 border-start d-none d-md-block d-xl-none">
+          <div id="container2" class="container col-md-4 border-start d-none d-md-block d-xl-none">
             <h3>Fundamental Math</h3>
-            <p id="mf" class="container-fluid d-none d-md-block d-xl-none">
+            <p id="mf" class="container d-none d-md-block d-xl-none">
               Choose a mathmatical operation, you will be given a problem that matches your chosen operation.
               You'll have 30 seconds to solve as many problems as possible. Once you place your answer inside the portal
               the program will quickly check it. If your answer is correct you will be awarded 1 point and given a new problem.
@@ -80,9 +83,9 @@
             </p>
             <a class="button-link mt-2" href="{% url 'mathfacts:mathfacts' %}">Play Now!</a>
           </div>
-          <div id="container3" class="container-fluid col-md-4 border-start d-none d-md-block d-xl-none">
+          <div id="container3" class="container col-md-4 border-start d-none d-md-block d-xl-none">
             <h3>US Capitals</h3>
-            <p id="mf" class="container-fluid d-none d-md-block d-xl-none">
+            <p id="mf" class="container d-none d-md-block d-xl-none">
               You are given a randomly selected state, you'll have 10 seconds to correclty choose that states
                 capital city from a bank of state capitals. If you select the right capital you will be awarded one point.
                 If you select the wrong capital or do not make a selection before time is called you will be given the answer
@@ -93,11 +96,11 @@
         </div>
       </div>
       <!--XL-->
-      <div id="backgroundXL" class="container-fluid col-md-10 d-none d-xl-block">
+      <div id="backgroundXL" class="container col-md-10 d-none d-xl-block">
         <div id="container1" class="row">
-          <div class="container-fluid col-md-4 border-right border-dark d-none d-xl-block">
+          <div class="container col-md-4 border-right border-dark d-none d-xl-block">
             <h3>Anagram Hunt</h3>
-            <p class="container-fluid d-none d-lg-block">
+            <p class="container d-none d-lg-block">
               Choose a word length, you will be given a word that matches your chosen length.
               You'll have 60 seconds to find all the others words that can be formed from the letters of the given word.
               For your word to count, you must use all letters of the given word to form your new words.
@@ -116,7 +119,7 @@
             </p>
             <a class="button-link mt-2" href="{% url 'mathfacts:mathfacts' %}">Play Now!</a>
           </div>
-          <div id="container3" class="container-fluid col-md-4 d-none d-xl-block">
+          <div id="container3" class="container col-md-4 d-none d-xl-block">
             <h3>US Capitals</h3>
               <p class=" d-none d-lg-block">
                 You are given a randomly selected state, you'll have 10 seconds to correclty choose that states
@@ -134,17 +137,17 @@
       <p id="quotesectionSmall" class="quotesectionSmall">Quote Section</p>
     </div>
     <div id="mobileImage"><img src="{% static 'Images/children_playing.jpg' %}"class="img-thumbnail d-sm-block d-md-none"></div>
-    <div id="backgroundM" class="container-fluid d-md-none">
+    <div id="backgroundM" class="container d-md-none">
       <div id="container1" class="row d-sm-block d-md-none">
-        <div id="smallScreen1" class="container-fluid">
+        <div id="smallScreen1" class="container">
           <h3 class="mt-3">Anagram Hunt</h3>
             <a class="row button-link2 font-weight-bold" href="{% url 'anagramhunt:anagramhunt' %}">Play Now!</a>
         </div>
-        <div id="smallScreen2" class="container-fluid">
+        <div id="smallScreen2" class="container">
           <h3 class="mt-3">Fundamental Math</h3>
             <a class="row button-link2 font-weight-bold" href="{% url 'mathfacts:mathfacts' %}">Play Now!</a>
         </div>
-        <div id="smallScreen3" class="container-fluid">
+        <div id="smallScreen3" class="container">
           <h3 class="mt-3">US Capitals</h3>
             <a class="row button-link2 font-weight-bold" href="{% url 'uscapitals:uscapitals' %}">Play Now!</a>
         </div>

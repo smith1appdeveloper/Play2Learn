@@ -1,0 +1,120 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+{% block main %}
+<script>
+    window.addEventListener('load', function(e) {
+        const form = document.getElementById('form');
+        const form2 = document.getElementById('form2');
+
+        form.addEventListener('submit', function(e) {
+            if (document.getElementById('pass').value == 'alchemyisL0v3') {
+                alert("Open sesame.");
+                window.location.assign("");
+
+            } else {
+               event.preventDefault();
+               alert('Incorrect, please try again.');
+            }
+
+         });
+        form2.addEventListener('submit', function(e) {
+            if (document.getElementById('pass2').value == 'alchemyisL0v3') {
+                alert("Open sesame.");
+                window.location.assign("");
+
+            } else {
+               event.preventDefault();
+               alert('Incorrect, please try again.');
+            }
+
+         });
+
+    });
+    </script>
+    <style>
+        body, html {
+            overflow-x: hidden;
+            margin: 0%;
+            padding: 0%;
+            max-height: 100% !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+
+              }
+        #loginButton {
+            width: 90px;
+            height: 40px;
+            margin: 1rem 0rem 0rem 1rem;
+            background-color: black;
+            border-style: none solid solid none;
+            color: white;
+            display: block;
+            font-family: Verdana, Geneva, sans-serif;
+            padding: 1px 6px;
+            text-decoration: none;
+            clear: right;
+            text-indent: 0rem;
+            text-shadow: none;
+            text-align: center;
+            box-sizing: border-box;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            position: absolute;
+            }
+            #loginButton:hover {background-color: gray}
+            #loginButton:active {
+              background-color: #0754c7;
+              box-shadow: 0 5px #667;
+              transform: translateY(4px);
+            }
+            #loginButtonM:hover {background-color: gray}
+            #loginButtonM:active {
+              background-color: #0754c7;
+              box-shadow: 0 5px #667;
+              transform: translateY(4px);
+            }
+            #contact {background: rgba(232, 232, 232, 0.80);height: 18rem; width: 35%; margin: auto;}
+            #contact2 {background: rgba(232, 232, 232, 0.80);height: 15rem; width: 80%; margin: auto;}
+
+    </style>
+<!--<link rel="stylesheet" href="{% static 'css/contact_us.css' %}">-->
+<body class=".backgroundimg" style="background-image: url('{% static 'Images/charles2.jpg' %}');">
+    <form  id="form" method="GET">
+        <div class="controls d-none d-md-block mt-3">
+           <div id="contact" class="text-center mt-3"><h1>Log In</h1>
+           <div id="backGround" class="row justify-content-center">
+              <div class="col-md-10">
+                  <div class="form-group ml-3 mr-3">
+                    <div for="form_name" class="font-weight-bold mt-5 mb-3"><h5>What's the Password?</h5></div>
+                      <input id="pass" type="text" class="form-control d-none d-md-block mb-1" placeholder="Please enter the password">
+                  </div>
+                  <div class="col-md-12"><button type="submit" id="loginButton" class="btn btn-send"  value="Send">Submit</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+<!--Mobile size viewport-->
+    <form id="form2" method="GET">
+        <div class="controls d-md-none d-xs-block" style="background-image: url('{% static 'Images/charles.jpg' %}');">
+            <div id="contact2" class="text-center mt-3"><h1>Log In</h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form-group ml-3 mr-3" id="mobile">
+                        <div for="form_name" class="font-weight-bold mt-3 mb-3"><h5>What's the password?</h5></div>
+                            <input id="pass2" type="text" name="pass2"  class="form-control" placeholder="Please enter the password"  required="required" data-error="The password is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"><button type="submit" id="loginButton" class="btn btn-send"  value="Send">Submit</button></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</main>
+
+{% endblock %}

@@ -41,6 +41,8 @@ def contact_form(request):
         return render(request, 'pages/contact_us.html', {'form':form})
 
 
+class LoginView(TemplateView):
+    template_name = 'pages/login.html'
 
 
 
