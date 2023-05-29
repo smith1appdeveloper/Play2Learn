@@ -34,6 +34,11 @@
     });
     </script>
     <style>
+        img{
+            border:none !important;
+            background: transparent !important;
+            box-shadow:none !important;
+         }
         #backgroundimage {
             margin: 0px;
             padding: 0px;
@@ -50,8 +55,9 @@
             padding: 0%;
             background-position: top!important;
             background-repeat: no-repeat !important;
-            background-size: cover !important;
-            height: 50rem;
+            background-size: inherit !important;
+            height: 40rem;
+            margin: auto;
         }
         body, html {
             overflow-x: hidden;
@@ -118,7 +124,8 @@
       </form>
 </main>
 <!--Mobile size viewport-->
-<div id="backgroundimgM" class="backgroundimg controls d-md-none d-xs-block" style="background-image: url('{% static 'Images/charles.jpg' %}');">
+<!--<div  id="backgroundimgM"><img src="{% static 'Images/charles.jpg' %}" class="img-thumbnail d-md-none d-xs-block">-->
+<div id="backgroundimgM" class="d-md-none d-xs-block" style="background-image: url('{% static 'Images/charles.jpg' %}');">
     <form id="form2" method="GET">
         <div class="controls d-md-none d-xs-block">
             <div id="contact2" class="text-center mt-3"><h1>Log In</h1>
