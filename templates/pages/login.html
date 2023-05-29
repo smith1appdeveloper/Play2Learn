@@ -34,16 +34,34 @@
     });
     </script>
     <style>
+        #backgroundimage {
+            margin: 0px;
+            padding: 0px;
+            overflow: auto!important;
+            max-height: 100% !important;
+            min-height: 100% !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            background-position: right 75% bottom 45%;
+           }
+        #backgroundimgM {
+            overflow-x: hidden;
+            margin: 0%;
+            padding: 0%;
+            background-position: top!important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            height: 50rem;
+        }
         body, html {
             overflow-x: hidden;
             margin: 0%;
             padding: 0%;
-            max-height: 100% !important;
-            background-position: center !important;
+            background-position: center center!important;
             background-repeat: no-repeat !important;
             background-size: cover !important;
-
-              }
+            max-height: 100% !important;
+        }
         #loginButton {
             width: 90px;
             height: 40px;
@@ -81,8 +99,9 @@
 
     </style>
 <!--<link rel="stylesheet" href="{% static 'css/contact_us.css' %}">-->
-<body class=".backgroundimg" style="background-image: url('{% static 'Images/charles2.jpg' %}');">
-    <form  id="form" method="GET">
+<body>
+<main id="backgroundimage" class="d-none d-md-block" style="background-image: url('{% static 'Images/charles2.jpg' %}');">
+    <form id="form" method="GET" class="controls d-none d-md-block mt-3">
         <div class="controls d-none d-md-block mt-3">
            <div id="contact" class="text-center mt-3"><h1>Log In</h1>
            <div id="backGround" class="row justify-content-center">
@@ -97,9 +116,11 @@
           </div>
         </div>
       </form>
+</main>
 <!--Mobile size viewport-->
+<div id="backgroundimgM" class="backgroundimg controls d-md-none d-xs-block" style="background-image: url('{% static 'Images/charles.jpg' %}');">
     <form id="form2" method="GET">
-        <div class="controls d-md-none d-xs-block" style="background-image: url('{% static 'Images/charles.jpg' %}');">
+        <div class="controls d-md-none d-xs-block">
             <div id="contact2" class="text-center mt-3"><h1>Log In</h1>
                 <div class="row justify-content-center">
                     <div class="col-md-6">
@@ -114,6 +135,7 @@
             </div>
         </div>
     </form>
+</div>
 </body>
 </main>
 
