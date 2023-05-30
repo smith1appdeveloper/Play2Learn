@@ -36,6 +36,7 @@
     background-color: #0754c7;
     box-shadow: 0 5px #667;
     transform: translateY(4px);
+    text-decoration: none;
   }
   #formMath {
     background: rgba(232, 232, 232, .80);

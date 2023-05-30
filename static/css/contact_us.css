@@ -36,12 +36,14 @@ body, html {
       background-color: #0754c7;
       box-shadow: 0 5px #667;
       transform: translateY(4px);
+      text-decoration: none;
     }
     #contactButtonM:hover {background-color: gray}
     #contactButtonM:active {
       background-color: #0754c7;
       box-shadow: 0 5px #667;
       transform: translateY(4px);
+      text-decoration: none;
     }
     #contact {
       margin-bottom: 4rem;

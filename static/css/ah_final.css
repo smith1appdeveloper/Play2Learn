@@ -87,6 +87,7 @@ color: #212529;
         background-color: blue;
         box-shadow: 0 5px #667;
         transform: translateY(4px);
+        text-decoration: none;
       }
       #button-l {
         border-style: none solid solid none;
@@ -108,9 +109,11 @@ color: #212529;
         #button-l:hover {
           background-color: black;
           color: white;
+          text-decoration: none;
         }
         #button-l:active {
           background-color: blue;
           box-shadow: 0 5px #667;
           transform: translateY(4px);
+          text-decoration: none;
         }

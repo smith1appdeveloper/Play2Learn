@@ -265,20 +265,24 @@ body, html{
  .button-link:hover {
    background-color: gray;
    color: white;
+   text-decoration: none;
  }
  .button-link:active {
    background-color: blue;
    box-shadow: 0 5px #667;
    transform: translateY(4px);
+   text-decoration: none;
  }
  .button-link2:hover {
   background-color: gray;
   color: white;
+  text-decoration: none;
 }
 .button-link2:active {
   background-color: blue;
   box-shadow: 0 5px #667;
   transform: translateY(4px);
+  text-decoration: none;
 }
  #footer {
    background: rgba(232, 232, 232, 0.8);
