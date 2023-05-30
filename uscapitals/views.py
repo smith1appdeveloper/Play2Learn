@@ -17,3 +17,6 @@ class KeepGoingView(TemplateView):
 class successView(TemplateView):
     template_name =  'uscapitals/success.html'
 
+class USCapsView(TemplateView):
+    template_name =  'uscapitals/uscaps.html'
+
