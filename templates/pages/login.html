@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block title %}Contact Us{% endblock %}
+{% block title %}Login{% endblock %}
 {% block main %}
 <script>
     window.addEventListener('load', function(e) {
@@ -100,16 +100,16 @@
               box-shadow: 0 5px #667;
               transform: translateY(4px);
             }
-            #contact {background: rgba(232, 232, 232, 0.80);height: 18rem; width: 35%; margin: auto;}
+            #contact {background: rgba(232, 232, 232, 0.60);height: 18rem; width: 35%; margin: auto;}
             #contact2 {background: rgba(232, 232, 232, 0.80);height: 15rem; width: 80%; margin: auto;}
 
     </style>
 <!--<link rel="stylesheet" href="{% static 'css/contact_us.css' %}">-->
 <body>
 <main id="backgroundimage" class="d-none d-md-block" style="background-image: url('{% static 'Images/charles2.jpg' %}');">
-    <form id="form" method="GET" class="controls d-none d-md-block mt-3">
+    <form id="form" method="GET" class="controls d-none d-md-block mt-5">
         <div class="controls d-none d-md-block mt-3">
-           <div id="contact" class="text-center mt-3"><h1>Log In</h1>
+           <div id="contact" class="text-center"><h1>Login</h1>
            <div id="backGround" class="row justify-content-center">
               <div class="col-md-10">
                   <div class="form-group ml-3 mr-3">
@@ -124,11 +124,10 @@
       </form>
 </main>
 <!--Mobile size viewport-->
-<!--<div  id="backgroundimgM"><img src="{% static 'Images/charles.jpg' %}" class="img-thumbnail d-md-none d-xs-block">-->
 <div id="backgroundimgM" class="d-md-none d-xs-block" style="background-image: url('{% static 'Images/charles.jpg' %}');">
     <form id="form2" method="GET">
         <div class="controls d-md-none d-xs-block">
-            <div id="contact2" class="text-center mt-3"><h1>Log In</h1>
+            <div id="contact2" class="text-center mt-3"><h1>Login</h1>
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="form-group ml-3 mr-3" id="mobile">
@@ -137,7 +136,7 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="col-md-12"><button type="submit" id="loginButton" class="btn btn-send"  value="Send">Submit</button></div>
+                    <div class="col-md-12 row justify-content-center"><button type="submit" id="loginButton" class="btn btn-send"  value="Send">Submit</button></div>
                 </div>
             </div>
         </div>
