@@ -44,5 +44,8 @@ def contact_form(request):
 class LoginView(TemplateView):
     template_name = 'pages/login.html'
 
+class devView(TemplateView):
+    template_name = 'pages/dev.html'
+
 
 

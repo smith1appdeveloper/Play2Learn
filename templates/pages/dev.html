@@ -1,0 +1,168 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}development{% endblock %}
+{% block main %}
+<script>
+</script>
+<style>
+  #background {
+    background: rgba(232, 232, 232, 0.65);
+    text-align: center;
+    width: auto;
+    min-width: 15rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    font-size: large;
+    overflow-x: hidden !important;
+    top: 150px;
+  }
+  #backgroundXL {
+    background: rgba(232, 232, 232, 0.65);
+    text-align: center;
+    width: auto;
+    min-width: 15rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    font-size: large;
+    overflow-x: hidden !important;
+   top: 150px;
+  }
+    #smallScreen1 {
+      background: rgba(232, 232, 232, 0.65);
+      background-position: center;
+      text-align:left;
+      width: 100%;
+      height: 4.5rem;
+      position: relative;
+      box-sizing: border-box;
+      font-size: small;
+      clear: both;
+      margin-bottom: .25rem;
+      display: flex;
+     justify-content: center;
+    }
+    #smallScreen2 {
+      background: rgba(232, 232, 232, 0.65);
+      background-position: center;
+      text-align: left;
+      width: 100%;
+      height: 4.5rem;
+      position: relative;
+      box-sizing: border-box;
+      font-size: small;
+      clear: both;
+      margin-bottom: .25rem;
+      display: flex;
+     justify-content: center;
+    }
+    .img-fluid {
+      max-width: 100%;
+      height: 20rem;
+      width: 100%;
+      vertical-align: middle;
+  }
+  #cUsM {
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      margin-top: 0.25rem;
+      text-align: center;
+   }
+   blockquote{
+    display: inline-block;
+ }
+</style>
+<body>
+<main class="d-none d-md-block" id="backgroundimage" style="background-image: url('{% static 'Images/stairs.jpg' %}');">
+    <div id="background" class="container d-none d-md-block d-xl-none">
+      <div id="container1" class="row">
+        <div class="container col-md-6 border-right border-dark d-none d-md-block d-xl-none">
+          <div class="row justify-content-center"><h3>Random Ace</h3><p class="ml-2 font-italic">beta</p></div>
+          <p class="container d-none d-md-block d-xl-none">
+            Choose a word length, you will be given a word that matches your chosen length.
+            You'll have 60 seconds to find all the others words that can be formed from the letters of the given word.
+            For your word to count, you must use all letters of the given word to form your new words.
+            Also, you may not use the word already given. You are awarded 1 point for each solved anagram.
+            If you score 16 points you win!
+          </p>
+          <a class="button-link mt-2" href=>Play Now!</a>
+        </div>
+        <div id="container2" class="container col-md-6 border-start d-none d-md-block d-xl-none">
+          <div class="row justify-content-center"><h3>Which icon is it?</h3><p class="ml-2 font-italic">beta</p></div>
+          <p id="mf" class="container d-none d-md-block d-xl-none">
+            Choose a mathmatical operation, you will be given a problem that matches your chosen operation.
+            You'll have 30 seconds to solve as many problems as possible. Once you place your answer inside the portal
+            the program will quickly check it. If your answer is correct you will be awarded 1 point and given a new problem.
+            After the game, you will be given a score for the problems you solved, as you practice try to beat your own scores!
+          </p>
+          <a class="button-link mt-2" href=>Play Now!</a>
+        </div>
+        <!--<div id="container3" class="container col-md-4 border-start d-none d-md-block d-xl-none">
+          <h3>US Capitals</h3>
+          <p id="mf" class="container d-none d-md-block d-xl-none">
+            You are given a randomly selected state, you'll have 10 seconds to correclty choose that states
+              capital city from a bank of state capitals. If you select the right capital you will be awarded one point.
+              If you select the wrong capital or do not make a selection before time is called you will be given the answer
+              but no points are awarded. If you score 90 percent or better you are ready to test. Practice your US geographical knowledge, this tool can help!
+          </p>
+          <a class="button-link mt-2" href="{% url 'uscapitals:uscaps' %}">Play Now!</a>
+        </div>-->
+      </div>
+    </div>
+    <!--XL-->
+    <div id="backgroundXL" class="container col-md-6 d-none d-xl-block">
+      <div id="container1" class="row">
+        <div class="container col-md-6 border-right border-dark d-none d-xl-block">
+          <div class="row justify-content-center"><h3>Random Ace</h3><p class="ml-2 font-italic">beta</p></div>
+          <p class="container d-none d-lg-block">
+            Choose a word length, you will be given a word that matches your chosen length.
+            You'll have 60 seconds to find all the others words that can be formed from the letters of the given word.
+            For your word to count, you must use all letters of the given word to form your new words.
+            Also, you may not use the word already given. You are awarded 1 point for each solved anagram.
+            If you score 16 points you win!
+          </p>
+          <a class="button-link mt-2" href=>Play Now!</a>
+        </div>
+        <div id="container2" class="col-md-6 border-right border-dark d-none d-xl-block">
+          <div class="row justify-content-center"><h3>Which icon is it?</h3><p class="ml-2 font-italic">beta</p></div>
+          <p id="mf" class="d-none d-lg-block">
+            Choose a mathmatical operation, you will be given a problem that matches your chosen operation.
+            You'll have 30 seconds to solve as many problems as possible. Once you place your answer inside the portal
+            the program will quickly check it. If your answer is correct you will be awarded 1 point and given a new problem.
+            After the game, you will be given a score for the problems you solved, as you practice try to beat your own scores!
+          </p>
+          <a class="button-link mt-2" href=>Play Now!</a>
+        </div>
+        <!--<div id="container3" class="container col-md-4 d-none d-xl-block">
+          <h3>US Capitals</h3>
+            <p class=" d-none d-lg-block">
+              You are given a randomly selected state, you'll have 10 seconds to correclty choose that states
+              capital city from a bank of state capitals. If you select the right capital you will be awarded one point.
+              If you select the wrong capital or do not make a selection before time is called you will be given the answer
+              but no points are awarded. If you score 90 percent or better you are ready to test. Practice your US geographical knowledge, this tool can help!
+            </p>
+            <a class="button-link mt-2" href="{% url 'uscapitals:uscaps' %}">Play Now!</a>
+        </div>-->
+      </div>
+    </div>
+  </main>
+  <!--Mobile-->
+    <div id="mobileImage2"><img src="{% static 'Images/stairs.jpg' %}"class="img-fluid d-sm-block d-md-none">
+      <div id="cUsM" class="d-sm-block d-md-none">
+        <div id="smallScreen1" class="container">
+          <div class="row justify-content-center"><h3 class="mt-3">Random Ace</h3><p class="ml-2 font-italic">beta</p></div>
+            <a class="row button-link2 font-weight-bold" href=>Play Now!</a>
+        </div>
+        <div id="smallScreen2" class="container">
+          <div class="row justify-content-center"><h3 class="mt-3">Which icon is it?</h3><p class="ml-2 font-italic">beta</p></div>
+            <a class="row button-link2 font-weight-bold" href=>Play Now!</a>
+        </div>
+      <!--<div id="smallScreen3" class="container">
+        <h3 class="mt-3">US Capitals</h3>
+          <a class="row button-link2 font-weight-bold" href="{% url 'uscapitals:uscaps' %}">Play Now!</a>
+      </div>-->
+    </div>
+  </div>
+</body>
+
+{% endblock %}

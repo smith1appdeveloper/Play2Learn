@@ -10,22 +10,18 @@
 
         form.addEventListener('submit', function(e) {
             if (document.getElementById('pass').value == 'alchemyisL0v3') {
-                alert("Open sesame.");
-                window.location.assign("");
-
+                event.preventDefault();
+                location.assign("{% url 'pages:dev' %}");
             } else {
-               event.preventDefault();
                alert('Incorrect, please try again.');
             }
 
          });
         form2.addEventListener('submit', function(e) {
             if (document.getElementById('pass2').value == 'alchemyisL0v3') {
-                alert("Open sesame.");
-                window.location.assign("");
-
+                event.preventDefault();
+                location.assign("{% url 'pages:dev' %}");
             } else {
-               event.preventDefault();
                alert('Incorrect, please try again.');
             }
 
