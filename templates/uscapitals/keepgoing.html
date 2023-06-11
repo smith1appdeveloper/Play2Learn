@@ -47,13 +47,13 @@
         });
 </script>
 <style>
-   body {background-repeat: no-repeat;background-attachment: fixed; background-position: bottom center;}
-   #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 0.90);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
-   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 0.90);text-align: center;width: 85%;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
+   body {background-repeat: no-repeat;background-attachment: fixed; background-position: center center;}
+   #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 0.95);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
+   #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 0.95);text-align: center;width: 85%;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;}
    #titlesmall {background: rgba(232, 232, 232, 0.90);text-align: center;width: 100%;height: 10%;font-size: small;margin: auto;z-index: 10;position: relative;}
    hr {width: 50%;}
-   #scoreboard {background: rgba(232, 232, 232, 0.90); height: 20rem; width: 40rem;}
-   #scoreboard2 {background: rgba(232, 232, 232, .90);background-position: center;width: 85%;height: auto;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;}
+   #scoreboard {background: rgba(232, 232, 232, 0.95); height: 20rem; width: 40rem;}
+   #scoreboard2 {background: rgba(232, 232, 232, .95);background-position: center;width: 85%;height: auto;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;}
    #button1 {margin: 0%;}#button2 {margin: 0%;}#button12 {margin: 0%;}#button22 {margin: 0%;}
    .button-link:hover {background-color: gray;color: white;}
    .button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
@@ -63,16 +63,7 @@
 </style>
 {% endblock %}
 {% block main %}
-<!--<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://kit.fontawesome.com/b02c9a6dba.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-    <title>Keep Playing</title>
-   </head>-->
-<body class=".backgroundimg" style="background-image: url('{% static 'Images/mapBook.jpg' %}');">
+<body class=".backgroundimg" style="background-image: url('{% static 'Images/globe.jpg' %}');">
    <div id="title" class="mt-5 d-none d-lg-block">
       <p><h1 id="titlesection" class="justify-content-center font-weight-bold mt-4">US Capitals</h1></p>
    </div>
@@ -104,8 +95,6 @@
          <a type="button" class="button-link mr-3 mt-3 mb-3" href="{% url 'pages:homepage' %}">Home</a>
       </div>
    </div>
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>-->
 </body>
 </html>
 {% endblock %}
