@@ -86,39 +86,35 @@
       <div id="container1" class="row">
         <div class="container col-md-6 border-right border-dark d-none d-md-block d-xl-none">
           <div class="row justify-content-center"><h3>Random Ace&#9824;</h3><p class="ml-2 font-italic">beta</p></div>
-          <p class="d-none d-md-block d-xl-none">
-            Choose a digit between 1 and 6 and press Roll!<br>
-            3 digits will be randomly selected, each match your<br>
-            chosen digit achieves will result in a pot increase of<br>
-            the match value amount. If your chosen digit is 1<br>
-            the equivalent of that is the ace. If you match with<br>
-            the ace your pot will increase by 10. Conversely, if<br>
-            you fail to match with one of the 3 randomly selected<br>
-            digits your pot will decrease by 5. If the ace is randomly<br>
-            selected and you fail to match with it your pot will<br>
-            decrease by 5. You have a 1/5 chance of matching with<br>
-            each of the 3 random digits. You will have 60 seconds,<br>
-            to win simply stay in the black and out of the red.<br>
+          <p class="d-none d-md-block d-xl-none text-left">
+            1. Choose a digit between 1-6 and press Roll.<br>
+            2. 3 digits will be randomly selected.<br>
+            3. Each match is awarded by the matched value.<br>
+            4. Select digit 1 to try and match the ace.<br>
+            5. Fail to match at all, your pot decreases by 5.<br>
+            6. Match the ace and your pot increases by 10!<br>
+            7. Fail to match and your pot decreases by 5.<br>
+            8. There's a 1/5 chance of matching with each roll.<br>
+            9. You'll get 60 seconds.<br>
+            10. To win simply stay in the black.<br>
             <p class="text-left">Good Luck!</p><br>
           </p>
           <a class="button-link mt-2" href="{% url 'pages:random_ace' %}">Play Now!</a>
         </div>
         <div id="container2" class="container col-md-6 border-start d-none d-md-block d-xl-none">
           <div class="row justify-content-center"><h3>Who am I&#63;</h3><p class="ml-2 font-italic">beta</p></div>
-          <p id="mf" class="d-none d-md-block d-xl-none">
-            Lorem ipsum dolor sit amet. Eos laudantium quidem<br>
-            Non molestiae repudiandae et enim alias ut cumque<br>
-            Et aliquam neque non veniam libero et beatae architecto<br>
-            nulla expedita! Aut voluptatem repellat et nihil odio<br>
-            Qui deleniti enim qui asperiores sunt eum deserunt<br>
-            Eum accusantium illo et atque sequi et commodi<br>
-            Ut omnis ratione et amet voluptate sed quos autem<br>
-            A ipsam molestiae et nulla voluptatum ut consequatur<br>
-            Lorem ipsum dolor sit amet. Eos laudantium quidem<br>
-            Non molestiae repudiandae et enim alias ut cumque<br>
-            Et aliquam neque non veniam libero et beatae architecto<br>
-            nulla expedita! Aut voluptatem repellat et nihil odio<br>
-            Good Luck!
+          <p id="mf" class="d-none d-md-block d-xl-none text-left">
+            1. Lorem ipsum dolor sit amet. Eos laudantium.<br>
+            2. Non molestiae repudiandae et enim alias.<br>
+            3. Et aliquam neque non veniam libero et beatae.<br>
+            4. nulla expedita! Aut voluptatem repellat et.<br>
+            5. Qui deleniti enim qui asperiores sunt eum.<br>
+            6. Eum accusantium illo et atque sequi et!<br>
+            7. Ut omnis ratione et amet voluptate sed quos.<br>
+            8. Non molestiae repudiandae et enim alias.<br>
+            9. Et aliquam neque non veniam libero.<br>
+            10. A ipsam molestiae et nulla voluptatum.<br>
+            <p class="text-left">Good Luck!</p><br>
           </p>
           <a class="button-link mt-2" href=>Play Now!</a>
         </div>
@@ -135,19 +131,21 @@
       </div>
     </div>
     <!--XL-->
-    <div id="backgroundXL" class="container col-md-8 d-none d-xl-block">
+    <div id="backgroundXL" class="container col-md-6 d-none d-xl-block">
       <div id="container1" class="row">
         <div class="container col-md-6 border-right border-dark d-none d-xl-block">
           <div class="row justify-content-center"><h3>Random Ace&#9824;</h3><p class="ml-2 font-italic">beta</p></div>
           <p class="d-none d-lg-block text-left">
-            1. Choose a digit between 1 and 6 and press Roll, 3 digits will be randomly selected.<br>
-            2. Each match your chosen digit achieves will result in a pot increase of the match value amount.<br>
-            3. If your chosen digit is 1 the randomly selected equivalent of that is the ace.<br>
-            4. If you match with the ace your pot will increase by 10.<br>
-            5. If you fail to match with one of the 3 randomly selected digits your pot will decrease by 5.<br>
-            6. If the ace is randomly selected and you fail to match with it your pot will decrease by 5.<br>
-            7. You have a 1/5 chance of matching with each of the 3 random digits.<br>
-            8. You will have 60 seconds, to win simply stay in the black and out of the red.<br>
+            1. Choose a digit between 1-6 and press Roll.<br>
+            2. 3 digits will be randomly selected.<br>
+            3. Each match is awarded by the matched value.<br>
+            4. Select digit 1 to try and match the ace.<br>
+            5. Fail to match at all, your pot decreases by 5.<br>
+            6. Match the ace and your pot increases by 10!<br>
+            7. Fail to match and your pot decreases by 5.<br>
+            8. There's a 1/5 chance of matching with each roll.<br>
+            9. You'll get 60 seconds.<br>
+            10. To win simply stay in the black.<br>
             <p class="text-left">Good Luck!</p><br>
           </p>
           <a class="button-link mt-2" href="{% url 'pages:random_ace' %}">Play Now!</a>
@@ -155,14 +153,16 @@
         <div id="container2" class="col-md-6 border-right border-dark d-none d-xl-block">
           <div class="row justify-content-center"><h3>Who am I&#63;</h3><p class="ml-2 font-italic">beta</p></div>
           <p id="mf" class="d-none d-lg-block text-left">
-            Lorem ipsum dolor sit amet. Eos laudantium quidem non temporibus dolores.<br>
-            Non molestiae repudiandae et enim alias ut cumque accusamus Ut perferendis ipsum aut quidem.<br>
-            Et aliquam neque non veniam libero et beatae architecto aut nostrum quos aut.<br>
-            nulla expedita! Aut voluptatem repellat et nihil odio et molestiae velit.<br>
-            Qui deleniti enim qui asperiores sunt eum deserunt quibusdam qui voluptas consectetur aut rerum.<br>
-            Eum accusantium illo et atque sequi et commodi molestias ea accusamus fuga est temporibus totam.<br>
-            Ut omnis ratione et amet voluptate sed quos autem sed dolores repellendus.<br>
-            A ipsam molestiae et nulla voluptatum ut consequatur voluptas in repellat harum vel deleniti.<br>
+            1. Lorem ipsum dolor sit amet. Eos laudantium.<br>
+            2. Non molestiae repudiandae et enim alias.<br>
+            3. Et aliquam neque non veniam libero et beatae.<br>
+            4. nulla expedita! Aut voluptatem repellat et.<br>
+            5. Qui deleniti enim qui asperiores sunt eum.<br>
+            6. Eum accusantium illo et atque sequi et!<br>
+            7. Ut omnis ratione et amet voluptate sed quos.<br>
+            8. Non molestiae repudiandae et enim alias.<br>
+            9. Et aliquam neque non veniam libero.<br>
+            10. A ipsam molestiae et nulla voluptatum.<br>
             <p class="text-left">Good Luck!</p><br>
           </p>
           <a class="button-link mt-2" href=>Play Now!</a>
