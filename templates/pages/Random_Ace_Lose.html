@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Random Ace{% endblock %}
+{% block main %}
+
+<script>
+//let addScore = {};
+//addScore = 10
+window.addEventListener('load', function() {
+   addScore = sessionStorage.getItem("addScore");
+
+   if (isNaN(addScore)) {
+      //gameOver.src = '/static/audio/gameover.wav';
+      score.innerText = 0;
+   } else {
+      //gameOver.src = '/static/audio/gameover.wav';
+      let score = document.getElementById('score');
+      score.innerText = (addScore *= -1);
+   }
+   });
+</script>
+<style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
+        p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
+        #shape {background: rgba(232, 232, 232, .95);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+        body {background-repeat: no-repeat;background-attachment: fixed; background-position: bottom center;}
+        .button-link {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
+        text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
+        .button-link:hover {background-color: gray;color: white;}.button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
+        #button[disabled]{background: grey;} h4 {margin: bottom 0;} #score {float: none;color: black;text-align: center;font-size: 3rem; box-sizing: border-box; position: relative; margin: auto; font-weight: bold;}
+        #dollar {float: none;color: black;text-align: center;font-size: 3rem; box-sizing: border-box; position: relative; margin: auto; font-weight: bold;}
+        #main {margin-top: 17rem;}
+</style>
+ <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
+ <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/broke.png' %}');">
+    <main id="main">
+      <div id="shape">
+              <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE</h2></div>
+              <div id="stage">
+                 <h3 id="display" class="mt-3 text-bold" style="font-weight: bold;">Not your lucky day.</h3>
+                 <div class="mt-5"><h5 style='display:inline'>You are</h5><p id="dollar" style='display:inline' class="text-danger ml-3">-$</p><p id="score" class="text-danger mr-3" style='display:inline'>0</p><h5 style='display:inline'>in the red!</h5></div><br>
+
+
+                  <a class="button-link" href="{% url 'pages:random_ace' %}">Play Again</a>
+                  <a class="button-link mb-5" href="{% url 'pages:homepage' %}">Home</a>
+               </div>
+         </div>
+     </main>
+ <!--<figure><div class="row justify-content-center"><audio loop controls id="audio">><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>-->
+ </body>
+</html>
+
+{% endblock %}

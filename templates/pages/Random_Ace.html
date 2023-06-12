@@ -1,0 +1,263 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Random Ace{% endblock %}
+{% block main %}
+
+<script>
+   let val1 = '', val2 = '', val3 = '';
+   let round1 = 0, round2 = 0, round3 = 0;
+   let keepScore = 0;
+   let stopGame = 0;
+   let ace = 0;
+   let addScore = {};
+   let playGame = 'y';
+   let stopClock = 60;
+   let buttonFlag = 'n';
+   let img = new Image();img.src="/static/Images/Question_mark_(black).svg.png"
+   let img2 = new Image();img2.src="/static/Images/Question_mark_(black).svg.png";
+   let img3 = new Image();img3.src="/static/Images/Question_mark_(black).svg.png";
+   let ace1 = new Image();ace1.src="/static/Images/ace3.png";
+   let ace2 = new Image();ace2.src="/static/Images/ace3.png";
+   let ace3 = new Image();ace3.src="/static/Images/ace3.png";
+
+   function endGame() {
+      addScore = keepScore;
+      sessionStorage.setItem("addScore", addScore);
+      if (keepScore >=0) {location.assign("{% url 'pages:random_ace_gain' %}");} else {location.assign("{% url 'pages:random_ace_lose' %}");};
+   }
+   function getGuess() {
+      document.getElementById('button').disabled = true;
+      val1 = Number(document.getElementById("guess1").value);
+      if (val1 == '') {
+         document.getElementById('guess1').focus();
+         val1 = Number(document.getElementById("guess1").value);
+      }
+      return val1
+   }
+   function randInt(low, high) {
+      const rndDec = Math.random();
+      const rndInt = Math.floor(rndDec * (high - low + 1) + low);
+      return rndInt;
+   }
+   function getRandoms() {
+      random1 = randInt(2, 6)
+      random2 = randInt(2, 6)
+      random3 = randInt(2, 6)
+
+      return {
+         'random1': random1,'random2': random2,'random3': random3
+       };
+   }
+   function clearColors() {
+      yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "white";
+      yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "white";
+      yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "white";
+      yes3 = document.getElementById("rand3");yes3.style.backgroundColor = "white";
+   }
+   function getColors1() {
+      setTimeout(function() {yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "#66ff33";}, 1000);
+   }
+   function getColors2() {
+      setTimeout(function() {yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess1");yes22.style.backgroundColor = "#66ff33";}, 1000);
+   }
+   function getColors3() {
+     setTimeout(function() {yes3= document.getElementById("rand3");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess1");yes23.style.backgroundColor = "#66ff33";}, 1000);
+   }
+   function aceNo1() {no1 = document.getElementById("rand1");no1.style.backgroundColor = "#ff0000";no11 = document.getElementById("guess1");no11.style.backgroundColor = "#ff0000";}
+   function aceNo2() {no2 = document.getElementById("rand2");no2.style.backgroundColor = "#ff0000";no12 = document.getElementById("guess1");no12.style.backgroundColor = "#ff0000";}
+   function aceNo3() {no3 = document.getElementById("rand3");no3.style.backgroundColor = "#ff0000";no13 = document.getElementById("guess1");no13.style.backgroundColor = "#ff0000";}
+   function aceYes1() {yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "#66ff33";yes11 = document.getElementById("guess1");yes11.style.backgroundColor = "#66ff33";}
+   function aceYes2() {yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "#66ff33";}
+   function aceYes3() {yes3 = document.getElementById("rand3");yes3.style.backgroundColor = "#66ff33";yes13 = document.getElementById("guess1");yes13.style.backgroundColor = "#66ff33";}
+
+   function checkEntry() {
+      buttonFlag = 'y'
+      getGuess();
+      document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+      if (document.getElementById('guess1').value !== "") {
+         let ghostAce = randInt(0,2);
+         if (ghostAce == 1) {
+            ace = randInt(1,3)
+         }
+         document.getElementById('guess1').disabled = true;
+         document.getElementById('button').disabled = true;
+         let digits = getRandoms();
+         if (ace == 1) {
+            document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            setTimeout(function() {document.getElementById('rand1').innerHTML = null; random1 = document.getElementById("rand1");random1.appendChild(ace1);}, 1000);
+            if (document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes1();setTimeout(function() {
+               keepScore += Number(10);document.getElementById('score').innerHTML = keepScore;},1000) }, 1000);
+               } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo1();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 1000);}
+         } else {setTimeout(function(){
+            document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            random1 = document.getElementById("rand1");random1.style.backgroundColor = "#ffffff";document.getElementById('rand1').innerHTML = digits.random1;}, 1000);}
+            if (document.getElementById('guess1').value == digits.random1 && ghostAce != 1) {setTimeout(function() {
+               keepScore += Number(document.getElementById('guess1').value);document.getElementById('yesStage').innerHTML ="+$" + Number(document.getElementById('guess1').value);getColors1();
+               setTimeout(function() {document.getElementById('score').innerHTML = keepScore},1000);}, 1000);
+            }
+
+         if (ace == 2) {
+            document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            setTimeout(function() {document.getElementById('rand2').innerHTML = null; random2 = document.getElementById("rand2");random2.appendChild(ace2);}, 2000);
+            if (document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes2();setTimeout(function() {
+               keepScore += Number(10);document.getElementById('score').innerHTML = keepScore;},1000) }, 2000);
+                } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo2();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 2000);}
+            } else {setTimeout(function(){
+               document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+               random2 = document.getElementById("rand2");random2.style.backgroundColor = "#ffffff";document.getElementById('rand2').innerHTML = digits.random2;}, 2000);}
+               if (document.getElementById('guess1').value == digits.random2 && ghostAce != 1) {setTimeout(function() {
+                  keepScore += Number(document.getElementById('guess1').value);document.getElementById('yesStage').innerHTML = "+$" + Number(document.getElementById('guess1').value);getColors2();
+                  setTimeout(function() {document.getElementById('score').innerHTML = keepScore},1000);}, 2000);
+               }
+
+         if (ace == 3) {
+            document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+             setTimeout(function() {document.getElementById('rand3').innerHTML = null; random3 = document.getElementById("rand3");random3.appendChild(ace3);}, 3000);
+             if (document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes3();setTimeout(function() {
+               keepScore += Number(10);document.getElementById('score').innerHTML = keepScore;},1000) }, 3000);
+                 } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo3();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 3000);}
+             } else {setTimeout(function(){
+               document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+               random3 = document.getElementById("rand3");random3.style.backgroundColor = "#ffffff";document.getElementById('rand3').innerHTML = digits.random3;}, 3000);}
+                 if (document.getElementById('guess1').value == digits.random3 && ghostAce != 1) {setTimeout(function() {
+                  keepScore += Number(document.getElementById('guess1').value);document.getElementById('yesStage').innerHTML = "+$" + Number(document.getElementById('guess1').value);getColors3();
+                 setTimeout(function() {document.getElementById('score').innerHTML = keepScore},1000);}, 3000);
+                 }
+
+         if (document.getElementById('guess1').value != digits.random1 && document.getElementById('guess1').value != digits.random2 && document.getElementById('guess1').value != digits.random3 &&
+         document.getElementById('guess1').value != null && ghostAce != 1) {
+            {setTimeout(function() {keepScore -= Number(5);document.getElementById('score').innerHTML = keepScore;aceNo1();aceNo2();aceNo3()}, 4000);}
+            }
+        setTimeout(function() {
+         if (keepScore < 0) {document.getElementById("score").style.color = '#ff0000';} else {document.getElementById("score").style.color = '#000000';}
+            clearColors();
+            keepGoing();
+            random1 = document.getElementById("rand1");random1.appendChild(img);
+            random2 = document.getElementById("rand2");random2.appendChild(img2);
+            random3 = document.getElementById("rand3");random3.appendChild(img3);
+            document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            document.getElementById('button').disabled == false;
+            document.getElementById("guess1").value = null;
+            buttonFlag = 'n';
+            ace = 0;
+            }, 5000);}
+      }
+
+
+   function disableSquares() {
+      if (document.getElementById('guess1').value !== "") {
+         document.getElementById("guess1").value = null;
+         document.getElementById('guess1').focus();
+
+         document.getElementById("rand1").innerHTML = '';
+         document.getElementById("rand2").innerHTML = '';
+         document.getElementById("rand3").innerHTML = '';
+      }
+      getGuess()
+   }
+   function nextRoundButton() {
+      document.getElementById('button').disabled = false;
+      document.getElementById('button').focus();
+   }
+   function onClick() {
+      document.getElementById('button').disabled = false;
+      keepGoing();
+      checkEntry();
+   }
+
+   function keepGoing() {
+      document.getElementById('guess1').disabled = false;
+      disableSquares();
+   }
+   function timer() {const timer = setInterval(timeKeep, 100);}
+   function timeKeep() {
+      if (val1 == '') {getGuess()} else if (buttonFlag == 'n') {nextRoundButton()}
+   }
+   function gameTime() {
+     if (stopClock > 0) {
+      timer = setInterval(() => {
+         stopClock--;
+         time = document.getElementById('time');
+         time.innerHTML = stopClock;
+         if (stopClock === 0) {
+            clearInterval(timer);
+            endGame();
+         }
+      }, 1000)
+   }else{
+    clearInterval(timer);
+    endGame();
+   }
+ }
+   window.addEventListener('load', function() {
+      document.getElementById('button').disabled = true;
+      let score = document.getElementById('score');
+      score.innerHTML = keepScore;
+      random1 = document.getElementById("rand1");random1.style.backgroundColor = "#ffffff";
+      random1 = document.getElementById("rand1");random1.appendChild(img);
+      random2 = document.getElementById("rand2");random2.style.backgroundColor = "#ffffff";
+      random2 = document.getElementById("rand2");random2.appendChild(img2);
+      random3 = document.getElementById("rand3");random3.style.backgroundColor = "#ffffff";
+      random3 = document.getElementById("rand3");random3.appendChild(img3);
+
+      document.addEventListener("keydown", function(e) {
+         if (e.keyCode === 13 && document.getElementById('guess1').disabled == false) {
+           event.preventDefault();
+           if (document.getElementById('guess1').value !== "") {
+               document.getElementById('guess1').disabled = true;
+               checkEntry();
+           } else if (document.getElementById('button').disabled == false) {
+               keepGoing()
+               checkEntry();
+           } else {checkEntry()}
+         }
+      });
+      disableSquares();
+      timer();
+      gameTime();
+   });
+</script>
+<style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
+        p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
+        #shape {background: rgba(232, 232, 232, .80);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+        body {background-repeat: no-repeat;background-attachment: fixed;background-position: center;}
+        .button-link {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
+        text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
+        .button-link:hover {background-color: gray;color: white;}.button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
+        #button[disabled]{background: grey;}
+        h4 {margin: bottom 0;}
+</style>
+ <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
+ <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/aceBack.jpg' %}');">
+    <main>
+      <div id="shape" class="mt-5">
+              <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE</h2></div>
+              <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
+              <h2 class="row justify-content-center mt-5"Probability Theory</h2>
+              <h2 class="row justify-content-center mt-5">Whats The Probability?</h2>-->
+              <div class="row justify-content-center mt-4"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
+               <div class="row justify-content-center" id="stage">
+                  <p class="squareR font-weight-bold" id="rand1"></p>&#160;
+                  <p class="squareR font-weight-bold" id="rand2"></p>&#160;
+                  <p class="squareR font-weight-bold" id="rand3"></p><br>
+               </div>
+               <div class="row justify-content-center mt-3 mb-2">
+                  <label>Pot: $</label><p class="mr-5 font-weight-bold" id="score" >"0"</p>
+                  <label>Time:</label><p class="ml-2 font-weight-bold" id="time" ></p>
+               </div>
+               <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p><p class="ml-3 mr-1" id="attemptStage"></p></div>
+               <hr id="hr">
+               <div class="mb-2"><label>Input Values: 1-6</label></div>
+               <div class="row justify-content-center mb-5" id="answerStage">
+                  <form>
+                  <input class="square justify-content-center" id="guess1" type="text" placeholder="Guess" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+                  <button type="button" class="button-link row justify-content-center" id="button" onclick="checkEntry()">Roll!</button>
+                  </form>
+               </div>
+         </div>
+     </main>
+ <!--<figure><div class="row justify-content-center"><audio loop controls id="audio">><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>-->
+ </body>
+</html>
+
+{% endblock %}
