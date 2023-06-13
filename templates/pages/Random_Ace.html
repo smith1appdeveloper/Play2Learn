@@ -366,28 +366,27 @@
          </div>
      </main>
      <!--Mobile-->
-     <div id="shape2" class="mt-5 d-sm-block d-md-none">
+     <div id="shape2" class="container mt-3 d-sm-block d-md-none">
       <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
       <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
       <h2 class="row justify-content-center mt-5"Probability Theory</h2>
       <h2 class="row justify-content-center mt-5">Whats The Probability?</h2>-->
-      <div class="row justify-content-center mt-4"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
-       <div class="row justify-content-center" id="stage2">
+         <div class="row justify-content-center mt-1"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
+         <div class="row justify-content-center" id="stage2">
           <p class="squareR font-weight-bold" id="rand1M"></p>&#160;
           <p class="squareR font-weight-bold" id="rand2M"></p>&#160;
           <p class="squareR font-weight-bold" id="rand3M"></p><br>
-       </div>
-       <div class="row justify-content-center mt-3 mb-2">
+         </div>
+         <div class="row justify-content-center mt-1 mb-2">
           <label>Pot: $</label><p class="mr-5 font-weight-bold" id="score2" >"0"</p>
           <label>Time:</label><p class="ml-2 font-weight-bold" id="time2" ></p>
-       </div>
-       <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p><p class="ml-3 mr-1" id="attemptStage2"></p></div>
-       <hr id="hr2">
-       <div class="mb-2"><label>Input Values: 1-6</label></div>
-       <div class="row justify-content-center mb-5" id="answerStage2">
+         </div>
+         <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p><p class="ml-3 mr-1" id="attemptStage2"></p></div>
+         <div class="mb-2"><label>Input Values: 1-6</label></div>
+         <div class="row justify-content-center mb-1" id="answerStage2">
           <form>
-          <input class="square justify-content-center" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
-          <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry()">Roll!</button>
+            <input class="square justify-content-center" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+            <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry()">Roll!</button>
           </form>
        </div>
  </div>
