@@ -7,9 +7,11 @@
    let val1 = '', val2 = '', val3 = '';
    let round1 = 0, round2 = 0, round3 = 0;
    let keepScore = 0;
+   let keepScore2 = 0;
    let stopGame = 0;
    let ace = 0;
    let addScore = {};
+   let addScore2 = {};
    let playGame = 'y';
    let stopClock = 60;
    let buttonFlag = 'n';
@@ -19,11 +21,20 @@
    let ace1 = new Image();ace1.src="/static/Images/ace3.png";
    let ace2 = new Image();ace2.src="/static/Images/ace3.png";
    let ace3 = new Image();ace3.src="/static/Images/ace3.png";
+   let imgM = new Image();imgM.src="/static/Images/Question_mark_(black).svg.png"
+   let img2M = new Image();img2M.src="/static/Images/Question_mark_(black).svg.png";
+   let img3M = new Image();img3M.src="/static/Images/Question_mark_(black).svg.png";
+   let ace1M = new Image();ace1M.src="/static/Images/ace3.png";
+   let ace2M = new Image();ace2M.src="/static/Images/ace3.png";
+   let ace3M = new Image();ace3M.src="/static/Images/ace3.png";
 
    function endGame() {
       addScore = keepScore;
       sessionStorage.setItem("addScore", addScore);
+      addScore2 = keepScore2;
+      sessionStorage.setItem("addScore2", addScore2);
       if (keepScore >=0) {location.assign("{% url 'pages:random_ace_gain' %}");} else {location.assign("{% url 'pages:random_ace_lose' %}");};
+      if (keepScore2 >=0) {location.assign("{% url 'pages:random_ace_gain' %}");} else {location.assign("{% url 'pages:random_ace_lose' %}");};
    }
    function getGuess() {
       document.getElementById('button').disabled = true;
@@ -53,83 +64,149 @@
       yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "white";
       yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "white";
       yes3 = document.getElementById("rand3");yes3.style.backgroundColor = "white";
+
+      yes1M = document.getElementById("rand1M");yes1M.style.backgroundColor = "white";
+      yes12M = document.getElementById("guess2");yes12M.style.backgroundColor = "white";
+      yes2M = document.getElementById("rand2M");yes2M.style.backgroundColor = "white";
+      yes3M = document.getElementById("rand3M");yes3M.style.backgroundColor = "white";
    }
    function getColors1() {
       setTimeout(function() {yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "#66ff33";}, 1000);
+      setTimeout(function() {yes1 = document.getElementById("rand1M");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess2");yes12.style.backgroundColor = "#66ff33";}, 1000);
    }
    function getColors2() {
       setTimeout(function() {yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess1");yes22.style.backgroundColor = "#66ff33";}, 1000);
+      setTimeout(function() {yes2 = document.getElementById("rand2M");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess2");yes22.style.backgroundColor = "#66ff33";}, 1000);
    }
    function getColors3() {
      setTimeout(function() {yes3= document.getElementById("rand3");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess1");yes23.style.backgroundColor = "#66ff33";}, 1000);
+     setTimeout(function() {yes3= document.getElementById("rand3M");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess2");yes23.style.backgroundColor = "#66ff33";}, 1000);
    }
    function aceNo1() {no1 = document.getElementById("rand1");no1.style.backgroundColor = "#ff0000";no11 = document.getElementById("guess1");no11.style.backgroundColor = "#ff0000";}
    function aceNo2() {no2 = document.getElementById("rand2");no2.style.backgroundColor = "#ff0000";no12 = document.getElementById("guess1");no12.style.backgroundColor = "#ff0000";}
    function aceNo3() {no3 = document.getElementById("rand3");no3.style.backgroundColor = "#ff0000";no13 = document.getElementById("guess1");no13.style.backgroundColor = "#ff0000";}
+   function aceNo1M() {no1 = document.getElementById("rand1M");no1.style.backgroundColor = "#ff0000";no11 = document.getElementById("guess2");no11.style.backgroundColor = "#ff0000";}
+   function aceNo2M() {no2 = document.getElementById("rand2M");no2.style.backgroundColor = "#ff0000";no12 = document.getElementById("guess2");no12.style.backgroundColor = "#ff0000";}
+   function aceNo3M() {no3 = document.getElementById("rand3M");no3.style.backgroundColor = "#ff0000";no13 = document.getElementById("guess2");no13.style.backgroundColor = "#ff0000";}
    function aceYes1() {yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "#66ff33";yes11 = document.getElementById("guess1");yes11.style.backgroundColor = "#66ff33";}
    function aceYes2() {yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "#66ff33";}
    function aceYes3() {yes3 = document.getElementById("rand3");yes3.style.backgroundColor = "#66ff33";yes13 = document.getElementById("guess1");yes13.style.backgroundColor = "#66ff33";}
+   function aceYes1M() {yes1 = document.getElementById("rand1M");yes1.style.backgroundColor = "#66ff33";yes11 = document.getElementById("guess2");yes11.style.backgroundColor = "#66ff33";}
+   function aceYes2M() {yes2 = document.getElementById("rand2M");yes2.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess2");yes12.style.backgroundColor = "#66ff33";}
+   function aceYes3M() {yes3 = document.getElementById("rand3M");yes3.style.backgroundColor = "#66ff33";yes13 = document.getElementById("guess2");yes13.style.backgroundColor = "#66ff33";}
 
    function checkEntry() {
+      console.log(keepScore2);
       buttonFlag = 'y'
       getGuess();
       document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
-      if (document.getElementById('guess1').value !== "") {
+      document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
+      if (document.getElementById('guess1').value !== "" || document.getElementById('guess2').value !== "") {
          let ghostAce = randInt(0,2);
          if (ghostAce == 1) {
             ace = randInt(1,3)
          }
          document.getElementById('guess1').disabled = true;
          document.getElementById('button').disabled = true;
+         document.getElementById('guess2').disabled = true;
+         document.getElementById('button2').disabled = true;
          let digits = getRandoms();
          if (ace == 1) {
             document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
             setTimeout(function() {document.getElementById('rand1').innerHTML = null; random1 = document.getElementById("rand1");random1.appendChild(ace1);}, 1000);
-            if (document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes1();setTimeout(function() {
+            setTimeout(function() {document.getElementById('rand1M').innerHTML = null; random1 = document.getElementById("rand1M");random1.appendChild(ace1M);}, 1000);
+            if (
+               document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes1();setTimeout(function() {
                keepScore += Number(10);document.getElementById('score').innerHTML = keepScore;},1000) }, 1000);
-               } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo1();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 1000);}
+            } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo1();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 1000);}
+            if (
+               document.getElementById('guess2').value == 1) {setTimeout(function() {document.getElementById('yesStage2').innerHTML = "+$10";aceYes1M();setTimeout(function() {
+               keepScore2 += Number(10);document.getElementById('score2').innerHTML = keepScore2;},1000) }, 1000);
+            } else {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('noStage2').innerHTML = "-$5";aceNo1M();setTimeout(function() {document.getElementById('score2').innerHTML = keepScore2;}, 1000);}, 1000);}
          } else {setTimeout(function(){
             document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
-            random1 = document.getElementById("rand1");random1.style.backgroundColor = "#ffffff";document.getElementById('rand1').innerHTML = digits.random1;}, 1000);}
-            if (document.getElementById('guess1').value == digits.random1 && ghostAce != 1) {setTimeout(function() {
+            random1 = document.getElementById("rand1");random1.style.backgroundColor = "#ffffff";document.getElementById('rand1').innerHTML = digits.random1;
+            document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
+            random1 = document.getElementById("rand1M");random1.style.backgroundColor = "#ffffff";document.getElementById('rand1M').innerHTML = digits.random1;}, 1000);}
+            if (
+               document.getElementById('guess1').value == digits.random1 && ghostAce != 1) {setTimeout(function() {
                keepScore += Number(document.getElementById('guess1').value);document.getElementById('yesStage').innerHTML ="+$" + Number(document.getElementById('guess1').value);getColors1();
                setTimeout(function() {document.getElementById('score').innerHTML = keepScore},1000);}, 1000);
             }
-
+            if (
+               document.getElementById('guess2').value == digits.random1 && ghostAce != 1) {setTimeout(function() {
+               keepScore2 += Number(document.getElementById('guess2').value);document.getElementById('yesStage2').innerHTML ="+$" + Number(document.getElementById('guess2').value);getColors1();
+               setTimeout(function() {document.getElementById('score2').innerHTML = keepScore2},1000);}, 1000);
+            }
          if (ace == 2) {
             document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
             setTimeout(function() {document.getElementById('rand2').innerHTML = null; random2 = document.getElementById("rand2");random2.appendChild(ace2);}, 2000);
-            if (document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes2();setTimeout(function() {
+            setTimeout(function() {document.getElementById('rand2M').innerHTML = null; random2 = document.getElementById("rand2M");random2.appendChild(ace2M);}, 2000);
+            if (
+               document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes2();setTimeout(function() {
                keepScore += Number(10);document.getElementById('score').innerHTML = keepScore;},1000) }, 2000);
-                } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo2();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 2000);}
+            }  else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo2();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 2000);}
+            if (
+               document.getElementById('guess2').value == 1) {setTimeout(function() {document.getElementById('yesStage2').innerHTML = "+$10";aceYes2M();setTimeout(function() {
+               keepScore2 += Number(10);document.getElementById('score2').innerHTML = keepScore2;},1000) }, 2000);
+            } else {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('noStage2').innerHTML = "-$5";aceNo2M();setTimeout(function() {document.getElementById('score2').innerHTML = keepScore2;}, 1000);}, 2000);}
             } else {setTimeout(function(){
                document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
-               random2 = document.getElementById("rand2");random2.style.backgroundColor = "#ffffff";document.getElementById('rand2').innerHTML = digits.random2;}, 2000);}
-               if (document.getElementById('guess1').value == digits.random2 && ghostAce != 1) {setTimeout(function() {
+               random2 = document.getElementById("rand2");random2.style.backgroundColor = "#ffffff";document.getElementById('rand2').innerHTML = digits.random2;
+               document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
+               random2 = document.getElementById("rand2M");random2.style.backgroundColor = "#ffffff";document.getElementById('rand2M').innerHTML = digits.random2;}, 2000);}
+               if (
+                  document.getElementById('guess1').value == digits.random2 && ghostAce != 1) {setTimeout(function() {
                   keepScore += Number(document.getElementById('guess1').value);document.getElementById('yesStage').innerHTML = "+$" + Number(document.getElementById('guess1').value);getColors2();
                   setTimeout(function() {document.getElementById('score').innerHTML = keepScore},1000);}, 2000);
                }
-
+               if (
+                  document.getElementById('guess2').value == digits.random2 && ghostAce != 1) {setTimeout(function() {
+                  keepScore2 += Number(document.getElementById('guess2').value);document.getElementById('yesStage2').innerHTML = "+$" + Number(document.getElementById('guess2').value);getColors2();
+                  setTimeout(function() {document.getElementById('score2').innerHTML = keepScore2},1000);}, 2000);
+               }
          if (ace == 3) {
             document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
+            document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
              setTimeout(function() {document.getElementById('rand3').innerHTML = null; random3 = document.getElementById("rand3");random3.appendChild(ace3);}, 3000);
-             if (document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes3();setTimeout(function() {
+             setTimeout(function() {document.getElementById('rand3M').innerHTML = null; random3 = document.getElementById("rand3M");random3.appendChild(ace3M);}, 3000);
+             if (
+               document.getElementById('guess1').value == 1) {setTimeout(function() {document.getElementById('yesStage').innerHTML = "+$10";aceYes3();setTimeout(function() {
                keepScore += Number(10);document.getElementById('score').innerHTML = keepScore;},1000) }, 3000);
-                 } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo3();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 3000);}
+               } else {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";aceNo3();setTimeout(function() {document.getElementById('score').innerHTML = keepScore;}, 1000);}, 3000);}
+               if (
+                  document.getElementById('guess2').value == 1) {setTimeout(function() {document.getElementById('yesStage2').innerHTML = "+$10";aceYes3M();setTimeout(function() {
+                  keepScore2 += Number(10);document.getElementById('score2').innerHTML = keepScore2;},1000) }, 3000);
+               } else {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('noStage2').innerHTML = "-$5";aceNo3M();setTimeout(function() {document.getElementById('score2').innerHTML = keepScore2;}, 1000);}, 3000);}
              } else {setTimeout(function(){
                document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
-               random3 = document.getElementById("rand3");random3.style.backgroundColor = "#ffffff";document.getElementById('rand3').innerHTML = digits.random3;}, 3000);}
-                 if (document.getElementById('guess1').value == digits.random3 && ghostAce != 1) {setTimeout(function() {
+               random3 = document.getElementById("rand3");random3.style.backgroundColor = "#ffffff";document.getElementById('rand3').innerHTML = digits.random3;
+               document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
+               random3 = document.getElementById("rand3M");random3.style.backgroundColor = "#ffffff";document.getElementById('rand3M').innerHTML = digits.random3;}, 3000);}
+                 if (
+                  document.getElementById('guess1').value == digits.random3 && ghostAce != 1) {setTimeout(function() {
                   keepScore += Number(document.getElementById('guess1').value);document.getElementById('yesStage').innerHTML = "+$" + Number(document.getElementById('guess1').value);getColors3();
                  setTimeout(function() {document.getElementById('score').innerHTML = keepScore},1000);}, 3000);
+                 }
+                 if (
+                  document.getElementById('guess2').value == digits.random3 && ghostAce != 1) {setTimeout(function() {
+                  keepScore2 += Number(document.getElementById('guess2').value);document.getElementById('yesStage2').innerHTML = "+$" + Number(document.getElementById('guess2').value);getColors3();
+                 setTimeout(function() {document.getElementById('score2').innerHTML = keepScore2},1000);}, 3000);
                  }
 
          if (document.getElementById('guess1').value != digits.random1 && document.getElementById('guess1').value != digits.random2 && document.getElementById('guess1').value != digits.random3 &&
          document.getElementById('guess1').value != null && ghostAce != 1) {
             {setTimeout(function() {keepScore -= Number(5);document.getElementById('score').innerHTML = keepScore;aceNo1();aceNo2();aceNo3()}, 4000);}
             }
+         if (document.getElementById('guess2').value != digits.random1 && document.getElementById('guess2').value != digits.random2 && document.getElementById('guess2').value != digits.random3 &&
+         document.getElementById('guess2').value != null && ghostAce != 1) {
+            {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('score2').innerHTML = keepScore2;aceNo1M();aceNo2M();aceNo3M()}, 4000);}
+            }
         setTimeout(function() {
-         if (keepScore < 0) {document.getElementById("score").style.color = '#ff0000';} else {document.getElementById("score").style.color = '#000000';}
+         if (keepScore < 0) {document.getElementById("score").style.color = '#ff0000';}else {document.getElementById("score").style.color = '#000000';}
+         if (keepScore2 < 0) { document.getElementById("score2").style.color = '#ff0000';} else {document.getElementById("score2").style.color = '#000000';}
             clearColors();
             keepGoing();
             random1 = document.getElementById("rand1");random1.appendChild(img);
@@ -138,6 +215,13 @@
             document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
             document.getElementById('button').disabled == false;
             document.getElementById("guess1").value = null;
+
+            random1 = document.getElementById("rand1M");random1.appendChild(imgM);
+            random2 = document.getElementById("rand2M");random2.appendChild(img2M);
+            random3 = document.getElementById("rand3M");random3.appendChild(img3M);
+            document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
+            document.getElementById('button2').disabled == false;
+            document.getElementById("guess2").value = null;
             buttonFlag = 'n';
             ace = 0;
             }, 5000);}
@@ -153,20 +237,34 @@
          document.getElementById("rand2").innerHTML = '';
          document.getElementById("rand3").innerHTML = '';
       }
+
+      if (document.getElementById('guess2').value !== "") {
+         document.getElementById("guess2").value = null;
+         document.getElementById('guess2').focus();
+
+         document.getElementById("rand1M").innerHTML = '';
+         document.getElementById("rand2M").innerHTML = '';
+         document.getElementById("rand3M").innerHTML = '';
+      }
+
       getGuess()
    }
    function nextRoundButton() {
       document.getElementById('button').disabled = false;
       document.getElementById('button').focus();
+      document.getElementById('button2').disabled = false;
+      document.getElementById('button2').focus();
    }
    function onClick() {
       document.getElementById('button').disabled = false;
+      document.getElementById('button2').disabled = false;
       keepGoing();
       checkEntry();
    }
 
    function keepGoing() {
       document.getElementById('guess1').disabled = false;
+      document.getElementById('guess2').disabled = false;
       disableSquares();
    }
    function timer() {const timer = setInterval(timeKeep, 100);}
@@ -179,6 +277,7 @@
          stopClock--;
          time = document.getElementById('time');
          time.innerHTML = stopClock;
+         time2.innerHTML = stopClock;
          if (stopClock === 0) {
             clearInterval(timer);
             endGame();
@@ -191,14 +290,23 @@
  }
    window.addEventListener('load', function() {
       document.getElementById('button').disabled = true;
+      document.getElementById('button2').disabled = true;
       let score = document.getElementById('score');
+      let score2 = document.getElementById('score2');
       score.innerHTML = keepScore;
+      score2.innerHTML = keepScore2;
       random1 = document.getElementById("rand1");random1.style.backgroundColor = "#ffffff";
       random1 = document.getElementById("rand1");random1.appendChild(img);
+      random1M = document.getElementById("rand1M");random1M.style.backgroundColor = "#ffffff";
+      random1M = document.getElementById("rand1M");random1M.appendChild(imgM);
       random2 = document.getElementById("rand2");random2.style.backgroundColor = "#ffffff";
       random2 = document.getElementById("rand2");random2.appendChild(img2);
+      random2M = document.getElementById("rand2M");random2M.style.backgroundColor = "#ffffff";
+      random2M = document.getElementById("rand2M");random2M.appendChild(img2M);
       random3 = document.getElementById("rand3");random3.style.backgroundColor = "#ffffff";
       random3 = document.getElementById("rand3");random3.appendChild(img3);
+      random3M = document.getElementById("rand3M");random3M.style.backgroundColor = "#ffffff";
+      random3M = document.getElementById("rand3M");random3M.appendChild(img3M);
 
       document.addEventListener("keydown", function(e) {
          if (e.keyCode === 13 && document.getElementById('guess1').disabled == false) {
@@ -220,6 +328,7 @@
 <style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
         p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
         #shape {background: rgba(232, 232, 232, .80);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
         body {background-repeat: no-repeat;background-attachment: fixed;background-position: center;}
         .button-link {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
@@ -230,7 +339,7 @@
  <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
  <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/aceBack.jpg' %}');">
     <main>
-      <div id="shape" class="mt-5">
+      <div id="shape" class="mt-5 d-none d-md-block">
               <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
               <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
               <h2 class="row justify-content-center mt-5"Probability Theory</h2>
@@ -250,12 +359,38 @@
                <div class="mb-2"><label>Input Values: 1-6</label></div>
                <div class="row justify-content-center mb-5" id="answerStage">
                   <form>
-                  <input class="square justify-content-center" id="guess1" type="text" placeholder="Guess" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+                  <input class="square justify-content-center" id="guess1" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
                   <button type="button" class="button-link row justify-content-center" id="button" onclick="checkEntry()">Roll!</button>
                   </form>
                </div>
          </div>
      </main>
+     <!--Mobile-->
+     <div id="shape2" class="mt-5 d-sm-block d-md-none">
+      <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
+      <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
+      <h2 class="row justify-content-center mt-5"Probability Theory</h2>
+      <h2 class="row justify-content-center mt-5">Whats The Probability?</h2>-->
+      <div class="row justify-content-center mt-4"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
+       <div class="row justify-content-center" id="stage2">
+          <p class="squareR font-weight-bold" id="rand1M"></p>&#160;
+          <p class="squareR font-weight-bold" id="rand2M"></p>&#160;
+          <p class="squareR font-weight-bold" id="rand3M"></p><br>
+       </div>
+       <div class="row justify-content-center mt-3 mb-2">
+          <label>Pot: $</label><p class="mr-5 font-weight-bold" id="score2" >"0"</p>
+          <label>Time:</label><p class="ml-2 font-weight-bold" id="time2" ></p>
+       </div>
+       <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p><p class="ml-3 mr-1" id="attemptStage2"></p></div>
+       <hr id="hr2">
+       <div class="mb-2"><label>Input Values: 1-6</label></div>
+       <div class="row justify-content-center mb-5" id="answerStage2">
+          <form>
+          <input class="square justify-content-center" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+          <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry()">Roll!</button>
+          </form>
+       </div>
+ </div>
  <!--<figure><div class="row justify-content-center"><audio loop controls id="audio">><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>-->
  </body>
 </html>
