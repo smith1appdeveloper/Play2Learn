@@ -398,10 +398,11 @@
    function timer() {const timer = setInterval(timeKeep, 100);}
    function timeKeep() {
       console.log(buttonFlag)
-      if (val1 == '') {
+      if (val1 == null) {
          getGuess()
       if (buttonFlag == 'n') {nextRoundButton()}
-      } else if (val2 == '') {
+      }
+      if (val2 == null) {
          getGuess2()
       if (buttonFlag == 'n') {nextRoundButton()}
       }
