@@ -485,7 +485,7 @@
          #button2:hover {background-color: gray;color: white;}
          #button2:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
         h4 {margin: bottom 0;}
-        #title {margin-top: 9rem}
+        /*#title {margin-top: 9rem}*/
 </style>
  <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
  <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/aceBack.jpg' %}');">
@@ -539,7 +539,7 @@
          <div class="row justify-content-center" id="answerStage2">
           <form>
             <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry2()">Roll!</button>
-            <input class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+            <input class="square justify-content-center mt-3" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
           </form>
        </div>
  </div>
