@@ -473,7 +473,7 @@
 <style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
         p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
         #shape {background: rgba(232, 232, 232, .80);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
-        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;}
+        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;margin-top: 4rem}
         body {background-repeat: no-repeat;background-attachment: fixed;background-position: center;}
         #button {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
@@ -485,7 +485,7 @@
          #button2:hover {background-color: gray;color: white;}
          #button2:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
         h4 {margin: bottom 0;}
-        #random_mobile {margin-top: 6rem}
+        #title {margin-top: 5rem}
 </style>
  <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
  <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/aceBack.jpg' %}');">
@@ -520,11 +520,11 @@
      </main>
      <!--Mobile-->
      <div id="shape2" class="container mt-3 d-sm-block d-md-none">
-      <div class="row justify-content-center mt-1"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
+      <div class="row justify-content-center" id="title"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
       <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
       <h2 class="row justify-content-center mt-5"Probability Theory</h2>
       <h2 class="row justify-content-center mt-5">Whats The Probability?</h2>-->
-         <div class="row justify-content-center" id="random_mobile"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
+         <div class="row justify-content-center"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
          <div class="row justify-content-center" id="stage2">
           <p class="squareR font-weight-bold" id="rand1M"></p>&#160;
           <p class="squareR font-weight-bold" id="rand2M"></p>&#160;
