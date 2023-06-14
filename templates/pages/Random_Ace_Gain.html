@@ -44,20 +44,22 @@ window.addEventListener('load', function() {
                  <h3 id="display" class="mt-3 text-bold" style="font-weight: bold;">You're in luck!</h3>
                  <h5 id="display2" class="mt-3">You beat the odds</h5>
                  <div class="mt-5"><h5 style='display:inline'>You are</h5><p id="dollar" style='display:inline' class="ml-3">$</p><p id="score" class="mr-3" style='display:inline'>0</p><h5 style='display:inline'>in the black!</h5></div><br>
-                  <a class="button-link" href="{% url 'pages:random_ace' %}">Play Again</a>
-                  <a class="button-link mb-5" href="{% url 'pages:homepage' %}">Home</a>
+                  <a class="button-link mb-1" href="{% url 'pages:random_ace' %}">Play Again</a>
+                  <a class="button-link mb-1" href="{% url 'pages:dev' %}">Dev Environment</a>
+                  <a class="button-link mb-1" href="{% url 'pages:homepage' %}">Home</a>
                </div>
          </div>
      </main>
      <!--Mobile-->
-     <div id="shape2" class="d-sm-block d-md-none mt-3">
-      <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
+     <div id="shape2" class="d-sm-block d-md-none mt-2">
+      <div class="row justify-content-center mt-2"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
       <div id="stage2">
          <h3 id="display2" class="mt-3 text-bold" style="font-weight: bold;">You're in luck!</h3>
          <h5 id="display2M" class="mt-3">You beat the odds</h5>
-         <div class="mt-5"><h5 style='display:inline'>You are</h5><p id="dollar" style='display:inline' class="ml-3">$</p><p id="score2" class="mr-3" style='display:inline'>0</p><h5 style='display:inline'>in the black!</h5></div><br>
-          <a class="button-link" href="{% url 'pages:random_ace' %}">Play Again</a>
-          <a class="button-link mb-5" href="{% url 'pages:homepage' %}">Home</a>
+         <div class="mt-3"><h5 style='display:inline'>You are</h5><p id="dollar" style='display:inline' class="ml-3">$</p><p id="score2" class="mr-3" style='display:inline'>0</p><h5 style='display:inline'>in the black!</h5></div><br>
+          <a class="button-link mb-1" href="{% url 'pages:random_ace' %}">Play Again</a>
+          <a class="button-link mb-1" href="{% url 'pages:dev' %}">Dev Environment</a>
+          <a class="button-link mb-1" href="{% url 'pages:homepage' %}">Home</a>
        </div>
       </div>
  <!--<figure><div class="row justify-content-center"><audio loop controls id="audio">><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>-->
