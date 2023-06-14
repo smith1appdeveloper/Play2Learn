@@ -473,7 +473,7 @@
 <style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
         p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
         #shape {background: rgba(232, 232, 232, .80);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
-        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;margin-top: 4rem}
+        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;margin-top: 5rem}
         body {background-repeat: no-repeat;background-attachment: fixed;background-position: center;}
         #button {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
@@ -519,7 +519,7 @@
          </div>
      </main>
      <!--Mobile-->
-     <div id="shape2" class="container mt-3 d-sm-block d-md-none">
+     <div id="shape2" class="container d-sm-block d-md-none">
       <div class="row justify-content-center" id="title"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
       <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
       <h2 class="row justify-content-center mt-5"Probability Theory</h2>
@@ -535,11 +535,12 @@
           <label>Time:</label><p class="ml-2 font-weight-bold" id="time2" ></p>
          </div>
          <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p><p class="ml-3 mr-1" id="attemptStage2"></p></div>
-         <div><label>Input Values: 1-6</label></div>
+
          <div class="row justify-content-center" id="answerStage2">
           <form>
             <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry2()">Roll!</button>
-            <input class="square justify-content-center mt-3" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+            <div class="mt-3"><label>Input Values: 1-6</label></div>
+            <input class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
           </form>
        </div>
  </div>
