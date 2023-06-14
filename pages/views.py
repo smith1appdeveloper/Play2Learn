@@ -56,5 +56,11 @@ class Random_Ace_GainView(TemplateView):
 class Random_Ace_LoseView(TemplateView):
     template_name = 'pages/Random_Ace_Lose.html'
 
+class Random_Ace_GainMView(TemplateView):
+    template_name = 'pages/Random_Ace_GainM.html'
+
+class Random_Ace_LoseMView(TemplateView):
+    template_name = 'pages/Random_Ace_LoseM.html'
+
 
 
