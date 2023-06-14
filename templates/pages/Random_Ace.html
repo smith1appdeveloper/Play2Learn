@@ -397,14 +397,13 @@
    }
    function timer() {const timer = setInterval(timeKeep, 100);}
    function timeKeep() {
-      console.log(buttonFlag)
       if (val1 == '') {
          getGuess()
-      if (buttonFlag == 'n') {nextRoundButton()}
+      if (buttonFlag == 'n' && val1 != '') {nextRoundButton()}
       }
       if (val2 == '') {
          getGuess2()
-      if (buttonFlag == 'n') {nextRoundButton()}
+      if (buttonFlag == 'n' && val2 != '') {nextRoundButton()}
       }
    }
    function gameTime() {
