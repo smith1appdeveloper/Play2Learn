@@ -14,6 +14,7 @@
    let addScore2 = {};
    let playGame = 'y';
    let stopClock = 60;
+   let stopClock2 = 10;
    let buttonFlag = 'n';
    let flag = 'n';
    let img = new Image();img.src="/static/Images/Question_mark_(black).svg.png"
@@ -106,6 +107,7 @@
    function aceYes3M() {yes3 = document.getElementById("rand3M");yes3.style.backgroundColor = "#66ff33";yes13 = document.getElementById("guess2");yes13.style.backgroundColor = "#66ff33";}
 
    function checkEntry() {
+      clearInterval(timer2);
       buttonFlag = 'y'
       flag = 'y'
       getGuess();
@@ -226,10 +228,13 @@
             document.getElementById("guess1").value = null;
             buttonFlag = 'n';
             ace = 0;
+            stopClock2 = 10;
+            timeKeep2();
             }, 5000);}
       }
 
       function checkEntry2() {
+         clearInterval(timer2);
          buttonFlag = 'y'
          getGuess2();
          document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
@@ -348,6 +353,8 @@
                document.getElementById("guess2").value = null;
                buttonFlag = 'n';
                ace = 0;
+               stopClock2 = 10;
+               timeKeep2();
                }, 5000);}
          }
 
@@ -403,6 +410,31 @@
       if (buttonFlag == 'n' && val2 != '') {nextRoundButton()}
       }
    }
+   function timeKeep2() {
+      if (stopClock2 > 0) {
+         timer2 = setInterval(() => {
+            stopClock2--;
+            console.log(stopClock2);
+            if (stopClock2 < 5 && stopClock2 > 1) {
+               document.getElementById('noStage').innerHTML = "Roll!";
+               document.getElementById('noStage2').innerHTML = "Roll!";
+               setTimeout(function() {
+                  document.getElementById('noStage').innerHTML = " ";
+                  document.getElementById('noStage2').innerHTML = " ";}, 500);
+               }
+            if (stopClock2 < 2 && stopClock2 > 0) {
+               document.getElementById('noStage').innerHTML = "-$5";keepScore -= Number(5);document.getElementById('score').innerHTML = keepScore;
+               document.getElementById('noStage2').innerHTML = "-$5";keepScore2 -= Number(5);document.getElementById('score2').innerHTML = keepScore2;
+               setTimeout(function() {
+                  document.getElementById('noStage').innerHTML = " ";
+                  document.getElementById('noStage2').innerHTML = " ";
+               }, 1000);
+            }
+            if (stopClock2 === 0) {clearInterval(timer2);stopClock2 = 10;timeKeep2();}
+         }, 1000)
+       }
+    }
+
    function gameTime() {
      if (stopClock > 0) {
       timer = setInterval(() => {
@@ -422,7 +454,7 @@
  }
    window.addEventListener('load', function() {
       let width = window.innerWidth;
-      if (width > 1000) {flag = 'y'} else {flag = 'n'};
+      if (width > 1023) {flag = 'y'} else {flag = 'n'};
       document.getElementById('button').disabled = true;
       document.getElementById('button2').disabled = true;
       let score = document.getElementById('score');
@@ -466,6 +498,7 @@
       });
       disableSquares();
       timer();
+      timeKeep2()
       gameTime();
    });
 </script>
@@ -485,6 +518,7 @@
          #button2:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
         h4 {margin: bottom 0;}
         hr {width: 15rem;}
+        #gameStats {height: 1.5rem;} #gameStats2 {height: 1.5rem;}
 </style>
  <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
  <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/aceBack.jpg' %}');">
@@ -534,7 +568,7 @@
           <label>Pot: $</label><p class="mr-5 font-weight-bold" id="score2" >"0"</p>
           <label>Time:</label><p class="ml-2 font-weight-bold" id="time2" ></p>
          </div>
-         <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p><p class="ml-3 mr-1" id="attemptStage2"></p></div>
+         <div class="row justify-content-center mb-1" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p><p class="ml-3 mr-1" id="attemptStage2"></p></div>
 
          <div class="row justify-content-center" id="answerStage2">
           <form>
