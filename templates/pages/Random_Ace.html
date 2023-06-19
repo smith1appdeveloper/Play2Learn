@@ -82,16 +82,16 @@
       yes3M = document.getElementById("rand3M");yes3M.style.backgroundColor = "white";
    }
    function getColors1() {
-      setTimeout(function() {yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "#66ff33";}, 1000);
-      setTimeout(function() {yes1 = document.getElementById("rand1M");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess2");yes12.style.backgroundColor = "#66ff33";}, 1000);
+      yes1 = document.getElementById("rand1");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess1");yes12.style.backgroundColor = "#66ff33";
+      yes1 = document.getElementById("rand1M");yes1.style.backgroundColor = "#66ff33";yes12 = document.getElementById("guess2");yes12.style.backgroundColor = "#66ff33";
    }
    function getColors2() {
-      setTimeout(function() {yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess1");yes22.style.backgroundColor = "#66ff33";}, 1000);
-      setTimeout(function() {yes2 = document.getElementById("rand2M");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess2");yes22.style.backgroundColor = "#66ff33";}, 1000);
+      yes2 = document.getElementById("rand2");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess1");yes22.style.backgroundColor = "#66ff33";
+      yes2 = document.getElementById("rand2M");yes2.style.backgroundColor = "#66ff33";yes22 = document.getElementById("guess2");yes22.style.backgroundColor = "#66ff33";
    }
    function getColors3() {
-     setTimeout(function() {yes3= document.getElementById("rand3");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess1");yes23.style.backgroundColor = "#66ff33";}, 1000);
-     setTimeout(function() {yes3= document.getElementById("rand3M");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess2");yes23.style.backgroundColor = "#66ff33";}, 1000);
+     yes3= document.getElementById("rand3");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess1");yes23.style.backgroundColor = "#66ff33";
+     yes3= document.getElementById("rand3M");yes3.style.backgroundColor = "#66ff33";yes23 = document.getElementById("guess2");yes23.style.backgroundColor = "#66ff33";
    }
    function aceNo1() {no1 = document.getElementById("rand1");no1.style.backgroundColor = "#ff0000";no11 = document.getElementById("guess1");no11.style.backgroundColor = "#ff0000";}
    function aceNo2() {no2 = document.getElementById("rand2");no2.style.backgroundColor = "#ff0000";no12 = document.getElementById("guess1");no12.style.backgroundColor = "#ff0000";}
@@ -209,11 +209,11 @@
 
          if (document.getElementById('guess1').value != digits.random1 && document.getElementById('guess1').value != digits.random2 && document.getElementById('guess1').value != digits.random3 &&
          document.getElementById('guess1').value != null && ghostAce != 1) {
-            {setTimeout(function() {keepScore -= Number(5);document.getElementById('score').innerHTML = keepScore;aceNo1();aceNo2();aceNo3()}, 4000);}
+            {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";document.getElementById('score').innerHTML = keepScore;aceNo1();aceNo2();aceNo3()}, 4000);}
             }
          if (document.getElementById('guess2').value != digits.random1 && document.getElementById('guess2').value != digits.random2 && document.getElementById('guess2').value != digits.random3 &&
          document.getElementById('guess2').value != null && ghostAce != 1) {
-            {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('score2').innerHTML = keepScore2;aceNo1M();aceNo2M();aceNo3M()}, 4000);}
+            {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('noStage2').innerHTML = "-$5";document.getElementById('score2').innerHTML = keepScore2;aceNo1M();aceNo2M();aceNo3M()}, 4000);}
             }
         setTimeout(function() {
          if (keepScore < 0) {document.getElementById("score").style.color = '#ff0000';}else {document.getElementById("score").style.color = '#000000';}
@@ -334,11 +334,11 @@
 
             if (document.getElementById('guess1').value != digits.random1 && document.getElementById('guess1').value != digits.random2 && document.getElementById('guess1').value != digits.random3 &&
             document.getElementById('guess1').value != null && ghostAce != 1) {
-               {setTimeout(function() {keepScore -= Number(5);document.getElementById('score').innerHTML = keepScore;aceNo1();aceNo2();aceNo3()}, 4000);}
+               {setTimeout(function() {keepScore -= Number(5);document.getElementById('noStage').innerHTML = "-$5";document.getElementById('score').innerHTML = keepScore;aceNo1();aceNo2();aceNo3()}, 4000);}
                }
             if (document.getElementById('guess2').value != digits.random1 && document.getElementById('guess2').value != digits.random2 && document.getElementById('guess2').value != digits.random3 &&
             document.getElementById('guess2').value != null && ghostAce != 1) {
-               {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('score2').innerHTML = keepScore2;aceNo1M();aceNo2M();aceNo3M()}, 4000);}
+               {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('noStage2').innerHTML = "-$5";document.getElementById('score2').innerHTML = keepScore2;aceNo1M();aceNo2M();aceNo3M()}, 4000);}
                }
            setTimeout(function() {
             if (keepScore < 0) {document.getElementById("score").style.color = '#ff0000';}else {document.getElementById("score").style.color = '#000000';}
