@@ -62,5 +62,8 @@ class Random_Ace_GainMView(TemplateView):
 class Random_Ace_LoseMView(TemplateView):
     template_name = 'pages/Random_Ace_LoseM.html'
 
+class Who_am_IView(TemplateView):
+    template_name = 'pages/Who_am_I.html'
+
 
 
