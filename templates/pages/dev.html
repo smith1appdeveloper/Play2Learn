@@ -3,7 +3,13 @@
 {% block title %}development{% endblock %}
 {% block main %}
 <script>
-  window.alert("Open Sesame!");
+  window.addEventListener('load', function() {
+
+   setTimeout(function() {
+    let section = document.querySelector("p");section.innerText = "Development Environment";
+    let sectionM = document.querySelector(".quotesectionSmall");sectionM.innerText = "Development Environment";
+    }, 2000);
+});
 </script>
 <style>
   body {font-family: 'Oswald', sans-serif !important;}
@@ -72,7 +78,7 @@
 <body>
 <main class="d-none d-md-block" id="backgroundimage" style="background-image: url('{% static 'Images/stairs3.jpg' %}');">
   <div id="quote" class="mt-3">
-    <p id="quotesection">Development Environment</p>
+    <p id="quotesection">Open Sesame!</p>
   </div>
     <div id="background" class="container d-none d-md-block d-xl-none">
       <div id="container1" class="row">
@@ -174,7 +180,7 @@
   </main>
   <!--Mobile-->
   <div id="quoteSmall" class="d-sm-block d-md-none mt-1">
-    <p id="quotesectionSmall" class="quotesectionSmall">Development Environment</p>
+    <p id="quotesectionSmall" class="quotesectionSmall">Open Sesame!</p>
   </div>
     <div id="mobileImage2"><img src="{% static 'Images/stairs2.jpg' %}"class="img-thumbnail d-sm-block d-md-none mb-1">
       <div id="cUsM" class="d-sm-block d-md-none">
