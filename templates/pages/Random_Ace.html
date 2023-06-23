@@ -47,15 +47,22 @@
       }
       return val1
    }
-   function getGuess2() {
+   /*function getGuess2() {
       document.getElementById('button2').disabled = true;
       val2 = Number(document.getElementById("guess2").value);
       if (val2 == '') {
          document.getElementById('guess2').focus();
-         val1 = Number(document.getElementById("guess2").value);
+         val2 = Number(document.getElementById("guess2").value);
       }
       return val2
-   }
+   }*/
+   function value1() {val2 = '1';input = document.getElementById("guess2");input.value = '1';checkEntry2();}
+   function value2() {val2 = '1';input = document.getElementById("guess2");input.value = '2';checkEntry2();}
+   function value3() {val2 = '1';input = document.getElementById("guess2");input.value = '3';checkEntry2();}
+   function value4() {val2 = '1';input = document.getElementById("guess2");input.value = '4';checkEntry2();}
+   function value5() {val2 = '1';input = document.getElementById("guess2");input.value = '5';checkEntry2();}
+   function value6() {val2 = '1';input = document.getElementById("guess2");input.value = '6';checkEntry2();}
+
    function randInt(low, high) {
       const rndDec = Math.random();
       const rndInt = Math.floor(rndDec * (high - low + 1) + low);
@@ -236,7 +243,6 @@
       function checkEntry2() {
          clearInterval(timer2);
          buttonFlag = 'y'
-         getGuess2();
          document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
          document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
          if (document.getElementById('guess2').value !== "") {
@@ -245,7 +251,12 @@
                ace = randInt(1,3)
             }
             document.getElementById('guess2').disabled = true;
-            document.getElementById('button2').disabled = true;
+            document.getElementById('btn1').disabled = true;
+            document.getElementById('btn2').disabled = true;
+            document.getElementById('btn3').disabled = true;
+            document.getElementById('btn4').disabled = true;
+            document.getElementById('btn5').disabled = true;
+            document.getElementById('btn6').disabled = true;
             let digits = getRandoms();
             if (ace == 1) {
                document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
@@ -349,7 +360,12 @@
                random2 = document.getElementById("rand2M");random2.appendChild(img2M);
                random3 = document.getElementById("rand3M");random3.appendChild(img3M);
                document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
-               document.getElementById('button2').disabled == false;
+               document.getElementById('btn1').disabled = false;
+               document.getElementById('btn2').disabled = false;
+               document.getElementById('btn3').disabled = false;
+               document.getElementById('btn4').disabled = false;
+               document.getElementById('btn5').disabled = false;
+               document.getElementById('btn6').disabled = false;
                document.getElementById("guess2").value = null;
                buttonFlag = 'n';
                ace = 0;
@@ -368,7 +384,6 @@
          document.getElementById("rand2").innerHTML = '';
          document.getElementById("rand3").innerHTML = '';
       }
-
       if (document.getElementById('guess2').value !== "") {
          document.getElementById("guess2").value = null;
          document.getElementById('guess2').focus();
@@ -377,23 +392,14 @@
          document.getElementById("rand2M").innerHTML = '';
          document.getElementById("rand3M").innerHTML = '';
       }
-
       getGuess()
-      getGuess2()
    }
    function nextRoundButton() {
       document.getElementById('button').disabled = false;
       document.getElementById('guess1').focus();
-      document.getElementById('button2').disabled = false;
+      document.querySelector('.btn').disabled = false;
       document.getElementById('guess2').focus();
    }
-   function onClick() {
-      document.getElementById('button').disabled = false;
-      document.getElementById('button2').disabled = false;
-      keepGoing();
-      checkEntry();
-   }
-
    function keepGoing() {
       document.getElementById('guess1').disabled = false;
       document.getElementById('guess2').disabled = false;
@@ -406,7 +412,7 @@
       if (buttonFlag == 'n' && val1 != '') {nextRoundButton()}
       }
       if (val2 == '') {
-         getGuess2()
+         //getGuess2()
       if (buttonFlag == 'n' && val2 != '') {nextRoundButton()}
       }
    }
@@ -414,7 +420,6 @@
       if (stopClock2 > 0) {
          timer2 = setInterval(() => {
             stopClock2--;
-            console.log(stopClock2);
             if (stopClock2 < 5 && stopClock2 > 1) {
                document.getElementById('noStage').innerHTML = "Roll!";
                document.getElementById('noStage2').innerHTML = "Roll!";
@@ -452,11 +457,12 @@
     endGame();
    }
  }
+
+
    window.addEventListener('load', function() {
       let width = window.innerWidth;
       if (width > 1023) {flag = 'y'} else {flag = 'n'};
       document.getElementById('button').disabled = true;
-      document.getElementById('button2').disabled = true;
       let score = document.getElementById('score');
       let score2 = document.getElementById('score2');
       score.innerHTML = keepScore;
@@ -475,7 +481,8 @@
       random3M = document.getElementById("rand3M");random3M.appendChild(img3M);
 
       document.addEventListener("keydown", function(e) {
-         if (e.keyCode === 13 && document.getElementById('guess1').disabled == false && document.getElementById('button2').disabled != false) {
+         //if (e.keyCode === 13 && document.getElementById('guess1').disabled == false && document.getElementById('button2').disabled != false) {
+         if (e.keyCode === 13 && document.getElementById('guess1').disabled == false) {
            event.preventDefault();
            if (document.getElementById('guess1').value !== "") {
                document.getElementById('guess1').disabled = true;
@@ -490,12 +497,14 @@
             if (document.getElementById('guess2').value !== "") {
                 document.getElementById('guess2').disabled = true;
                 checkEntry2();
-            } else if (document.getElementById('button2').disabled == false && document.getElementById('guess2').value !== "") {
+            //} else if (document.getElementById('button2').disabled == false && document.getElementById('guess2').value !== "") {
+            } else if (document.querySelector('.btn').disabled == false && document.getElementById('guess2').value !== "") {
                 keepGoing()
                 checkEntry2();
             } else {checkEntry2()}
           }
       });
+
       disableSquares();
       timer();
       timeKeep2()
@@ -505,17 +514,17 @@
 <style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 0rem;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
         p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
         #shape {background: rgba(232, 232, 232, .80);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
-        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;margin-top: 7rem;}
+        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;}
         body {background-repeat: no-repeat;background-attachment: fixed;background-position: center;}
         #button {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
         #button:hover {background-color: gray;color: white;}.button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
         #button[disabled]{background: grey;}
-        #button2[disabled]{background: grey;}
-        #button2 {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
-         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
-         #button2:hover {background-color: gray;color: white;}
-         #button2:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
+        .btn[disabled]{background: grey;}
+        .btn{background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 10px 45px;text-decoration: none;text-indent: 0rem;text-shadow: none;
+         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin: 0.25rem;}
+        .btn:hover {background-color: gray;color: white;}
+        .btn:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
         h4 {margin: bottom 0;}
         hr {width: 15rem;}
         #gameStats {height: 1.5rem;} #gameStats2 {height: 1.5rem;}
@@ -552,7 +561,7 @@
          </div>
      </main>
      <!--Mobile-->
-     <div id="shape2" class="container d-sm-block d-md-none">
+     <div id="shape2" class="container d-sm-block d-md-none mt-5">
       <div class="row justify-content-center" id="title"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
       <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
       <h2 class="row justify-content-center mt-5"Probability Theory</h2>
@@ -572,9 +581,19 @@
 
          <div class="row justify-content-center" id="answerStage2">
           <form>
-            <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry2()">Roll!</button>
+            <!--<button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry2()">Roll!</button>-->
             <div class="mt-2"><label>Input Values: 1-6</label></div>
-            <input class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+            <input hidden class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+            <div class="row">
+            <button type="button" onclick="value1()" id="btn1" class="btn">1</button>
+            <button type="button" onclick="value2()" id="btn2" class="btn">2</button>
+            <button type="button" onclick="value3()" id="btn3" class="btn">3</button>
+            </div>
+            <div class="row">
+            <button type="button" onclick="value4()" id="btn4" class="btn">4</button>
+            <button type="button" onclick="value5()" id="btn5" class="btn">5</button>
+            <button type="button" onclick="value6()" id="btn6" class="btn">6</button>
+            </div>
           </form>
        </div>
  </div>
