@@ -360,13 +360,13 @@
                random2 = document.getElementById("rand2M");random2.appendChild(img2M);
                random3 = document.getElementById("rand3M");random3.appendChild(img3M);
                document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
+               document.getElementById("guess2").value = null;
                document.getElementById('btn1').disabled = false;
                document.getElementById('btn2').disabled = false;
                document.getElementById('btn3').disabled = false;
                document.getElementById('btn4').disabled = false;
                document.getElementById('btn5').disabled = false;
                document.getElementById('btn6').disabled = false;
-               document.getElementById("guess2").value = null;
                buttonFlag = 'n';
                ace = 0;
                stopClock2 = 10;
@@ -392,12 +392,6 @@
          document.getElementById("rand2M").innerHTML = '';
          document.getElementById("rand3M").innerHTML = '';
       }
-      document.getElementById('btn1').disabled = false;
-      document.getElementById('btn2').disabled = false;
-      document.getElementById('btn3').disabled = false;
-      document.getElementById('btn4').disabled = false;
-      document.getElementById('btn5').disabled = false;
-      document.getElementById('btn6').disabled = false;
       getGuess()
    }
    function nextRoundButton() {
