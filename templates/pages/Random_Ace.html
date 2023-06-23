@@ -363,16 +363,10 @@
                document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
                document.getElementById('guess2').disabled = false;
                document.getElementById("guess2").value = null;
-               document.getElementById('btn1').disabled = false;
-               document.getElementById('btn2').disabled = false;
-               document.getElementById('btn3').disabled = false;
-               document.getElementById('btn4').disabled = false;
-               document.getElementById('btn5').disabled = false;
-               document.getElementById('btn6').disabled = false;
                buttonFlag = 'n';
                ace = 0;
                stopClock2 = 10;
-               //resetButtons()
+               resetButtons()
                timeKeep2();
                }, 5000);}
          }
@@ -383,6 +377,12 @@
       document.getElementById('btn4').disabled = false;
       document.getElementById('btn5').disabled = false;
       document.getElementById('btn6').disabled = false;
+      document.getElementById('btn1').style.backgroundColor = "black";
+      document.getElementById('btn2').style.backgroundColor = "black";
+      document.getElementById('btn3').style.backgroundColor = "black";
+      document.getElementById('btn4').style.backgroundColor = "black";
+      document.getElementById('btn5').style.backgroundColor = "black";
+      document.getElementById('btn6').style.backgroundColor = "black";
    }
 
    function disableSquares() {
