@@ -351,6 +351,12 @@
             document.getElementById('guess2').value != null && ghostAce != 1) {
                {setTimeout(function() {keepScore2 -= Number(5);document.getElementById('noStage2').innerHTML = "-$5";document.getElementById('score2').innerHTML = keepScore2;aceNo1M();aceNo2M();aceNo3M()}, 4000);}
                }
+               document.getElementById('btn1').disabled = false;
+               document.getElementById('btn2').disabled = false;
+               document.getElementById('btn3').disabled = false;
+               document.getElementById('btn4').disabled = false;
+               document.getElementById('btn5').disabled = false;
+               document.getElementById('btn6').disabled = false;
            setTimeout(function() {
             if (keepScore < 0) {document.getElementById("score").style.color = '#ff0000';}else {document.getElementById("score").style.color = '#000000';}
             if (keepScore2 < 0) { document.getElementById("score2").style.color = '#ff0000';} else {document.getElementById("score2").style.color = '#000000';}
