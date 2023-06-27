@@ -58,8 +58,8 @@ function timeKeep() {
     }
 }
 function checkEntry(){
-  if (entry2.value != '') {incorrect = ++incorrect}; //1
-  if (entry.value != '') {incorrect = ++incorrect}; //2
+  if (entry2.value != '') {incorrect = ++incorrect};
+  if (entry.value != '') {incorrect = ++incorrect};
   val1 = document.getElementById("entry").value;
   val2 = document.getElementById("entry2").value;
   if(val2 == solution){
@@ -72,7 +72,7 @@ function checkEntry(){
     score.innerHTML = keepScore;
     score2.innerHTML = keepScore;
     gamePlay();
-  } else if (val2 != solution && val1 == '' ) {incorrect2(incorrect);} //3
+  } else if (val2 != solution && val1 == '' ) {incorrect2(incorrect);}
   if(val1 == solution || formVal == solution){
     correctAnswer.src = '/static/audio/correct.wav';
     entry.value = val1;
@@ -85,10 +85,10 @@ function checkEntry(){
     score.innerHTML = keepScore;
     score2.innerHTML = keepScore;
     gamePlay();
-  } else if (val1 != solution && val1 != '' ) {incorrect1(incorrect);} //4
+  } else if (val1 != solution && val1 != '' ) {incorrect1(incorrect);}
 }
-function incorrect2(incorrect) {  ////////////////////5
-  if(val2 != solution && incorrect > 2) {
+function incorrect2(incorrect) {
+  if(val2 != solution && incorrect > 1) {
      document.getElementsByName('entry2')[0].placeholder = 'incorrect';
      entry2.value = '';
      reset();
@@ -96,9 +96,8 @@ function incorrect2(incorrect) {  ////////////////////5
 
   }
 }
-function incorrect1(incorrect) {  ////////////////////6
-  console.log('incorrect1')
-  if(val1 != solution && incorrect > 2) {
+function incorrect1(incorrect) {
+  if(val1 != solution && incorrect > 1) {
      document.getElementsByName('entry')[0].placeholder = 'incorrect';
      entry.value = '';
      reset();
