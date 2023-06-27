@@ -35,7 +35,7 @@
    const youWon = new Audio(); youWon.autoplay = true; youWon.preload = "auto";
    const aceGuessed = new Audio(); aceGuessed.autoplay = true; aceGuessed.preload = "auto";
    const digit = new Audio(); digit.autoplay = true; digit.preload = "auto";
-   const dice_roll = new Audio(); dice_roll.autoplay = true; dice_roll.preload = "auto";
+   const dice_roll = new Audio(); dice_roll.autoplay = true; dice_roll.preload = "auto";dice_roll.volume = 1.0;
 
    function endGame() {
       addScore = keepScore;
@@ -54,12 +54,12 @@
       }
       return val1
    }
-   function value1() {val2 = '1';input = document.getElementById("guess2");input.value = '1';document.getElementById('btn1').style.backgroundColor = "blue";unlockAudio();checkEntry2();}
-   function value2() {val2 = '1';input = document.getElementById("guess2");input.value = '2';document.getElementById('btn2').style.backgroundColor = "blue";unlockAudio();checkEntry2();}
-   function value3() {val2 = '1';input = document.getElementById("guess2");input.value = '3';document.getElementById('btn3').style.backgroundColor = "blue";unlockAudio();checkEntry2();}
-   function value4() {val2 = '1';input = document.getElementById("guess2");input.value = '4';document.getElementById('btn4').style.backgroundColor = "blue";unlockAudio();checkEntry2();}
-   function value5() {val2 = '1';input = document.getElementById("guess2");input.value = '5';document.getElementById('btn5').style.backgroundColor = "blue";unlockAudio();checkEntry2();}
-   function value6() {val2 = '1';input = document.getElementById("guess2");input.value = '6';document.getElementById('btn6').style.backgroundColor = "blue";unlockAudio();checkEntry2();}
+   function value1() {unlockAudio();dice_roll.src = '/static/audio/dice_roll.mp3';val2 = '1';input = document.getElementById("guess2");input.value = '1';document.getElementById('btn1').style.backgroundColor = "blue";checkEntry2();}
+   function value2() {unlockAudio();dice_roll.src = '/static/audio/dice_roll.mp3';val2 = '1';input = document.getElementById("guess2");input.value = '2';document.getElementById('btn2').style.backgroundColor = "blue";checkEntry2();}
+   function value3() {unlockAudio();dice_roll.src = '/static/audio/dice_roll.mp3';val2 = '1';input = document.getElementById("guess2");input.value = '3';document.getElementById('btn3').style.backgroundColor = "blue";checkEntry2();}
+   function value4() {unlockAudio();dice_roll.src = '/static/audio/dice_roll.mp3';val2 = '1';input = document.getElementById("guess2");input.value = '4';document.getElementById('btn4').style.backgroundColor = "blue";checkEntry2();}
+   function value5() {unlockAudio();dice_roll.src = '/static/audio/dice_roll.mp3';val2 = '1';input = document.getElementById("guess2");input.value = '5';document.getElementById('btn5').style.backgroundColor = "blue";checkEntry2();}
+   function value6() {unlockAudio();dice_roll.src = '/static/audio/dice_roll.mp3';val2 = '1';input = document.getElementById("guess2");input.value = '6';document.getElementById('btn6').style.backgroundColor = "blue";checkEntry2();}
 
    function randInt(low, high) {
       const rndDec = Math.random();
@@ -190,7 +190,6 @@
       }
 
       function checkEntry2() {
-         dice_roll.src = '/static/audio/dice_roll.mp3';
          clearInterval(timer2);
          buttonFlag = 'y'
          document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
@@ -398,7 +397,6 @@
       random3M = document.getElementById("rand3M");random3M.appendChild(img3M);
 
       document.addEventListener("keydown", function(e) {
-         //if (e.keyCode === 13 && document.getElementById('guess1').disabled == false && document.getElementById('button2').disabled != false) {
          unlockAudio();
          if (e.keyCode === 13 && document.getElementById('guess1').disabled == false) {
            event.preventDefault();
@@ -415,7 +413,6 @@
             if (document.getElementById('guess2').value !== "") {
                 document.getElementById('guess2').disabled = true;
                 checkEntry2();
-            //} else if (document.getElementById('button2').disabled == false && document.getElementById('guess2').value !== "") {
             } else if (document.querySelector('.btn').disabled == false && document.getElementById('guess2').value !== "") {
                 keepGoing()
                 checkEntry2();
@@ -502,7 +499,6 @@
 
          <div class="row justify-content-center" id="answerStage2">
           <form>
-            <!--<button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry2()">Roll!</button>-->
             <div class="mt-2"><label>Input Values: 1-6</label></div>
             <input hidden class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
             <div class="row">
