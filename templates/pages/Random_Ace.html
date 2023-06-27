@@ -112,12 +112,11 @@
    function aceYes3M() {yes3 = document.getElementById("rand3M");yes3.style.backgroundColor = "#66ff33";yes13 = document.getElementById("guess2");yes13.style.backgroundColor = "#66ff33";}
 
    function checkEntry() {
-      unlockAudio();
+      dice_roll.src = '/static/audio/dice_roll.mp3';
       clearInterval(timer2);
       buttonFlag = 'y'
       flag = 'y'
       getGuess();
-      dice_roll.src = '/static/audio/dice_roll.mp3';
       document.getElementById('yesStage').innerHTML = ""; document.getElementById('noStage').innerHTML = "";
       if (document.getElementById('guess1').value !== "") {
          let ghostAce = randInt(0,2);
@@ -191,11 +190,10 @@
       }
 
       function checkEntry2() {
-         unlockAudio();
+         dice_roll.src = '/static/audio/dice_roll.mp3';
          clearInterval(timer2);
          buttonFlag = 'y'
          document.getElementById('yesStage2').innerHTML = ""; document.getElementById('noStage2').innerHTML = "";
-         dice_roll.src = '/static/audio/dice_roll.mp3';
          if (document.getElementById('guess2').value !== "") {
             let ghostAce = randInt(0,2);
             if (ghostAce == 1) {
