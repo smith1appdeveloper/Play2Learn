@@ -19,6 +19,7 @@ let val1 = '';
 let val01 = '';
 let formVal = '';
 let i = '';
+let incorrect = 0;
 const correctAnswer = new Audio(); correctAnswer.autoplay = true;
 
 function randInt(low, high) {
@@ -57,6 +58,8 @@ function timeKeep() {
     }
 }
 function checkEntry(){
+  if (entry2.value != '') {incorrect = ++incorrect}; //1
+  if (entry.value != '') {incorrect = ++incorrect}; //2
   val1 = document.getElementById("entry").value;
   val2 = document.getElementById("entry2").value;
   if(val2 == solution){
@@ -69,7 +72,7 @@ function checkEntry(){
     score.innerHTML = keepScore;
     score2.innerHTML = keepScore;
     gamePlay();
-  }
+  } else if (val2 != solution && val1 == '' ) {incorrect2(incorrect);} //3
   if(val1 == solution || formVal == solution){
     correctAnswer.src = '/static/audio/correct.wav';
     entry.value = val1;
@@ -82,8 +85,28 @@ function checkEntry(){
     score.innerHTML = keepScore;
     score2.innerHTML = keepScore;
     gamePlay();
+  } else if (val1 != solution && val1 != '' ) {incorrect1(incorrect);} //4
+}
+function incorrect2(incorrect) {  ////////////////////5
+  if(val2 != solution && incorrect > 2) {
+     document.getElementsByName('entry2')[0].placeholder = 'incorrect';
+     entry2.value = '';
+     reset();
+     setTimeout( function() {document.getElementsByName('entry2')[0].placeholder = "answer";}, 1000);
+
   }
 }
+function incorrect1(incorrect) {  ////////////////////6
+  console.log('incorrect1')
+  if(val1 != solution && incorrect > 2) {
+     document.getElementsByName('entry')[0].placeholder = 'incorrect';
+     entry.value = '';
+     reset();
+     setTimeout( function() {document.getElementsByName('entry')[0].placeholder = "answer";}, 1000);
+
+  }
+}
+function reset() {incorrect = 0;}
 function gamePlay() {
   num1 = (randInt(1,9));
   num2 = (randInt(1,9));
@@ -153,7 +176,7 @@ window.addEventListener('load', function() {
               <p id="display" class="mt-3"> Equation</p><br>
            </div>
            <div class="row justify-content-center mt-5">
-             <input id="entry" class="text-center"  placeholder="answer" type="number" pattern="[0-9]*" inputmode="numeric">
+             <input id="entry" name="entry" class="text-center"  placeholder="answer" type="number" pattern="[0-9]*" inputmode="numeric">
            </div>
         </div>
     </div>
@@ -175,7 +198,7 @@ window.addEventListener('load', function() {
             <p id="display2" class="mt-3"> Equation</p><br>
          </div>
          <div class="row justify-content-center mt-3">
-           <input id="entry2" class="text-center"  placeholder="answer" type="number" pattern="[0-9]*" inputmode="numeric">
+           <input id="entry2" name="entry2" class="text-center"  placeholder="answer" type="number" pattern="[0-9]*" inputmode="numeric">
          </div>
       </div>
   </div>
