@@ -3,11 +3,20 @@
 {% block title %}development{% endblock %}
 {% block main %}
 <script>
+
   window.addEventListener('load', function() {
+    let dev = 'n';
     let section = document.querySelector("p");
     let sectionM = document.querySelector(".quotesectionSmall");
-   setTimeout(function() {section.innerText = "Open Sesame!";sectionM.innerText = "Open Sesame!";}, 500);
-   setTimeout(function() {section.innerText = "Development Environment";sectionM.innerText = "Development Environment";}, 2000);
+    dev = sessionStorage.getItem("dev");
+    console.log(dev);
+
+    if (dev == 'y') {
+      dev = 'n';
+      setTimeout(function() {section.innerText = "Open Sesame!";sectionM.innerText = "Open Sesame!";}, 500);
+      setTimeout(function() {section.innerText = "Development Environment";sectionM.innerText = "Development Environment";}, 2000);
+
+    } else {dev = 'n';section.innerText = "Beta";sectionM.innerText = "Beta";}
 });
 </script>
 <style>

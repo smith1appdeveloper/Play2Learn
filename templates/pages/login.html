@@ -7,10 +7,12 @@
     window.addEventListener('load', function(e) {
         const form = document.getElementById('form');
         const form2 = document.getElementById('form2');
+        const dev = 'y';
 
         form.addEventListener('submit', function(e) {
             if (document.getElementById('pass').value == 'Alchemyi$L0v3') {
                 event.preventDefault();
+                sessionStorage.setItem("dev", dev);
                 location.assign("{% url 'pages:dev' %}");
             } else {
                alert('Incorrect, please try again.');
@@ -20,6 +22,7 @@
         form2.addEventListener('submit', function(e) {
             if (document.getElementById('pass2').value == 'Alchemyi$L0v3') {
                 event.preventDefault();
+                sessionStorage.setItem("dev", dev);
                 location.assign("{% url 'pages:dev' %}");
             } else {
                alert('Incorrect, please try again.');

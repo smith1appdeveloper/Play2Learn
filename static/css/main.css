@@ -14,6 +14,9 @@ body, html{
   background-size: cover !important;
   background-position: right 75% bottom 45%;
  }
+ #beta {
+  padding-right: 0;
+ }
  #imagespace {
   width: 100%;
   position: center;
