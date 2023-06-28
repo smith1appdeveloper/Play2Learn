@@ -4,16 +4,18 @@
 {% block main %}
 
 <script>
-//let addScore = {};
-//addScore = 10
+   const gameOver = new Audio(); gameOver.autoplay = true; gameOver.volume = .2;
+   function unlockAudio() {
+      gameOver.src = '/static/audio/silence.wav';
+   }
 window.addEventListener('load', function() {
    addScore = sessionStorage.getItem("addScore");
 
    if (isNaN(addScore)) {
-      //gameOver.src = '/static/audio/gameover.wav';
+      gameOver.src = '/static/audio/gameover.wav';
       score.innerText = 0;
    } else {
-      //gameOver.src = '/static/audio/gameover.wav';
+      gameOver.src = '/static/audio/gameover.wav';
       let score = document.getElementById('score');
       score.innerText = addScore;
    }

@@ -21,6 +21,7 @@ let formVal = '';
 let i = '';
 let incorrect = 0;
 const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+const wrongAnswer = new Audio(); wrongAnswer.autoplay = true; wrongAnswer.preload = "auto";
 
 function randInt(low, high) {
   const rndDec = Math.random();
@@ -89,6 +90,7 @@ function checkEntry(){
 }
 function incorrect2(incorrect) {
   if(val2 != solution && incorrect > 1) {
+     wrongAnswer.src = '/static/audio/wrongAnswer.wav';
      document.getElementsByName('entry2')[0].placeholder = 'incorrect';
      entry2.value = '';
      reset();
@@ -98,6 +100,7 @@ function incorrect2(incorrect) {
 }
 function incorrect1(incorrect) {
   if(val1 != solution && incorrect > 1) {
+     wrongAnswer.src = '/static/audio/wrongAnswer.wav';
      document.getElementsByName('entry')[0].placeholder = 'incorrect';
      entry.value = '';
      reset();
@@ -132,9 +135,10 @@ window.location.assign("{% url 'mathfacts:final' %}");
 }
 function unlockAudio() {
   correctAnswer.src = '/static/audio/silence.wav';
+  wrongAnswer.src = '/static/audio/silence.wav';
  }
 function startMusic() {
-  document.getElementById("audio").play();
+ // document.getElementById("audio").play();
 }
 window.addEventListener('load', function() {
   const answer = document.getElementById('entry');

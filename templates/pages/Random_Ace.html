@@ -322,7 +322,6 @@
       if (buttonFlag == 'n' && val1 != '') {nextRoundButton()}
       }
       if (val2 == '') {
-         //getGuess2()
       if (buttonFlag == 'n' && val2 != '') {nextRoundButton()}
       }
    }
@@ -339,7 +338,9 @@
                }
             if (stopClock2 < 2 && stopClock2 > 0) {
                document.getElementById('noStage').innerHTML = "-$5";keepScore -= Number(5);document.getElementById('score').innerHTML = keepScore;wrongAnswer.src = '/static/audio/wrongAnswer.wav';aceNo1();aceNo2();aceNo3()
+               if (keepScore < 0) { document.getElementById("score").style.color = '#ff0000';} else {document.getElementById("score").style.color = '#000000';}
                document.getElementById('noStage2').innerHTML = "-$5";keepScore2 -= Number(5);document.getElementById('score2').innerHTML = keepScore2;wrongAnswer.src = '/static/audio/wrongAnswer.wav';aceNo1M();aceNo2M();aceNo3M()
+               if (keepScore2 < 0) { document.getElementById("score2").style.color = '#ff0000';} else {document.getElementById("score2").style.color = '#000000';}
                setTimeout(function() {
                   document.getElementById('noStage').innerHTML = " ";
                   document.getElementById('noStage2').innerHTML = " ";
