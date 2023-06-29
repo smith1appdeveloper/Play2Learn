@@ -16,7 +16,10 @@
       setTimeout(function() {section.innerText = "Open Sesame!";sectionM.innerText = "Open Sesame!";}, 500);
       setTimeout(function() {section.innerText = "Development Environment";sectionM.innerText = "Development Environment";}, 2000);
 
-    } else {dev = 'n';section.innerText = "Beta";sectionM.innerText = "Beta";}
+    } else {
+      dev = 'n';section.innerText = "Welcome to Beta environment";sectionM.innerText = "Welcome to Beta environment";
+      setTimeout(function() {section.innerText = "Beta";sectionM.innerText = "Beta";}, 2000);
+    }
 });
 </script>
 <style>
