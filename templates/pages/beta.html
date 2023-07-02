@@ -1,14 +1,14 @@
 {% extends "_base.html" %}
 {% load static %}
-{% block title %}Development{% endblock %}
+{% block title %}Beta{% endblock %}
 {% block main %}
 <script>
 
   window.addEventListener('load', function() {
     let section = document.querySelector("p");
     let sectionM = document.querySelector(".quotesectionSmall");
-    setTimeout(function() {section.innerText = "Open Sesame!";sectionM.innerText = "Open Sesame!";}, 500);
-    setTimeout(function() {section.innerText = "Development Environment";sectionM.innerText = "Development Environment";}, 3500);
+    section.innerText = "Welcome to Beta environment";sectionM.innerText = "Welcome to Beta environment";
+    setTimeout(function() {section.innerText = "Beta";sectionM.innerText = "Beta";}, 3000);
 });
 </script>
 <style>
@@ -83,18 +83,18 @@
     <div id="background" class="container d-none d-md-block d-xl-none">
       <div id="container1" class="row">
         <div class="container col-md-6 border-right border-dark d-none d-md-block d-xl-none">
-          <div class="row justify-content-center"><h3>Final Tally</h3><p class="ml-2 font-italic">beta</p></div>
+          <div class="row justify-content-center"><h3>Random Ace&#9824;</h3><p class="ml-2 font-italic">beta</p></div>
           <p class="d-none d-md-block d-xl-none text-left mt-3">
-            1. Lorem ipsum dolor sit amet. Eos.<br>
-            2. Non molestiae repudiandae et enim alias.<br>
-            3. Et aliquam neque non veniam libero et beatae.<br>
-            4. nulla expedita! Aut voluptatem repellat et.<br>
-            5. Qui deleniti enim qui asperiores sunt eum.<br>
-            6. Eum accusantium illo et atque sequi et!<br>
-            7. Ut omnis ratione et amet voluptate sed.<br>
-            8. Non molestiae repudiandae et enim.<br>
-            9. Et aliquam neque non veniam libero.<br>
-            10. A ipsam molestiae et nulla.<br>
+            1. Choose a digit between 1-6 and press Roll.<br>
+            2. 3 digits will be randomly selected.<br>
+            3. Each match is awarded by the matched value.<br>
+            4. Select digit 1 to try and match the ace.<br>
+            5. Fail to match at all, your pot decreases by 5.<br>
+            6. Match the ace and your pot increases by 10!<br>
+            7. Fail to match the ace and your pot decreases by 5.<br>
+            8. There's a 1 in 5 chance of matching with each roll.<br>
+            9. You'll get 60 seconds.<br>
+            10. To win simply stay in the black.<br>
             <p class="text-left">Good Luck!</p><br>
           </p>
           <a class="button-link mt-2" href="{% url 'pages:random_ace' %}">Play Now!</a>
@@ -132,21 +132,21 @@
     <div id="backgroundXL" class="container col-md-6 d-none d-xl-block">
       <div id="container1" class="row">
         <div class="container col-md-6 border-right border-dark d-none d-xl-block">
-          <div class="row justify-content-center"><h3>Final Tally</h3><p class="ml-2 font-italic">beta</p></div>
+          <div class="row justify-content-center"><h3>Random Ace&#9824;</h3><p class="ml-2 font-italic">beta</p></div>
           <p class="d-none d-lg-block text-left mt-3">
-            1. Lorem ipsum dolor sit amet. Eos.<br>
-            2. Non molestiae repudiandae et enim alias.<br>
-            3. Et aliquam neque non veniam libero et beatae.<br>
-            4. nulla expedita! Aut voluptatem repellat et.<br>
-            5. Qui deleniti enim qui asperiores sunt eum.<br>
-            6. Eum accusantium illo et atque sequi et!<br>
-            7. Ut omnis ratione et amet voluptate sed.<br>
-            8. Non molestiae repudiandae et enim.<br>
-            9. Et aliquam neque non veniam libero.<br>
-            10. A ipsam molestiae et nulla.<br>
+            1. Choose a digit between 1-6 and press Roll.<br>
+            2. 3 digits will be randomly selected.<br>
+            3. Each match is awarded by the matched value.<br>
+            4. Select digit 1 to try and match the ace.<br>
+            5. Fail to match at all, your pot decreases by 5.<br>
+            6. Match the ace and your pot increases by 10!<br>
+            7. Fail to match the ace and your pot decreases by 5.<br>
+            8. There's a 1 in 5 chance of matching with each roll.<br>
+            9. You'll get 60 seconds.<br>
+            10. To win simply stay in the black.<br>
             <p class="text-left">Good Luck!</p><br>
           </p>
-          <a class="button-link mt-2" href="{% url 'pages:final_tally' %}">Play Now!</a>
+          <a class="button-link mt-2" href="{% url 'pages:random_ace' %}">Play Now!</a>
         </div>
         <div id="container2" class="col-md-6 border-right border-dark d-none d-xl-block">
           <div class="row justify-content-center"><h3>Who am I&#63;</h3><p class="ml-2 font-italic">beta</p></div>
@@ -185,7 +185,7 @@
     <div id="mobileImage2"><img src="{% static 'Images/stairs2.jpg' %}"class="img-thumbnail d-sm-block d-md-none mb-1">
       <div id="cUsM" class="d-sm-block d-md-none">
         <div id="smallScreen1" class="container mb-2">
-          <div class="row justify-content-center ml-1"><h3 class="mt-3">Final Tally</h3><p class="ml-2 font-italic">beta</p></div>
+          <div class="row justify-content-center ml-1"><h3 class="mt-3">Random Ace</h3><p class="ml-2 font-italic">beta</p></div>
             <a class="row button-link2 font-weight-bold" href="{% url 'pages:random_ace' %}">Play Now!</a>
         </div>
         <div id="smallScreen2" class="container">

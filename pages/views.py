@@ -47,6 +47,9 @@ class LoginView(TemplateView):
 class devView(TemplateView):
     template_name = 'pages/dev.html'
 
+class betaView(TemplateView):
+    template_name = 'pages/beta.html'
+
 class Random_AceView(TemplateView):
     template_name = 'pages/Random_Ace.html'
 
@@ -64,6 +67,9 @@ class Random_Ace_LoseMView(TemplateView):
 
 class Who_am_IView(TemplateView):
     template_name = 'pages/Who_am_I.html'
+
+class Final_TallyView(TemplateView):
+    template_name = 'pages/Final_Tally.html'
 
 
 
