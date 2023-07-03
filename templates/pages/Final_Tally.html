@@ -546,7 +546,7 @@
          <div class="row justify-content-center" id="answerStage2">
           <form>
             <div class="mt-2"><label>Input Values: 1-6</label></div>
-            <input pattern="[0-9]*" type="text" name="creditcard">
+            <input class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" pattern="[0-9]*" type="text" name="creditcard">
             <input hidden class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
             <div class="row">
             <button type="button" onclick="value1()" id="btn1" class="btn">1</button>
