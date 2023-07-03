@@ -444,6 +444,7 @@
 
       document.addEventListener("keydown", function(e) {
          unlockAudio();
+
          if (e.keyCode === 13 && document.getElementById('guess1').disabled == false) {
            event.preventDefault();
            if (document.getElementById('guess1').value !== "") {
@@ -454,6 +455,7 @@
                checkEntry();
            } else {checkEntry()}
          }
+
          if (e.keyCode === 13 && document.getElementById('guess2').disabled == false && document.getElementById('button').disabled != false) {
             event.preventDefault();
             if (document.getElementById('guess2').value !== "") {
@@ -464,6 +466,7 @@
                 checkEntry2();
             } else {checkEntry2()}
           }
+
       });
 
       document.addEventListener("touchmove", function() {
@@ -479,7 +482,7 @@
 <style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 0rem;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
         p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
         #shape {background: rgba(232, 232, 232, .80);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
-        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto;}
+        #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto; margin-top: 5rem;}
         body {background-repeat: no-repeat;background-attachment: fixed;background-position: center;}
         #button {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
@@ -525,7 +528,7 @@
          </div>
      </main>
      <!--Mobile-->
-     <div id="shape2" class="container d-sm-block d-md-none mt-3">
+     <div id="shape2" class="container d-sm-block d-md-none">
       <div class="row justify-content-center" id="title"><h4 class=" mt-1 font-italic text-danger">Random</h4><h2 class="ml-2 font-weight: bold">ACE&#9824;</h2></div>
       <!--<div class="row justify-content-center mt-5"><h2>Roll3</h2><h4 class="ml-2 mt-1 font-italic text-danger">feeling lucky?</h4></div>
       <h2 class="row justify-content-center mt-5"Probability Theory</h2>
@@ -546,7 +549,7 @@
          <div class="row justify-content-center" id="answerStage2">
           <form>
             <div class="mt-2"><label>Input Values: 1-6</label></div>
-            <input class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" pattern="[0-9]*" type="text" name="creditcard">
+            <input class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" pattern="[0-9]*" type="text" name="mobile">
             <!--<input hidden class="square justify-content-center mt-1" id="guess2" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
             <div class="row">
             <button type="button" onclick="value1()" id="btn1" class="btn">1</button>
