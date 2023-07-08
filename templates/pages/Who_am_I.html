@@ -4,95 +4,732 @@
 {% block main %}
 
 <script>
-   let i = 1;
-   let m = 1;
-   const quotes = new Array ();
-         quotes[0] = 'Coming Soon';
-         quotes[1] = 'Who am I?';
+  let currentState = null;
+  let timer = null;
+  let state = null;
+  let stateAbbr = null;
+  let stateCapital = null;
+  let stateNickname = null;
+  let selectButton = null;
+  let stateCounter = 1;
+  let timeLeft = 0;
+  let score = 0;
+  let playedIcons = [];
+  const correctAnswer = new Audio(); correctAnswer.autoplay = true;
+  const wrongAnswer = new Audio(); wrongAnswer.autoplay = true;
+  const youWon = new Audio(); youWon.autoplay = true;
 
- function runQuotes2() {
-   if (m === 1) {
-   let sectionM = document.querySelector(".quotesectionSmall");
-   sectionM.innerText = quotes[0];
-   m = m + 1;
-    }
-   else if (m === 2) {
-   let sectionM = document.querySelector(".quotesectionSmall");
-   sectionM.innerText = quotes[1];
-   m = 1;
-    }
-}
-function runQuotes3() {
-   if (i === 1) {
-   let section = document.querySelector("p");
-   section.innerText = quotes[0];
-   i = i + 1;
-   }
-   else if (i === 2) {
-   let section = document.querySelector("p");
-   section.innerText = quotes[1];
-   i = 1;
-   }
-}
-window.addEventListener('load', function RunQuotesau() {
+let iconData = [
+['Angelina Jolie','My first leading role was in the 1995 film Hackers.','I am a huge humanitarion, passionate about many causes including conservation, education, women''s rights and the plight of refugees around the world.',
+'My biggest commercial successes include the fantasy picture Maleficent (2014), its 2019 sequel, and the superhero film Eternals (2021).']
 
-   let sectionM = document.querySelector(".quotesectionSmall");
-   sectionM.innerText = quotes[0];
-   setInterval(runQuotes2, 1000);
-   let section = document.querySelector("p");
-   section.innerText = quotes[0];
-   setInterval(runQuotes3, 1000);
+2.Brad Pitt
+a. In my breakthrough role I played a cowboy hitchhiker in the Ridley Scott road film Thelma & Louise (1991).
+b. I've won 3 Academy Awards as a producer (The Departed (2006), 12 Years a Slave (2013), Moonlight (2016)) and 1 for best supporting actor (Once Upon a Time in Hollywood (2019)).
+c. I've starred in many critically acclaimed films including: Seven (1995), Troy (2004), World War Z (2013), Fight Club (1999), Babel (2006), Inglourious Basterds (2009) and The Big Short (2015).
+
+3.Denzel Washington
+a. I began my career in off-Broadway theatres but came to national prominence in the TV medical drama series St. Elsewhere (1982–1988).
+b. I am a actor, producer and director. Winning a Tony award for my perfomance in the Broadway play Fences (2010) and later directing, producing, and starring in the acclaimed film adaptation (2016).
+c. I won the Academy Award for Best Actor for my perfomance in the 2001 crime thriller Training Day.
+
+4.Dwayne "The Rock" Johnson
+a. My films have grossed over $3.5 billion in North America and over $10.5 billion worldwide, making me one of the world's highest-grossing and highest-paid actors
+b. my first leading role in film was in the action fantasy The Scorpion King (2002).
+c. I started my career as a professional wrestlers and played a integral part in the development and success of the WWE.
+
+5.Halle Berry
+a. I began my career as a model, finishing as the first runner-up in the Miss USA pageant and coming in sixth in the Miss World pageant 1986.
+b. My breakthrough role in film was in the romantic comedy Boomerang (1992).
+c. I became the first African American woman to win the Academy Award for Best Actress for my performance as a struggling widow in the romantic drama Monster's Ball (2001).
+
+6.Idris Elba
+a. I am a English actor/director and alumnus of the National Youth Music Theatre in London.
+b. My films have grossed over 9.8 billion globaly with 3.6 billion of that in North America alone.
+c. My breakthrough performance was of the character Stringer Bell in the HBO series The Wire (2002–2004).
+
+7.Issa Rae
+a. I was included in the annual Time 100 list of the most influential people in the world twice 2018 and 2022 (Time Magazine).
+b. I am an American actor, writer, and producer. I first garnered attention for my work on the YouTube web series Awkward Black Girl.
+c. I acheived national prominence as the co-creator, co-writer, and star of the HBO television series Insecure (2016–2021).
+
+8.Johnny Depp
+a. I had my breakthrough role in the horror film A Nightmare on Elm Street (1984).
+b. I've won 15 People's Choice Awards, 5 MTV Movie & TV Awards, 3 Nickelodeon Kids' Choice Awards and 1 Golden Globe Award for my performance in the film Sweeney Todd: The Demon Barber of Fleet Street (2008).
+c. In the 2000s, I became one of the most commercially successful film stars in the world playing Captain Jack Sparrow in the Walt Disney film series Pirates of the Caribbean (2003–2017).
+
+9.Jonathan Majors
+a. I graduated from Yale University with a Master of Fine Arts.
+b. My breakthrough role was starring in the independent feature film The Last Black Man in San Francisco (2019).
+c. I've starred in several blockbuster films including The Harder They Fall (2021), Devotion (2022) and Creed III (2023).
+
+10.Margot Robbie
+a. I am an Australian actor and producer, Known for my work in both blockbusters and independent films.
+b. My breakthrough role was in the black comedy film The Wolf of Wall Street (2013).
+c. I have since aceheived critical acclaim for my roles in The Legend of Tarzan (2016), Suicide Squad (2016),  I, Tonya (2017), Bombshell (2019) and Babylon (2022) among others.
+
+11.Morgan Freeman
+a. I rose to fame in the 1970s for my role in the children's television series The Electric Company.
+b. I won a academy award for best supporting actor in the 2004 film Million Dollar Baby.
+c. Over my career spanning five plus decades, I've starred in many iconic films including: Driving Miss Daisy (1989), The Shawshank Redemption (1994), Glory (1989), Lean on Me (1989) and Unforgiven (1992) amoung others.
+
+12.Tom Cruise
+a. I had my breakthrough leading role in the comedy film Risky Business (1983).
+b. I am a outspoken advocate for the Church of Scientology.
+c. From the early 1980s to present day I have starred in many iconic films including Top Gun (1986), Born on the Fourth of July (1989),  A Few Good Men (1992), the Mission: Impossible films (1996-2018) and many more.
+
+13.Tom Hanks
+a. I am regarded as an American cultural icon, my films have grossed more than $4.9 billion in North America and more than $9.96 billion worldwide.
+b. I've collaborated with acclaimed film director Steven Spielberg on five films: Saving Private Ryan (1998), Catch Me If You Can (2002), The Terminal (2004), Bridge of Spies (2015), and The Post (2017).
+c. I won two consecutive Academy Awards for Best Actor one for my starring role in the 1993 film Philadelphia and the other for my performance in the 1994 film Forrest Gump.
+
+14.Samuel L. Jackson
+a. I am one of the highest-grossing actors of all time, my films have collectively grossed over $27 billion worldwide.
+b. I am considered to be one of the most widely recognized actors of my generation, starring in well over 150 major film projects.
+c. I have given several iconic performances including Jules Winnfield in the 1994 film Pulp Fiction, Carl Lee Hailey in the 1996 film A Time to Kill and Elijah Price/Mr. Glass in the 2000 film Unbreakable.
+
+15.Scarlett Johansson
+a. Named as one of the 100 most influential people in the world in 2021 (Time Magazine), my films have grossed over $14.3 billion worldwide.
+b. I made my film debut in the fantasy comedy North (1994) and gained early recognition for my roles in the films Manny & Lo (1996), The Horse Whisperer (1998), and Ghost World (2001).
+c. I portrayed the character Black Widow in the Marvel Cinematic Universe film Iron Man 2, which lead to a solo film Black Widow (2021).
+
+1.Beyoncé
+a. I am one of the best-selling music artists of all time. Selling over 200 million records worldwide as a single artist and winning 32 grammys.
+b. I rose to fame in the late 1990s as a member of the legndary R&B group Destiny's Child.
+c. I've been affectionately nicknamed "Queen Bey".
+
+2.Cynthia Erivo
+a. I gained recognition as a powerful vocalist and actor for starring in the Broadway revival of The Color Purple from 2015 to 2017.
+b. I won a Grammy Award for Best Musical Theater Album.
+c. I was nominated for a  Academy Award For my portrayal of American abolitionist Harriet Tubman in the biopic Harriet (2019).
+
+3.Ice Cube
+a. I started my career in music co-founding teh iconic rap group N.W.A of which I served as its lead rapper.
+b. I made my debut in film performing the character "Doughboy" in director John Singleton's feature debut film Boyz n the Hood(1991).
+c. In addition to my successful music career as of 2023 I've appeared in over 40 films including: The Friday series, The Players Club, Three Kings, The Barbershop series, Ride Along and many more.
+
+4.Janet Jackson
+a. I am the tenth and youngest child in a family of very successfuly entertainers.
+b. I'm a singer, songwriter, actress, and dancer selling over 100 million records making me one of the world's best-selling music artists.
+c. I've won five Grammy Awards, eleven Billboard Music Awards, eleven American Music Awards, a star on the Hollywood Walk of Fame, eight Guinness World Records entries and was inducted to the Rock and Roll Hall of Fame.
+
+5.Jamie Foxx
+a. I am a actor, comedian, and singer.
+b. My career took off after being a cast member of the pioneering and wildly successful comedy sketch show In Living Color.
+c. I won the Academy Award, BAFTA, Screen Actors Guild Award, and Golden Globe Award for Best Actor portraying the great Ray Charles in the 2004 film Ray.
+
+6.Jennifer Lopez
+a. I am a actor, dancer and singer. In 2001 I became the first woman to have a number-one album and film in the same week.
+b. I am considered a pop culture icon, With a cumulative film gross of 3.1 billion in the US and estimated global sales of 80 million records.
+c. My most successful singles on the US Billboard Hot 100 include the number one singles "If You Had My Love", "I'm Real", "Ain't It Funny" and "All I Have".
+
+7.Lady Gaga
+a. I am a singer, songwriter, and actor, known for image reinventions and versatility in the entertainment industry.
+b. I have sold 170 million records making me one of the world's best-selling music artists and the only female artist to achieve four singles each selling at least 10 million copies globally.
+c. I started my acting career in 2015 starring in the mini-series American Horror Story: Hotel (2015–2016) and the musical film A Star Is Born (2018).
+
+8.Leslie Odom Jr.
+a. I am a actor, songwriter and singer.
+b. I gained recognition for my portrayal of Aaron Burr in the musical Hamilton.
+c. I've starred in many movies and tv shows since 2012 including: Person of Interest (2013–2014), Red Tails (2012), Murder on the Orient Express (2017), Harriet (2019) and Glass Onion (2022) among others.
+
+9.Mary J. Blige
+a. I'm a  singer, songwriter, and actor winning nine Grammy Awards, a Primetime Emmy Award, four American Music Awards, twelve NAACP Image Awards, and twelve Billboard Music Awards, including the Billboard Icon Award.
+b. My career began in 1988 when I was signed to Uptown Records by its founder Andre Harrell, releasing my debut album What's the 411? (1992).
+c. I have release 14 studio albums, including four Billboard 200 number-one albums. Some of my hits include "Real Love", "You Remind Me", "I'm Goin' Down", "Not Gon' Cry", "Be Without You", "Just Fine" and the Billboard Hot 100 number-one single "Family Affair".
+
+10.Snoop Dogg
+a. I am a muscian and actor, I gained recognition when I was featured on Dr. Dre's debut solo single, "Deep Cover" and on Dre's iconic debut solo album, The Chronic.
+b. Ive won the American Music Award, a Primetime Emmy Award, and had 17 nominations at the Grammy Awards.
+c. My debut album Doggystyle (1993) sold 800,000 copies in its first week and was certified quadruple-platinum in 1994.
+
+11.Terrence Howard
+a. My first major roles were in the 1995 films Dead Presidents and Mr. Holland's Opus.
+b. I broke into the mainstream with a succession of television and cinema roles between 2004 and 2006.
+c. I have had prominent roles in many movies, including Winnie Mandela, Ray, Lackawanna Blues, Crash, Four Brothers, Big Momma's House, Get Rich or Die Tryin', Idlewild, August Rush, The Brave One, and Prisoners.
+
+12.Tupac Shakur
+a. I am a muiscian and actor.
+b. I am among the best-selling music artists, having sold more than 75 million records worldwide.
+c. My double-length posthumous album Greatest Hits (1998) is one of only nine hip hop albums—to have been certified Diamond in the United States.
+
+13.Will Smith
+a. I am a muiscian and actor, considered one of Hollywood's most bankable stars.
+b. I have won a Academy Award, a BAFTA Award and four Grammy Awards. As of 2023 my films have grossed over $9.3 billion globally.
+c. I have starred in several important and iconic films including: Independence Day (1996), Ali (2001) and The Pursuit of Happyness (2006).
+
+14.Whitney Houston
+a. I've been affectionately nicknamed "the Voice", My accolades include eight Grammy Awards, 16 Billboard Music Awards, two Emmy Awards, and 28 Guinness World Records.
+b. I am one of the bestselling music artists of all time, with over 200 million records sold worldwide. I've been inducted into the Grammy Hall of Fame (twice), the Rock and Roll Hall of Fame, the Rhythm and Blues Music Hall of Fame, the Georgia Music Hall of Fame, the New Jersey Hall of Fame, and the National Recording Registry at the Library of Congress.
+c. I made my acting debut in the romantic thriller film The Bodyguard (1992), which became the tenth highest-grossing film to that date. Its soundtrack won the Grammy Award for Album of the Year and remains the bestselling soundtrack album of all time.
+
+15.Zendaya
+a. I began my career as a child model and backup dancer. I made my TV debut as Rocky Blue on the Disney Channel sitcom Shake It Up (2010–2013).
+b. My debut in film came in 2017 with the superhero film Spider-Man: Homecoming, I later starred in its sequels.
+c. Arguable my breakthrough role was that of  Rue Bennett, a struggling drug addicted teenager, in the HBO teen drama series Euphoria (2019–present).
+  ['Wisconsin','WI','Madison','The Badger State'],
+  ['Wyoming','WY','Cheyenne','The Equality State']
+];
+function endGame() {
+  percentage = score / 50;
+  result = percentage * 100;
+  percentage2 = score / 50;
+  result2 = percentage2 * 100;
+
+  sessionStorage.setItem("result", result);
+  sessionStorage.setItem("percentage", percentage);
+  sessionStorage.setItem("result2", result2);
+  sessionStorage.setItem("percentage2", percentage2);
+
+  if (result > 89 || result2 > 89) {
+     location.assign("{% url 'uscapitals:success' %}");
+  } else  {
+     location.assign("{% url 'uscapitals:keepgoing' %}");
+  }
+}
+function randInt(low, high) {
+  const rndDec = Math.random();
+  const rndInt = Math.floor(rndDec * (high - low + 1) + low);
+  return rndInt;
+}
+function getNextState() {
+  let random1 = 0, random2 = 0, random3 = 0
+
+  iconDataSet = randInt(0,49);
+  if (playedIcons.includes(iconDataSet)) {
+     while (playedIcons.includes(iconDataSet)) {
+        iconDataSet = randInt(0,49);
+     }
+  }
+  playedIcons.push(iconDataSet);
+  state = iconData[iconDataSet][0];
+  stateAbbr = iconData[iconDataSet][1];
+  stateCapital = iconData[iconDataSet][2];
+  stateNickname = iconData[iconDataSet][3];
+
+  presentState = document.getElementById("titlesection");presentState.innerHTML = state;
+  presentAbbr = document.getElementById("abbr");presentAbbr.innerHTML = stateAbbr;
+  presentState2 = document.getElementById("titlesection2");presentState2.innerHTML = state;
+  presentAbbr2 = document.getElementById("abbr2");presentAbbr2.innerHTML = stateAbbr;
+
+  while (random1 == 0 || random1 == iconDataSet) {
+     random1 = randInt(0,49);
+     if (random1 == iconDataSet) {random1 = randInt(0,49);}
+  }
+  while (random2 == 0 || random2 == iconDataSet || random2 == random1) {
+     random2 = randInt(0,49);
+     if (random2 == iconDataSet) {random2 = randInt(0,49);}
+  }
+  while (random3 == 0 || random3 == iconDataSet || random3 == random1 || random3 == random2) {
+     random3 = randInt(0,49);
+     if (random3 == iconDataSet) {random3 = randInt(0,49);}
+  }
+
+  return {'iconDataSet': iconDataSet, 'state': state, 'stateAbbr': stateAbbr, 'stateCapital': stateCapital, 'stateNickname': stateNickname, 'random1': random1, 'random2': random2, 'random3': random3};
+}
+function getNextGameBoard() {
+  console.log("state Counter", stateCounter)
+  if (stateCounter > 50) {endGame()} else {
+  attempt = document.getElementById('attemptStage'); attempt.innerHTML = "US Capitals";
+  attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "US Capitals";
+  document.getElementById('button1').disabled = false;
+  document.getElementById('button2').disabled = false;
+  document.getElementById('button3').disabled = false;
+  document.getElementById('button4').disabled = false;
+  document.getElementById('button12').disabled = false;
+  document.getElementById('button22').disabled = false;
+  document.getElementById('button32').disabled = false;
+  document.getElementById('button42').disabled = false;
+
+  currentState = getNextState();
+
+  selectButton = randInt(0,3)
+  if (selectButton == 0) {
+     presentAnswer = document.getElementById("button1");presentAnswer.innerHTML = stateCapital;
+     presentAnswer2 = document.getElementById("button12");presentAnswer2.innerHTML = stateCapital;
+     decoy1 = document.getElementById("button2");decoy1.innerHTML = iconData[currentState.random1][2];
+     decoy2 = document.getElementById("button3");decoy2.innerHTML = iconData[currentState.random2][2];
+     decoy3 = document.getElementById("button4");decoy3.innerHTML = iconData[currentState.random3][2];
+     decoy12 = document.getElementById("button22");decoy12.innerHTML = iconData[currentState.random1][2];
+     decoy22 = document.getElementById("button32");decoy22.innerHTML = iconData[currentState.random2][2];
+     decoy32 = document.getElementById("button42");decoy32.innerHTML = iconData[currentState.random3][2];
+  }
+  if (selectButton == 1) {
+     presentAnswer = document.getElementById("button2");presentAnswer.innerHTML = stateCapital;
+     presentAnswer2 = document.getElementById("button22");presentAnswer2.innerHTML = stateCapital;
+     decoy1 = document.getElementById("button1");decoy1.innerHTML = iconData[currentState.random1][2];
+     decoy2 = document.getElementById("button3");decoy2.innerHTML = iconData[currentState.random2][2];
+     decoy3 = document.getElementById("button4");decoy3.innerHTML = iconData[currentState.random3][2];
+     decoy12 = document.getElementById("button12");decoy12.innerHTML = iconData[currentState.random1][2];
+     decoy32 = document.getElementById("button32");decoy32.innerHTML = iconData[currentState.random2][2];
+     decoy42 = document.getElementById("button42");decoy42.innerHTML = iconData[currentState.random3][2];
+  }
+  if (selectButton == 2) {
+     presentAnswer = document.getElementById("button3");presentAnswer.innerHTML = stateCapital;
+     presentAnswer2 = document.getElementById("button32");presentAnswer2.innerHTML = stateCapital;
+     decoy1 = document.getElementById("button1");decoy1.innerHTML = iconData[currentState.random1][2];
+     decoy2 = document.getElementById("button2");decoy2.innerHTML = iconData[currentState.random2][2];
+     decoy3 = document.getElementById("button4");decoy3.innerHTML = iconData[currentState.random3][2];
+     decoy12 = document.getElementById("button12");decoy12.innerHTML = iconData[currentState.random1][2];
+     decoy22 = document.getElementById("button22");decoy22.innerHTML = iconData[currentState.random2][2];
+     decoy42 = document.getElementById("button42");decoy42.innerHTML = iconData[currentState.random3][2];
+  }
+  if (selectButton == 3) {
+     presentAnswer = document.getElementById("button4");presentAnswer.innerHTML = stateCapital;
+     presentAnswer2 = document.getElementById("button42");presentAnswer2.innerHTML = stateCapital;
+     decoy1 = document.getElementById("button1");decoy1.innerHTML = iconData[currentState.random1][2];
+     decoy2 = document.getElementById("button2");decoy2.innerHTML = iconData[currentState.random2][2];
+     decoy3 = document.getElementById("button3");decoy3.innerHTML = iconData[currentState.random3][2];
+     decoy12 = document.getElementById("button12");decoy12.innerHTML = iconData[currentState.random1][2];
+     decoy22 = document.getElementById("button22");decoy22.innerHTML = iconData[currentState.random2][2];
+     decoy32 = document.getElementById("button32");decoy32.innerHTML = iconData[currentState.random3][2];
+  }
+  }
+}
+function yes() {
+  let encouragementArray = ["Yes!","Awesome!","Outstanding!","Keep Going!","Bravo!","Impressive!","Great!","Nice!","Excellent!","Fantastic!","Perfect!","Terrific!","Tremendous!","Wonderful!","Correct!"];
+  getInt = randInt(0,14);
+  encouragement = encouragementArray[getInt];
+  return encouragement;
+}
+function incorrect() {
+  let noArray = ["Incorrect","Sorry, No","Keep Trying","Try Again","Sorry, Wrong","Off the mark","Erroneous"];
+  getInt = randInt(0,6);
+  no = noArray[getInt];
+  return no;
+}
+function checkEntry1() {
+  clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer';time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+  document.getElementById('button1').disabled = true;
+  document.getElementById('button2').disabled = true;
+  document.getElementById('button3').disabled = true;
+  document.getElementById('button4').disabled = true;
+  document.getElementById('button12').disabled = true;
+  document.getElementById('button22').disabled = true;
+  document.getElementById('button32').disabled = true;
+  document.getElementById('button42').disabled = true;
+  if (document.getElementById("button1").innerHTML == currentState.stateCapital || document.getElementById("button12").innerHTML == currentState.stateCapital) {
+     correctAnswer.src = '/static/audio/correct.wav'
+     ++score
+     document.getElementById('button1').style.background = 'blue';
+     document.getElementById("score").innerHTML = score;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+     document.getElementById('button12').style.background = 'blue';
+     document.getElementById("score2").innerHTML = score;
+     attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+     encouragement = yes();
+     correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+     correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+     setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "", correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+     ++stateCounter;
+     setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,  document.getElementById("counter2").innerHTML = stateCounter}
+     document.getElementById('button1').style.background = 'black';document.getElementById('button12').style.background = 'black';getNextGameBoard();timeReset()
+     }, 1000);
+  } else {
+     wrongAnswer.src = '/static/audio/incorrect.wav';
+     if (selectButton == 1){document.getElementById('button2').style.background = 'blue';document.getElementById('button22').style.background = 'blue';}
+     if (selectButton == 2){document.getElementById('button3').style.background = 'blue';document.getElementById('button32').style.background = 'blue';}
+     if (selectButton == 3){document.getElementById('button4').style.background = 'blue';document.getElementById('button42').style.background = 'blue';}
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+     no = incorrect();
+     wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+     attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+     setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+                            wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+  }, 3000);
+     setTimeout(function() {
+        document.getElementById('button2').style.background = 'black';
+        document.getElementById('button3').style.background = 'black';
+        document.getElementById('button4').style.background = 'black';
+        document.getElementById('button22').style.background = 'black';
+        document.getElementById('button32').style.background = 'black';
+        document.getElementById('button42').style.background = 'black';
+        ++stateCounter;
+        if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter}
+        getNextGameBoard();timeReset()}, 3000);
+  }
+}
+function checkEntry2() {
+  clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer'; time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+  document.getElementById('button1').disabled = true;
+  document.getElementById('button2').disabled = true;
+  document.getElementById('button3').disabled = true;
+  document.getElementById('button4').disabled = true;
+  document.getElementById('button12').disabled = true;
+  document.getElementById('button22').disabled = true;
+  document.getElementById('button32').disabled = true;
+  document.getElementById('button42').disabled = true;
+  if (document.getElementById("button2").innerHTML == currentState.stateCapital || document.getElementById("button22").innerHTML == currentState.stateCapital) {
+     correctAnswer.src = '/static/audio/correct.wav'
+     ++score
+     document.getElementById('button2').style.background = 'blue';
+     document.getElementById("score").innerHTML = score;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+     document.getElementById('button22').style.background = 'blue';
+     document.getElementById("score2").innerHTML = score;
+     attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+     encouragement = yes();
+     correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+     correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+     setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+     ++stateCounter;
+     setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter;document.getElementById("counter2").innerHTML = stateCounter}
+     document.getElementById('button2').style.background = 'black'; document.getElementById('button22').style.background = 'black'; getNextGameBoard();timeReset()
+     }, 1000);
+  } else {
+     wrongAnswer.src = '/static/audio/incorrect.wav';
+     if (selectButton == 0){document.getElementById('button1').style.background = 'blue';document.getElementById('button12').style.background = 'blue';}
+     if (selectButton == 2){document.getElementById('button3').style.background = 'blue';document.getElementById('button32').style.background = 'blue';}
+     if (selectButton == 3){document.getElementById('button4').style.background = 'blue';document.getElementById('button42').style.background = 'blue';}
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+     no = incorrect();
+     wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+     attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+     setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+                            wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+     }, 3000);
+     setTimeout(function() {
+        document.getElementById('button1').style.background = 'black';
+        document.getElementById('button3').style.background = 'black';
+        document.getElementById('button4').style.background = 'black';
+        document.getElementById('button12').style.background = 'black';
+        document.getElementById('button32').style.background = 'black';
+        document.getElementById('button42').style.background = 'black';
+        ++stateCounter;
+        if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter}
+         getNextGameBoard();timeReset()}, 3000);
+  }
+}
+function checkEntry3() {
+  clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer'; time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+  document.getElementById('button1').disabled = true;
+  document.getElementById('button2').disabled = true;
+  document.getElementById('button3').disabled = true;
+  document.getElementById('button4').disabled = true;
+  document.getElementById('button12').disabled = true;
+  document.getElementById('button22').disabled = true;
+  document.getElementById('button32').disabled = true;
+  document.getElementById('button42').disabled = true;
+  if (document.getElementById("button3").innerHTML == currentState.stateCapital || document.getElementById("button32").innerHTML == currentState.stateCapital) {
+     correctAnswer.src = '/static/audio/correct.wav'
+     ++score
+     document.getElementById('button3').style.background = 'blue';
+     document.getElementById("score").innerHTML = score;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+     document.getElementById('button32').style.background = 'blue';
+     document.getElementById("score2").innerHTML = score;
+     attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+     encouragement = yes();
+     correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+     correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+     setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+     ++stateCounter;
+     setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter;document.getElementById("counter2").innerHTML = stateCounter}
+     document.getElementById('button3').style.background = 'black';document.getElementById('button32').style.background = 'black'; getNextGameBoard();timeReset()
+     }, 1000);
+  } else {
+     wrongAnswer.src = '/static/audio/incorrect.wav';
+     if (selectButton == 0){document.getElementById('button1').style.background = 'blue';document.getElementById('button12').style.background = 'blue';}
+     if (selectButton == 1){document.getElementById('button2').style.background = 'blue';document.getElementById('button22').style.background = 'blue';}
+     if (selectButton == 3){document.getElementById('button4').style.background = 'blue';document.getElementById('button42').style.background = 'blue';}
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+     no = incorrect();
+     wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+     attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+     setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+                           wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+  }, 3000);
+     setTimeout(function() {
+        document.getElementById('button1').style.background = 'black';
+        document.getElementById('button2').style.background = 'black';
+        document.getElementById('button4').style.background = 'black';
+        document.getElementById('button12').style.background = 'black';
+        document.getElementById('button22').style.background = 'black';
+        document.getElementById('button42').style.background = 'black';
+        ++stateCounter;
+        if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter}
+         getNextGameBoard();timeReset()}, 3000);
+  }
+}
+function checkEntry4() {
+  clearInterval(timer); time = document.getElementById('time');time.innerHTML = 'timer'; time2 = document.getElementById('time2');time2.innerHTML = 'timer';
+  document.getElementById('button1').disabled = true;
+  document.getElementById('button2').disabled = true;
+  document.getElementById('button3').disabled = true;
+  document.getElementById('button4').disabled = true;
+  document.getElementById('button12').disabled = true;
+  document.getElementById('button22').disabled = true;
+  document.getElementById('button32').disabled = true;
+  document.getElementById('button42').disabled = true;
+  if (document.getElementById("button4").innerHTML == currentState.stateCapital || document.getElementById("button42").innerHTML == currentState.stateCapital) {
+     correctAnswer.src = '/static/audio/correct.wav'
+     ++score
+     document.getElementById('button4').style.background = 'blue';
+     document.getElementById("score").innerHTML = score;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+     document.getElementById('button42').style.background = 'blue';
+     document.getElementById("score2").innerHTML = score;
+     attempt = document.getElementById('attemptStage2'); attempt.innerHTML = "";
+     encouragement = yes();
+     correct = document.getElementById('yesStage'); correct.innerHTML = encouragement;
+     correct2 = document.getElementById('yesStage2'); correct2.innerHTML = encouragement;
+     setTimeout(function() {correct = document.getElementById('yesStage'); correct.innerHTML = "",correct2 = document.getElementById('yesStage2'); correct2.innerHTML = ""}, 1000);
+     ++stateCounter;
+     setTimeout(function() {if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter;document.getElementById("counter2").innerHTML = stateCounter;}
+     document.getElementById('button4').style.background = 'black';document.getElementById('button42').style.background = 'black'; getNextGameBoard();timeReset()
+     }, 1000);
+  } else {
+     wrongAnswer.src = '/static/audio/incorrect.wav';
+     if (selectButton == 0){document.getElementById('button1').style.background = 'blue';document.getElementById('button12').style.background = 'blue';}
+     if (selectButton == 1){document.getElementById('button2').style.background = 'blue';document.getElementById('button22').style.background = 'blue';}
+     if (selectButton == 2){document.getElementById('button3').style.background = 'blue';document.getElementById('button32').style.background = 'blue';}
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+     no = incorrect();
+     wrong = document.getElementById('noStage'); wrong.innerHTML = no;wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = no;
+     attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+     attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+     setTimeout(function() {wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = ""
+                            wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = ""
+  }, 3000);
+     setTimeout(function() {
+        document.getElementById('button1').style.background = 'black';
+        document.getElementById('button2').style.background = 'black';
+        document.getElementById('button3').style.background = 'black';
+        document.getElementById('button12').style.background = 'black';
+        document.getElementById('button22').style.background = 'black';
+        document.getElementById('button32').style.background = 'black';
+        ++stateCounter;
+        if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter,document.getElementById("counter2").innerHTML = stateCounter}
+         getNextGameBoard();timeReset()}, 3000);
+  }
+}
+function handleKeyUp(e) {
+  e.preventDefault(); // prevent the normal behavior of the key
+  if (e.keyCode === 32 || e.keyCode === 13) { // space/Enter
+     checkAnswer();
+  }
+}
+function startTimer() {
+  window.addEventListener('keyup', handleKeyUp);
+  if (timeLeft > 0 && stateCounter < 51) {
+     timer = setInterval(() => {
+        timeLeft--;
+        time = document.getElementById('time');
+        time.innerHTML = timeLeft;
+        time2 = document.getElementById('time2');
+        time2.innerHTML = timeLeft;
+        if(timeLeft === 5) {document.getElementById("time").style.color = 'red'; document.getElementById("time").style.fontWeight = "bold";
+                            document.getElementById("time2").style.color = 'red'; document.getElementById("time2").style.fontWeight = "bold";}
+        if (timeLeft === 0) {
+           clearInterval(timer);
+           window.removeEventListener('keyup', handleKeyUp);
+           wrongAnswer.src = '/static/audio/incorrect.wav';
+           document.getElementById('button1').disabled = true;
+           document.getElementById('button2').disabled = true;
+           document.getElementById('button3').disabled = true;
+           document.getElementById('button4').disabled = true;
+           if (selectButton == 0){document.getElementById('button1').style.background = 'blue';}
+           if (selectButton == 1){document.getElementById('button2').style.background = 'blue';}
+           if (selectButton == 2){document.getElementById('button3').style.background = 'blue';}
+           if (selectButton == 3){document.getElementById('button4').style.background = 'blue';}
+           attempt = document.getElementById('attemptStage'); attempt.innerHTML = "";
+           wrong = document.getElementById('noStage'); wrong.innerHTML = "Time";
+           attempt = document.getElementById('attemptStage'); attempt.innerHTML = "The capital city is "; answerCap = document.getElementById('answerStage'); answerCap.innerHTML = stateCapital;
+           ++stateCounter;
+           if (stateCounter < 51) {document.getElementById("counter").innerHTML = stateCounter, document.getElementById("counter2").innerHTML = stateCounter};
+           document.getElementById('button12').disabled = true;
+           document.getElementById('button22').disabled = true;
+           document.getElementById('button32').disabled = true;
+           document.getElementById('button42').disabled = true;
+           if (selectButton == 0){document.getElementById('button12').style.background = 'blue';}
+           if (selectButton == 1){document.getElementById('button22').style.background = 'blue';}
+           if (selectButton == 2){document.getElementById('button32').style.background = 'blue';}
+           if (selectButton == 3){document.getElementById('button42').style.background = 'blue';}
+           attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "";
+           wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "Time";
+           attempt2 = document.getElementById('attemptStage2'); attempt2.innerHTML = "The capital is "; answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = stateCapital;
+           setTimeout(function() {
+              document.getElementById('button1').style.background = 'black';
+              document.getElementById('button2').style.background = 'black';
+              document.getElementById('button3').style.background = 'black';
+              document.getElementById('button4').style.background = 'black';
+              document.getElementById('button12').style.background = 'black';
+              document.getElementById('button22').style.background = 'black';
+              document.getElementById('button32').style.background = 'black';
+              document.getElementById('button42').style.background = 'black';
+              wrong = document.getElementById('noStage'); wrong.innerHTML = "", answerCap = document.getElementById('answerStage'); answerCap.innerHTML = "",
+              wrong2 = document.getElementById('noStage2'); wrong2.innerHTML = "", answerCap2 = document.getElementById('answerStage2'); answerCap2.innerHTML = "",
+              getNextGameBoard(), document.getElementById("time").style.color = 'black', document.getElementById("time2").style.color = 'black',
+              document.getElementById("time").style.fontWeight = "normal", document.getElementById("time2").style.fontWeight = "normal", /*timeLeft = 11,*/ timeReset();}, 2000);
+        }
+     }, 1000)
+  }else{
+   clearInterval(timer);
+   window.removeEventListener('keyup', handleKeyUp);
+   if (stateCounter > 50) {endGame()} else {
+     getNextGameBoard();
+   }
+  }
+}
+function timeReset() {
+  timeLeft = 11;  //seconds to answer, other spot to set is within startTimer
+  document.getElementById("time").style.color = 'black';
+  document.getElementById("time").style.fontWeight = "normal";
+  document.getElementById("time2").style.color = 'black';
+  document.getElementById("time2").style.fontWeight = "normal";
+  startTimer();
+}
+function playGame() {
+  timeReset();
+  getNextGameBoard();
+}
+function opener() {
+  document.getElementById('titlesection').innerHTML = "US Capitals";
+  document.getElementById('abbr').innerHTML = "Abbr";
+  document.getElementById('attemptStage').style.fontWeight = "bold";
+  document.getElementById('attemptStage').innerHTML = "Get Ready";
+  document.getElementById('titlesection2').innerHTML = "US Capitals";
+  document.getElementById('abbr2').innerHTML = "Abbr";
+  document.getElementById('attemptStage2').style.fontWeight = "bold";
+  document.getElementById('attemptStage2').innerHTML = "Get Ready";
+
+  for (let i=0; i<3; i++) {
+     task(i);
+  }
+  function task(i) {
+     setTimeout(function() {
+        document.getElementById('button1').style.background = 'blue';
+        setTimeout(function() {document.getElementById('button1').style.background = 'black';},50);
+        setTimeout(function() {document.getElementById('button2').style.background = 'blue';}, 100);
+        setTimeout(function() {document.getElementById('button2').style.background = 'black';}, 150);
+        setTimeout(function() {document.getElementById('button4').style.background = 'blue';}, 200);
+        setTimeout(function() {document.getElementById('button4').style.background = 'black';}, 250);
+        setTimeout(function() {document.getElementById('button3').style.background = 'blue';}, 300);
+        setTimeout(function() {document.getElementById('button3').style.background = 'black';}, 350);
+        setTimeout(function() {document.getElementById('button1').style.background = 'blue';}, 400);
+        setTimeout(function() {document.getElementById('button1').style.background = 'black';}, 450);
+        document.getElementById('button12').style.background = 'blue';
+        setTimeout(function() {document.getElementById('button12').style.background = 'black';},50);
+        setTimeout(function() {document.getElementById('button22').style.background = 'blue';}, 100);
+        setTimeout(function() {document.getElementById('button22').style.background = 'black';}, 150);
+        setTimeout(function() {document.getElementById('button42').style.background = 'blue';}, 200);
+        setTimeout(function() {document.getElementById('button42').style.background = 'black';}, 250);
+        setTimeout(function() {document.getElementById('button32').style.background = 'blue';}, 300);
+        setTimeout(function() {document.getElementById('button32').style.background = 'black';}, 350);
+        setTimeout(function() {document.getElementById('button12').style.background = 'blue';}, 400);
+        setTimeout(function() {document.getElementById('button12').style.background = 'black';}, 450);
+    }, 500 * i);
+  }
+  setTimeout(function() {document.getElementById('attemptStage').style.fontWeight = "bolder";document.getElementById('attemptStage').style.fontSize = "xx-large";
+                         document.getElementById('attemptStage2').style.fontWeight = "bolder";document.getElementById('attemptStage2').style.fontSize = "large";
+  document.getElementById('attemptStage').style.color = 'red';document.getElementById('attemptStage').innerHTML = "Go!";document.getElementById('attemptStage2').style.color = 'red';document.getElementById('attemptStage2').innerHTML = "Go!";
+}, 3000)
+  setTimeout(function() {document.getElementById('attemptStage').style.fontWeight = "normal";document.getElementById('attemptStage').style.fontSize = "medium";document.getElementById('attemptStage').style.color = 'black';
+                         document.getElementById('attemptStage2').style.fontWeight = "normal";document.getElementById('attemptStage2').style.fontSize = "medium";document.getElementById('attemptStage2').style.color = 'black';playGame();
+}, 4000);
+}
+function startMusic() {
+  document.getElementById("audio").play();
+}
+function unlockAudio() {
+ correctAnswer.src = '/static/audio/silence.wav';
+ wrongAnswer.src = '/static/audio/silence.wav';
+ youWon.src = '/static/audio/silence.wav';
+}
+window.addEventListener('load', function() {
+  unlockAudio();
+  //score = 50
+  //stateCounter = 50
+  opener();
+
+  let width = window.innerWidth;
+  if (width > 1199) {startMusic();}
+  document.addEventListener("touchmove", function() {
+     unlockAudio();
+  });
+
 });
- </script>
- <style>
-   body {font-family: 'Oswald', sans-serif !important;}
-   #quotesection {margin: 0;}
-
- </style>
- <body>
- <main>
-   <div id="quote" class="mt-3 d-none d-md-block">
-     <p id="quotesection">Who am I?</p>
-   </div>
-   <!--<div id="shape" class="mt-5 d-none d-md-block">
-              <div class="row justify-content-center mt-4"><h2 class="ml-2 font-weight: bold">Who am I?</h2></div>
-              <div class="row justify-content-center mt-4"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
-               <div class="row justify-content-center" id="stage">
-                  <p class="squareR font-weight-bold" id="rand1"></p>&#160;
-                  <p class="squareR font-weight-bold" id="rand2"></p>&#160;
-                  <p class="squareR font-weight-bold" id="rand3"></p><br>
-               </div>
-               <div class="row justify-content-center mt-3 mb-2">
-                  <label>Pot: $</label><p class="mr-5 font-weight-bold" id="score" >"0"</p>
-                  <label>Time:</label><p class="ml-2 font-weight-bold" id="time" ></p>
-               </div>
-               <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p><p class="ml-3 mr-1" id="attemptStage"></p></div>
-               <hr id="hr">
-               <div class="mb-2"><label>Input Values: 1-6</label></div>
-               <div class="row justify-content-center mb-3" id="answerStage">
-                  <form>
-                  <input class="square justify-content-center mb-4" id="guess1" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
-                  <button type="button" class="button-link row justify-content-center" id="button" onclick="checkEntry()">Roll!</button>
-                  </form>
-               </div>
-         </div>-->
-     </main>
-   <!--Mobile-->
-   <div id="quoteSmall" class="d-sm-block d-md-none mt-1">
-     <p id="quotesectionSmall" class="quotesectionSmall">Who am I?</p>
-   </div>
-     <!--<div id="mobileImage2"><img src="{% static 'Images/stairs2.jpg' %}"class="img-thumbnail d-sm-block d-md-none mb-1">
-       <div id="cUsM" class="d-sm-block d-md-none">
-         <div id="smallScreen1" class="container mb-2">
-           <div class="row justify-content-center ml-1"><h3 class="mt-3">Random Ace</h3><p class="ml-2 font-italic">beta</p></div>
-             <a class="row button-link2 font-weight-bold" href="{% url 'pages:random_ace' %}">Play Now!</a>
-         </div>
-         <div id="smallScreen2" class="container">
-           <div class="row justify-content-center ml-1"><h3 class="mt-3">Who am I?</h3><p class="ml-2 font-italic">beta</p></div>
-             <a class="row button-link2 font-weight-bold" href=>Play Now!</a>
-         </div>
+</script>
+<style>
+  body {background-repeat: no-repeat;background-attachment: fixed; background-position: top center;}
+  .button-link {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 76px; text-decoration: none; text-indent: 0rem; text-shadow: none;
+  text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 15rem; height: 3.5rem;}
+  .button-link2 {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 6px; text-decoration: none; text-indent: 0rem; text-shadow: none;
+     text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 8rem; height: 3rem; margin-left:.25rem}
+  #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .95);text-align: center;width: auto;max-width: 60rem;height: 8rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto;z-index: 10;}
+  #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, .80);text-align: center;width: 85%;height: 7rem;box-sizing: border-box;padding: 1rem;font-size: larger;z-index: 10;margin: auto; position: relative;z-index: 10;}
+  #button1 {margin: 0%;}#button2 {margin: 0%;} #button3 {margin: 0%;}#button4 {margin: 0%;}#button12 {margin: 0%}#button22 {margin: 0%;} #button32 {margin: 0%;}#button42 {margin: 0%;}
+  #yesStage {font-size: 2rem;} #noStage {font-size: 2rem;}#gameStats {height: 5rem;}#answerStage {margin-top: 1rem;}#answerStage2 {height: 2rem;}
+  #scoreboard {background: rgba(232, 232, 232, .95); height: 30rem; width: 40rem;}
+  #scoreboard2 {background: rgba(232, 232, 232, .80);background-position: center;width: 85%;height: auto;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;}
+</style>
+{% endblock %}
+{% block main %}
+<body class=".backgroundimg" style="background-image: url('{% static 'Images/capital4.jpeg' %}');">
+  <div id="title" class=" d-none d-lg-block mt-5">
+     <p><h1 id="titlesection" class="justify-content-center font-weight-bold mt-4">US Capitals</h1></p>
+  </div>
+  <div id="scoreboard" class="container justify-content-center d-none d-lg-block mb-5">
+     <div class="row justify-content-center mt-5">
+        <p class="mt-5">What is the capital city of</p><p id="abbr" class="ml-2 font-weight-bold mt-5">State Abbr</p><p class="mt-5">?</p><p class="ml-5 mt-5">State</p>
+        <p id="counter" class="ml-2 mr-1 mt-5 font-weight-bold">1</p><p class="mt-5">of 50</p>
      </div>
-   </div>-->
- </body>
+     <hr>
+     <div class="row justify-content-center mb-2">
+        <div id="scoreLabel" class="row justify-content-center mr-5"><div>Score:</div><p id="score" class="ml-2">0</p></div>
+        <div id="timeLabel" class="row justify-content-center"><div>Time Left:</div><p id="time" class="ml-2">0</p></div>
+     </div>
+     <div class="row justify-content-center">
+        <div><p class="mr-5 font-weight-bold" id="display"></p>
+           <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p>
+              <p class="ml-2 mt-3" id="attemptStage">US Capitals</p><p class="font-weight-bold ml-1 mr-1" id="answerStage"></p>
+           </div>
+        </div>
+     </div>
+     <hr>
+     <div class="row justify-content-center mb-3">
+        <button type="button" class="button-link mr-3" id="button1" onclick="checkEntry1()"><p id="button1" class="row justify-content-center">State 1</p></button>
+        <button type="button" class="button-link" id="button2" onclick="checkEntry2()"><p id="button2" class="row justify-content-center">State 2</p></button>
+     </div>
+     <div class="row justify-content-center">
+        <button type="button" class="button-link mr-3" id="button3" onclick="checkEntry3()"><p id="button3" class="row justify-content-center">State 3 </p></button>
+        <button type="button" class="button-link" id="button4" onclick="checkEntry4()"><p id="button4" class="row justify-content-center">State 4</p></button>
+     </div>
+</div>
+<!--Mobile-->
+  <div id="title2" class="container d-lg-none d-md-block mt-1">
+     <p><h2 id="titlesection2" class="justify-content-center font-weight-bold mt-4">US Capitals</h2></p>
+  </div>
+  <div id="scoreboard2" class="container justify-content-center d-lg-none d-md-block mb-1 mt-1">
+     <div class="row justify-content-center mt-3"><p class="mt-2">What is the capital city of</p><p id="abbr2" class="ml-2 font-weight-bold mt-2">State Abbr</p><p class="mt-2">?</p></div>
+     <div class="row justify-content-center"><p class="mt-2">State</p><p id="counter2" class="ml-2 mr-1 mt-2 font-weight-bold">1</p><p class="mt-2">of 50</p></div>
+     <hr>
+     <div class="row justify-content-center">
+        <div id="scoreLabel2" class="row justify-content-center mr-5"><div>Score:</div><p id="score2" class="ml-2">0</p></div>
+        <div id="timeLabel2" class="row justify-content-center"><div>Time Left:</div><p id="time2" class="ml-2">0</p></div>
+     </div>
+     <div class="row justify-content-center">
+        <div><p class="font-weight-bold" id="display2"></p>
+           <div class="row justify-content-center" id="gameStats2"><p class="font-weight-bold text-danger" id="noStage2"></p><p class="font-weight-bold text-success" id="yesStage2"></p>
+              <p class="ml-1" id="attemptStage2">US Capitals</p><p class="font-weight-bold ml-1 mr-1" id="answerStage2"></p>
+           </div>
+        </div>
+     </div>
+     <hr>
+     <div class="row justify-content-center mb-1">
+        <button type="button" class="button-link2 mr-1" id="button12" onclick="checkEntry1()"><p id="button12" class="row justify-content-center">State 1</p></button>
+        <button type="button" class="button-link2" id="button22" onclick="checkEntry2()"><p id="button22" class="row justify-content-center">State 2</p></button>
+     </div>
+     <div class="row justify-content-center mb-4">
+        <button type="button" class="button-link2 mr-1" id="button32" onclick="checkEntry3()"><p id="button32" class="justify-content-center">State 3 </p></button>
+        <button type="button" class="button-link2" id="button42" onclick="checkEntry4()"><p id="button42" class="justify-content-center">State 4</p></button>
+     </div>
+</div>
+<figure><div class="row justify-content-center"><audio controls loop id="audio"><source src='/static/audio/echoes.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>
+</body>
+</html>
 
  {% endblock %}

@@ -1,0 +1,98 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Who am I?{% endblock %}
+{% block main %}
+
+<script>
+   let i = 1;
+   let m = 1;
+   const quotes = new Array ();
+         quotes[0] = 'Coming Soon';
+         quotes[1] = 'Who am I?';
+
+ function runQuotes2() {
+   if (m === 1) {
+   let sectionM = document.querySelector(".quotesectionSmall");
+   sectionM.innerText = quotes[0];
+   m = m + 1;
+    }
+   else if (m === 2) {
+   let sectionM = document.querySelector(".quotesectionSmall");
+   sectionM.innerText = quotes[1];
+   m = 1;
+    }
+}
+function runQuotes3() {
+   if (i === 1) {
+   let section = document.querySelector("p");
+   section.innerText = quotes[0];
+   i = i + 1;
+   }
+   else if (i === 2) {
+   let section = document.querySelector("p");
+   section.innerText = quotes[1];
+   i = 1;
+   }
+}
+window.addEventListener('load', function RunQuotesau() {
+
+   let sectionM = document.querySelector(".quotesectionSmall");
+   sectionM.innerText = quotes[0];
+   setInterval(runQuotes2, 1000);
+   let section = document.querySelector("p");
+   section.innerText = quotes[0];
+   setInterval(runQuotes3, 1000);
+});
+ </script>
+ <style>
+   body {font-family: 'Oswald', sans-serif !important;}
+   #quotesection {margin: 0;}
+
+ </style>
+ <body>
+ <main>
+   <div id="quote" class="mt-3 d-none d-md-block">
+     <p id="quotesection">Who am I?</p>
+   </div>
+   <!--<div id="shape" class="mt-5 d-none d-md-block">
+              <div class="row justify-content-center mt-4"><h2 class="ml-2 font-weight: bold">Who am I?</h2></div>
+              <div class="row justify-content-center mt-4"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
+               <div class="row justify-content-center" id="stage">
+                  <p class="squareR font-weight-bold" id="rand1"></p>&#160;
+                  <p class="squareR font-weight-bold" id="rand2"></p>&#160;
+                  <p class="squareR font-weight-bold" id="rand3"></p><br>
+               </div>
+               <div class="row justify-content-center mt-3 mb-2">
+                  <label>Pot: $</label><p class="mr-5 font-weight-bold" id="score" >"0"</p>
+                  <label>Time:</label><p class="ml-2 font-weight-bold" id="time" ></p>
+               </div>
+               <div class="row justify-content-center" id="gameStats"><p class="font-weight-bold text-danger" id="noStage"></p><p class="font-weight-bold text-success" id="yesStage"></p><p class="ml-3 mr-1" id="attemptStage"></p></div>
+               <hr id="hr">
+               <div class="mb-2"><label>Input Values: 1-6</label></div>
+               <div class="row justify-content-center mb-3" id="answerStage">
+                  <form>
+                  <input class="square justify-content-center mb-4" id="guess1" type="text" placeholder="1-6" maxlength="1" oninput="this.value=this.value.replace(/[^1-6]/g,'');"/>&#160;<br>
+                  <button type="button" class="button-link row justify-content-center" id="button" onclick="checkEntry()">Roll!</button>
+                  </form>
+               </div>
+         </div>-->
+     </main>
+   <!--Mobile-->
+   <div id="quoteSmall" class="d-sm-block d-md-none mt-1">
+     <p id="quotesectionSmall" class="quotesectionSmall">Who am I?</p>
+   </div>
+     <!--<div id="mobileImage2"><img src="{% static 'Images/stairs2.jpg' %}"class="img-thumbnail d-sm-block d-md-none mb-1">
+       <div id="cUsM" class="d-sm-block d-md-none">
+         <div id="smallScreen1" class="container mb-2">
+           <div class="row justify-content-center ml-1"><h3 class="mt-3">Random Ace</h3><p class="ml-2 font-italic">beta</p></div>
+             <a class="row button-link2 font-weight-bold" href="{% url 'pages:random_ace' %}">Play Now!</a>
+         </div>
+         <div id="smallScreen2" class="container">
+           <div class="row justify-content-center ml-1"><h3 class="mt-3">Who am I?</h3><p class="ml-2 font-italic">beta</p></div>
+             <a class="row button-link2 font-weight-bold" href=>Play Now!</a>
+         </div>
+     </div>
+   </div>-->
+ </body>
+
+ {% endblock %}
