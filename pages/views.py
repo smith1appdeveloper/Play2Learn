@@ -74,5 +74,8 @@ class Who_am_I2View(TemplateView):
 class Final_TallyView(TemplateView):
     template_name = 'pages/Final_Tally.html'
 
+class Who_am_I_endView(TemplateView):
+    template_name = 'pages/Who_am_I_end.html'
+
 
 

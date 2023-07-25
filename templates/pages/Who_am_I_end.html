@@ -1,0 +1,75 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Who am I?{% endblock %}
+{% block main %}
+
+<script>
+   const gameOver = new Audio(); gameOver.autoplay = true; gameOver.volume = .2;
+   function unlockAudio() {
+      gameOver.src = '/static/audio/silence.wav';
+   }
+window.addEventListener('load', function() {
+   let score = sessionStorage.getItem("addScore2");
+
+   if (isNaN(score)) {
+      gameOver.src = '/static/audio/gameover.wav';
+
+   } else {
+      gameOver.src = '/static/audio/gameover.wav';
+      if (score >= 8) {document.getElementById('titlesection');document.getElementById('titlesection').innerHTML = 'Obviously you know your pop culture!';
+                       document.getElementById('titlesection2');document.getElementById('titlesection2').innerHTML = 'Obviously you know your pop culture!';
+                       document.getElementById('score');document.getElementById('score').innerHTML = score;
+                       document.getElementById('score2');document.getElementById('score2').innerHTML = score;}
+      else if (score < 8 && score >= 5) {document.getElementById('titlesection');document.getElementById('titlesection').innerHTML = 'Not Bad! Not great, but not bad.';
+                                         document.getElementById('titlesection2');document.getElementById('titlesection2').innerHTML = 'Not Bad! Not great, but not bad.';
+                                         document.getElementById('score');document.getElementById('score').innerHTML = score;
+                                         document.getElementById('score2');document.getElementById('score2').innerHTML = score;}
+      else {document.getElementById('titlesection');document.getElementById('titlesection').innerHTML = 'Well, a broken clock is right twice a day.';
+            document.getElementById('titlesection2');document.getElementById('titlesection2').innerHTML = 'Well, a broken clock is right twice a day.';
+            document.getElementById('score');document.getElementById('score').innerHTML = score;
+            document.getElementById('score2');document.getElementById('score2').innerHTML = score;}
+      }
+});
+</script>
+<style>
+    body {background-repeat: no-repeat;background-attachment: fixed; background-position: top center; background-size: cover; max-height: 100%; min-height: 100%; overflow: auto;}
+    #title {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 1);text-align: center;width: auto;max-width: 80%;height: 8rem;box-sizing: border-box;padding: 1.5rem;font-size: larger;z-index: 10;margin: auto;z-index: 10;}
+    #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 1);text-align: center;width: 80%;height: 7rem;box-sizing: border-box;padding: .5rem;font-size: larger;margin: auto; position: relative;z-index: 10;}
+    #titlesection2 {margin-top: 1rem;}
+    .button-link {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 5px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
+                  text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
+    .button-link:hover {background-color: gray;color: white;}.button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
+    #scoreboard {background: rgba(232, 232, 232, 1); height: 19rem; width: 40rem;}
+    #scoreboard2 {background: rgba(232, 232, 232, 1);background-position: center;width: 80%;height: auto;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+    #display {height: 3rem;}#display2 {height: 3rem;}
+    #hr {margin-top: 0rem;}#hr2 {margin-top: 0rem;}
+</style>
+ <body class=".backgroundimg" style="background-image: url('{% static 'Images/who_am_I/end-wood.jpg' %}');">
+    <div id="title" class=" d-none d-lg-block mt-5"><p><h1 id="titlesection" class="justify-content-center align-middle">Who am I?</h1></p></div>
+    <div id="scoreboard" class="container justify-content-center d-none d-lg-block">
+       <div class="row justify-content-center mt-5">
+        <h2 id="display" class="mt-3 text-bold"></h2>
+          <div><p id="score" class="display-1 font-weight-bold mt-2">0</p></div>
+       </div>
+       <hr id="hr">
+        <a class="button-link mb-1 mt-4" href="{% url 'pages:who_am_I' %}">Play Again</a>
+        <a class="button-link mb-1" href="{% url 'pages:dev' %}">Beta Environment</a>
+        <a class="button-link mb-1" href="{% url 'pages:homepage' %}">Home</a>
+   </div>
+  <!--Mobile-->
+  <div id="title2" class=" d-lg-none d-md-block mt-3"><p><h3 id="titlesection2" class="justify-content-center align-middle">Who am I?</h3></p></div>
+  <div id="scoreboard2" class="container justify-content-center  d-lg-none d-md-block mt-3">
+     <div class="row justify-content-center">
+      <h2 id="display2" class="mt-3 text-bold"></h2>
+        <div><p id="score2" class="display-2 font-weight-bold mt-2">0</p></div>
+     </div>
+     <hr id="hr2">
+      <a class="button-link mb-1 mt-4" href="{% url 'pages:who_am_I' %}">Play Again</a>
+      <a class="button-link mb-1" href="{% url 'pages:dev' %}">Beta Environment</a>
+      <a class="button-link mb-1" href="{% url 'pages:homepage' %}">Home</a>
+ </div>
+  <!--<figure><div class="row justify-content-center"><audio controls loop id="audio"><source src='/static/audio/echoes.mp3' type="audio/mpeg">Your browser does not support the audio element.</audio></div></figure>-->
+  </body>
+  </html>
+
+{% endblock %}
