@@ -178,22 +178,9 @@ let iconData = [
 
 ];
 function endGame() {
-  //window.alert("End of game");
-  addScore2 = score;
-  //result = percentage * 100;
-  //percentage2 = score / 50;
-  //result2 = percentage2 * 100;
-
-  sessionStorage.setItem("addScore2", addScore2);
-  //sessionStorage.setItem("percentage", percentage);
-  //sessionStorage.setItem("result2", result2);
-  //sessionStorage.setItem("percentage2", percentage2);
-
-  //if (result > 89 || result2 > 89) {
-     location.assign("{% url 'pages:Who_am_I_end' %}");
- // } else  {
-     //location.assign("{% url 'uscapitals:keepgoing' %}");
-  //}
+   addScore2 = score;
+   sessionStorage.setItem("addScore2", addScore2);
+   location.assign("{% url 'pages:Who_am_I_end' %}");
 }
 function randInt(low, high) {
   const rndDec = Math.random();
@@ -408,8 +395,6 @@ function origImage() {
 function newImage(imageIcon) {
    let width = window.innerWidth;
    console.log(width);
-   //correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
-   //correctIcon = document.getElementById("titlesection2");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
    document.getElementById('title').hidden = true;
    document.getElementById('titlesection').hidden = true;
    document.getElementById('title2').hidden = true;
@@ -479,9 +464,7 @@ function newImage(imageIcon) {
    else if (imageIcon == 'Cynthia Erivo' && width < 800) { document.body.style.backgroundPosition = "center right"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/erivo.jpg')";}
    else if (imageIcon == 'Ice Cube') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/cube.jpg')";}
    else if (imageIcon == 'Janet Jackson') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/janet.jpg')";}
-   //else if (imageIcon == 'Janet Jackson' && width < 800) { document.body.style.backgroundPosition = "center right"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/janet.jpg')";}
    else if (imageIcon == 'Jamie Foxx') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/foxx.jpg')";}
-   //else if (imageIcon == 'Jamie Foxx' && width < 800) { document.body.style.backgroundPosition = "center left"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/foxx.jpg')";}
    else if (imageIcon == 'Jennifer Lopez') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/lopez.jpg')";}
    else if (imageIcon == 'Lady Gaga') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/gaga.jpg')";}
    else if (imageIcon == 'Leslie Odom Jr.') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/odom.jpg')";}
@@ -492,8 +475,7 @@ function newImage(imageIcon) {
    else if (imageIcon == 'Will Smith') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/smith.jpg')";}
    else if (imageIcon == 'Whitney Houston') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/whitney.jpg')";}
    else if (imageIcon == 'Zendaya') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/zendaya.jpg')";}
-   //else if (imageIcon == 'Zendaya' && width < 800) { document.body.style.backgroundPosition = "center left"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/zendaya.jpg')";}
-   //document.body.style.backgroundImage = "url('/static/Images/who_am_I/zendaya.jpg')";
+   //document.body.style.backgroundImage = "url('/static/Images/who_am_I/zendaya.jpg')"; // testing tool
 }
 function checkEntry1() {
   document.getElementById('button1').disabled = true;
@@ -508,7 +490,6 @@ function checkEntry1() {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
       clearInterval(timer);
       clearInterval(timer2);
-      //console.log(tim)
       imageIcon = currentIcon.icon;
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
      correctIcon = document.getElementById("titlesection2");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -520,9 +501,7 @@ function checkEntry1() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     //timeReset();
      clearInterval(timer);
-     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -545,9 +524,7 @@ function checkEntry2() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button2").innerHTML == currentIcon.icon || document.getElementById("button22").innerHTML == currentIcon.icon) {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     //timeReset();
      clearInterval(timer);
-     //timeLeft = 8;
      imageIcon = currentIcon.icon;
      clearInterval(timer2);
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -560,9 +537,7 @@ function checkEntry2() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     //timeReset();
      clearInterval(timer);
-     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -585,9 +560,7 @@ function checkEntry3() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button3").innerHTML == currentIcon.icon || document.getElementById("button32").innerHTML == currentIcon.icon) {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-      //timeReset();
       clearInterval(timer);
-      //timeLeft = 8;
       clearInterval(timer2);
       imageIcon = currentIcon.icon;
       correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -600,9 +573,7 @@ function checkEntry3() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     //timeReset();
      clearInterval(timer);
-     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -625,9 +596,7 @@ function checkEntry4() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button4").innerHTML == currentIcon.icon || document.getElementById("button42").innerHTML == currentIcon.icon) {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     //timeReset();
      clearInterval(timer);
-     //timeLeft = 8;
      clearInterval(timer2);
      imageIcon = currentIcon.icon;
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -640,9 +609,7 @@ function checkEntry4() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     //timeReset();
      clearInterval(timer);
-     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -701,7 +668,6 @@ function startTimer() {
 function timeReset() {
   clearInterval(timer);
   timeLeft = 10;  //seconds to answer, other spot to set is within startTimer
-  //flag = 'y';
   startTimer();
 }
 function playGame() {
@@ -823,9 +789,6 @@ function unlockAudio() {
 }
 window.addEventListener('load', function() {
   unlockAudio();
-  //score = 50
-  //iconCounter = 50
-  //origImage();
   opener();
 
   let width = window.innerWidth;
