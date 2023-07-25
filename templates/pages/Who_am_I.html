@@ -336,6 +336,7 @@ function getNextGameBoard() {
          document.getElementById('attemptStage').hidden = false;
          document.getElementById('attemptStage2').hidden = false;
 
+         document.getElementById('title').hidden = false;
          document.getElementById('title2').hidden = false;
 
 
@@ -444,6 +445,7 @@ function newImage(imageIcon) {
    document.getElementById('button32').hidden = true;
    document.getElementById('button42').hidden = true;
 
+   document.getElementById('title').hidden = true;
    document.getElementById('title2').hidden = true;
 
 
@@ -502,7 +504,9 @@ function checkEntry1() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button1").innerHTML == currentIcon.icon || document.getElementById("button12").innerHTML == currentIcon.icon) {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-      timeReset();
+      //timeReset();
+      clearInterval(timer);
+      timeLeft = 8;
       imageIcon = currentIcon.icon;
       clearInterval(timer2);
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -515,7 +519,9 @@ function checkEntry1() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     timeReset();
+     //timeReset();
+     clearInterval(timer);
+     timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -538,7 +544,9 @@ function checkEntry2() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button2").innerHTML == currentIcon.icon || document.getElementById("button22").innerHTML == currentIcon.icon) {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     timeReset();
+     //timeReset();
+     clearInterval(timer);
+     timeLeft = 8;
      imageIcon = currentIcon.icon;
      clearInterval(timer2);
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -551,7 +559,9 @@ function checkEntry2() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     timeReset();
+     //timeReset();
+     clearInterval(timer);
+     timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -574,7 +584,9 @@ function checkEntry3() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button3").innerHTML == currentIcon.icon || document.getElementById("button32").innerHTML == currentIcon.icon) {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-      timeReset();
+      //timeReset();
+      clearInterval(timer);
+      timeLeft = 8;
       clearInterval(timer2);
       imageIcon = currentIcon.icon;
       correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -587,7 +599,9 @@ function checkEntry3() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     timeReset();
+     //timeReset();
+     clearInterval(timer);
+     timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -610,7 +624,9 @@ function checkEntry4() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button4").innerHTML == currentIcon.icon || document.getElementById("button42").innerHTML == currentIcon.icon) {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     timeReset();
+     //timeReset();
+     clearInterval(timer);
+     timeLeft = 8;
      clearInterval(timer2);
      imageIcon = currentIcon.icon;
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -623,7 +639,9 @@ function checkEntry4() {
      setTimeout(function() {getNextGameBoard();}, 3000);
   } else {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-     timeReset();
+     //timeReset();
+     clearInterval(timer);
+     timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
