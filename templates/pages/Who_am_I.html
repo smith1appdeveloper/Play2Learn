@@ -168,7 +168,7 @@ let iconData = [
 
 ['Whitney Houston',
 "I've been affectionately nicknamed 'the Voice', My accolades include eight Grammy Awards, 16 Billboard Music Awards, two Emmy Awards, and 28 Guinness World Records.",
-"I am one of the bestselling music artists of all time, with over 200 million records sold worldwide. I've been inducted into the Grammy Hall of Fame (twice), the Rock and Roll Hall of Fame, the Rhythm and Blues Music Hall of Fame, the Georgia Music Hall of Fame, the New Jersey Hall of Fame, and the National Recording Registry at the Library of Congress.",
+"I am one of the bestselling music artists of all time, with over 200 million records sold worldwide. I've been inducted into the Grammy Hall of Fame (twice), the Rock and Roll Hall of Fame, the National Recording Registry at the Library of Congress amoung others.",
 'I made my acting debut in the romantic thriller film The Bodyguard (1992), which became the tenth highest-grossing film to that date. Its soundtrack won the Grammy Award for Album of the Year and remains the bestselling soundtrack album of all time.'],
 
 ['Zendaya',
@@ -507,7 +507,7 @@ function checkEntry1() {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
       //timeReset();
       clearInterval(timer);
-      timeLeft = 8;
+      //timeLeft = 8;
       imageIcon = currentIcon.icon;
       clearInterval(timer2);
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -522,7 +522,7 @@ function checkEntry1() {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
      //timeReset();
      clearInterval(timer);
-     timeLeft = 8;
+     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -547,7 +547,7 @@ function checkEntry2() {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
      //timeReset();
      clearInterval(timer);
-     timeLeft = 8;
+     //timeLeft = 8;
      imageIcon = currentIcon.icon;
      clearInterval(timer2);
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -562,7 +562,7 @@ function checkEntry2() {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
      //timeReset();
      clearInterval(timer);
-     timeLeft = 8;
+     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -587,7 +587,7 @@ function checkEntry3() {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
       //timeReset();
       clearInterval(timer);
-      timeLeft = 8;
+      //timeLeft = 8;
       clearInterval(timer2);
       imageIcon = currentIcon.icon;
       correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -602,7 +602,7 @@ function checkEntry3() {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
      //timeReset();
      clearInterval(timer);
-     timeLeft = 8;
+     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -627,7 +627,7 @@ function checkEntry4() {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
      //timeReset();
      clearInterval(timer);
-     timeLeft = 8;
+     //timeLeft = 8;
      clearInterval(timer2);
      imageIcon = currentIcon.icon;
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
@@ -642,7 +642,7 @@ function checkEntry4() {
      document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
      //timeReset();
      clearInterval(timer);
-     timeLeft = 8;
+     //timeLeft = 8;
      clearInterval(timer2);
      document.getElementById('titlesection').style.fontWeight = "bold";document.getElementById('titlesection').style.fontSize = "xx-large";document.getElementById('titlesection').innerHTML = "Who am I?";
      document.getElementById('titlesection2').style.fontWeight = "bold";document.getElementById('titlesection2').style.fontSize = "xx-large";document.getElementById('titlesection2').innerHTML = "Who am I?";
@@ -845,18 +845,18 @@ window.addEventListener('load', function() {
   #button1 {margin: 0%;}#button2 {margin: 0%;} #button3 {margin: 0%;}#button4 {margin: 0%;}#button12 {margin: 0%}#button22 {margin: 0%;} #button32 {margin: 0%;}#button42 {margin: 0%;}
   #yesStage {font-size: 2rem;} #noStage {font-size: 2rem;}#gameStats {height: 2rem;}#answerStage {margin-top: 0rem;}#answerStage2 {height: 2rem;}
   #scoreboard {background: rgba(232, 232, 232, 1); height: 20rem; width: 40rem;}
-  #scoreboard2 {background: rgba(232, 232, 232, 1);background-position: center;width: 80%;height: auto;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center; margin-top: 1rem;}
+  #scoreboard2 {background: rgba(232, 232, 232, 1);background-position: center;width: 80%;height: auto;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;}
   #display {height: 3rem;} #mobile {margin: 0.5rem;}
 </style>
 {% endblock %}
 {% block main %}
 <body class=".backgroundimg" style="background-image: url('{% static 'Images/who_am_I/movies2.jpg' %}');" id="imageShown">
-  <div id="title" class="container d-none d-lg-block mt-5"><p><h1 id="titlesection" class="justify-content-center align-middle">Who am I?</h1></p></div>
+  <div id="title" class="container d-none d-lg-block"><p><h1 id="titlesection" class="justify-content-center align-middle">Who am I?</h1></p></div>
   <div id="scoreboard" class="container justify-content-center d-none d-lg-block">
-     <div class="row justify-content-center mt-5 mb-5"></div>
+     <div class="row justify-content-center mt-5"></div>
      <div class="row justify-content-center">
-        <div id="scoreLabel" class="row justify-content-center mr-5"><div>Score:</div><p id="score" class="ml-2 font-weight-bold">0</p></div>
-        <div id="roundLabel" class="row justify-content-center"><div>Round:</div><p id="round" class="ml-2 font-weight-bold">0</p></div>
+        <div id="scoreLabel" class="row justify-content-center mr-5 mt-5"><div>Score:</div><p id="score" class="ml-2 font-weight-bold">0</p></div>
+        <div id="roundLabel" class="row justify-content-center mt-5"><div>Round:</div><p id="round" class="ml-2 font-weight-bold">0</p></div>
      </div>
      <div class="row justify-content-center" id="display">
         <div><p class="mr-5 font-weight-bold"></p>
