@@ -478,8 +478,8 @@ function newImage(imageIcon) {
    else if (imageIcon == 'Cynthia Erivo' && width > 800) { document.body.style.backgroundImage = "url('/static/Images/who_am_I/erivo.jpg')";}
    else if (imageIcon == 'Cynthia Erivo' && width < 800) { document.body.style.backgroundPosition = "center right"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/erivo.jpg')";}
    else if (imageIcon == 'Ice Cube') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/cube.jpg')";}
-   else if (imageIcon == 'Janet Jackson') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/jackson.jpg')";}
-   //else if (imageIcon == 'Janet Jackson' && width < 800) { document.body.style.backgroundPosition = "center right"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/jackson.jpg')";}
+   else if (imageIcon == 'Janet Jackson') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/janet.jpg')";}
+   //else if (imageIcon == 'Janet Jackson' && width < 800) { document.body.style.backgroundPosition = "center right"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/janet.jpg')";}
    else if (imageIcon == 'Jamie Foxx') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/foxx.jpg')";}
    //else if (imageIcon == 'Jamie Foxx' && width < 800) { document.body.style.backgroundPosition = "center left"; document.body.style.backgroundImage = "url('/static/Images/who_am_I/foxx.jpg')";}
    else if (imageIcon == 'Jennifer Lopez') { document.body.style.backgroundImage = "url('/static/Images/who_am_I/lopez.jpg')";}
@@ -506,11 +506,10 @@ function checkEntry1() {
   document.getElementById('button42').disabled = true;
   if (document.getElementById("button1").innerHTML == currentIcon.icon || document.getElementById("button12").innerHTML == currentIcon.icon) {
       document.getElementById('attemptStage').hidden = true;document.getElementById('attemptStage2').hidden = true;
-      //timeReset();
       clearInterval(timer);
-      //timeLeft = 8;
-      imageIcon = currentIcon.icon;
       clearInterval(timer2);
+      //console.log(tim)
+      imageIcon = currentIcon.icon;
      correctIcon = document.getElementById("titlesection");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
      correctIcon = document.getElementById("titlesection2");correctIcon.style.fontSize = "xx-large";correctIcon.innerHTML = currentIcon.icon //
      correctAnswer.src = '/static/audio/correct.wav';
@@ -665,18 +664,21 @@ function startTimer() {
   window.addEventListener('keyup', handleKeyUp);
   if (timeLeft > 0 && round < 11) {
      timer = setInterval(() => {
+      console.log(timeLeft)
+      console.log(timeLeft2)
         timeLeft--;
         if (timeLeft === 0) {
            clearInterval(timer);
            window.removeEventListener('keyup', handleKeyUp);
-           setTimeout(function() {
               if (round > 10) {endGame();}
               else if (flag == 1 ) {getNextGameBoard();}
               else if (flag == 2 ) {getNextClue2();}
               else if (flag == 3 ) {getNextClue3();}
-              else if (flag == 4 ) {getNextClue4();}
+              else if (flag == 4 ) {timeLeft2 = 10; getNextClue4();}
               else if (flag == 0 ) {
                flag = 1;
+               time2 = document.getElementById('attemptStage');time2.innerHTML = 'time';
+               time2 = document.getElementById('attemptStage2');time2.innerHTML = 'time';
                if (selectButton == 0){document.getElementById('button1').style.background = 'blue'; ans = document.getElementById("titlesection");ans.style.fontSize = "xx-large";ans.innerHTML = icon}
                if (selectButton == 1){document.getElementById('button2').style.background = 'blue'; ans = document.getElementById("titlesection");ans.style.fontSize = "xx-large";ans.innerHTML = icon}
                if (selectButton == 2){document.getElementById('button3').style.background = 'blue'; ans = document.getElementById("titlesection");ans.style.fontSize = "xx-large";ans.innerHTML = icon}
@@ -688,7 +690,6 @@ function startTimer() {
                setTimeout(function() {getNextGameBoard();}, 3000)
                }
                timeReset();
-            }, 2000);
         }
      }, 1000)
   }else{
@@ -699,7 +700,7 @@ function startTimer() {
 }
 function timeReset() {
   clearInterval(timer);
-  timeLeft = 8;  //seconds to answer, other spot to set is within startTimer
+  timeLeft = 10;  //seconds to answer, other spot to set is within startTimer
   //flag = 'y';
   startTimer();
 }
@@ -841,8 +842,9 @@ window.addEventListener('load', function() {
   text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 15rem; height: 3.5rem;}
   .button-link2 {background-color: black; border-style: none solid solid none;color: white;display: block; font-family: Verdana, Geneva, sans-serif; padding: 1px 6px; text-decoration: none; text-indent: 0rem; text-shadow: none;
      text-align: center; box-sizing: border-box; border-radius: 0.5rem; cursor: pointer; position: relative;width: 8rem; height: 3rem; margin-left:.25rem}
-  #title  {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 1);text-align: center;width: 80%;height: 8rem;box-sizing: border-box;padding: 1.5rem;font-size: larger;margin: auto;position: relative;z-index: 10;}
-  #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 1);text-align: center;width: 90%;height: 7rem;box-sizing: border-box;padding: .75rem;font-size: larger;margin: auto;position: relative;z-index: 10;}
+  #title  {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 1);text-align: center;width: 90%;height: 8rem;box-sizing: border-box;padding: 2rem;font-size: larger;margin: auto;position: relative;z-index: 10;}
+  #title2 {border-style: solid; border-width: thin; background: rgba(232, 232, 232, 1);text-align: center;width: 90%;height: 7rem;box-sizing: border-box;padding: 1rem;font-size: larger;margin: auto;position: relative;z-index: 10;}
+  #titlesection {margin: auto; text-align: center;}#titlesection2 {margin: auto; text-align: center;}
   #button1 {margin: 0%;}#button2 {margin: 0%;} #button3 {margin: 0%;}#button4 {margin: 0%;}#button12 {margin: 0%}#button22 {margin: 0%;} #button32 {margin: 0%;}#button42 {margin: 0%;}
   #yesStage {font-size: 2rem;} #noStage {font-size: 2rem;}#gameStats {height: 2rem;}#answerStage {margin-top: 0rem;}#answerStage2 {height: 2rem;}
   #scoreboard {background: rgba(232, 232, 232, 1); height: 20rem; width: 40rem;}
@@ -852,7 +854,7 @@ window.addEventListener('load', function() {
 {% endblock %}
 {% block main %}
 <body class=".backgroundimg" style="background-image: url('{% static 'Images/who_am_I/movies2.jpg' %}');" id="imageShown">
-  <div id="title" class="container d-none d-lg-block"><p><h1 id="titlesection" class="justify-content-center align-middle">Who am I?</h1></p></div>
+  <div id="title" class="container d-none d-lg-block"><p><h1 id="titlesection" class="justify-content-center">Who am I?</h1></p></div>
   <div id="scoreboard" class="container justify-content-center d-none d-lg-block">
      <div class="row justify-content-center mt-5"></div>
      <div class="row justify-content-center">
@@ -877,7 +879,7 @@ window.addEventListener('load', function() {
      </div>
  </div>
 <!--Mobile-->
-  <div id="title2" class="container d-lg-none d-md-block mt-1"><p id="mobile"><h3 id="titlesection2" class="justify-content-center align-middle">Who am I?</h3></p></div>
+  <div id="title2" class="container d-lg-none d-md-block mt-1"><p id="mobile"><h3 id="titlesection2" class="justify-content-center">Who am I?</h3></p></div>
   <div id="scoreboard2" class="container justify-content-center d-lg-none d-md-block mb-1 mt-1">
      <div class="row justify-content-center mt-3"></div>
      <div class="row justify-content-center">
