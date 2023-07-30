@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import AboutUsView, contact_form, HomePageView, LoginView, devView, betaView, Random_AceView, Random_Ace_GainView, Random_Ace_LoseView, Random_Ace_GainMView, Random_Ace_LoseMView, Who_am_IView, Who_am_I2View, Final_TallyView, Who_am_I_endView
+from .views import AboutUsView, contact_form, HomePageView, LoginView, devView, betaView, Random_AceView, Random_Ace_GainView, Random_Ace_LoseView, Random_Ace_GainMView, Random_Ace_LoseMView, Who_am_IView, Who_am_I2View, Final_TallyView, Who_am_I_endView, Final_Tally_UpView, Final_Tally_DownView
 
 app_name =  'pages'
 urlpatterns = [
@@ -19,4 +19,6 @@ urlpatterns = [
     path('who_am_I2/', Who_am_I2View.as_view(), name='who_am_I2'),
     path('final_tally/', Final_TallyView.as_view(), name='final_tally'),
     path('Who_am_I_end/', Who_am_I_endView.as_view(), name='Who_am_I_end'),
+    path('final_tally_up/', Final_Tally_UpView.as_view(), name='final_tally_up'),
+    path('final_tally_down/', Final_Tally_DownView.as_view(), name='final_tally_down'),
 ]
