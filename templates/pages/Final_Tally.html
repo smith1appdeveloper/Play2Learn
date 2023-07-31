@@ -11,6 +11,7 @@
    let sumRandom1 = 0, sumRandom2 = 0, sumRandom3 = 0;
    let keepScore = 0, keepScore2 = 0;
    let addScore = {}, addScore2 = {};
+   let sumRandomArray = [];
    let buttonFlag = 'n', buttonFlag2 = 'n';
    let stopGame = 0;
    let ace = 0;
@@ -62,6 +63,7 @@
 
 
    function endGame() {
+      sumRandomArray = [];
       addScore = keepScore;
       sessionStorage.setItem("addScore", addScore);
       addScore2 = keepScore2;
@@ -78,7 +80,6 @@
    function getDice() {
       random1 = randInt(1, 6)
       sumRandom1 = random1
-      console.log("sumRandom", sumRandom1); //
       if (random1 == 1) {document.getElementById('rand1').innerHTML = null;random1 = document.getElementById("rand1");random1.appendChild(die1);};
       if (random1 == 2) {document.getElementById('rand1').innerHTML = null;random1 = document.getElementById("rand1");random1.appendChild(die2);};
       if (random1 == 3) {document.getElementById('rand1').innerHTML = null;random1 = document.getElementById("rand1");random1.appendChild(die3);};
@@ -89,7 +90,6 @@
    function getDiceM() {
       random1M = randInt(1, 6)
       sumRandom1M = random1M
-      console.log("sumRandomM", sumRandom1M); //
       if (random1M == 1) {document.getElementById('rand1M').innerHTML = null;random1M = document.getElementById("rand1M");random1M.appendChild(die1);};
       if (random1M == 2) {document.getElementById('rand1M').innerHTML = null;random1M = document.getElementById("rand1M");random1M.appendChild(die2);};
       if (random1M == 3) {document.getElementById('rand1M').innerHTML = null;random1M = document.getElementById("rand1M");random1M.appendChild(die3);};
@@ -100,7 +100,6 @@
    function getDice2() {
       random2 = randInt(1, 6)
       sumRandom2 = random2
-      console.log("sumRandom2", sumRandom2) //
       if (random2 == 1) {document.getElementById('rand2').innerHTML = null;random2 = document.getElementById("rand2");random2.appendChild(die12);};
       if (random2 == 2) {document.getElementById('rand2').innerHTML = null;random2 = document.getElementById("rand2");random2.appendChild(die22);};
       if (random2 == 3) {document.getElementById('rand2').innerHTML = null;random2 = document.getElementById("rand2");random2.appendChild(die32);};
@@ -111,7 +110,6 @@
    function getDice2M() {
       random2M = randInt(1, 6)
       sumRandom2M = random2M
-      console.log("sumRandom2M", sumRandom2M) //
       if (random2M == 1) {document.getElementById('rand2M').innerHTML = null;random2M = document.getElementById("rand2M");random2M.appendChild(die12);};
       if (random2M == 2) {document.getElementById('rand2M').innerHTML = null;random2M = document.getElementById("rand2M");random2M.appendChild(die22);};
       if (random2M == 3) {document.getElementById('rand2M').innerHTML = null;random2M = document.getElementById("rand2M");random2M.appendChild(die32);};
@@ -122,7 +120,6 @@
    function getDice3() {
       random3 = randInt(1, 6);
       sumRandom3 = random3
-      console.log("sumRandom3", sumRandom3) //
       if (random3 == 1) {document.getElementById('rand3').innerHTML = null;random3 = document.getElementById("rand3");random3.appendChild(die13);};
       if (random3 == 2) {document.getElementById('rand3').innerHTML = null;random3 = document.getElementById("rand3");random3.appendChild(die23);};
       if (random3 == 3) {document.getElementById('rand3').innerHTML = null;random3 = document.getElementById("rand3");random3.appendChild(die33);};
@@ -133,7 +130,6 @@
    function getDice3M() {
       random3M = randInt(1, 6);
       sumRandom3M = random3M
-      console.log("sumRandom3M", sumRandom3M) //
       if (random3M == 1) {document.getElementById('rand3M').innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(die13);};
       if (random3M == 2) {document.getElementById('rand3M').innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(die23);};
       if (random3M == 3) {document.getElementById('rand3M').innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(die33);};
@@ -143,9 +139,7 @@
    }
 
    function checkEntry() {
-      //flag = 'y'
       getGuess();
-      console.log("value",val1);
       if (val1 < 3 || val1 > 18) {
          document.getElementById('button').disabled = true;
          document.getElementById('gameStats').style.color = "#ff0000";
@@ -163,13 +157,11 @@
         getGuess();
         document.getElementById('guess1').disabled = true;
         document.getElementById('button').disabled = true;
-        console.log("val",val1)
         setTimeout(function(){getDice();digit.src = '/static/audio/digit.wav';document.getElementById('sum').innerHTML = sumRandom1;}, 1000);
         setTimeout(function(){getDice2();digit.src = '/static/audio/digit.wav';roll2 = sumRandom1 + sumRandom2;document.getElementById('sum').innerHTML = roll2;}, 2000);
         setTimeout(function(){getDice3();digit.src = '/static/audio/digit.wav';stageSum = sumRandom1 + sumRandom2 + sumRandom3;document.getElementById('sum').innerHTML = stageSum;}, 3000);
          setTimeout(function(){
             stageSum = sumRandom1 + sumRandom2 + sumRandom3;
-            console.log("Sum = ", stageSum); //testing
             sum = stageSum;
             if (sum == val1 ) {
                youWon.src = '/static/audio/youwon.wav';
@@ -224,9 +216,7 @@
       }
    }
    function checkEntry2() {
-      //flag = 'y'
       getGuess2();
-      console.log("value",val2);
       if (val2 < 3 || val2 > 18) {
          document.getElementById('button2').disabled = true;
          document.getElementById('gameStats2').style.color = "#ff0000";
@@ -244,13 +234,11 @@
         getGuess2();
         document.getElementById('guess2').disabled = true;
         document.getElementById('button2').disabled = true;
-        console.log("val2",val2)
         setTimeout(function(){getDiceM();digit.src = '/static/audio/digit.wav';document.getElementById('sum2').innerHTML = sumRandom1M;}, 1000);
         setTimeout(function(){getDice2M();digit.src = '/static/audio/digit.wav';roll2 = sumRandom1M + sumRandom2M;document.getElementById('sum2').innerHTML = roll2;}, 2000);
         setTimeout(function(){getDice3M();digit.src = '/static/audio/digit.wav';stageSum2 = sumRandom1M + sumRandom2M + sumRandom3M;document.getElementById('sum2').innerHTML = stageSum2;}, 3000);
          setTimeout(function(){
             stageSum2 = sumRandom1M + sumRandom2M + sumRandom3M;
-            console.log("Sum2 = ", stageSum2); //testing
             sum2 = stageSum2;
             if (sum2 == val2 ) {
                youWon.src = '/static/audio/youwon.wav';
@@ -406,7 +394,7 @@
             if (document.getElementById('guess2').value !== "") {
                 document.getElementById('guess2').disabled = true;
                 checkEntry2();
-            } else if (document.querySelector('button2').disabled == false && document.getElementById('guess2').value !== "") {
+            } else if (document.getElementById('button2').disabled == false && document.getElementById('guess2').value !== "") {
                 keepGoing()
                 checkEntry2();
             } else {checkEntry2()}
