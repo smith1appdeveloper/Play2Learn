@@ -83,6 +83,15 @@ class Final_Tally_UpView(TemplateView):
 class Final_Tally_DownView(TemplateView):
     template_name = 'pages/Final_Tally_Down.html'
 
+class game_overView(TemplateView):
+    template_name = 'pages/game_over.html'
+
+class game_over_View(TemplateView):
+    template_name = 'pages/game_over_.html'
+
+class twentyView(TemplateView):
+    template_name = 'pages/twenty.html'
+
 
 
 

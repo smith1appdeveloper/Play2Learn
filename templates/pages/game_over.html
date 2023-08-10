@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Game Over{% endblock %}
+{% block main %}
+
+<script>
+window.addEventListener('load', function() {
+   addScore = sessionStorage.getItem("addScoreM");
+   addScore2 = sessionStorage.getItem("addScore2M");
+   addScore3 = sessionStorage.getItem("addScore3M");
+   playerName1 = sessionStorage.getItem("playerName1");
+   playerName2 = sessionStorage.getItem("playerName2");
+   playerName3 = sessionStorage.getItem("playerName3");
+   let name = document.getElementById('name');
+   if (addScore > addScore2 && addScore > addScore3) {name.innerText = playerName1;}
+   else if (addScore2 > addScore && addScore2 > addScore3) {name.innerText = playerName2;}
+   else if (addScore3 > addScore && addScore3 > addScore2) {name.innerText = playerName3;}
+   });
+</script>
+<style>
+    .square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
+    p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
+    #shape {background: rgba(232, 232, 232, .95);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+    #shape2 {background: rgba(232, 232, 232, .95);width: 90%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+    #page-top {background-repeat: no-repeat;background-attachment: fixed; background-position: center center;}
+    .button-link {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
+    text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
+    .button-link:hover {background-color: gray;color: white;}.button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
+    #button[disabled]{background: grey;} h4 {margin: bottom 0;} #score {float: none;color: black;text-align: center;font-size: 3rem; box-sizing: border-box; position: relative; margin: auto; font-weight: bold;}
+    #score2 {float: none;color: black;text-align: center;font-size: 3rem; box-sizing: border-box; position: relative; margin: auto; font-weight: bold;}
+    #dollar {float: none;color: black;text-align: center;font-size: 3rem; box-sizing: border-box; position: relative; margin: auto; font-weight: bold;}
+        /*#main {margin-top: 10rem;}*/
+</style>
+ <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
+ <div id="shape2" class="d-sm-block d-md-none mt-2">
+ <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/twenties.jpg' %}');">
+    <main>
+    <div class="row justify-content-center mt-3"><h2 class="font-italic text-danger">1</h2><h4 class="font-italic text-danger">st</h4><h2 class="ml-1 font-weight: bolder">Twenty</h2></div>
+    <h1 id="display" class="mt-3 text-bold" style="font-weight: bold"><p id="name"></p></h1>
+        <h4 id="display2" class="mt-3 mb-5">Was the first to reach Twenty!</h4>
+          <a class="button-link mb-1" href="{% url 'pages:final_tally' %}">Play Again</a>
+          <a class="button-link mb-1" href="{% url 'pages:beta' %}">Beta</a>
+          <a class="button-link mb-1" href="{% url 'pages:homepage' %}">Home</a>
+       </div>
+    </div>
+   </div>
+    <!--<figure><div class="row justify-content-center"><audio loop controls id="audio">><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>-->
+    </body>
+   </main>
+   </html>
+
+   {% endblock %}

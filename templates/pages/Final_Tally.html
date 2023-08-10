@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 {% load static %}
-{% block title %}Final Tally{% endblock %}
+{% block title %}1st Twenty{% endblock %}
 {% block main %}
 
 <script>
@@ -16,23 +16,28 @@
    let stopGame = 0;
    let ace = 0;
    let playGame = 'y';
+   let keepPlayer2Score = 0, keepPlayer3Score = 0;
+   let keepPlayer2ScoreM = 0, keepPlayer3ScoreM = 0;
+   let player2Guess = 0, player3Guess = 0, player2GuessM = 0, player3GuessM = 0;
+   let player1isLowest = 'n', player2isLowest = 'n', player3isLowest = 'n';
+   let oneequalstwo = 'n', oneequalsthree = 'n', twoequalsthree = 'n';
+   let player1isLowestM = 'n', player2isLowestM = 'n', player3isLowestM = 'n';
+   let oneequalstwoM = 'n', oneequalsthreeM = 'n', twoequalsthreeM = 'n';
+   let dif1 = 0, dif2 = 0, dif3 = 0;
+   let stageSum = 0, stageSum2 = 0;
+   let finalTally = 0;
+   let newPlayer1 = '';
 
-   //let stopClock = 60;
-   //let stopClock2 = 10;
-   //let flag = 'n';
+   const knight = '\u265E';
+   const rook = '\u265C';
 
    let img = new Image();img.src="/static/Images/Question_mark_(black).svg.png"
    let img2 = new Image();img2.src="/static/Images/Question_mark_(black).svg.png";
    let img3 = new Image();img3.src="/static/Images/Question_mark_(black).svg.png";
-   let ace1 = new Image();ace1.src="/static/Images/ace3.png";
-   let ace2 = new Image();ace2.src="/static/Images/ace3.png";
-   let ace3 = new Image();ace3.src="/static/Images/ace3.png";
    let imgM = new Image();imgM.src="/static/Images/Question_mark_(black).svg.png"
    let img2M = new Image();img2M.src="/static/Images/Question_mark_(black).svg.png";
    let img3M = new Image();img3M.src="/static/Images/Question_mark_(black).svg.png";
-   let ace1M = new Image();ace1M.src="/static/Images/ace3.png";
-   let ace2M = new Image();ace2M.src="/static/Images/ace3.png";
-   let ace3M = new Image();ace3M.src="/static/Images/ace3.png";
+
    let die1 = new Image();die1.src="/static/Images/die1.jpg";
    let die2 = new Image();die2.src="/static/Images/die2.jpg";
    let die3 = new Image();die3.src="/static/Images/die3.jpg";
@@ -61,14 +66,36 @@
    const digit = new Audio(); digit.autoplay = true; digit.preload = "auto";
    const gameOver = new Audio(); gameOver.autoplay = true; gameOver.preload = "auto";
 
+   const namePlayer2 = ["Robby","Riley","Ellie",];
+   const namePlayer3 = ["James","Blake","Priti",];
 
    function endGame() {
-      sumRandomArray = [];
       addScore = keepScore;
+      addScore2 = keepPlayer2Score;
+      addScore3 = keepPlayer3Score;
       sessionStorage.setItem("addScore", addScore);
-      addScore2 = keepScore2;
       sessionStorage.setItem("addScore2", addScore2);
-      if (keepScore >=10 || keepScore2 >=10) {location.assign("{% url 'pages:final_tally_up' %}");} else if (keepScore < 10 || keepScore2 < 10) {location.assign("{% url 'pages:final_tally_down' %}");}
+      sessionStorage.setItem("addScore3", addScore3);
+
+      playerName1 = newPlayer1;
+      playerName2 = newPlayer2;
+      playerName3 = newPlayer3;
+      sessionStorage.setItem("playerName1", playerName1);
+      sessionStorage.setItem("playerName2", playerName2);
+      sessionStorage.setItem("playerName3", playerName3);
+
+      addScore1M = keepScore2;
+      addScore2M = keepPlayer2ScoreM;
+      addScore3M = keepPlayer3ScoreM;
+      sessionStorage.setItem("addScore1M", addScore1M);
+      sessionStorage.setItem("addScore2M", addScore2M);
+      sessionStorage.setItem("addScore3M", addScore3M);
+
+      sessionStorage.setItem("playerName1M", playerName1);
+      sessionStorage.setItem("playerName2M", playerName2);
+      sessionStorage.setItem("playerName3M", playerName3);
+      if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {location.assign("{% url 'pages:game_over_' %}");}
+      else if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {location.assign("{% url 'pages:game_over' %}");}
    }
 
    function randInt(low, high) {
@@ -76,7 +103,32 @@
       const rndInt = Math.floor(rndDec * (high - low + 1) + low);
       return rndInt;
    }
+   function getPlayer1() {
+      newPlayer1 = sessionStorage.getItem("newPlayer1");
+      newPlayer1M = sessionStorage.getItem("newPlayer1M");
+      document.getElementById("name1").innerHTML = newPlayer1;
+      document.getElementById("name1M").innerHTML = newPlayer1M;
+   }
+   function getPlayer2() {
+      randomNameDataSet = randInt(0, 2);
+      if (randomNameDataSet == 0) {newPlayer2 =  namePlayer2[0];document.getElementById("name2").innerHTML = newPlayer2;};
+      if (randomNameDataSet == 1) {newPlayer2 =  namePlayer2[1];document.getElementById("name2").innerHTML = newPlayer2;};
+      if (randomNameDataSet == 2) {newPlayer2 =  namePlayer2[2];document.getElementById("name2").innerHTML = newPlayer2;};
 
+      if (randomNameDataSet == 0) {newPlayer2 =  namePlayer2[0];document.getElementById("name2M").innerHTML = newPlayer2;};
+      if (randomNameDataSet == 1) {newPlayer2 =  namePlayer2[1];document.getElementById("name2M").innerHTML = newPlayer2;};
+      if (randomNameDataSet == 2) {newPlayer2 =  namePlayer2[2];document.getElementById("name2M").innerHTML = newPlayer2;};
+   }
+   function getPlayer3() {
+      randomNameDataSet = randInt(0, 2);
+      if (randomNameDataSet == 0) {newPlayer3 =  namePlayer3[0];document.getElementById("name3").innerHTML = newPlayer3;};
+      if (randomNameDataSet == 1) {newPlayer3 =  namePlayer3[1];document.getElementById("name3").innerHTML = newPlayer3;};
+      if (randomNameDataSet == 2) {newPlayer3 =  namePlayer3[2];document.getElementById("name3").innerHTML = newPlayer3;};
+
+      if (randomNameDataSet == 0) {newPlayer3 =  namePlayer3[0];document.getElementById("name3M").innerHTML = newPlayer3;};
+      if (randomNameDataSet == 1) {newPlayer3 =  namePlayer3[1];document.getElementById("name3M").innerHTML = newPlayer3;};
+      if (randomNameDataSet == 2) {newPlayer3 =  namePlayer3[2];document.getElementById("name3M").innerHTML = newPlayer3;};
+   }
    function getDice() {
       random1 = randInt(1, 6)
       sumRandom1 = random1
@@ -137,9 +189,73 @@
       if (random3M == 5) {document.getElementById('rand3M').innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(die53);};
       if (random3M == 6) {document.getElementById('rand3M').innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(die63);};
    }
-
+   function getDifs(stageSum) {
+      player1isLowest = 'n', player2isLowest = 'n', player3isLowest = 'n';
+      if (stageSum > val1) {dif1 = stageSum - val1;} else {dif1 = val1 - stageSum;}
+      if (stageSum > player2Guess) {dif2 = stageSum - player2Guess;} else {dif2 = player2Guess - stageSum;}
+      if (stageSum > player3Guess) {dif3 = stageSum - player3Guess;} else {dif3 = player3Guess - stageSum;}
+      //console.log("Finally Tally", stageSum)  //
+      if (dif1 <= dif2 && dif1 <= dif3 && dif1 < 4){player1isLowest = 'y'};
+      if (dif2 <= dif1 && dif2 <= dif3 && dif2 < 4){player2isLowest = 'y'};
+      if (dif3 <= dif1 && dif3 <= dif2 && dif3 < 4){player3isLowest = 'y'};
+      //console.log("difs", dif1, dif2, dif3)  //
+      if (stageSum == val1) {player1isLowest = 'y'};
+      if (stageSum == player2Guess) {player2isLowest = 'y'};
+      if (stageSum == player3Guess) {player3isLowest = 'y'};
+      return {'player1isLowest': player1isLowest, 'player2isLowest': player2isLowest, 'player3isLowest': player3isLowest, 'dif1': dif1, 'dif2': dif2, 'dif3': dif3,};
+   }
+   function getDifsM(stageSum2) {
+      player1isLowestM = 'n', player2isLowestM = 'n', player3isLowestM = 'n';
+      if (stageSum2 > val2) {dif1M = stageSum2 - val2;} else {dif1M = val2 - stageSum2;}
+      if (stageSum2 > player2GuessM) {dif2M = stageSum2 - player2GuessM;} else {dif2M = player2GuessM - stageSum2;}
+      if (stageSum2 > player3GuessM) {dif3M = stageSum2 - player3GuessM;} else {dif3M = player3GuessM - stageSum2;}
+      console.log("Finally Tally Mobile", stageSum2)  //
+      if (dif1M <= dif2M && dif1M <= dif3M && dif1M < 4){player1isLowestM = 'y'};
+      if (dif2M <= dif1M && dif2M <= dif3M && dif2M < 4){player2isLowestM = 'y'};
+      if (dif3M <= dif1M && dif3M <= dif2M && dif3M < 4){player3isLowestM = 'y'};
+      console.log("difsM", dif1M, dif2M, dif3M)  //
+      if (stageSum2 == val2) {player1isLowestM = 'y'};
+      if (stageSum2 == player2GuessM) {player2isLowestM = 'y'};
+      if (stageSum2 == player3GuessM) {player3isLowestM = 'y'};
+      return {'player1isLowestM': player1isLowestM, 'player2isLowestM': player2isLowestM, 'player3isLowestM': player3isLowestM, 'dif1M': dif1M, 'dif2M': dif2M, 'dif3M': dif3M,};
+   }
+   function getEquals(dif1,dif2,dif3) {
+      oneequalstwo = 'n', oneequalsthree = 'n', twoequalsthree = 'n';
+      if (val1 == player2Guess || dif1 == dif2) {oneequalstwo   = 'y'}
+      if (val1 == player3Guess || dif1 == dif3) {oneequalsthree = 'y'}
+      if (player2Guess == player3Guess || dif2 == dif3) {twoequalsthree = 'y'}
+      return {'oneequalstwo': oneequalstwo, 'oneequalsthree': oneequalsthree, 'twoequalsthree': twoequalsthree};
+   }
+   function getEqualsM(dif1M,dif2M,dif3M) {
+      oneequalstwoM = 'n', oneequalsthreeM = 'n', twoequalsthreeM = 'n';
+      if (val2 == player2GuessM || dif1 == dif2M) {oneequalstwoM   = 'y'}
+      if (val2 == player3GuessM || dif1 == dif3M) {oneequalsthreeM = 'y'}
+      if (player2GuessM == player3GuessM || dif2M == dif3M) {twoequalsthreeM = 'y'}
+      return {'oneequalstwoM': oneequalstwoM, 'oneequalsthreeM': oneequalsthreeM, 'twoequalsthreeM': twoequalsthreeM};
+   }
+   function highScore() {
+      if (keepScore > keepPlayer2Score && keepScore > keepPlayer3Score) {document.getElementById('score').style.color = "red";document.getElementById('scoreM').style.color = "black";document.getElementById('score3').style.color = "black";}
+      else if (keepPlayer2Score > keepScore && keepPlayer2Score > keepPlayer3Score) {document.getElementById('score2').style.color = "red";document.getElementById('score').style.color = "black";document.getElementById('score3').style.color = "black";}
+      else if (keepPlayer3Score > keepScore && keepPlayer3Score > keepPlayer2Score) {document.getElementById('score3').style.color = "red";document.getElementById('score').style.color = "black";document.getElementById('score2').style.color = "black";}
+      else if (keepPlayer3Score == keepScore){document.getElementById('score3').style.color = "red";document.getElementById('score').style.color = "red";document.getElementById('score2').style.color = "black";}
+      else if (keepPlayer3Score == keepPlayer2Score){document.getElementById('score2').style.color = "red";document.getElementById('score3').style.color = "red";document.getElementById('score').style.color = "black";}
+      else if (keepScore == keepPlayer2Score){document.getElementById('score').style.color = "red";document.getElementById('score2').style.color = "red";document.getElementById('score3').style.color = "black";}
+      else if (keepPlayer3Score == keepPlayer2Score == keepScore){document.getElementById('score').style.color = "red";document.getElementById('score2').style.color = "red";document.getElementById('score3').style.color = "red";}
+   }
+   function highScoreM() {
+      if (keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM) {document.getElementById('scoreM').style.color = "red";document.getElementById('score2M').style.color = "black";document.getElementById('score3M').style.color = "black";}
+      else if (keepPlayer2ScoreM > keepScore2 && keepPlayer2ScoreM > keepPlayer3ScoreM) {document.getElementById('score2M').style.color = "red";document.getElementById('scoreM').style.color = "black";document.getElementById('score3M').style.color = "black";}
+      else if (keepPlayer3ScoreM > keepScore2 && keepPlayer3ScoreM > keepPlayer2ScoreM) {document.getElementById('score3M').style.color = "red";document.getElementById('scoreM').style.color = "black";document.getElementById('score2M').style.color = "black";}
+      else if (keepPlayer3ScoreM == keepScore2){document.getElementById('score3M').style.color = "red";document.getElementById('scoreM').style.color = "red";document.getElementById('score2M').style.color = "black";}
+      else if (keepPlayer3ScoreM == keepPlayer2ScoreM){document.getElementById('score2M').style.color = "red";document.getElementById('score3M').style.color = "red";document.getElementById('scoreM').style.color = "black";}
+      else if (keepScore2 == keepPlayer2ScoreM){document.getElementById('scoreM').style.color = "red";document.getElementById('score2M').style.color = "red";document.getElementById('score3M').style.color = "black";}
+      else if (keepPlayer3ScoreM == keepPlayer2ScoreM == keepScore2){document.getElementById('scoreM').style.color = "red";document.getElementById('score2M').style.color = "red";document.getElementById('score3M').style.color = "red";}
+   }
+   //*******************************************************check entry**************************************************************
    function checkEntry() {
       getGuess();
+      getDecoy1();
+      getDecoy2();
       if (val1 < 3 || val1 > 18) {
          document.getElementById('button').disabled = true;
          document.getElementById('gameStats').style.color = "#ff0000";
@@ -153,70 +269,501 @@
             document.getElementById("guess1").focus();
          }, 2000);
       } else {
-        buttonFlag = 'y'
-        getGuess();
-        document.getElementById('guess1').disabled = true;
-        document.getElementById('button').disabled = true;
-        setTimeout(function(){getDice();digit.src = '/static/audio/digit.wav';document.getElementById('sum').innerHTML = sumRandom1;}, 1000);
-        setTimeout(function(){getDice2();digit.src = '/static/audio/digit.wav';roll2 = sumRandom1 + sumRandom2;document.getElementById('sum').innerHTML = roll2;}, 2000);
-        setTimeout(function(){getDice3();digit.src = '/static/audio/digit.wav';stageSum = sumRandom1 + sumRandom2 + sumRandom3;document.getElementById('sum').innerHTML = stageSum;}, 3000);
+         setTimeout(function(){getDice();digit.src = '/static/audio/digit.wav';document.getElementById('sum').innerHTML = sumRandom1;}, 1000);
+         setTimeout(function(){getDice2();digit.src = '/static/audio/digit.wav';roll2 = sumRandom1 + sumRandom2;document.getElementById('sum').innerHTML = roll2;}, 2000);
+         setTimeout(function(){getDice3();digit.src = '/static/audio/digit.wav';stageSum = sumRandom1 + sumRandom2 + sumRandom3;document.getElementById('sum').innerHTML = stageSum;}, 3000);
          setTimeout(function(){
-            stageSum = sumRandom1 + sumRandom2 + sumRandom3;
-            sum = stageSum;
-            if (sum == val1 ) {
-               youWon.src = '/static/audio/youwon.wav';
-               buttonFlag = 'n'
-               keepScore = 10;
-               if (keepScore >= 10) {document.getElementById('score').style.color = "#00cc00";}
-               document.getElementById('score').innerHTML = keepScore;
-               document.getElementById('gameStats').innerHTML = 'WOW! You nailed it! Instant Winner!';
-            }
-            else if (sum - val1 == 3 || val1 - sum == 3) {
-               rightAnswer.src = '/static/audio/correct.wav';
-              buttonFlag = 'n';
-              keepScore = keepScore + 4;
-              if (keepScore >= 10) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score').style.color = "#00cc00";}
-              document.getElementById('score').innerHTML = keepScore;
-              document.getElementById('gameStats').innerHTML = 'Difference is 3, Awarded 4 pts!';
-            }
-            else if (sum - val1 == 2 || val1 - sum == 2) {
-               rightAnswer.src = '/static/audio/correct.wav';
-               buttonFlag = 'n';
-               keepScore = keepScore + 6;
-               if (keepScore >= 10) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score').style.color = "#00cc00";}
-               document.getElementById('score').innerHTML = keepScore;
-               document.getElementById('gameStats').innerHTML = 'Difference is 2, Awarded 6 pts!';
-            }
-            else if (sum - val1 == 1 || val1 - sum == 1) {
-               rightAnswer.src = '/static/audio/correct.wav';
-               buttonFlag = 'n';
-               keepScore = keepScore + 8;
-               if (keepScore >= 10) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score').style.color = "#00cc00";}
-               document.getElementById('score').innerHTML = keepScore;
-               document.getElementById('gameStats').innerHTML = 'Difference is 1, Awarded 8 pts!';
-            }
-            else if (buttonFlag = 'y') {
+
+         let difs = getDifs(stageSum);
+         let player1isLowest = difs.player1isLowest, player2isLowest = difs.player2isLowest, player3isLowest = difs.player3isLowest, dif1 = difs.dif1, dif2 = difs.dif2, dif3 = difs.dif3;
+         let equals = getEquals(dif1,dif2,dif3);
+         let oneequalstwo = equals.oneequalstwo, oneequalsthree = equals.oneequalsthree, twoequalsthree = equals.twoequalsthree;
+
+          //**********************************testing**************************
+         //stageSum = 7; //////
+         //val1 = 5; //////
+         //player2Guess = 9; ///////
+         //player3Guess = 9; ///////
+
+         //console.log("player 1 is lowest", player1isLowest);
+         //console.log("player 2 is lowest", player2isLowest);
+        // console.log("player 3 is lowest", player3isLowest);
+
+         //console.log("oneequalstwo", oneequalstwo);
+         //console.log("oneequalsthree", oneequalsthree);
+         //console.log("twoequalsthree", twoequalsthree)
+         //console.log("Tally", stageSum);
+         //console.log("player 1 guess", val1);
+        //console.log("player 2 guess", player2Guess);
+        // console.log("player 3 guess", player3Guess);
+         //********************************************************************
+
+         if (player1isLowest == 'y' && oneequalstwo == 'n' && oneequalsthree == 'n' && twoequalsthree == 'n') {evalPlayer1Only();}
+         else if (player1isLowest == 'y' && oneequalstwo == 'y' && oneequalsthree == 'n') {evalPlayer1and2();}
+         else if (player1isLowest == 'y' && oneequalstwo == 'n' && oneequalsthree == 'y') {evalPlayer1and3();}
+         else if (player1isLowest == 'y' && oneequalstwo == 'y' && oneequalsthree == 'y') {evalPlayer1and2and3();}
+         else if (player1isLowest == 'y' && twoequalsthree == 'y') {evalPlayer1Only();}
+         else if (player2isLowest == 'y' && twoequalsthree == 'n') {evalPlayer2Only();}
+         else if (player2isLowest == 'y' && twoequalsthree == 'y') {evalPlayer2and3();}
+         else if (player3isLowest == 'y' && twoequalsthree == 'n') {evalPlayer3Only();}
+         else {
             wrongAnswer.src = '/static/audio/wrongAnswer.wav';
             document.getElementById('gameStats').style.color = "#ff0000";
-            document.getElementById('gameStats').innerHTML = 'No Points'
-            }
+            document.getElementById('gameStats').innerHTML = 'No Points Awarded'
+            document.getElementById('guess1').style.color = "red";
+            document.getElementById('decoy1').style.color = "red";
+            document.getElementById('decoy2').style.color = "red";
             setTimeout(function(){
+               document.getElementById('guess1').style.color = "black";
+               document.getElementById('decoy1').style.color = "black";
+               document.getElementById('decoy2').style.color = "black";
                ++round;
-                  if (round > 3 || keepScore >= 10) { if(keepScore >=10) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
-               else {
-                  if (round > 2) {document.getElementById('round').style.color = "#ff0000";document.getElementById('round').innerHTML = "Final Round";}
-                  else {document.getElementById('round').innerHTML = round;}
+                  if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}
+                  } else {
+                  document.getElementById('round').innerHTML = round;
                   document.getElementById('sum').innerHTML = 0;
                   document.getElementById('gameStats').innerHTML = ' ';
                   document.getElementById('gameStats').style.color = "#000000";
-                  keepGoing()
+                  keepGoing();
                }
-            }, 2000);
-        }, 4000);
-      }
+            }, 4000);
+         }
+      }, 4000)
    }
+}
+function evalPlayer1Only() {
+   console.log('evalPlayer1Only')
+        document.getElementById('guess1').disabled = true;
+        document.getElementById('button').disabled = true;
+         sum = stageSum;
+         if (sum == val1 ) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepScore = keepScore + 10;
+            if (keepScore >= 20) {document.getElementById('score').style.color = "#00cc00";}
+            document.getElementById('score').innerHTML = keepScore;
+            document.getElementById('guess1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer1 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum - val1 == 3 || val1 - sum == 3) {
+           rightAnswer.src = '/static/audio/correct.wav';
+           keepScore = keepScore + 4;
+           if (keepScore >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score').style.color = "#00cc00";}
+           document.getElementById('score').innerHTML = keepScore;
+           document.getElementById('guess1').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats').innerHTML = newPlayer1 + ' Awarded 4 pts!';
+         }
+         else if (sum - val1 == 2 || val1 - sum == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore = keepScore + 6;
+            if (keepScore >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score').style.color = "#00cc00";}
+            document.getElementById('score').innerHTML = keepScore;
+            document.getElementById('guess1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer1 + ' Awarded 6 pts!';
+         }
+         else if (sum - val1 == 1 || val1 - sum == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore = keepScore + 8;
+            if (keepScore >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score').style.color = "#00cc00";}
+            document.getElementById('score').innerHTML = keepScore;
+            document.getElementById('guess1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer1 + ' Awarded 8 pts!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess1').style.color = "black";
+            document.getElementById('decoy1').style.color = "black";
+            document.getElementById('decoy2').style.color = "black";
+            highScore();
+            ++round;
+               if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+            else {
+               document.getElementById('round').innerHTML = round;
+               document.getElementById('sum').innerHTML = 0;
+               document.getElementById('gameStats').innerHTML = ' ';
+               document.getElementById('gameStats').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer2Only() {
+        console.log('evalPlayer2Only')
+        document.getElementById('guess1').disabled = true;
+        document.getElementById('button').disabled = true;
+         sum = stageSum;
+         if (sum == player2Guess) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepPlayer2Score = keepPlayer2Score + 10;
+            if (keepPlayer2Score >= 20) {document.getElementById('score2').style.color = "#00cc00";}
+            document.getElementById('score2').innerHTML = keepPlayer2Score;
+            document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer2 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum - player2Guess == 3 || player2Guess - sum == 3) {
+           rightAnswer.src = '/static/audio/correct.wav';
+           keepPlayer2Score = keepPlayer2Score + 4;
+           if (keepPlayer2Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
+           document.getElementById('score2').innerHTML = keepPlayer2Score;
+           document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats').innerHTML = newPlayer2 + ' Awarded 4 points!';
+         }
+         else if (sum - player2Guess == 2 || player2Guess - sum == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer2Score = keepPlayer2Score + 6;
+           if (keepPlayer2Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
+           document.getElementById('score2').innerHTML = keepPlayer2Score;
+           document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats').innerHTML = newPlayer2 + ' Awarded 6 points!';
+         }
+         else if (sum - player2Guess == 1 || player2Guess - sum == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer2Score = keepPlayer2Score + 8;
+            if (keepPlayer2Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
+            document.getElementById('score2').innerHTML = keepPlayer2Score;
+            document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer2 + ' Awarded 8 points!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess1').style.color = "black";
+            document.getElementById('decoy1').style.color = "black";
+            document.getElementById('decoy2').style.color = "black";
+            highScore();
+            ++round;
+               if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}
+         } else {
+               document.getElementById('round').innerHTML = round;
+               document.getElementById('sum').innerHTML = 0;
+               document.getElementById('gameStats').innerHTML = ' ';
+               document.getElementById('gameStats').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer3Only() {
+   console.log('evalPlayer3Only')
+        document.getElementById('guess1').disabled = true;
+        document.getElementById('button').disabled = true;
+         sum = stageSum;
+         if (sum == player3Guess ) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepPlayer3Score = keepPlayer3Score + 10;
+            document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+            if (keepPlayer3Score >= 20) {document.getElementById('score3').style.color = "#00cc00";}
+            document.getElementById('score3').innerHTML = keepPlayer3Score;
+            document.getElementById('gameStats').innerHTML = newPlayer3 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum - player3Guess == 3 || player3Guess - sum == 3) {
+            rightAnswer.src = '/static/audio/correct.wav';
+           keepPlayer3Score = keepPlayer3Score + 4;
+           document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+           if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+           document.getElementById('score3').innerHTML = keepPlayer3Score;
+           document.getElementById('gameStats').innerHTML = newPlayer3 + ' Awarded 4 points!';
+         }
+         else if (sum - player3Guess == 2 || player3Guess - sum == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer3Score = keepPlayer3Score + 6;
+            document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+           if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+           document.getElementById('score3').innerHTML = keepPlayer3Score;
+           document.getElementById('gameStats').innerHTML = newPlayer2 + ' Awarded 6 points!';
+         }
+         else if (sum - player3Guess == 1 || player3Guess - sum == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer3Score = keepPlayer3Score + 8;
+            document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+            if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+            document.getElementById('score3').innerHTML = keepPlayer3Score;
+            document.getElementById('gameStats').innerHTML = newPlayer3 + ' Awarded 8 points!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess1').style.color = "black";
+            document.getElementById('decoy1').style.color = "black";
+            document.getElementById('decoy2').style.color = "black";
+            highScore();
+            ++round;
+               if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+               else {
+               document.getElementById('round').innerHTML = round;
+               document.getElementById('sum').innerHTML = 0;
+               document.getElementById('gameStats').innerHTML = ' ';
+               document.getElementById('gameStats').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer1and2() {console.log('evalPlayer1and2')
+        document.getElementById('guess1').disabled = true;
+        document.getElementById('button').disabled = true;
+         sum = stageSum;
+         if (sum == player2Guess ) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepScore = keepScore + 10;
+            keepPlayer2Score = keepPlayer2Score + 10;
+            if (keepPlayer2Score >= 20) {document.getElementById('score2').style.color = "#00cc00";}
+            document.getElementById('score').innerHTML = keepScore;
+            document.getElementById('score2').innerHTML = keepPlayer2Score;
+            document.getElementById('guess1').style.backgroundColor = "#00ff00";
+            document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum - player2Guess == 3 || player2Guess - sum == 3) {
+           rightAnswer.src = '/static/audio/correct.wav';
+           keepScore = keepScore + 4;
+           keepPlayer2Score = keepPlayer2Score + 4;
+           if (keepPlayer2Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
+           document.getElementById('score').innerHTML = keepScore;
+           document.getElementById('score2').innerHTML = keepPlayer2Score;
+           document.getElementById('guess1').style.backgroundColor = "#00ff00";
+           document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + ' Awarded 4 points!';
+         }
+         else if (sum - player2Guess == 2 || player2Guess - sum == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore = keepScore + 6;
+            keepPlayer2Score = keepPlayer2Score + 6;
+           if (keepPlayer2Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
+           document.getElementById('score').innerHTML = keepScore;
+           document.getElementById('score2').innerHTML = keepPlayer2Score;
+           document.getElementById('guess1').style.backgroundColor = "#00ff00";
+           document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+          document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + ' Awarded 6 points!';
+         }
+         else if (sum - player2Guess == 1 || player2Guess - sum == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore = keepScore + 8;
+            keepPlayer2Score = keepPlayer2Score + 8;
+            if (keepPlayer2Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
+            document.getElementById('score').innerHTML = keepScore;
+            document.getElementById('score2').innerHTML = keepPlayer2Score;
+            document.getElementById('guess1').style.backgroundColor = "#00ff00";
+            document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + ' Awarded 8 points!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess1').style.color = "black";
+            document.getElementById('decoy1').style.color = "black";
+            document.getElementById('decoy2').style.color = "black";
+            highScore();
+            ++round;
+               if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+               else {
+               document.getElementById('round').innerHTML = round;
+               document.getElementById('sum').innerHTML = 0;
+               document.getElementById('gameStats').innerHTML = ' ';
+               document.getElementById('gameStats').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer1and3() {console.log('evalPlayer1and3')
+document.getElementById('guess1').disabled = true;
+document.getElementById('button').disabled = true;
+ sum = stageSum;
+ if (sum == player3Guess ) {
+    youWon.src = '/static/audio/youwon.wav';
+    keepScore = keepScore + 10;
+    keepPlayer3Score = keepPlayer3Score + 10;
+    document.getElementById('guess1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+    if (keepPlayer3Score >= 20) {document.getElementById('score3').style.color = "#00cc00";}
+    document.getElementById('score').innerHTML = keepScore;
+    document.getElementById('score3').innerHTML = keepPlayer3Score;
+    document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer3 + ' nailed it! Awarded 10 points!';
+ }
+ else if (sum - player3Guess == 3 || player3Guess - sum == 3) {
+   rightAnswer.src = '/static/audio/correct.wav';
+   keepScore = keepScore + 4;
+   keepPlayer3Score = keepPlayer3Score + 4;
+   document.getElementById('guess1').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+   if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+   document.getElementById('score').innerHTML = keepScore;
+   document.getElementById('score3').innerHTML = keepPlayer3Score;
+   document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer3 + ' Awarded 4 points!';
+ }
+ else if (sum - player3Guess == 2 || player3Guess - sum == 2) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore = keepScore + 6;
+    keepPlayer3Score = keepPlayer3Score + 6;
+    document.getElementById('guess1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+   if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+   document.getElementById('score').innerHTML = keepScore;
+   document.getElementById('score3').innerHTML = keepPlayer3Score;
+   document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer3 + ' Awarded 6 points!';
+ }
+ else if (sum - player3Guess == 1 || player3Guess - sum == 1) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore = keepScore + 8;
+    keepPlayer3Score = keepPlayer3Score + 8;
+    document.getElementById('guess1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+    if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+    document.getElementById('score').innerHTML = keepScore;
+    document.getElementById('score3').innerHTML = keepPlayer3Score;
+    document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer3 + ' Awarded 8 points!';
+ }
+ setTimeout(function(){
+   document.getElementById('guess1').style.color = "black";
+   document.getElementById('decoy1').style.color = "black";
+   document.getElementById('decoy2').style.color = "black";
+   highScore();
+   ++round;
+      if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+      else {
+      document.getElementById('round').innerHTML = round;
+      document.getElementById('sum').innerHTML = 0;
+      document.getElementById('gameStats').innerHTML = ' ';
+      document.getElementById('gameStats').style.color = "#000000";
+      keepGoing();
+   }
+   }, 4000);
+};
+function evalPlayer1and2and3() {console.log('evalPlayer1and2and3')
+document.getElementById('guess1').disabled = true;
+document.getElementById('button').disabled = true;
+ sum = stageSum;
+ if (sum == player3Guess ) {
+    youWon.src = '/static/audio/youwon.wav';
+    keepScore = keepScore + 10;
+    keepPlayer2Score = keepPlayer2Score + 10;
+    keepPlayer3Score = keepPlayer3Score + 10;
+    document.getElementById('guess1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+    if (keepPlayer3Score >= 20) {document.getElementById('score3').style.color = "#00cc00";}
+    document.getElementById('score').innerHTML = keepScore;
+    document.getElementById('score2').innerHTML = keepPlayer2Score;
+    document.getElementById('score3').innerHTML = keepPlayer3Score;
+    document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' nailed it! Awarded 10 points!';
+ }
+ else if (sum - player3Guess == 3 || player3Guess - sum == 3) {
+   rightAnswer.src = '/static/audio/correct.wav';
+   keepScore = keepScore + 4;
+   keepPlayer2Score = keepPlayer2Score + 4;
+   keepPlayer3Score = keepPlayer3Score + 4;
+   document.getElementById('guess1').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+   if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+   document.getElementById('score').innerHTML = keepScore;
+   document.getElementById('score2').innerHTML = keepPlayer2Score;
+   document.getElementById('score3').innerHTML = keepPlayer3Score;
+   document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' Awarded 4 points!';
+ }
+ else if (sum - player3Guess == 2 || player3Guess - sum == 2) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore = keepScore + 6;
+    keepPlayer2Score = keepPlayer2Score + 6;
+    keepPlayer3Score = keepPlayer3Score + 6;
+    document.getElementById('guess1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+   if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+   document.getElementById('score').innerHTML = keepScore;
+   document.getElementById('score2').innerHTML = keepPlayer2Score;
+   document.getElementById('score3').innerHTML = keepPlayer3Score;
+   document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' Awarded 6 points!';
+ }
+ else if (sum - player3Guess == 1 || player3Guess - sum == 1) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore = keepScore + 8;
+    keepPlayer2Score = keepPlayer2Score + 8;
+    keepPlayer3Score = keepPlayer3Score + 8;
+    document.getElementById('guess1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+    if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+    document.getElementById('score').innerHTML = keepScore;
+    document.getElementById('score3').innerHTML = keepPlayer3Score;
+    document.getElementById('gameStats').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' Awarded 8 points!';
+ }
+ setTimeout(function(){
+   document.getElementById('guess1').style.color = "black";
+   document.getElementById('decoy1').style.color = "black";
+   document.getElementById('decoy2').style.color = "black";
+   highScore();
+   ++round;
+      if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+      else {
+      document.getElementById('round').innerHTML = round;
+      document.getElementById('sum').innerHTML = 0;
+      document.getElementById('gameStats').innerHTML = ' ';
+      document.getElementById('gameStats').style.color = "#000000";
+      keepGoing();
+   }
+   }, 4000);
+};
+function evalPlayer2and3() {console.log('evalPlayer2and3')
+document.getElementById('guess1').disabled = true;
+document.getElementById('button').disabled = true;
+ sum = stageSum;
+ if (sum == player3Guess ) {
+    youWon.src = '/static/audio/youwon.wav';
+    keepPlayer2Score = keepPlayer2Score + 10;
+    keepPlayer3Score = keepPlayer3Score + 10;
+    document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+    if (keepPlayer3Score >= 20) {document.getElementById('score3').style.color = "#00cc00";}
+    document.getElementById('score2').innerHTML = keepPlayer2Score;
+    document.getElementById('score3').innerHTML = keepPlayer3Score;
+    document.getElementById('gameStats').innerHTML = newPlayer2 + " & " + newPlayer3 + ' nailed it! Awarded 10 points!';
+ }
+ else if (sum - player3Guess == 3 || player3Guess - sum == 3) {
+   rightAnswer.src = '/static/audio/correct.wav';
+   keepPlayer2Score = keepPlayer2Score + 4;
+   keepPlayer3Score = keepPlayer3Score + 4;
+   document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+   if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+   document.getElementById('score2').innerHTML = keepPlayer2Score;
+   document.getElementById('score3').innerHTML = keepPlayer3Score;
+   document.getElementById('gameStats').innerHTML = newPlayer2 + " & " + newPlayer3 + ' Awarded 4 points!';
+ }
+ else if (sum - player3Guess == 2 || player3Guess - sum == 2) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepPlayer2Score = keepPlayer2Score + 6;
+    keepPlayer3Score = keepPlayer3Score + 6;
+    document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+   if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+   document.getElementById('score2').innerHTML = keepPlayer2Score;
+   document.getElementById('score3').innerHTML = keepPlayer3Score;
+   document.getElementById('gameStats').innerHTML = newPlayer2 + " & " + newPlayer3 + ' Awarded 6 points!';
+ }
+ else if (sum - player3Guess == 1 || player3Guess - sum == 1) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepPlayer2Score = keepPlayer2Score + 8;
+    keepPlayer3Score = keepPlayer3Score + 8;
+    document.getElementById('decoy1').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2').style.backgroundColor = "#00ff00";
+    if (keepPlayer3Score >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3').style.color = "#00cc00";}
+    document.getElementById('score2').innerHTML = keepPlayer2Score;
+    document.getElementById('score3').innerHTML = keepPlayer3Score;
+    document.getElementById('gameStats').innerHTML = newPlayer2 + " & " + newPlayer3 + ' Awarded 8 points!';
+ }
+ setTimeout(function(){
+   document.getElementById('guess1').style.color = "black";
+   document.getElementById('decoy1').style.color = "black";
+   document.getElementById('decoy2').style.color = "black";
+   highScore();
+   ++round;
+      if (keepScore >= 20 || keepPlayer2Score >= 20 || keepPlayer3Score >= 20) {if(keepScore >=20 && keepScore > keepPlayer2Score && keepScore > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+      else {
+      document.getElementById('round').innerHTML = round;
+      document.getElementById('sum').innerHTML = 0;
+      document.getElementById('gameStats').innerHTML = ' ';
+      document.getElementById('gameStats').style.color = "#000000";
+      keepGoing();
+   }
+}, 4000);
+};
+
+
+   //*******************************************************check entry 2**************************************************************
    function checkEntry2() {
       getGuess2();
+      getDecoy1M();
+      getDecoy2M();
       if (val2 < 3 || val2 > 18) {
          document.getElementById('button2').disabled = true;
          document.getElementById('gameStats2').style.color = "#ff0000";
@@ -230,68 +777,511 @@
             document.getElementById("guess2").focus();
          }, 2000);
       } else {
-        buttonFlag2 = 'y'
-        getGuess2();
-        document.getElementById('guess2').disabled = true;
-        document.getElementById('button2').disabled = true;
         setTimeout(function(){getDiceM();digit.src = '/static/audio/digit.wav';document.getElementById('sum2').innerHTML = sumRandom1M;}, 1000);
         setTimeout(function(){getDice2M();digit.src = '/static/audio/digit.wav';roll2 = sumRandom1M + sumRandom2M;document.getElementById('sum2').innerHTML = roll2;}, 2000);
         setTimeout(function(){getDice3M();digit.src = '/static/audio/digit.wav';stageSum2 = sumRandom1M + sumRandom2M + sumRandom3M;document.getElementById('sum2').innerHTML = stageSum2;}, 3000);
          setTimeout(function(){
-            stageSum2 = sumRandom1M + sumRandom2M + sumRandom3M;
-            sum2 = stageSum2;
-            if (sum2 == val2 ) {
-               youWon.src = '/static/audio/youwon.wav';
-               buttonFlag2 = 'n'
-               keepScore2 = 10;
-               if (keepScore2 >= 10) {document.getElementById('score2').style.color = "#00cc00";}
-               document.getElementById('score2').innerHTML = keepScore2;
-               document.getElementById('gameStats2').innerHTML = 'WOW! You nailed it! Instant Winner!';
+            let difsM = getDifsM(stageSum2);
+            let player1isLowestM = difsM.player1isLowestM, player2isLowestM = difsM.player2isLowestM, player3isLowestM = difsM.player3isLowestM, dif1M = difsM.dif1M, dif2M = difsM.dif2M, dif3M = difsM.dif3M;
+            let equalsM = getEqualsM(dif1M,dif2M,dif3M);
+            let oneequalstwoM = equalsM.oneequalstwoM, oneequalsthreeM = equalsM.oneequalsthreeM, twoequalsthreeM = equalsM.twoequalsthreeM;
+
+             //**********************************testing**************************
+            /*stageSum2 = 18; //////
+            val2 = 16; //////
+            player2GuessM = 3; ///////
+            player3GuessM = 16; ///////
+            player1isLowestM = 'y'; //////
+            player2isLowestM = 'n'; //////
+            player3isLowestM = 'n'; //////
+            oneequalstwoM = 'n';
+            oneequalsthreeM = 'y';
+            twoequalsthreeM = 'n';*/
+
+            console.log("player 1 is lowest", player1isLowestM);
+            console.log("player 2 is lowest", player2isLowestM);
+            console.log("player 3 is lowest", player3isLowestM);
+
+            console.log("oneequalstwoM", oneequalstwoM);
+            console.log("oneequalsthreeM", oneequalsthreeM);
+            console.log("twoequalsthreeM", twoequalsthreeM)
+            console.log("Sum2", stageSum2);
+            console.log("player 1 guess", val2);
+            console.log("player 2 guess", player2GuessM);
+            console.log("player 3 guess", player3GuessM);
+            //********************************************************************
+
+            if (player1isLowestM == 'y' && oneequalstwoM == 'n' && oneequalsthreeM == 'n' && twoequalsthreeM == 'n') {evalPlayer1OnlyM();}
+            else if (player1isLowestM == 'y' && oneequalstwoM == 'y' && oneequalsthreeM == 'n') {evalPlayer1and2M();}
+            else if (player1isLowestM == 'y' && oneequalstwoM == 'n' && oneequalsthreeM == 'y') {evalPlayer1and3M();}
+            else if (player1isLowestM == 'y' && oneequalstwoM == 'y' && oneequalsthreeM == 'y') {evalPlayer1and2and3M();}
+            else if (player1isLowestM == 'y' && twoequalsthreeM == 'y') {evalPlayer1OnlyM();}
+            else if (player2isLowestM == 'y' && twoequalsthreeM == 'n') {evalPlayer2OnlyM();}
+            else if (player2isLowestM == 'y' && twoequalsthreeM == 'y') {evalPlayer2and3M();}
+            else if (player3isLowestM == 'y' && twoequalsthreeM == 'n') {evalPlayer3OnlyM();}
+            else {
+               wrongAnswer.src = '/static/audio/wrongAnswer.wav';
+               document.getElementById('gameStats2').style.color = "#ff0000";
+               document.getElementById('gameStats2').innerHTML = 'No Points Awarded'
+               document.getElementById('guess2').style.color = "red";
+               document.getElementById('decoy1M').style.color = "red";
+               document.getElementById('decoy2M').style.color = "red";
+               setTimeout(function(){
+                  document.getElementById('guess2').style.color = "black";
+                  document.getElementById('decoy1M').style.color = "black";
+                  document.getElementById('decoy2M').style.color = "black";
+                  ++round2;
+                     if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+                     else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}
+                     } else {
+                     document.getElementById('round2').innerHTML = round2;
+                     document.getElementById('sum2').innerHTML = 0;
+                     document.getElementById('gameStats2').innerHTML = ' ';
+                     document.getElementById('gameStats2').style.color = "#000000";
+                     keepGoing();
+                  }
+               }, 4000);
             }
-            else if (sum2 - val2 == 3 || val2 - sum2 == 3) {
-               rightAnswer.src = '/static/audio/correct.wav';
-              buttonFlag2 = 'n';
-              keepScore2 = keepScore2 + 4;
-              if (keepScore2 >= 10) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
-              document.getElementById('score2').innerHTML = keepScore2;
-              document.getElementById('gameStats2').innerHTML = 'Difference is 3, Awarded 4 pts!';
-            }
-            else if (sum2 - val2 == 2 || val2 - sum2 == 2) {
-               rightAnswer.src = '/static/audio/correct.wav';
-               buttonFlag2 = 'n';
-               keepScore2 = keepScore2 + 6;
-               if (keepScore2 >= 10) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
-               document.getElementById('score2').innerHTML = keepScore2;
-               document.getElementById('gameStats2').innerHTML = 'Difference is 2, Awarded 6 pts!';
-            }
-            else if (sum2 - val2 == 1 || val2 - sum2 == 1) {
-               rightAnswer.src = '/static/audio/correct.wav';
-               buttonFlag = 'n';
-               keepScore2 = keepScore2 + 8;
-               if (keepScore2 >= 10) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2').style.color = "#00cc00";}
-               document.getElementById('score2').innerHTML = keepScore2;
-               document.getElementById('gameStats2').innerHTML = 'Difference is 1, Awarded 8 pts!';
-            }
-            else if (buttonFlag2 = 'y') {
-            wrongAnswer.src = '/static/audio/wrongAnswer.wav';
-            document.getElementById('gameStats2').style.color = "#ff0000";
-            document.getElementById('gameStats2').innerHTML = 'No Points'
-            }
-            setTimeout(function(){
-               ++round2;
-                  if (round2 > 3 || keepScore2 >= 10) { if(keepScore2 >=10) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)} else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
-               else {
-                  if (round2 > 2) {document.getElementById('round2').style.color = "#ff0000";document.getElementById('round2').innerHTML = "Final Round";}
-                  else {document.getElementById('round2').innerHTML = round2;}
-                  document.getElementById('sum2').innerHTML = 0;
-                  document.getElementById('gameStats2').innerHTML = ' ';
-                  document.getElementById('gameStats2').style.color = "#000000";
-                  keepGoing()
-               }
-            }, 2000);
-        }, 4000);
+         }, 4000)
       }
    }
+
+function evalPlayer1OnlyM() {
+   console.log('evalPlayer1OnlyM')
+        document.getElementById('guess2').disabled = true;
+        document.getElementById('button2').disabled = true;
+         sum2 = stageSum2;
+         if (sum2 == val2 ) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepScore2 = keepScore2 + 10;
+            if (keepScore2 >= 20) {document.getElementById('scoreM').style.color = "#00cc00";}
+            document.getElementById('scoreM').innerHTML = keepScore2;
+            document.getElementById('guess2').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer1 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum2 - val2 == 3 || val2 - sum2 == 3) {
+           rightAnswer.src = '/static/audio/correct.wav';
+           keepScore2 = keepScore2 + 4;
+           if (keepScore2 >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('scoreM').style.color = "#00cc00";}
+           document.getElementById('scoreM').innerHTML = keepScore2;
+           document.getElementById('guess2').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats2').innerHTML = newPlayer1 + ' Awarded 4 pts!';
+         }
+         else if (sum2 - val2 == 2 || val2 - sum2 == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore2 = keepScore2 + 6;
+            if (keepScore2 >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('scoreM').style.color = "#00cc00";}
+            document.getElementById('scoreM').innerHTML = keepScore2;
+            document.getElementById('guess2').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer1 + ' Awarded 6 pts!';
+         }
+         else if (sum2 - val2 == 1 || val2 - sum2 == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore2 = keepScore2 + 8;
+            if (keepScore >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('scoreM').style.color = "#00cc00";}
+            document.getElementById('scoreM').innerHTML = keepScore2;
+            document.getElementById('guess2').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer1 + ' Awarded 8 pts!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess2').style.color = "black";
+            document.getElementById('decoy1M').style.color = "black";
+            document.getElementById('decoy2M').style.color = "black";
+            highScoreM();
+            ++round2;
+               if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3Score ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+               else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+            else {
+               document.getElementById('round2').innerHTML = round2;
+               document.getElementById('sum2').innerHTML = 0;
+               document.getElementById('gameStats2').innerHTML = ' ';
+               document.getElementById('gameStats2').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer2OnlyM() {
+        console.log('evalPlayer2OnlyM')
+        document.getElementById('guess2').disabled = true;
+        document.getElementById('button2').disabled = true;
+         sum2 = stageSum2;
+         if (sum2 == player2GuessM) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepPlayer2ScoreM = keepPlayer2ScoreM + 10;
+            if (keepPlayer2ScoreM >= 20) {document.getElementById('score2M').style.color = "#00cc00";}
+            document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+            document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer2 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum2 - player2GuessM == 3 || player2GuessM - sum2 == 3) {
+           rightAnswer.src = '/static/audio/correct.wav';
+           keepPlayer2ScoreM = keepPlayer2ScoreM + 4;
+           if (keepPlayer2ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2M').style.color = "#00cc00";}
+           document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+           document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats2').innerHTML = newPlayer2 + ' Awarded 4 points!';
+         }
+         else if (sum2 - player2GuessM == 2 || player2GuessM - sum2 == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer2ScoreM = keepPlayer2ScoreM + 6;
+           if (keepPlayer2ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2M').style.color = "#00cc00";}
+           document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+           document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats2').innerHTML = newPlayer2 + ' Awarded 6 points!';
+         }
+         else if (sum2 - player2GuessM == 1 || player2GuessM - sum2 == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer2ScoreM = keepPlayer2ScoreM + 8;
+            if (keepPlayer2ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score2M').style.color = "#00cc00";}
+            document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+            document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer2 + ' Awarded 8 points!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess2').style.color = "black";
+            document.getElementById('decoy1M').style.color = "black";
+            document.getElementById('decoy2M').style.color = "black";
+            highScoreM();
+            ++round2;
+               if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+               else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}
+         } else {
+               document.getElementById('round2').innerHTML = round2;
+               document.getElementById('sum2').innerHTML = 0;
+               document.getElementById('gameStats2').innerHTML = ' ';
+               document.getElementById('gameStats2').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer3OnlyM() {
+   console.log('evalPlayer3OnlyM')
+        document.getElementById('guess2').disabled = true;
+        document.getElementById('button').disabled = true;
+         sum2 = stageSum2;
+         if (sum2 == player3GuessM ) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepPlayer3ScoreM = keepPlayer3ScoreM + 10;
+            document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+            if (keepPlayer3ScoreM >= 20) {document.getElementById('score3M').style.color = "#00cc00";}
+            document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+            document.getElementById('gameStats2').innerHTML = newPlayer3 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum2 - player3GuessM == 3 || player3GuessM - sum2 == 3) {
+            rightAnswer.src = '/static/audio/correct.wav';
+           keepPlayer3ScoreM = keepPlayer3ScoreM + 4;
+           document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+           if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+           document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+           document.getElementById('gameStats2').innerHTML = newPlayer3 + ' Awarded 4 points!';
+         }
+         else if (sum2 - player3GuessM == 2 || player3GuessM - sum2 == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer3ScoreM = keepPlayer3ScoreM + 6;
+            document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+           if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+           document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+           document.getElementById('gameStats2').innerHTML = newPlayer2 + ' Awarded 6 points!';
+         }
+         else if (sum2 - player3GuessM == 1 || player3GuessM - sum2 == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepPlayer3ScoreM = keepPlayer3ScoreM + 8;
+            document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+            if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+            document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+            document.getElementById('gameStats2').innerHTML = newPlayer3 + ' Awarded 8 points!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess2').style.color = "black";
+            document.getElementById('decoy1M').style.color = "black";
+            document.getElementById('decoy2M').style.color = "black";
+            highScoreM();
+            ++round2;
+               if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+               else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+               else {
+               document.getElementById('round2').innerHTML = round2;
+               document.getElementById('sum2').innerHTML = 0;
+               document.getElementById('gameStats2').innerHTML = ' ';
+               document.getElementById('gameStats2').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer1and2M() {console.log('evalPlayer1and2M')
+        document.getElementById('guess2').disabled = true;
+        document.getElementById('button').disabled = true;
+         sum2 = stageSum2;
+         if (sum2 == player2GuessM) {
+            youWon.src = '/static/audio/youwon.wav';
+            keepScore2 = keepScore2 + 10;
+            keepPlayer2ScoreM = keepPlayer2ScoreM + 10;
+            if (keepPlayer2Score >= 20) {document.getElementById('scoreM').style.color = "#00cc00";}
+            document.getElementById('scoreM').innerHTML = keepScore2;
+            document.getElementById('score2M').innerHTML = keepPlayer2Score;
+            document.getElementById('guess2').style.backgroundColor = "#00ff00";
+            document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + ' nailed it! Awarded 10 points!';
+         }
+         else if (sum2 - player2GuessM == 3 || player2GuessM - sum2 == 3) {
+           rightAnswer.src = '/static/audio/correct.wav';
+           keepScore2 = keepScore2 + 4;
+           keepPlayer2ScoreM = keepPlayer2ScoreM + 4;
+           if (keepPlayer2ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('scoreM').style.color = "#00cc00";}
+           document.getElementById('scoreM').innerHTML = keepScore2;
+           document.getElementById('score2M').innerHTML = keepPlayer2Score;
+           document.getElementById('guess2').style.backgroundColor = "#00ff00";
+           document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+           document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + ' Awarded 4 points!';
+         }
+         else if (sum2 - player2GuessM == 2 || player2GuessM - sum2 == 2) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore2 = keepScore2 + 6;
+            keepPlayer2ScoreM = keepPlayer2ScoreM + 6;
+           if (keepPlayer2ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('scoreM').style.color = "#00cc00";}
+           document.getElementById('scoreM').innerHTML = keepScore2;
+           document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+           document.getElementById('guess2').style.backgroundColor = "#00ff00";
+           document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+          document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + ' Awarded 6 points!';
+         }
+         else if (sum2 - player2GuessM == 1 || player2GuessM - sum2 == 1) {
+            rightAnswer.src = '/static/audio/correct.wav';
+            keepScore2 = keepScore2 + 8;
+            keepPlayer2ScoreM = keepPlayer2ScoreM + 8;
+            if (keepPlayer2ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('scoreM').style.color = "#00cc00";}
+            document.getElementById('scoreM').innerHTML = keepScore;
+            document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+            document.getElementById('guess2').style.backgroundColor = "#00ff00";
+            document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+            document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + ' Awarded 8 points!';
+         }
+         setTimeout(function(){
+            document.getElementById('guess2').style.color = "black";
+            document.getElementById('decoy1M').style.color = "black";
+            document.getElementById('decoy2M').style.color = "black";
+            highScoreM();
+            ++round2;
+               if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+               else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+               else {
+               document.getElementById('round2').innerHTML = round2;
+               document.getElementById('sum2').innerHTML = 0;
+               document.getElementById('gameStats2').innerHTML = ' ';
+               document.getElementById('gameStats2').style.color = "#000000";
+               keepGoing();
+            }
+         }, 4000);
+};
+function evalPlayer1and3M() {console.log('evalPlayer1and3M')
+document.getElementById('guess2').disabled = true;
+document.getElementById('button').disabled = true;
+ sum2 = stageSum2;
+ if (sum2 == player3GuessM ) {
+    youWon.src = '/static/audio/youwon.wav';
+    keepScore2 = keepScore2 + 10;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 10;
+    document.getElementById('guess2').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+    if (keepPlayer3ScoreM >= 20) {document.getElementById('score3M').style.color = "#00cc00";}
+    document.getElementById('scoreM').innerHTML = keepScore2;
+    document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+    document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer3 + ' nailed it! Awarded 10 points!';
+ }
+ else if (sum2 - player3GuessM == 3 || player3GuessM - sum2 == 3) {
+   rightAnswer.src = '/static/audio/correct.wav';
+   keepScore2 = keepScore2 + 4;
+   keepPlayer3ScoreM = keepPlayer3ScoreM + 4;
+   document.getElementById('guess2').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+   if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+   document.getElementById('scoreM').innerHTML = keepScore2;
+   document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+   document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer3 + ' Awarded 4 points!';
+ }
+ else if (sum2 - player3GuessM == 2 || player3GuessM - sum2 == 2) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore2 = keepScore2 + 6;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 6;
+    document.getElementById('guess2').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+   if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+   document.getElementById('scoreM').innerHTML = keepScore2;
+   document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+   document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer3 + ' Awarded 6 points!';
+ }
+ else if (sum2 - player3GuessM == 1 || player3GuessM - sum2 == 1) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore2 = keepScore2 + 8;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 8;
+    document.getElementById('guess2').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+    if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+    document.getElementById('scoreM').innerHTML = keepScore2;
+    document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+    document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer3 + ' Awarded 8 points!';
+ }
+ setTimeout(function(){
+   document.getElementById('guess2').style.color = "black";
+   document.getElementById('decoy1M').style.color = "black";
+   document.getElementById('decoy2M').style.color = "black";
+   highScoreM();
+   ++round2;
+      if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+      else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+      else {
+      document.getElementById('round2').innerHTML = round2;
+      document.getElementById('sum2').innerHTML = 0;
+      document.getElementById('gameStats2').innerHTML = ' ';
+      document.getElementById('gameStats2').style.color = "#000000";
+      keepGoing();
+   }
+   }, 4000);
+};
+function evalPlayer1and2and3M() {console.log('evalPlayer1and2and3M')
+document.getElementById('guess2').disabled = true;
+document.getElementById('button').disabled = true;
+ sum2 = stageSum2;
+ if (sum2 == player3GuessM ) {
+    youWon.src = '/static/audio/youwon.wav';
+    keepScore2 = keepScore2 + 10;
+    keepPlayer2ScoreM = keepPlayer2ScoreM + 10;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 10;
+    document.getElementById('guess2').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+    if (keepPlayer3ScoreM >= 20) {document.getElementById('score3M').style.color = "#00cc00";}
+    document.getElementById('scoreM').innerHTML = keepScore2;
+    document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+    document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+    document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' nailed it! Awarded 10 points!';
+ }
+ else if (sum2 - player3GuessM == 3 || player3GuessM - sum2 == 3) {
+   rightAnswer.src = '/static/audio/correct.wav';
+   keepScore2 = keepScore2 + 4;
+   keepPlayer2ScoreM = keepPlayer2ScoreM + 4;
+   keepPlayer3ScoreM = keepPlayer3ScoreM + 4;
+   document.getElementById('guess2').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+   if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+   document.getElementById('scoreM').innerHTML = keepScore2;
+   document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+   document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+   document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' Awarded 4 points!';
+ }
+ else if (sum2 - player3GuessM == 2 || player3GuessM - sum2 == 2) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore2 = keepScore2 + 6;
+    keepPlayer2ScoreM = keepPlayer2ScoreM + 6;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 6;
+    document.getElementById('guess2').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+   if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+   document.getElementById('scoreM').innerHTML = keepScore2;
+   document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+   document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+   document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' Awarded 6 points!';
+ }
+ else if (sum2 - player3GuessM == 1 || player3GuessM - sum2 == 1) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepScore2 = keepScore2 + 8;
+    keepPlayer2ScoreM = keepPlayer2ScoreM + 8;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 8;
+    document.getElementById('guess2').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+    if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+    document.getElementById('scoreM').innerHTML = keepScore2;
+    document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+    document.getElementById('gameStats2').innerHTML = newPlayer1 + " & " + newPlayer2 + " & " + newPlayer3 + ' Awarded 8 points!';
+ }
+ setTimeout(function(){
+   document.getElementById('guess2').style.color = "black";
+   document.getElementById('decoy1M').style.color = "black";
+   document.getElementById('decoy2M').style.color = "black";
+   highScoreM();
+   ++round2;
+      if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM ) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+      else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+      else {
+      document.getElementById('round2').innerHTML = round2;
+      document.getElementById('sum2').innerHTML = 0;
+      document.getElementById('gameStats2').innerHTML = ' ';
+      document.getElementById('gameStats2').style.color = "#000000";
+      keepGoing();
+   }
+   }, 4000);
+};
+function evalPlayer2and3M() {console.log('evalPlayer2and3M')
+document.getElementById('guess2').disabled = true;
+document.getElementById('button').disabled = true;
+ sum2 = stageSum2;
+ if (sum2 == player3GuessM ) {
+    youWon.src = '/static/audio/youwon.wav';
+    keepPlayer2ScoreM = keepPlayer2ScoreM + 10;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 10;
+    document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+    if (keepPlayer3ScoreM >= 20) {document.getElementById('score3M').style.color = "#00cc00";}
+    document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+    document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+    document.getElementById('gameStats2').innerHTML = newPlayer2 + " & " + newPlayer3 + ' nailed it! Awarded 10 points!';
+ }
+ else if (sum2 - player3GuessM == 3 || player3GuessM - sum2 == 3) {
+   rightAnswer.src = '/static/audio/correct.wav';
+   keepPlayer2ScoreM = keepPlayer2ScoreM + 4;
+   keepPlayer3ScoreM = keepPlayer3ScoreM + 4;
+   document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+   document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+   if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+   document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+   document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+   document.getElementById('gameStats2').innerHTML = newPlayer2 + " & " + newPlayer3 + ' Awarded 4 points!';
+ }
+ else if (sum2 - player3GuessM == 2 || player3GuessM - sum2 == 2) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepPlayer2ScoreM = keepPlayer2ScoreM + 6;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 6;
+    document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+   if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+   document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+   document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+   document.getElementById('gameStats2').innerHTML = newPlayer2 + " & " + newPlayer3 + ' Awarded 6 points!';
+ }
+ else if (sum2 - player3GuessM == 1 || player3GuessM - sum2 == 1) {
+    rightAnswer.src = '/static/audio/correct.wav';
+    keepPlayer2ScoreM = keepPlayer2ScoreM + 8;
+    keepPlayer3ScoreM = keepPlayer3ScoreM + 8;
+    document.getElementById('decoy1M').style.backgroundColor = "#00ff00";
+    document.getElementById('decoy2M').style.backgroundColor = "#00ff00";
+    if (keepPlayer3ScoreM >= 20) {youWon.src = '/static/audio/youwon.wav';document.getElementById('score3M').style.color = "#00cc00";}
+    document.getElementById('score2M').innerHTML = keepPlayer2ScoreM;
+    document.getElementById('score3M').innerHTML = keepPlayer3ScoreM;
+    document.getElementById('gameStats2').innerHTML = newPlayer2 + " & " + newPlayer3 + ' Awarded 8 points!';
+ }
+ setTimeout(function(){
+   document.getElementById('guess2').style.color = "black";
+   document.getElementById('decoy1M').style.color = "black";
+   document.getElementById('decoy2M').style.color = "black";
+   highScoreM();
+   ++round2;
+      if (keepScore2 >= 20 || keepPlayer2ScoreM >= 20 || keepPlayer3ScoreM >= 20) {if(keepScore2 >=20 && keepScore2 > keepPlayer2ScoreM && keepScore2 > keepPlayer3ScoreM) {gameOver.src = '/static/audio/gameover.wav';setTimeout(function(){endGame();}, 2000)}
+      else {sad.src = '/static/audio/end_of_game_melody_jazzy-chords.wav';setTimeout(function(){endGame();}, 2000)}}
+      else {
+      document.getElementById('round2').innerHTML = round2;
+      document.getElementById('sum2').innerHTML = 0;
+      document.getElementById('gameStats2').innerHTML = ' ';
+      document.getElementById('gameStats2').style.color = "#000000";
+      keepGoing();
+   }
+}, 4000);
+};
+
+
+//**********************************************************************************************END OF MOBILE
    function keepGoing() {
       random1 = document.getElementById("rand1");random1.style.backgroundColor = "#ffffff";
       document.getElementById("rand1").innerHTML = null;random1 = document.getElementById("rand1");random1.appendChild(img);
@@ -305,6 +1295,20 @@
       document.getElementById("rand3").innerHTML = null;random3 = document.getElementById("rand3");random3.appendChild(img3);
       random3M = document.getElementById("rand3M");random3M.style.backgroundColor = "#ffffff";
       document.getElementById("rand3M").innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(img3M);
+      document.getElementById("decoy1").innerHTML = null;
+      decoy1 = document.getElementById("decoy1");decoy1.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy1').innerHTML = knight;
+      document.getElementById("decoy2").innerHTML = null;
+      decoy2 = document.getElementById("decoy2");decoy2.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy2').innerHTML = rook;
+
+      document.getElementById("decoy1M").innerHTML = null;
+      decoy1M = document.getElementById("decoy1M");decoy1M.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy1M').innerHTML = knight;
+      document.getElementById("decoy2M").innerHTML = null;
+      decoy2M = document.getElementById("decoy2M");decoy2M.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy2M').innerHTML = rook;
+
       document.getElementById('button').disabled = false;
       document.getElementById('guess1').disabled = false;
       document.getElementById("guess1").value = null;
@@ -318,6 +1322,7 @@
 
    }
    function getGuess() {
+      document.getElementById("guess1").style.backgroundColor = "#ffffff";
       document.getElementById("guess1").focus();
       val1 = Number(document.getElementById("guess1").value);
       if (val1 == '') {
@@ -327,6 +1332,7 @@
       return val1
    }
    function getGuess2() {
+      document.getElementById("guess2").style.backgroundColor = "#ffffff";
       document.getElementById("guess2").focus();
       val2 = Number(document.getElementById("guess2").value);
       if (val2 == '') {
@@ -335,17 +1341,30 @@
       }
       return val2
    }
-   /*function timer() {const timer = setInterval(timeKeep, 100);}
-   function timeKeep() {
-      if (val1 == '') {
-         getGuess()
-      if (buttonFlag == 'n' && val1 != '') {nextRoundButton()}
-      }
-      if (val2 == '') {
-      if (buttonFlag == 'n' && val2 != '') {nextRoundButton()}
-      }
-   }*/
-
+   function getDecoy1() {
+      howTight = randInt(0,1);
+      if (howTight == 0) {player2Guess = randInt(3, 18);}
+      else {player2Guess = randInt(9, 15);}
+      document.getElementById('decoy1').innerHTML = player2Guess;
+   }
+   function getDecoy2() {
+      howTight = randInt(0,1);
+      if (howTight == 0) {player3Guess = randInt(3, 18);}
+      else {player3Guess = randInt(9, 15);}
+      document.getElementById('decoy2').innerHTML = player3Guess;
+   }
+   function getDecoy1M() {
+      howTight = randInt(0,1);
+      if (howTight == 0) {player2GuessM = randInt(3, 18);}
+      else {player2GuessM = randInt(9, 15);}
+      document.getElementById('decoy1M').innerHTML = player2GuessM;
+   }
+   function getDecoy2M() {
+      howTight = randInt(0,1);
+      if (howTight == 0) {player3GuessM = randInt(3, 18);}
+      else {player3GuessM = randInt(9, 15);}
+      document.getElementById('decoy2M').innerHTML = player3GuessM;
+   }
  function unlockAudio() {
    rightAnswer.src = '/static/audio/silence.wav';
    wrongAnswer.src = '/static/audio/silence.wav';
@@ -373,6 +1392,14 @@
       random3 = document.getElementById("rand3");random3.appendChild(img3);
       random3M = document.getElementById("rand3M");random3M.style.backgroundColor = "#ffffff";
       random3M = document.getElementById("rand3M");random3M.appendChild(img3M);
+      decoy1 = document.getElementById("decoy1");decoy1.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy1').innerHTML = knight;
+      decoy2 = document.getElementById("decoy2");decoy2.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy2').innerHTML = rook;
+      decoy1M = document.getElementById("decoy1M");decoy1M.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy1M').innerHTML = knight;
+      decoy2M = document.getElementById("decoy2M");decoy2M.style.backgroundColor = "#ffffff";
+      document.getElementById('decoy2M').innerHTML = rook;
       document.getElementById('gameStats').style.fontWeight = "bold";
       document.getElementById('gameStats2').style.fontWeight = "bold";
 
@@ -401,18 +1428,21 @@
           }
 
       });
-
       document.addEventListener("touchmove", function() {
          unlockAudio();
       });
-
+      getPlayer1();
+      getPlayer2();
+      getPlayer3();
       getGuess();
       getGuess2();
    });
 </script>
-<style>.square {width: 50px; height: 50px; text-align:center; margin-bottom: 0rem;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;}
-        #answerStage {margin: auto; position: relative;}
-        p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
+<style>.square {width: 75px; height: 75px; text-align:center;border: solid;font-size: 1.5rem;}
+       .squareR {width: 100px; height: 100px; display: block;}
+       p {margin-bottom: 0rem;}
+       #stage {margin-bottom: 5px;}
+        p.squareR {text-align: center; padding-top: 16px; font-size: 40px;}
         #shape {background: rgba(232, 232, 232, .90);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
         #shape2 {background: rgba(232, 232, 232, .80);width: 90%;position: relative;box-sizing: border-box;border-style: solid;border-width: thin;text-align: center;padding: 1rem;height: auto; margin-top: 5rem;}
         body {background-repeat: no-repeat;background-attachment: fixed;background-position: center center;}
@@ -425,20 +1455,18 @@
         .button-link:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}
         #button[disabled]{background: grey;}
         #button2[disabled]{background: grey;}
-        /*.btn[disabled]{background: grey;}
-        .btn{background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 10px 45px;text-decoration: none;text-indent: 0rem;text-shadow: none;
-         text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin: 0.25rem;}
-        .btn:hover {background-color: gray;color: white;}
-        .btn:active {background-color: blue;box-shadow: 0 5px #667;transform: translateY(4px);}*/
         h4 {margin: bottom 0;}
-        hr {width: 15rem; margin-top: 0rem;}
+        hr {width: 15rem; margin-top: 0rem;width: 320px;}
         #gameStats {height: 1.5rem;} #gameStats2 {height: 1rem;}
+        .decoy1 {width: 50px; height: 50px;display: block;background-color: white;}
+        p.decoy1 {text-align: center; padding-top: 12px; border: solid;}
 </style>
  <!--<link rel="stylesheet" href="{% static 'css/mfa.css' %}">-->
  <body id="page-top" class=".backgroundimg" style="background-image: url('{% static 'Images/board.jpg' %}');">
     <main>
       <div id="shape" class="mt-5 d-none d-md-block">
-              <div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Final</h4><h2 class="ml-2 font-weight: bold">Tally</h2></div>
+              <!--<div class="row justify-content-center mt-4"><h4 class=" mt-1 font-italic text-danger">Final</h4><h2 class="ml-2 font-weight: bold">Tally</h2></div>-->
+               <div class="row justify-content-center mt-4"><h2 class="font-italic text-danger">1</h2><h4 class="font-italic text-danger">st</h4><h2 class="ml-1 font-weight: bolder">Twenty</h2></div>
               <div class="row justify-content-center mt-4"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
                <div class="row justify-content-center" id="stage">
                   <p class="squareR font-weight-bold" id="rand1"></p>&#160;
@@ -446,24 +1474,39 @@
                   <p class="squareR font-weight-bold" id="rand3"></p><br>
                </div>
                <div class="row justify-content-center">
-                  <label>Score:</label><p class="mr-3 ml-2 font-weight-bold" id="score" >0</p>
-                  <label>Round:</label><p class="ml-2 mr-3 font-weight-bold" id="round">1</p>
-                  <label>Tally:</label><p class="ml-2 font-weight-bold" id="sum">0</p>
+                  <!--<label>Score:</label><p class="mr-3 ml-2 font-weight-bold" id="score" >0</p>-->
+                  <label>Round:</label><p class="ml-2 mr-5 font-weight-bold" id="round">1</p>
+                  <label>Sum:</label><p class="ml-2 font-weight-bold" id="sum">0</p>
                </div>
                <div class="row justify-content-center" id="gameStats"></div>
                <hr id="hr">
-               <div class="mb-2"><label>What will the dice roll total?</label></div>
-               <!--<div class="row justify-content-center mb-3" id="answerStage">-->
-                  <form>
-                  <input class="square justify-content-center mb-4" id="guess1" type="text" placeholder="3-18" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>&#160;<br>
-                  <button type="button" class="button-link row justify-content-center" id="button" onclick="checkEntry()">Roll!</button>
+               <!--<div class="mb-2"><label>What will the dice roll total?</label></div>-->
+               <div class="row justify-content-center">
+                  <p class="font-weight-bold mr-5" id="name2">Player 2</p>
+                  <p class="font-weight-bold mr-5 ml-1" id="name1">Player 1</p>
+                  <p class="font-weight-bold" id="name3">Player 3</p>
+               </div>
+               <hr id="hr" class="mt-2">
+                  <form >
+                     <div class="row justify-content-center">
+                        <p class="decoy1 mr-5 mt-3"  id="decoy1"></p>
+                        <input class="square justify-content-center font-weight-bold mr-5" id="guess1" type="text" placeholder="3-18" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                        <p class="decoy1 mt-3"  id="decoy2"></p>
+                     </div>
+                     <div class="row justify-content-center mt-1">
+                        <label>Score:</label><p class="font-weight-bold ml-1 mr-5" id="score2" >0</p>
+                        <label>Score:</label><p class="font-weight-bold ml-1 mr-5" id="score" >0</p>
+                        <label>Score:</label><p class="font-weight-bold ml-1" id="score3" >0</p>
+                     </div>
+                     <button type="button" class="button-link row justify-content-center mt-5 mb-5" id="button" onclick="checkEntry()">Roll!</button>
                   </form>
                </div>
          </div>
      </main>
      <!--Mobile-->
      <div id="shape2" class="container d-sm-block d-md-none">
-      <div class="row justify-content-center" id="title"><h4 class=" mt-1 font-italic text-danger">Final</h4><h2 class="ml-2 font-weight: bold">Tally</h2></div>
+      <!--<div class="row justify-content-center" id="title"><h4 class=" mt-1 font-italic text-danger">Final</h4><h2 class="ml-2 font-weight: bold">Tally</h2></div>-->
+      <div class="row justify-content-center" id="title"><h2 class="font-italic text-danger">1</h2><h4 class="font-italic text-danger">st</h2><h2 class="ml-1 font-weight: bolder">Twenty</h2></div>
          <div class="row justify-content-center mb-5"><h5>Roll 1</h5><h5 class="ml-5 mr-5">Roll 2</h5><h5>Roll 3</h5></div>
          <div class="row justify-content-center" id="stage2">
           <p class="squareR font-weight-bold" id="rand1M"></p>&#160;
@@ -471,18 +1514,30 @@
           <p class="squareR font-weight-bold" id="rand3M"></p><br>
          </div>
          <div class="row justify-content-center">
-            <label>Score:</label><p class="mr-3 ml-2 font-weight-bold" id="score2" >0</p>
-            <label>Round:</label><p class="ml-2 mr-3 font-weight-bold" id="round2">1</p>
-            <label>Tally:</label><p class="ml-2 font-weight-bold" id="sum2">0</p>
+            <label>Round:</label><p class="ml-2 mr-5 font-weight-bold" id="round2">1</p>
+            <label>Sum:</label><p class="ml-2 font-weight-bold" id="sum2">0</p>
          </div>
          <div class="row justify-content-center mb-1" id="gameStats2"></div>
          <hr id="hr2">
-         <!--<div class="row justify-content-center" id="answerStage2">-->
-          <form>
-            <div class="mt-2"><label>What will the dice total?</label></div>
-            <input class="square justify-content-center mt-1 mb-4" id="guess2" type="text" placeholder="3-18" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>&#160;<br>
-            <button type="button" class="button-link row justify-content-center" id="button2" onclick="checkEntry2()">Roll!</button>
-          </form>
+         <div class="row justify-content-center">
+            <p class="font-weight-bold mr-5" id="name2M">Player 2</p>
+            <p class="font-weight-bold mr-5 ml-1" id="name1M">Player 1</p>
+            <p class="font-weight-bold" id="name3M">Player 3</p>
+         </div>
+         <hr id="hr2" class="mt-2">
+            <form >
+               <div class="row justify-content-center">
+                  <p class="decoy1 mr-5 mt-3"  id="decoy1M"></p>
+                  <input class="square justify-content-center font-weight-bold mr-5" id="guess2" type="text" placeholder="3-18" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                  <p class="decoy1 mt-3"  id="decoy2M"></p>
+               </div>
+               <div class="row justify-content-center mt-1">
+                  <label>Score:</label><p class="font-weight-bold ml-1 mr-5" id="score2M" >0</p>
+                  <label>Score:</label><p class="font-weight-bold ml-1 mr-5" id="scoreM" >0</p>
+                  <label>Score:</label><p class="font-weight-bold ml-1" id="score3M" >0</p>
+               </div>
+               <button type="button" class="button-link row justify-content-center mt-4" id="button2" onclick="checkEntry2()">Roll!</button>
+            </form>
        </div>
  </div>
  <!--<figure><div class="row justify-content-center"><audio loop controls id="audio">><source src='/static/audio/game-music.wav' type="audio/mpeg" /></audio></div></figure>-->
