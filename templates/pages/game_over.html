@@ -5,16 +5,24 @@
 
 <script>
 window.addEventListener('load', function() {
-   addScoreM = sessionStorage.getItem("addScoreM");
+   addScoreM = sessionStorage.getItem("addScore1M");
    addScore2M = sessionStorage.getItem("addScore2M");
    addScore3M = sessionStorage.getItem("addScore3M");
-   playerName1M = sessionStorage.getItem("playerName1M");
-   playerName2 = sessionStorage.getItem("playerName2");
-   playerName3 = sessionStorage.getItem("playerName3");
+   playerName1 = sessionStorage.getItem("playerName1M");
+   playerName2 = sessionStorage.getItem("playerName2M");
+   playerName3 = sessionStorage.getItem("playerName3M");
    let name = document.getElementById('name');
-   if (addScoreM > addScore2M && addScoreM > addScore3M) {name.innerText = playerName1M;}
-   else if (addScore2M > addScoreM && addScore2M > addScore3M) {name.innerText = playerName2;}
-   else if (addScore3M > addScoreM && addScore3M > addScore2M) {name.innerText = playerName3;}
+   console.log(addScoreM)
+   console.log(addScore2M)
+   console.log(addScore3M)
+   console.log(playerName1)
+   console.log(playerName2)
+   console.log(playerName3)
+
+
+   if (addScoreM >= 20) {name.innerText = playerName1;}
+   else if (addScore2M >= 20) {name.innerText = playerName2;}
+   else if (addScore3M >= 20) {name.innerText = playerName3;}
    });
 </script>
 <style>
