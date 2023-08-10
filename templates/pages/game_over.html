@@ -12,9 +12,9 @@ window.addEventListener('load', function() {
    playerName2 = sessionStorage.getItem("playerName2");
    playerName3 = sessionStorage.getItem("playerName3");
    let name = document.getElementById('name');
-   if (addScore > addScore2 && addScore > addScore3) {name.innerText = playerName1;}
-   else if (addScore2 > addScore && addScore2 > addScore3) {name.innerText = playerName2;}
-   else if (addScore3 > addScore && addScore3 > addScore2) {name.innerText = playerName3;}
+   if (addScoreM > addScore2M && addScoreM > addScore3M) {name.innerText = playerName1;}
+   else if (addScore2M > addScoreM && addScore2M > addScore3M) {name.innerText = playerName2;}
+   else if (addScore3M > addScoreM && addScore3M > addScore2M) {name.innerText = playerName3;}
    });
 </script>
 <style>
