@@ -1456,7 +1456,8 @@ document.getElementById('button').disabled = true;
         #button[disabled]{background: grey;}
         #button2[disabled]{background: grey;}
         h4 {margin: bottom 0;}
-        hr {width: 15rem; margin: 0rem;width: 320px;}
+        hr {width: 15rem;width: 320px;}
+        #hr {width: 15rem; margin: 0rem;width: 320px;}
         #gameStats {height: 1.5rem;} #gameStats2 {height: 1rem;}
         .decoy1 {width: 50px; height: 50px;display: block;background-color: white;}
         p.decoy1 {text-align: center; padding-top: 12px; border: solid;}
@@ -1479,16 +1480,16 @@ document.getElementById('button').disabled = true;
                   <label>Sum:</label><p class="ml-2 font-weight-bold" id="sum">0</p>
                </div>
                <div class="row justify-content-center" id="gameStats"></div>
-               <hr id="hr">
+               <hr>
                <!--<div class="mb-2"><label>What will the dice roll total?</label></div>-->
                <div class="row justify-content-center">
                   <p class="font-weight-bold mr-5" id="name2">Player 2</p>
                   <p class="font-weight-bold mr-5 ml-1" id="name1">Player 1</p>
                   <p class="font-weight-bold" id="name3">Player 3</p>
                </div>
-               <hr id="hr">
+               <hr>
                   <form >
-                     <div class="row justify-content-center">
+                     <div class="row justify-content-center mt-1">
                         <p class="decoy1 mr-5 mt-3"  id="decoy1"></p>
                         <input class="square justify-content-center font-weight-bold mr-5" id="guess1" type="text" placeholder="3-18" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
                         <p class="decoy1 mt-3"  id="decoy2"></p>
@@ -1518,13 +1519,13 @@ document.getElementById('button').disabled = true;
             <label>Sum:</label><p class="ml-2 font-weight-bold" id="sum2">0</p>
          </div>
          <div class="row justify-content-center mb-1" id="gameStats2"></div>
-         <hr id="hr2">
+         <hr id="hr">
          <div class="row justify-content-center">
             <p class="font-weight-bold mr-5" id="name2M">Player 2</p>
             <p class="font-weight-bold mr-5" id="name1M">Player 1</p>
             <p class="font-weight-bold" id="name3M">Player 3</p>
          </div>
-         <hr id="hr2">
+         <hr id="hr">
             <form >
                <div class="row justify-content-center">
                   <p class="decoy1 mr-5 mt-3"  id="decoy1M"></p>
