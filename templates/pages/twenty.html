@@ -13,6 +13,15 @@
     }
 window.addEventListener('load', function() {
 
+    document.addEventListener("keydown", function(e) {
+
+        if (e.keyCode === 13) {
+          event.preventDefault();
+          go();
+        }
+
+     });
+
    });
 </script>
 {% endblock %}
