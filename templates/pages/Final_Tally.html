@@ -110,6 +110,7 @@
    function getPlayer1() {
       newPlayer1 = sessionStorage.getItem("newPlayer1");
       newPlayer1M = sessionStorage.getItem("newPlayer1M");
+      if (newPlayer1 == '' || newPlayer1M == '') {newPlayer1 = 'player 1';newPlayer1M = 'player 1';}
       document.getElementById("name1").innerHTML = newPlayer1;
       document.getElementById("name1M").innerHTML = newPlayer1M;
    }
@@ -1541,7 +1542,7 @@ document.getElementById('button').disabled = true;
                   <label>Score:</label><p class="font-weight-bold mr-5" id="scoreM" >0</p>
                   <label>Score:</label><p class="font-weight-bold" id="score3M" >0</p>
                </div>
-               <button type="button" class="button-link row justify-content-center mt-2 mb-2" id="button2" onclick="checkEntry2()">Roll!</button>
+               <button type="button" class="button-link row justify-content-center mb-2" id="button2" onclick="checkEntry2()">Roll!</button>
             </form>
        </div>
  </div>

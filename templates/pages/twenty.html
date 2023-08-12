@@ -28,8 +28,8 @@ window.addEventListener('load', function() {
 <style>
     .square {width: 50px; height: 50px; text-align:center; margin-bottom: 32px;} .squareR {width: 100px; height: 100px; display: block;} #stage {margin-bottom: 32px;} #answerStage {margin: auto; position: relative;}
     p.squareR {text-align: center; display: block; padding-top: 16px; font-size: 40px;}#hr {width: 320px;}
-    #shape {background: rgba(232, 232, 232, .95);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
-    #shape2 {background: rgba(232, 232, 232, .95);width: 70%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;}
+    #shape {background: rgba(232, 232, 232, .95);width: 30rem;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem; background-position: center;}
+    #shape2 {background: rgba(232, 232, 232, .80);height: 400px;width: 80%;position: relative;box-sizing: border-box;margin: auto;border-style: solid;border-width: thin;text-align: center;padding: 1rem;background-position: center;}
     #page-top {background-repeat: no-repeat;background-attachment: fixed; background-position: center center;}
     .button-link {background-color: black;border-style: none solid solid none;color: white;display: block;font-family: Verdana, Geneva, sans-serif;padding: 1px 76px;text-decoration: none;text-indent: 0rem;text-shadow: none;
     text-align: center;box-sizing: border-box;border-radius: 0.5rem;cursor: pointer;position: relative;margin:auto;}
@@ -58,6 +58,14 @@ window.addEventListener('load', function() {
                 <div class="row justify-content-center mt-3"><h2 class="font-italic text-danger">1</h2><h4 class="font-italic text-danger">st</h4><h2 class="ml-1 font-weight: bolder">Twenty</h2></div>
                 <h4 id="display2" class="mt-2 mb-2">Please enter your name</h4>
                 <input type="text" placeholder="name" maxlength="10" id="name2" style="text-align:center">
+                <div class="row ml-1 text-left font-weight-normal mt-3" >
+                    1. 3 random dice are rolled.<br>
+                    2. What will be the sum?<br>
+                    3. Enter your guess & Roll baby!<br>
+                    4. The closer your guess.<br>
+                    5. The more points you win!<br>
+                    6. Good luck!<br>
+                 </div>
                 <button type="button" class="button-link row justify-content-center mt-4 mb-4" id="button2" onclick="go()">Go!</button>
             </div>
         </form>
