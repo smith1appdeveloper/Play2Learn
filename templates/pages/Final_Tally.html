@@ -110,7 +110,8 @@
    function getPlayer1() {
       newPlayer1 = sessionStorage.getItem("newPlayer1");
       newPlayer1M = sessionStorage.getItem("newPlayer1M");
-      if (newPlayer1 == '' || newPlayer1M == '') {newPlayer1 = 'player 1';newPlayer1M = 'player 1';}
+      if (newPlayer1 == '') {newPlayer1 = 'player 1';}
+      if (newPlayer1M == '') {newPlayer1M = 'player 1';}
       document.getElementById("name1").innerHTML = newPlayer1;
       document.getElementById("name1M").innerHTML = newPlayer1M;
    }
