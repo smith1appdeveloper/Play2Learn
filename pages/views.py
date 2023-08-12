@@ -69,7 +69,7 @@ class Who_am_IView(TemplateView):
     template_name = 'pages/Who_am_I.html'
 
 class Who_am_I_rulesView(TemplateView):
-    template_name = 'pages/Who_am_I_rules.html'
+    template_name = 'pages/who_am_I_rules.html'
 
 class Who_am_I2View(TemplateView):
     template_name = 'pages/Who_am_I2.html'
