@@ -259,6 +259,8 @@
    }
    //*******************************************************check entry**************************************************************
    function checkEntry() {
+      document.getElementById('button').disabled = true;
+      document.getElementById('guess1').disabled = true;
       getGuess();
       getDecoy1();
       getDecoy2();
@@ -767,6 +769,8 @@ document.getElementById('button').disabled = true;
 
    //*******************************************************check entry 2**************************************************************
    function checkEntry2() {
+      document.getElementById('button2').disabled = true;
+      document.getElementById('guess2').disabled = true;
       getGuess2();
       getDecoy1M();
       getDecoy2M();
@@ -833,6 +837,7 @@ document.getElementById('button').disabled = true;
                document.getElementById('decoy1M').style.color = "red";
                document.getElementById('decoy2M').style.color = "red";
                setTimeout(function(){
+                  document.getElementById('guess2').style.color = "black";
                   document.getElementById('guess2').style.color = "black";
                   document.getElementById('decoy1M').style.color = "black";
                   document.getElementById('decoy2M').style.color = "black";
@@ -1301,6 +1306,7 @@ document.getElementById('button').disabled = true;
       document.getElementById("rand3").innerHTML = null;random3 = document.getElementById("rand3");random3.appendChild(img3);
       random3M = document.getElementById("rand3M");random3M.style.backgroundColor = "#ffffff";
       document.getElementById("rand3M").innerHTML = null;random3M = document.getElementById("rand3M");random3M.appendChild(img3M);
+
       document.getElementById("decoy1").innerHTML = null;
       decoy1 = document.getElementById("decoy1");decoy1.style.backgroundColor = "#ffffff";
       document.getElementById('decoy1').innerHTML = knight;
