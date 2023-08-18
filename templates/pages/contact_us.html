@@ -26,7 +26,7 @@
             }
             if (form.checkValidity() === true) {
               window.location.assign("{% url 'pages:homepage' %}");
-              alert("Thanks for contacting us. We\'ll get back to you as soon as possible.");
+              alert("This mailbox is not monitored. Please contact smith1appdeveloper@gmail.com with any questions.");
             }
          });
         form2.addEventListener('submit', function(e) {
@@ -36,7 +36,7 @@
             }
             if (form2.checkValidity() === true) {
                 window.location.assign("{% url 'pages:homepage' %}");
-                alert("Thanks for contacting us. We\'ll get back to you as soon as possible.");
+                alert("This mailbox is not monitored. Please contact smith1appdeveloper@gmail.com with any questions.");
             }
         });
 
@@ -89,7 +89,7 @@
            <div class="col-md-12">
                <div class="form-group ml-3 mr-3">
                    <label for="form_message" class="font-weight-bold">Message *</label>
-                   <textarea id="message" name="message2" class="form-control" placeholder="Please, leave us a message. *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                   <textarea id="message" name="message2" class="form-control" placeholder="This mailbox is not monitored. *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
                    <div class="help-block with-errors"></div>
                </div>
            </div>
@@ -145,7 +145,7 @@
          <div class="col-md-12">
              <div class="form-group ml-3 mr-3" id="mobile">
                  <label for="form_message" class="font-weight-bold">Message *</label>
-                 <textarea id="message" name="message" class="form-control" placeholder="Please, leave us a message. *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                 <textarea id="message" name="message" class="form-control" placeholder="This mailbox is not monitored. *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
                  <div class="help-block with-errors"></div>
              </div>
          </div>
