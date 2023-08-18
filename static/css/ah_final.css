@@ -63,7 +63,7 @@ color: #212529;
       margin: 0%;
     }
     #button {
-      border-style: none solid solid none;
+      border-style: none;
       background-color: gray;
       color: white;
       display: block;
@@ -90,7 +90,7 @@ color: #212529;
         text-decoration: none;
       }
       #button-l {
-        border-style: none solid solid none;
+        border-style: none;
         background-color: gray;
         color: white;
         display: block;

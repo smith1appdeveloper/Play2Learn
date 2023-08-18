@@ -70,7 +70,7 @@ body, html {
  font-weight: bold;
  }
  #button {
-  border-style: none solid solid none;
+  border-style: none;
   background-color: gray;
   color: white;
   display: block;
