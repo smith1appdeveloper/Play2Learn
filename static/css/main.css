@@ -228,9 +228,9 @@ body, html{
    padding-bottom: .5rem;
    font-size: large;
  }
- .button-link {
+ .button-link1 {
    background-color: black;
-   border-style: none solid solid none;
+   border-style: none;
    color: white;
    display: block;
    font-family: Verdana, Geneva, sans-serif;
@@ -265,16 +265,16 @@ body, html{
    margin-top: 1.25rem;
    height: 2rem;
  }
- .button-link:hover {
+ .button-link1:hover {
    background-color: gray;
    color: white;
    text-decoration: none;
  }
- .button-link:active {
-   background-color: blue;
-   box-shadow: 0 5px #667;
-   transform: translateY(4px);
-   text-decoration: none;
+ .button-link1:active {
+  background-color: #0754c7;
+  color: white;
+  box-shadow: 0 5px #667;
+  transform: translateY(4px);
  }
  .button-link2:hover {
   background-color: gray;
@@ -282,10 +282,10 @@ body, html{
   text-decoration: none;
 }
 .button-link2:active {
-  background-color: blue;
+  background-color: #0754c7;
+  color: white;
   box-shadow: 0 5px #667;
   transform: translateY(4px);
-  text-decoration: none;
 }
  #footer {
    background: rgba(232, 232, 232, 0.8);
