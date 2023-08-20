@@ -234,7 +234,7 @@ body, html{
    color: white;
    display: block;
    font-family: Verdana, Geneva, sans-serif;
-   padding: 1px 6px;
+   padding: 3px 6px;
    text-decoration: none;
    text-indent: 0rem;
    text-shadow: none;
@@ -243,7 +243,6 @@ body, html{
    border-radius: 0.5rem;
    cursor: pointer;
    position: absolute;
-   margin-left: 1rem;
  }
  .button-link2 {
    background-color: black;
@@ -251,7 +250,7 @@ body, html{
    color: white;
    display: block;
    font-family: Verdana, Geneva, sans-serif;
-   padding: 3px 10px;
+   padding: 5px 10px;
    text-decoration: none;
    text-indent: 0rem;
    text-shadow: none;

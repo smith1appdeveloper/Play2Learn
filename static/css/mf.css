@@ -9,6 +9,7 @@ body, html {
 
 }
 #mathButton {
+  padding: 3px 6px;
   position: absolute;
   box-sizing: border-box;
   background-color: black;
@@ -21,6 +22,7 @@ body, html {
   margin-left: 5rem;
 }
 #mathButton2 {
+  padding: 3px 6px;
   position: relative;
   box-sizing: border-box;
   background-color: black;
