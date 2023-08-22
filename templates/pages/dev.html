@@ -82,7 +82,7 @@
   </div>
     <div id="background" class="container d-none d-md-block d-xl-none">
       <div id="container1" class="row">
-        <div class="container col-md-4 border-right border-dark d-none d-md-block d-xl-none">
+        <div class="container col-md-4 d-none d-md-block d-xl-none">
           <div class="row justify-content-center"><h3>Final Tally</h3><p class="ml-2 font-italic">beta</p></div>
           <p class="d-none d-md-block d-xl-none text-left mt-3">
             1.  Can you guess the total of 3 random dice rolls?<br>
@@ -99,7 +99,7 @@
           </p>
           <a class="button-link mt-2" href="{% url 'pages:random_ace' %}">Play Now!</a>
         </div>
-        <div id="container2" class="container col-md-4 border-start d-none d-md-block d-xl-none">
+        <div id="container2" class="container col-md-4 border-left border-dark d-none d-md-block d-xl-none">
           <div class="row justify-content-center"><h3>Who am I&#63;</h3><p class="ml-2 font-italic">beta</p></div>
           <p id="mf" class="d-none d-md-block d-xl-none text-left mt-3">
             1.  Do you want to know who I am?<br>
@@ -116,7 +116,7 @@
           </p>
           <a class="button-link mt-2" href="{% url 'pages:who_am_I' %}">Play Now!</a>
         </div>
-        <div id="container3" class="container col-md-4 border-start d-none d-md-block d-xl-none">
+        <div id="container3" class="container col-md-4 border-left border-dark d-none d-md-block d-xl-none">
           <h3>Random Ace&#9824;</h3>
           <p id="mf" class="container d-none d-md-block d-xl-none">
             1. Choose a digit between 1-6 and press Roll.
@@ -138,7 +138,7 @@
     <!--XL-->
     <div id="backgroundXL" class="container col-md-10 d-none d-xl-block">
       <div id="container1" class="row">
-        <div class="container col-md-4 border-right border-dark d-none d-xl-block">
+        <div class="container col-md-4 d-none d-xl-block">
           <div class="row justify-content-center"><h3>Final Tally</h3><p class="ml-2 font-italic">beta</p></div>
           <p class="d-none d-lg-block text-left mt-3">
             1.  Can you guess the total of 3 random dice rolls?<br>
@@ -155,7 +155,7 @@
           </p>
           <a class="button-link mt-2" href="{% url 'pages:final_tally' %}">Play Now!</a>
         </div>
-        <div id="container2" class="col-md-4 border-right border-dark d-none d-xl-block">
+        <div id="container2" class="col-md-4 border-left border-dark d-none d-xl-block">
           <div class="row justify-content-center"><h3>Who am I&#63;</h3><p class="ml-2 font-italic">beta</p></div>
           <p id="mf" class="d-none d-lg-block text-left mt-3">
             1.  Do you want to know who I am?<br>
@@ -174,7 +174,7 @@
         </div>
         <div id="container3" class="container col-md-4 d-none d-xl-block">
           <h3>Random Ace&#9824;</h3>
-            <p class="d-none d-lg-block text-left mt-3">
+            <p class="border-left border-dark d-none d-lg-block text-left mt-3">
               1. Choose a digit between 1-6 and press Roll.<br>
               2. 3 digits will be randomly selected.<br>
               3. Each match is awarded by the matched value.<br>
