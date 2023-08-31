@@ -61,6 +61,7 @@
     border-style: solid;
     border-width: thin;
     text-align: center;
+    padding: .5rem;
   }
   #math {
     float: none;
@@ -91,4 +92,8 @@
     margin-top: 6rem;
     float: left;
     clear: left;
+  }
+  #ex {
+    margin: 0rem;
+    box-sizing: initial;
   }
