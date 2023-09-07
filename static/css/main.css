@@ -66,16 +66,17 @@ body, html{
 
  }
  #brand {
-  color:rgba(0,0,0,.5);
+  /*color:rgba(0,0,0,.5);*/
+   color: black;
    display: block;
    padding: .1rem;
    text-decoration: none;
-   font-weight: 500;
+   font-weight: 700;
  }
- #brand:hover {
+ /*#brand:hover {
   color: black;
   text-decoration: none;
-}
+}*/
  nav a {
    color:rgba(0,0,0,.5);
    display: block;
