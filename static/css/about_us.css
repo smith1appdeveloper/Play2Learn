@@ -50,7 +50,7 @@ body, html {
   overflow-x: hidden !important;
   /*margin-top: 25rem;*/
   position: relative;
-  top: 40rem;
+  top: 32rem;
 }
 #backgroundUs2 {
   background: rgba(232, 232, 232, 0.65);
@@ -63,7 +63,7 @@ body, html {
   overflow-x: hidden !important;
   /*margin-top: 25rem;*/
   position: relative;
-  top: 28rem;
+  top: 40rem;
 }
 #cUsM {
   width: 100%;
