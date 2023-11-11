@@ -13,7 +13,7 @@ body, html {
   min-height: 100% !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  background-position: right 50% bottom 0%;
+  background-position: right 50% top 70%;
 }
 #imagespace2 {
   width: auto;
@@ -49,7 +49,9 @@ body, html {
   padding-bottom: 2.5rem;
   font-size: large;
   overflow-x: hidden !important;
-  margin-top: 25rem;
+  /*margin-top: 25rem;*/
+  position: relative;
+  top: 40rem;
 }
 #cUsM {
   width: 100%;
