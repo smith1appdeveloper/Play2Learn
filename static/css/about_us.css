@@ -52,6 +52,19 @@ body, html {
   position: relative;
   top: 35rem;
 }
+#backgroundUs2 {
+  background: rgba(232, 232, 232, 0.65);
+  text-align: center;
+  width: auto;
+  max-width: 40rem;
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+  font-size: large;
+  overflow-x: hidden !important;
+  /*margin-top: 25rem;*/
+  position: relative;
+  top: 15rem;
+}
 #cUsM {
   width: 100%;
   display: block;
