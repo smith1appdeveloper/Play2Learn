@@ -43,27 +43,33 @@ body, html {
   background: rgba(232, 232, 232, 0.65);
   text-align: center;
   width: auto;
-  max-width: 40rem;
-  padding-top: 1rem;
-  padding-bottom: 2.5rem;
+  /*max-width: 40rem;*/
+  max-width: 25rem;
   font-size: large;
   overflow-x: hidden !important;
   /*margin-top: 25rem;*/
   position: relative;
-  top: 26rem;
+  /*top: 26rem;*/
+  top: 10rem;
+  left: 25rem;
 }
 #backgroundUs2 {
   background: rgba(232, 232, 232, 0.65);
   text-align: center;
   width: auto;
-  max-width: 40rem;
-  padding-top: 1rem;
-  padding-bottom: 2.5rem;
+  height: auto;
+  /*max-width: 40rem;*/
+  max-width: 25rem;
   font-size: large;
   overflow-x: hidden !important;
   /*margin-top: 25rem;*/
   position: relative;
-  top: 40rem;
+  /*top: 40rem;*/
+  top: 15rem;
+  left: 15rem;
+}
+#containerUs {
+  padding: 1rem;
 }
 #cUsM {
   width: 100%;
